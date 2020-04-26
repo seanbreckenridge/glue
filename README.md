@@ -1,20 +1,19 @@
 # Glue
 
-To start your Phoenix server:
+Glue all the webapps together!
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+Acts a landing page/connects all of my projects.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Install Steps (for myself):
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Run [bootstrap](https://github.com/seanbreckenridge/bootstrap)
 
-## Learn more
+Setup git credentials, run ssh-agent on interactive shell login:
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+```sh
+eval `ssh-agent` > /dev/null
+ssh-add -q ~/.ssh/github
+```
+
+Run the `vps_install` script from my [vps](https://github.com/seanbreckenridge/vps)
+repo to setup everything.
