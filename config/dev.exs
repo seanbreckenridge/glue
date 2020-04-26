@@ -2,9 +2,9 @@ use Mix.Config
 
 # Configure your database
 config :glue, Glue.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "glue_dev",
+  username: "sean",
+  password: "sean",
+  database: "seanbr_pheonix",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
