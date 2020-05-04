@@ -1,3 +1,12 @@
-<section>
-    <h3>This is home page!</h3>
-</section>
+<style>
+body {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 10%;
+	font-size: 300%;
+	font-family: sans-serif;
+}
+</style>
+<h3>yo</h3>
+<a href="http://github.com/seanbreckenridge/">its me</a>
