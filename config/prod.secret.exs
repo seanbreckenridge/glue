@@ -5,9 +5,9 @@
 use Mix.Config
 
 database_url =
-  System.get_env("GLUE_DATABASE_URL") ||
+  System.get_env("GLUE_DATABASE_URI") ||
     raise """
-    environment variable GLUE_DATABASE_URL is missing.
+    environment variable GLUE_DATABASE_URI is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
 
