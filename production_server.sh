@@ -2,12 +2,14 @@
 
 set -e
 
+export MIX_ENV=prod
+
 mix deps.get --only prod
-MIX_ENV=prod mix compile
+mix compile
 
 npm run deploy --prefix ./assets
 mix phx.digest
 
-MIX_ENV=prox mix ecto.migrate
+mix ecto.migrate
 
-MIX_ENV=prox mix phx.server
+mix phx.server
