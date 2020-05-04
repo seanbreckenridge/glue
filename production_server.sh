@@ -2,7 +2,7 @@
 
 FILEPATH=${1:?"Error: Pass JSON config file as first argument"}
 if [ ! -e "$1" ]; then
-  printf "No such file: %s" "$1" 2>&1
+  printf "No such file: %s\n" "$1" 2>&1
   exit 1
 fi
 
@@ -14,6 +14,7 @@ export MIX_ENV=prod
 mix deps.get --only prod
 mix compile
 
+npm install --prefix ./assets
 npm run deploy --prefix ./assets
 mix phx.digest
 
