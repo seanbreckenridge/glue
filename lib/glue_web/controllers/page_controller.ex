@@ -1,5 +1,8 @@
 defmodule GlueWeb.PageController do
   use GlueWeb, :controller
+
+  plug :put_layout, "app.html"
+
   alias GlueWeb.PageController.Utils
 
   def index(conn, _params) do

@@ -5,9 +5,9 @@
 use Mix.Config
 
 database_url =
-  System.get_env("DATABASE_URL") ||
+  System.get_env("GLUE_DATABASE_URL") ||
     raise """
-    environment variable DATABASE_URL is missing.
+    environment variable GLUE_DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
 
@@ -17,14 +17,16 @@ config :glue, Glue.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 secret_key_base =
-  System.get_env("SECRET_KEY_BASE") ||
+  System.get_env("GLUE_SECRET_KEY_BASE") ||
     raise """
-    environment variable SECRET_KEY_BASE is missing.
+    environment variable GLUE_SECRET_KEY_BASE is missing.
     You can generate one by calling: mix phx.gen.secret
     """
 
+port = System.get_env("GLUE_PORT") || "8082"
+
 config :glue, GlueWeb.Endpoint,
-  http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
+  http: [:inet6, port: String.to_integer(port)],
   secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
