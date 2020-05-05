@@ -13,7 +13,8 @@ defmodule GlueWeb.Endpoint do
     at: "/",
     from: :glue,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only:
+      ~w(css fonts images js favicon.ico robots.txt site.webmanifest favicon-16x16.png favicon-32x32.png android-chrome-192x192.png apple-touch-icon.png site.webmanifest)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
