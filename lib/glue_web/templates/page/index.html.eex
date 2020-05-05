@@ -6,7 +6,22 @@ body {
 	padding: 10%;
 	font-size: 300%;
 	font-family: sans-serif;
-}
+ }
+ .repeat-horizontal {
+	 background-image: url(<%= Routes.static_path(@conn, "/images/under_construction.gif") %>);
+	 min-height: 15vh;
+	 background-repeat: repeat-x;
+	 width: 100vw;
+	 left: 0;
+	 position: absolute;
+ }
+ .yo {
+	 padding-top: 20vh;
+ }
+
 </style>
+<div class="repeat-horizontal"></div>
+<div class="yo">
 <h3>yo</h3>
 <a href="http://github.com/seanbreckenridge/">its me</a>
+</div>
