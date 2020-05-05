@@ -3,20 +3,20 @@ body {
 	background-color: black;
 	color: white;
 	text-align: center;
-	padding: 10%;
 	font-size: 300%;
 	font-family: sans-serif;
  }
  .repeat-horizontal {
-	 background-image: url(<%= Routes.static_path(@conn, "/images/under_construction.gif") %>);
-	 min-height: 15vh;
+     background-image: url(<%= Routes.static_path(@conn, "/images/under_construction.gif") %>);
+     min-height: 100px;
+     height: 15vh;
 	 background-repeat: repeat-x;
 	 width: 100vw;
 	 left: 0;
 	 position: absolute;
  }
  .yo {
-	 padding-top: 20vh;
+	 padding-top: 150px;
  }
 
 </style>
