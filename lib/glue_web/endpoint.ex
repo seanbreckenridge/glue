@@ -12,9 +12,8 @@ defmodule GlueWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :glue,
-    gzip: false,
-    only_matching: ~w(css fonts images js favicon png robots webmanifest)
-      #~w(css fonts images js favicon.ico robots.txt site.webmanifest favicon-16x16.png favicon-32x32.png android-chrome-192x192.png apple-touch-icon.png site.webmanifest)
+    gzip: System.get_env("MIX_ENV") == "prod",
+    only_matching: ~w(css fonts images js robots)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
