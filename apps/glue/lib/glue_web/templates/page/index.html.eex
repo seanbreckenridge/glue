@@ -1,6 +1,4 @@
 <style>
-
-
  body {
     background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
     background-color: black;
@@ -45,8 +43,6 @@
      margin-right: auto;
      text-align: center;
  }
-
-}
  .row > div.one-half:first-child {
      position: relative;
      bottom: -20px;
@@ -74,14 +70,14 @@
         yo
     </div>
 <div class="moving-line">
-    <img src="<%= Routes.static_path(@conn, "/images/line.gif") %>">
+    <img src="<%= Routes.static_path(@conn, "/images/line.gif") %>" "line seperator">
 </div>
 <div class="row split-container">
     <div class="one-half column">
         <div>
             <h2>
                 stuff here
-                <img class="spinning-home" src="<%= Routes.static_path(@conn, "/images/home.gif") %>">
+                <img class="spinning-home" src="<%= Routes.static_path(@conn, "/images/home.gif") %>" "home">
             </h2>
             <ul class="no-list-style">
                 <li><a href="./mal_unapproved">MAL Unapproved</a></li>
@@ -95,7 +91,7 @@
         <div>
             <h2>
                 me elsewhere
-                <img class="smile" src="<%=  Routes.static_path(@conn, "/images/globe.gif") %>">
+                <img class="smile" src="<%=  Routes.static_path(@conn, "/images/globe.gif") %>" alt="globe">
             </h2>
             <ul class="no-list-style">
                 <li><a href="https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661">Music List (spreadsheet)</a></li>
