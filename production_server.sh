@@ -14,6 +14,7 @@ export MIX_ENV=prod
 mix deps.get --only prod
 mix compile
 
+npm install --prefix ./apps/glue/assets
 npm run deploy --prefix ./apps/glue/assets
 mix phx.digest
 
