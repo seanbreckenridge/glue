@@ -16,3 +16,4 @@ config :glue, GlueWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+

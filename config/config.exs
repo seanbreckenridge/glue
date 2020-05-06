@@ -13,10 +13,9 @@ config :glue,
 # Configures the endpoint
 config :glue, GlueWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "uY5v8eAXQFG+cgRJ9/qWDd/tB8TLktM0rFpXmAvVHUQtzb9eXvQbeH0MHrFvOFnt",
+  secret_key_base: "n+5UxTP3OEwLSslhJ6IECJI503FuwxN3EVl3qQ64GlanvT2k6uKbaIk2WrHO2MNv",
   render_errors: [view: GlueWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Glue.PubSub, adapter: Phoenix.PubSub.PG2],
-  site_name: "SeanBr"
+  pubsub: [name: Glue.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

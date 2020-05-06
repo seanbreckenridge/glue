@@ -7,7 +7,7 @@ use Mix.Config
 database_url =
   System.get_env("GLUE_DATABASE_URI") ||
     raise """
-    environment variable GLUE_DATABASE_URI is missing.
+    environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
 
@@ -19,7 +19,7 @@ config :glue, Glue.Repo,
 secret_key_base =
   System.get_env("GLUE_SECRET_KEY_BASE") ||
     raise """
-    environment variable GLUE_SECRET_KEY_BASE is missing.
+    environment variable SECRET_KEY_BASE is missing.
     You can generate one by calling: mix phx.gen.secret
     """
 

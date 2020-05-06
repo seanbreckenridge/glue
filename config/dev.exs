@@ -26,7 +26,7 @@ config :glue, GlueWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
+      cd: Path.expand("../apps/glue/assets", __DIR__)
     ]
   ]
 
