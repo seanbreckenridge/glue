@@ -1,4 +1,8 @@
 <style>
+@font-face {
+  font-family: "pixel";
+  src: url(<%= Routes.static_path(@conn, "/fonts/pixel.woff") %>) format("woff");
+}
  body {
     background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
     background-color: black;
@@ -98,7 +102,7 @@
                 <li><a href="https://letterboxd.com/purplepinapples/">Movies (Letterboxd)</a></li>
                 <li><a href="https://trakt.tv/users/purplepinapples/ratings/all/all/highest">TV Shows (Trakt)</a></li>
                 <li><a href="https://myanimelist.net/profile/purplepinapples">Anime (MAL)</a></li>
-                <li><a href="http://github.com/seanbreckenridge/">Github</a></li>
+                <li><a href="http://github.com/seanbreckenridge/">Code (Github)</a></li>
             </ul>
         </div>
     </div>
