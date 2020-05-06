@@ -1,8 +1,6 @@
 <style>
-@font-face {
-  font-family: "pixel";
-  src: url(<%= Routes.static_path(@conn, "/fonts/pixel.woff") %>) format("woff");
-}
+ @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
  body {
     background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
     background-color: black;
@@ -22,7 +20,7 @@
  .yo {
 	 padding-top: 150px;
      text-align: center;
-     font-family: pixel, Verdana, sans-serif;
+     font-family: 'VT323', Verdana, sans-serif;
      font-size: 150%;
  }
  .split-container {
