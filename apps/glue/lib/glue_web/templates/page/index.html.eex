@@ -1,8 +1,10 @@
 <style>
-body {
-	background-color: black;
+
+
+ body {
+    background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
+    background-color: black;
 	color: white;
-	text-align: center;
 	font-size: 300%;
 	font-family: sans-serif;
  }
@@ -17,11 +19,92 @@ body {
  }
  .yo {
 	 padding-top: 150px;
+     text-align: center;
+     font-family: pixel, Verdana, sans-serif;
+     font-size: 150%;
+ }
+ .split-container {
+     margin-top: 2em;
+     text-align: left;
+ }
+ .no-list-style {
+     list-style-type: none;
+ }
+ .spinning-home {
+     position: relative;
+     bottom: -6px;
+     right: -4px;
+ }
+ .smile {
+     width: auto;
+     position: relative;
+     bottom: -15px;
+ }
+ .moving-line {
+     margin-left: auto;
+     margin-right: auto;
+     text-align: center;
+ }
+
+}
+ .row > div.one-half:first-child {
+     position: relative;
+     bottom: -20px;
+ }
+ .row a {
+     color: #7474de;
+ }
+
+ .row a:visited {
+     color: #7b1181;
+ }
+
+ .row a:hover {
+     background-color: #e157ab;
+     color: black;
+     transition: 0.1s;
+     border-radius: 3px;
+     padding: 3px;
  }
 
 </style>
 <div class="repeat-horizontal"></div>
-<div class="yo">
-<h3>yo</h3>
-<a href="http://github.com/seanbreckenridge/">its me</a>
+<div class="container">
+    <div class="yo">
+        yo
+    </div>
+<div class="moving-line">
+    <img src="<%= Routes.static_path(@conn, "/images/line.gif") %>">
+</div>
+<div class="row split-container">
+    <div class="one-half column">
+        <div>
+            <h2>
+                stuff here
+                <img class="spinning-home" src="<%= Routes.static_path(@conn, "/images/home.gif") %>">
+            </h2>
+            <ul class="no-list-style">
+                <li><a href="./mal_unapproved">MAL Unapproved</a></li>
+                <li><a href="./animeshorts">AnimeShorts</a></li>
+                <li><a href="./xkcd">Favorite XKCDs</a></li>
+                <li><a href="./dvd">DVD</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="one-half column">
+        <div>
+            <h2>
+                me elsewhere
+                <img class="smile" src="<%=  Routes.static_path(@conn, "/images/globe.gif") %>">
+            </h2>
+            <ul class="no-list-style">
+                <li><a href="https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661">Music List (spreadsheet)</a></li>
+                <li><a href="https://letterboxd.com/purplepinapples/">Movies (Letterboxd)</a></li>
+                <li><a href="https://trakt.tv/users/purplepinapples/ratings/all/all/highest">TV Shows (Trakt)</a></li>
+                <li><a href="https://myanimelist.net/profile/purplepinapples">Anime (MAL)</a></li>
+                <li><a href="http://github.com/seanbreckenridge/">Github</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 </div>

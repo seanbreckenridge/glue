@@ -3,3 +3,8 @@
 /* http://getskeleton.com/#grid */
 @import "./skeleton.css";
 @import "./normalize.css";
+
+@font-face {
+  font-family: "pixel";
+  src: url("/fonts/pixel.woff") format("woff");
+}
