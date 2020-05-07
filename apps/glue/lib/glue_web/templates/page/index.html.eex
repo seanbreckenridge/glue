@@ -1,4 +1,7 @@
 <style>
+ html {
+     height: max(100%, 700px);
+ }
  #under-construction {
      background-image: url(<%= Routes.static_path(@conn, "/images/under_construction.gif") %>);
      min-height: 100px;
@@ -14,22 +17,57 @@
  }
  .column {
      margin: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ .column table {
+     margin-left: auto;
+     margin-right: auto;
  }
  .column h2 {
      font-family: 'VT323', Verdana, sans-serif;
      font-size: 5rem;
  }
- .yo {
-     text-align: center;
+ .dos-buttons {
+     display: table;
+     margin-bottom: 100px;
+ }
+ .table-row {
+     display: table-row;
+
+ }
+ .table-row:active {
+     filter: invert(1);
+ }
+ .table-cell {
+     display: table-cell;
+ }
+ .dos-buttons a {
+     color: black;
+     text-decoration: none;
+ }
+ .dos-buttons .table-cell  {
+     border-left: solid 7px white;
+     border-top: solid 7px white;
+     border-bottom: solid 7px #262626;
+     border-right: solid 7px #262626;
+     padding: 0.3em 1.2em;
+     background: lightgrey;
+ }
+ #yo {
      font-family: 'VT323', Verdana, sans-serif;
      font-size: 5rem;
+ }
+ .vertical-flex-column {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
  }
  .split-container {
      margin-top: 2em;
      text-align: center;
- }
- .no-list-style {
-     list-style-type: none;
  }
  .spinning-home {
      position: relative;
@@ -41,11 +79,6 @@
      position: relative;
      bottom: -15px;
  }
- .moving-line {
-     margin-left: auto;
-     margin-right: auto;
-     text-align: center;
- }
  .row > div.one-half:first-child {
      position: relative;
      bottom: -20px;
@@ -53,41 +86,43 @@
 </style>
 <div id="under-construction"></div>
 <div class="container">
-    <div class="yo">
-        yo
-    </div>
-    <div class="moving-line">
-        <img src="<%= Routes.static_path(@conn, "/images/line.gif") %>" alt="line seperator">
-    </div>
-<div class="row split-container">
-    <div class="one-half column">
-        <div>
-            <h2>
-                stuff here
-                <img class="spinning-home" src="<%= Routes.static_path(@conn, "/images/home.gif") %>" alt="home">
-            </h2>
-            <ul class="no-list-style">
-                <li><a href="./mal_unapproved">MAL Unapproved</a></li>
-                <li><a href="./animeshorts">AnimeShorts</a></li>
-                <li><a href="./xkcd">Favorite XKCDs</a></li>
-                <li><a href="./dvd">DVD</a></li>
-            </ul>
+    <div class="vertical-flex-column">
+        <div id="yo">
+            yo
+        </div>
+        <div class="moving-line">
+            <img src="<%= Routes.static_path(@conn, "/images/line.gif") %>" alt="line seperator">
         </div>
     </div>
-    <div class="one-half column">
-        <div>
-            <h2>
-                me elsewhere
-                <img class="smile" src="<%=  Routes.static_path(@conn, "/images/globe.gif") %>" alt="globe">
-            </h2>
-            <ul class="no-list-style">
-                <li><a href="https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661">Music List (spreadsheet)</a></li>
-                <li><a href="https://letterboxd.com/purplepinapples/">Movies (Letterboxd)</a></li>
-                <li><a href="https://trakt.tv/users/purplepinapples/ratings/all/all/highest">TV Shows (Trakt)</a></li>
-                <li><a href="https://myanimelist.net/profile/purplepinapples">Anime (MAL)</a></li>
-                <li><a href="http://github.com/seanbreckenridge/">Code (Github)</a></li>
-            </ul>
+    <div class="row split-container">
+        <div class="one-half column">
+            <div class="vertical-flex-column">
+                <h2>
+                    stuff here
+                    <img class="spinning-home" src="<%= Routes.static_path(@conn, "/images/home.gif") %>" alt="home">
+                </h2>
+                <div class="dos-buttons">
+                    <a class="table-row" href="./mal_unapproved"><span class="table-cell">MAL Unapproved</span></a>
+                    <a class="table-row" href="./animeshorts"><span class="table-cell">AnimeShorts</span></a>
+                    <a class="table-row" href="./xkcd"><span class="table-cell">Favorite XKCDs</span></a>
+                    <a class="table-row" href="./dvd"><span class="table-cell">DVD</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="one-half column">
+            <div class="vertical-flex-column">
+                <h2>
+                    me elsewhere
+                    <img class="smile" src="<%=  Routes.static_path(@conn, "/images/globe.gif") %>" alt="globe">
+                </h2>
+                <div class="dos-buttons">
+                    <a class="table-row" href="https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661"><span class="table-cell">Music List (spreadsheet)</span></a>
+                    <a class="table-row" href="https://letterboxd.com/purplepinapples/"><span class="table-cell">Movies (Letterboxd)</span></a>
+                    <a class="table-row" href="https://trakt.tv/users/purplepinapples/ratings/all/all/highest"><span class="table-cell">TV Shows (Trakt)</span></a>
+                    <a class="table-row" href="https://myanimelist.net/profile/purplepinapples"><span class="table-cell">Anime (MAL)</span></a>
+                    <a class="table-row" href="http://github.com/seanbreckenridge/"><span class="table-cell">Code (Github)</span></a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
