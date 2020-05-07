@@ -1,6 +1,6 @@
 <style>
  html {
-     height: max(100%, 700px);
+     height: max(100%, 775px);
  }
  #under-construction {
      background-image: url(<%= Routes.static_path(@conn, "/images/under_construction.gif") %>);
