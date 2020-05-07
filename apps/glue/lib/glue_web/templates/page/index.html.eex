@@ -32,10 +32,10 @@
  .dos-buttons {
      display: table;
      margin-bottom: 100px;
+     border-spacing: 7.5px;
  }
  .table-row {
      display: table-row;
-
  }
  .table-row:active {
      filter: invert(1);
