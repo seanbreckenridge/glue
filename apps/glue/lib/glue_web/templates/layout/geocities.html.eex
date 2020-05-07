@@ -2,9 +2,6 @@
 <style>
  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
  body {
-     background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
-     background-repeat: repeat;
-     background-color: black;
      color: white;
      font-family: sans-serif;
  }
@@ -22,6 +19,54 @@
      border-radius: 3px;
      padding: 3px;
  }
+ /* https://codepen.io/WebSonick/pen/vjmgu */
+ @keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+.stars, .twinkling {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(<%= Routes.static_path(@conn, "/images/stars.png") %>) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(<%= Routes.static_path(@conn, "/images/twinkling.png") %>) repeat top center;
+  z-index:1;
+  -moz-animation:move-twink-back 500s linear infinite;
+  -ms-animation:move-twink-back 500s linear infinite;
+  -o-animation:move-twink-back 500s linear infinite;
+  -webkit-animation:move-twink-back 500s linear infinite;
+  animation:move-twink-back 500s linear infinite;
+}
+
 </style>
+<div class="stars">
+<div class="twinkling">
   <%= render @view_module, @view_template, assigns %>
+</div>
+</div>
 <% end %>
