@@ -1,0 +1,27 @@
+<%= render_layout "base.html", assigns do %>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+ body {
+     background-image: url(<%= Routes.static_path(@conn, "/images/nasa_background.jpg") %>);
+     background-repeat: repeat;
+     background-color: black;
+     color: white;
+     font-family: sans-serif;
+ }
+ a {
+     color: #7474de;
+ }
+ a:visited {
+     color: #7474de
+     /* color: #7b1181; */
+ }
+ a:hover {
+     background-color: #e157ab;
+     color: black;
+     transition: 0.1s;
+     border-radius: 3px;
+     padding: 3px;
+ }
+</style>
+  <%= render @view_module, @view_template, assigns %>
+<% end %>

@@ -1,7 +1,7 @@
 defmodule GlueWeb.PageController do
   use GlueWeb, :controller
 
-  plug :put_layout, "app.html"
+  plug :put_layout, :geocities
 
   alias GlueWeb.PageController.Utils
 

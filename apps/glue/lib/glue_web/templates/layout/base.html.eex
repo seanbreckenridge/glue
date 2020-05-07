@@ -9,7 +9,7 @@
   </head>
   <body>
     <main>
-      <%= render @view_module, @view_template, assigns %>
+      <%= Map.get(assigns, :inner_layout) || render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
