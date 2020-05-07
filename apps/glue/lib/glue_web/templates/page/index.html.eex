@@ -55,6 +55,11 @@
      padding: 0.3em 1.2em;
      background: lightgrey;
  }
+ .dos-buttons .table-cell:hover {
+   background: darkgrey;
+   border-bottom: solid 7px; lightgrey;
+   border-right: solid 7px; lightgrey;
+ }
  #yo {
      font-family: 'VT323', Verdana, sans-serif;
      font-size: 5rem;
