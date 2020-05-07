@@ -1,9 +1,25 @@
 <%= render_layout "base.html", assigns do %>
 <style>
- @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Note: overwrite the 650px per page if applicable, test in
+   a small window to see if content gets cut off before background-image does
+
+  this makes sure that the background extends to the end of the page
+  if the screen size is too small
+  */
+html {
+  height: max(100%, 650px);
+  background: black;
+}
  body {
-     color: white;
-     font-family: sans-serif;
+   height: 100%;
+   color: white;
+   font-family: sans-serif;
+ }
+ main {
+   height: 100%;
+   width: 100%;
  }
  a {
      color: #7474de;
@@ -38,7 +54,6 @@
 }
 
 .stars, .twinkling {
-  position:absolute;
   top:0;
   left:0;
   right:0;
@@ -49,7 +64,7 @@
 }
 
 .stars {
-  background:#000 url(<%= Routes.static_path(@conn, "/images/stars.png") %>) repeat top center;
+  background:#000 url(<%= Routes.static_path(@conn, "/images/stars.png") %>) no-repeat top center;
   z-index:0;
 }
 
