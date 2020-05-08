@@ -1,73 +1,18 @@
+<!-- shared styling for geocities-like looking pages  -->
 <%= render_layout "base.html", assigns do %>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    <style>
+     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-/* Note: overwrite the 650px per page if applicable, test in
-   a small window to see if content gets cut off before background-image does
+     body {
+         height: 100%;
+         color: white;
+         font-family: sans-serif;
+     }
+     main {
+         height: 100%;
+         width: 100%;
+     }
 
-  this makes sure that the background extends to the end of the page
-  if the screen size is too small
-  */
- html {
-     height: max(100%, 650px);
-     background: black;
- }
- body {
-     height: 100%;
-     color: white;
-     font-family: sans-serif;
- }
- main {
-     height: 100%;
-     width: 100%;
- }
- /* https://codepen.io/WebSonick/pen/vjmgu */
- @keyframes move-twink-back {
-     from {background-position:0 0;}
-     to {background-position:-10000px 5000px;}
- }
- @-webkit-keyframes move-twink-back {
-     from {background-position:0 0;}
-     to {background-position:-10000px 5000px;}
- }
- @-moz-keyframes move-twink-back {
-     from {background-position:0 0;}
-     to {background-position:-10000px 5000px;}
- }
- @-ms-keyframes move-twink-back {
-     from {background-position:0 0;}
-     to {background-position:-10000px 5000px;}
- }
-
- .stars, .twinkling {
-     top:0;
-     left:0;
-     right:0;
-     bottom:0;
-     width:100%;
-     height:100%;
-     display:block;
- }
-
- .stars {
-     background:#000 url(<%= Routes.static_path(@conn, "/images/stars.png") %>) repeat top center;
-     z-index:0;
- }
-
- .twinkling{
-     background:transparent url(<%= Routes.static_path(@conn, "/images/twinkling.png") %>) repeat top center;
-     z-index:1;
-     -moz-animation:move-twink-back 500s linear infinite;
-     -ms-animation:move-twink-back 500s linear infinite;
-     -o-animation:move-twink-back 500s linear infinite;
-     -webkit-animation:move-twink-back 500s linear infinite;
-     animation:move-twink-back 500s linear infinite;
- }
-
-</style>
-<div class="stars">
-    <div class="twinkling">
-        <%= render @view_module, @view_template, assigns %>
-    </div>
-</div>
+    </style>
+    <%= render @view_module, @view_template, assigns %>
 <% end %>
