@@ -5,11 +5,11 @@ port module Stars exposing (main)
 import Array exposing (Array, fromList, get, length)
 import Browser as Browser exposing (element)
 import Browser.Events exposing (Visibility(..))
-import Html exposing (Html, div, img, text)
+import Html exposing (Html, div, img)
 import Html.Attributes exposing (alt, class, id, src, style)
 import Html.Lazy exposing (lazy2)
 import Json.Decode as Json
-import List exposing (isEmpty, map)
+import List exposing (map)
 import Maybe exposing (Maybe, withDefault)
 import Time
 
@@ -109,17 +109,6 @@ generateNewStarLocations model screenData =
     }
 
 
-
-{-
-   randFloat : Float -> Float -> Float -> Float
-   randFloat fromRandValue from till =
-       -- e.g from 5.0 to 10.0
-       -- randVal 5.0 1.0
-       -- ((randVal * 100 * 10.0) % (10.0 - 5.0)) + 5.0
-       toFloat (remainderBy (floor till - floor from) (floor (till * fromRandValue * 100.0))) + fromRandValue + from
--}
-
-
 {-| non inclusive
 -}
 randInt : Float -> Int -> Int -> Int
@@ -140,12 +129,15 @@ indexIntoRng randomNumbers index defaultVal =
 -}
 generateRandomStar : Array Float -> ScreenData -> List Star -> Float -> Int -> Int -> Int -> Int -> List Star
 generateRandomStar randomNumbers screenData starArr defaultRngVal tillStarCount curCount index indexOffset =
+    -- while there are still more stars to generate (tillStarCount)
     if curCount < tillStarCount then
         let
+            -- create new star, use offsets into the randomly generated array
+            -- to simulate a PRNG
             newStarArr =
                 starArr
                     ++ [ { fadeType = randInt (indexIntoRng randomNumbers index defaultRngVal) 1 6
-                         , starIndex = randInt (indexIntoRng randomNumbers (index + 1) defaultRngVal) 0 8 -- 9 items in the array
+                         , starIndex = randInt (indexIntoRng randomNumbers (index + 1) defaultRngVal) 0 9 -- 9 items in the array
                          , loc =
                             -- use 25 as buffer on the right so that star isnt just in the corner off the page
                             { x = randInt (indexIntoRng randomNumbers (index + 2) defaultRngVal) 2 (screenData.viewportWidth - 25)
@@ -170,14 +162,15 @@ generateRandomStar randomNumbers screenData starArr defaultRngVal tillStarCount 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        -- if user switches tabs/browser visibiity changes
         VisibilityChanged vis ->
             ( { model | active = vis }
             , Cmd.none
             )
 
+        -- if the user scrolls/resizes the browser
         OnScroll data ->
-            -- run generateNewStarLocations on initial OnScroll port message
-            -- so that it doesnt have to wait for the first Time.Every call
+            -- run generateNewStarLocations whenever the user scrolls the page
             let
                 newModel =
                     -- if isEmpty model.stars then
@@ -206,6 +199,8 @@ toPixel n =
     String.fromInt n ++ "px"
 
 
+{-| Render a random star at a random X,Y location and star animation type
+-}
 renderStar : Star -> Array String -> Html Msg
 renderStar star starUrls =
     img
@@ -222,6 +217,8 @@ renderStar star starUrls =
         []
 
 
+{-| render each of the stars
+-}
 view : Model -> Html Msg
 view model =
     div
