@@ -88,8 +88,6 @@
         </div>
     </div>
 </div>
-<p style="padding-bottom: 200vh">
-</p>
 <script src="<%= Routes.static_path(@conn, "/js/stars.js") %>"></script>
 <script>
  // elm port implementation modified from https://github.com/lucamug/elm-scroll-resize-events
