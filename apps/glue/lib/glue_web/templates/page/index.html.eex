@@ -148,7 +148,7 @@
      starUrls: [
          <%= for i <- 1..9 do %>
          "<%= Routes.static_path(@conn, "/images/star#{i}.png") %>",
-         <%= end %>
+         <% end %>
      ],
      randomNumbers: Array(1000).fill().map(() => Math.random()),
      defaultRandom: Math.random()
