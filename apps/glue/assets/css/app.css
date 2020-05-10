@@ -3,3 +3,7 @@
 /* http://getskeleton.com/#grid */
 @import "./skeleton.css";
 @import "./normalize.css";
+@import "./dos_buttons.css";
+@import "./star_keyframes.css";
+
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");

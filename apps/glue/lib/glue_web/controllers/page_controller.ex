@@ -1,8 +1,6 @@
 defmodule GlueWeb.PageController do
   use GlueWeb, :controller
 
-  plug :put_layout, :geocities
-
   alias GlueWeb.PageController.Utils
 
   def index(conn, _params) do
