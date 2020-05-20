@@ -2,7 +2,7 @@
 
 FILEPATH=${1:?"Error: Pass JSON config file as first argument"}
 if [ ! -e "$1" ]; then
-  printf "No such file: %s\n" "$1" 2>&1
+  printf "No such file: %s\n" "$1" 1>&2
   exit 1
 fi
 
