@@ -24,7 +24,7 @@ defmodule Glue.MixProject do
   def application do
     [
       mod: {Glue.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -47,7 +47,8 @@ defmodule Glue.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:constant, "~> 0.0.1"}
+      {:constant, "~> 0.0.1"},
+      {:httpoison, "~> 1.6"}
     ]
   end
 

@@ -4,7 +4,7 @@ defmodule Glue.GenCache do
 
   schema "gen_cache" do
     field :service, :string
-    field :cached_data, :string
+    field :cached_data, :binary
 
     timestamps()
   end

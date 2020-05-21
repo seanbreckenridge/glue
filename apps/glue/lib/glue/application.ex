@@ -10,10 +10,10 @@ defmodule Glue.Application do
     children = [
       # Start the Ecto repository
       Glue.Repo,
-      # Start Cache Process for Feed
-      Glue.GenCache.Worker,
       # Start the endpoint when the application starts
-      GlueWeb.Endpoint
+      GlueWeb.Endpoint,
+      # Start Cache Process for Feed
+      Glue.GenCache.Worker
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

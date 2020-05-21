@@ -4,7 +4,7 @@ defmodule Glue.Repo.Migrations.CreateGenCache do
   def change do
     create table(:gen_cache) do
       add :service, :string
-      add :cached_data, :string
+      add :cached_data, :binary
 
       timestamps()
     end
