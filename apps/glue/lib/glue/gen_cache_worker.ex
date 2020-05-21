@@ -144,7 +144,6 @@ defmodule Glue.GenCache.Worker do
     |> Stream.run()
 
     # save map into genserver memory cache
-    # make sure updated_at gets updated for item in DB
     # new_genserver_cache only has items if something was updated
     # on this function call.
     # read_cache_from_db is called to initialize the cache before update_cache
@@ -185,11 +184,13 @@ defmodule Glue.GenCache.Worker do
 
   # calls :check once every 5 minutes
   defp schedule_check() do
-    Process.send_after(self(), :check, 5 * 60 * 1000)
+    Process.send_after(self(), :check, :timer.minutes(5))
   end
 end
 
 defmodule Glue.GenCache.Utils do
+  require Logger
+
   @doc """
   Checks if an external cache has expired.
   meta_kwlist is defined in config/config.exs
@@ -248,5 +249,37 @@ defmodule Glue.GenCache.Utils do
 
     {:module, module} = Code.ensure_loaded(module)
     module
+  end
+
+  @doc """
+  make a generic request to a URL with headers/options
+  and parse the JSON response to a map
+  """
+  def generic_json_request(url, headers \\ [], options \\ []) do
+    case HTTPoison.get(url, headers, options) do
+      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
+        response =
+          case Jason.decode(body) do
+            {:ok, json_map} -> %{"albums" => json_map}
+            {:error, _} -> %{"error" => "Error decoding response to JSON: #{body}"}
+          end
+
+        cond do
+          status_code >= 200 and status_code < 400 and
+              not Map.has_key?(response, "error") ->
+            Logger.debug("Request to #{url} succeeded")
+            {:ok, response}
+
+          true ->
+            IO.inspect(response)
+            Logger.warn("#{url} request failed with status_code #{status_code}")
+            {:error, response}
+        end
+
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.warn("#{url} request failed with error:")
+        IO.inspect({:error, reason})
+        {:error, %{}}
+    end
   end
 end
