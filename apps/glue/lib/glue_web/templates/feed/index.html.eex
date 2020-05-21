@@ -11,7 +11,6 @@
      text-align: center;
  }
 </style>
-
 <div class="container">
-    <h1 id="page-title">Media Feed</h1>
+    <h1 id="page-title">feed</h1>
 </div>
