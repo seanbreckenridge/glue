@@ -127,7 +127,6 @@
              scrollTimer = setTimeout(function() {
                  scrollTimer = null;
                  lastScrollFireTime = new Date().getTime();
-                 processScrollOrResize();
              }, minScrollTime);
          }
      };
