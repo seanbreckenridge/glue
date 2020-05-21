@@ -1,0 +1,17 @@
+<style>
+ html {
+     background-color: black;
+ }
+ .container {
+     color: white;
+ }
+ #page-title {
+     font-family: 'VT323', Verdana, sans-serif;
+     font-size: 5rem;
+     text-align: center;
+ }
+</style>
+
+<div class="container">
+    <h1 id="page-title">Media Feed</h1>
+</div>
