@@ -51,10 +51,11 @@ defmodule Glue.GenCache.Worker do
     # fine to hit the DB here, this is run periodically
     # in the background
     # requests hit the in memory genserver cache
-    Glue.Repo.all(
-      from c in "gen_cache",
-        select: {c.id, c.updated_at}
-    )
+    db_resp =
+      Glue.Repo.all(
+        from c in "gen_cache",
+          select: {c.id, c.updated_at}
+      )
 
     # mapset of ids already in the database
     db_ids =
@@ -170,6 +171,9 @@ defmodule Glue.GenCache.Worker do
         select: {c.service, c.cached_data}
 
     Glue.Repo.all(check_query)
+    |> Enum.map(fn {key, val} ->
+      {key, val |> Base.decode64!() |> Jason.decode!()}
+    end)
     |> Enum.into(%{})
   end
 
