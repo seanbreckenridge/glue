@@ -29,7 +29,7 @@ defmodule Glue.GenCache.Worker do
   end
 
   def handle_info(:check, state) do
-    # check if the file has been changed
+    # check if cache is up to date
     state = maintenance(state)
     schedule_check()
     {:noreply, state}
