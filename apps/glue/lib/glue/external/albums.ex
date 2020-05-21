@@ -17,6 +17,12 @@ defmodule Glue.GenCache.External.Albums do
     url = "http://localhost:#{album_port}?limit=9999&order_by=listened_on&sort=desc"
 
     {status, response} = Utils.generic_json_request(url, [], recv_timeout: :timer.seconds(30))
-    {status, {id, response}}
+
+    cleaned_response =
+      response
+      |> Map.get("albums")
+      |> Enum.map(&Map.drop(&1, ["main_artists", "reasons", "other_artists"]))
+
+    {status, {id, cleaned_response}}
   end
 end
