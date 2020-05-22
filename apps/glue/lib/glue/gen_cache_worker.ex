@@ -255,7 +255,7 @@ defmodule Glue.GenCache.Utils do
   Wrapper/handler for making an HTTP request. Returns {:ok, response_body} if
   succeeded, else {:error, response_body/reason}
   """
-  def feed_http_request(url, headers \\ [], options \\ []) do
+  def generic_http_request(url, headers \\ [], options \\ []) do
     case HTTPoison.get(url, headers, options) do
       {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
         cond do
