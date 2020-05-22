@@ -1,0 +1,50 @@
+/* Card Based Layout - Base styles */
+.card {
+  background: white;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.card a {
+  color: black;
+  text-decoration: none;
+}
+
+p {
+  padding: 1.4em;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+/* Flexbox styles */
+@media screen and (min-width: 40em) {
+  .cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    margin-bottom: 1em;
+    display: flex;
+    flex: 0 1 calc(50% - 0.5em);
+    /* width: calc(50% - 1em); */
+  }
+} /* mq 40em*/
+
+@media screen and (min-width: 60em) {
+  .cards {
+    margin-top: inherit;
+  }
+
+  .card {
+    margin-bottom: 2em;
+    display: flex;
+    flex: 0 1 calc(33% - 0.5em);
+    /* width: calc(33% - 1em); */
+  }
+} /* mq 60em*/

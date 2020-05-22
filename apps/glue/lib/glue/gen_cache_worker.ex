@@ -4,6 +4,7 @@ defmodule Glue.GenCache.Worker do
   require Logger
   import Ecto.Query, only: [from: 2]
   alias Glue.GenCache.Utils
+  alias GlueWeb.FeedController
 
   def start_link(data) do
     GenServer.start_link(__MODULE__, data, name: __MODULE__)
@@ -26,6 +27,16 @@ defmodule Glue.GenCache.Worker do
 
     schedule_check()
     {:ok, state}
+  end
+
+  #  call like GenServer.call(Glue.GenCache.Worker, :get_feed_data)
+  def handle_call(:get_feed_data, _from, state) do
+    {:reply, state[:data] |> Map.drop(["wca"]), state}
+  end
+
+  # WCA has its own page, doesnt appear on the chronological feed
+  def handle_call(:get_wca_data, _from, state) do
+    {:reply, state[:data] |> Map.get("wca"), state}
   end
 
   def handle_info(:check, state) do
@@ -84,10 +95,10 @@ defmodule Glue.GenCache.Worker do
 
     # Log requests to be made
     non_existent_ids
-    |> Enum.map(&Logger.info("#{Utils.describe(meta, &1)} doesn't exist in DB, requesting..."))
+    |> Enum.each(&Logger.info("#{Utils.describe(meta, &1)} doesn't exist in DB, requesting..."))
 
     expired_ids
-    |> Enum.map(&Logger.info("#{Utils.describe(meta, &1)} has expired, requesting..."))
+    |> Enum.each(&Logger.info("#{Utils.describe(meta, &1)} has expired, requesting..."))
 
     # make requests to external APIs for updates
     update_tuples =
@@ -121,7 +132,7 @@ defmodule Glue.GenCache.Worker do
       |> Enum.reject(&Kernel.is_nil/1)
 
     update_tuples
-    |> Enum.map(fn {id, _map_val} ->
+    |> Enum.each(fn {id, _map_val} ->
       Logger.info("Update for #{Utils.describe(meta, id)} succeeded, updating cache/db...")
     end)
 

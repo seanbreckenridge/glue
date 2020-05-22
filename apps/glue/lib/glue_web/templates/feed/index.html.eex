@@ -10,7 +10,24 @@
      font-size: 5rem;
      text-align: center;
  }
+
 </style>
 <div class="container">
     <h1 id="page-title">feed</h1>
+
+    <section class="cards">
+        <%= for entry <- @data.feed_data do %>
+            <article class="card">
+                <a href="#">
+                    <figure class="thumbnail">
+                        <img src="<%= entry.image_url %>" alt="">
+                    </figure>
+                    <div class="card-content">
+                        <p><%= entry.title %></p>
+                    </div>
+                    <!-- .card-content -->
+                </a>
+            </article>
+        <% end %>
+    </section>
 </div>
