@@ -16,13 +16,17 @@ defmodule Glue.GenCache.External.Albums do
     album_port = meta_kwlist |> Keyword.get(:port)
     url = "http://localhost:#{album_port}?limit=9999&order_by=listened_on&sort=desc"
 
-    {status, response} = Utils.generic_json_request(url, [], recv_timeout: :timer.seconds(30))
+    case Utils.generic_json_request(url, [], recv_timeout: :timer.minutes(1)) do
+      {:ok, response} ->
+        cleaned_response =
+          response
+          |> Map.get("albums")
+          |> Enum.map(&Map.drop(&1, ["main_artists", "reasons", "other_artists"]))
 
-    cleaned_response =
-      response
-      |> Map.get("albums")
-      |> Enum.map(&Map.drop(&1, ["main_artists", "reasons", "other_artists"]))
+        {:ok, {id, cleaned_response}}
 
-    {status, {id, cleaned_response}}
+      {:error, reason} ->
+        {:error, {id, reason}}
+    end
   end
 end
