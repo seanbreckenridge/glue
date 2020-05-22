@@ -120,6 +120,11 @@ defmodule Glue.GenCache.Worker do
       end)
       |> Enum.reject(&Kernel.is_nil/1)
 
+    update_tuples
+    |> Enum.map(fn {id, map_val} ->
+      Logger.info("Update for #{Utils.describe(meta, id)} succeeded, updating cache/db...")
+    end)
+
     # generate structs for each update
     update_tuples
     |> Stream.map(fn {id, map_val} ->
