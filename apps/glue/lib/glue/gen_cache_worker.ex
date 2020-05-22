@@ -178,7 +178,7 @@ defmodule Glue.GenCache.Worker do
 
   # makes sure that the cache for each feed type is up to date
   defp maintenance(state) do
-    Logger.info("Checking State...")
+    Logger.debug("Checking State...")
     update_cache(state)
   end
 
@@ -249,6 +249,31 @@ defmodule Glue.GenCache.Utils do
 
     {:module, module} = Code.ensure_loaded(module)
     module
+  end
+
+  @doc """
+  Wrapper/handler for making an HTTP request. Returns {:ok, response_body} if
+  succeeded, else {:error, response_body/reason}
+  """
+  def feed_http_request(url, headers \\ [], options \\ []) do
+    case HTTPoison.get(url, headers, options) do
+      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
+        cond do
+          status_code >= 200 and status_code < 400 ->
+            Logger.debug("Request to #{url} succeeded")
+            {:ok, body}
+
+          true ->
+            IO.inspect(body)
+            Logger.warn("#{url} request failed with status_code #{status_code}")
+            {:error, body}
+        end
+
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.warn("#{url} request failed with error:")
+        IO.inspect({:error, reason})
+        {:error, %{}}
+    end
   end
 
   @doc """
