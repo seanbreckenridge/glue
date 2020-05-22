@@ -4,7 +4,7 @@ defmodule Glue.GenCache.Worker do
   require Logger
   import Ecto.Query, only: [from: 2]
   alias Glue.GenCache.Utils
-  alias GlueWeb.FeedController
+  alias Glue.GenCache.GenerateFeed
 
   def start_link(data) do
     GenServer.start_link(__MODULE__, data, name: __MODULE__)
@@ -31,7 +31,7 @@ defmodule Glue.GenCache.Worker do
 
   #  call like GenServer.call(Glue.GenCache.Worker, :get_feed_data)
   def handle_call(:get_feed_data, _from, state) do
-    {:reply, state[:data] |> Map.drop(["wca"]), state}
+    {:reply, state[:cached_feed], state}
   end
 
   # WCA has its own page, doesnt appear on the chronological feed
@@ -171,11 +171,37 @@ defmodule Glue.GenCache.Worker do
       |> Enum.into(%{})
 
     # merge genserver data, preferring keys from the new_genserver_cache
-    Map.put(
-      state,
-      :data,
-      Map.merge(new_genserver_cache, Map.get(state, :data), fn _k, v1, _v2 -> v1 end)
-    )
+    state =
+      Map.put(
+        state,
+        :data,
+        Map.merge(new_genserver_cache, Map.get(state, :data), fn _k, v1, _v2 -> v1 end)
+      )
+
+    update_cached_feed(state, length(update_tuples) > 0 or is_nil(state[:cached_feed]))
+  end
+
+  # updates the cached feed value in this GenServer and
+  # casts values off to image caching genservers for specific endpoints.
+  defp update_cached_feed(state, should_update) do
+    if should_update do
+      # if the values changed, update the cached feed value
+      state =
+        Map.put(
+          state,
+          :cached_feed,
+          state[:data]
+          |> Map.drop(["wca"])
+          |> GenerateFeed.normalize_feed()
+          |> Enum.take(120)
+        )
+
+      # send off casts to image genservers
+
+      state
+    else
+      state
+    end
   end
 
   # reads all values from the "gen_cache" table into a map, with service_key => cached_data
@@ -201,126 +227,5 @@ defmodule Glue.GenCache.Worker do
   # calls :check once every 5 minutes
   defp schedule_check() do
     Process.send_after(self(), :check, :timer.minutes(5))
-  end
-end
-
-defmodule Glue.GenCache.Utils do
-  require Logger
-
-  @doc """
-  Checks if an external cache has expired.
-  meta_kwlist is defined in config/config.exs
-  for each endpoint, specifies the time
-  in milliseconds before an item is stale
-
-  was_updated_at is the updated_at
-  field from Ecto for each item in the db.
-
-  returns nil if it hasnt expired
-  """
-  def check_expiry(meta_kwlist, was_updated_at) do
-    # if the elapsed time is less than
-    if NaiveDateTime.diff(
-         NaiveDateTime.utc_now(),
-         was_updated_at,
-         :millisecond
-       ) - meta_kwlist[:refresh_ms] < 0 do
-      nil
-    else
-      meta_kwlist
-    end
-  end
-
-  @doc """
-  Indexes into the meta Keyword list
-  to get the full Keyword list based on the db_id
-  """
-  def get_kwlist(meta_kwlist, id) do
-    meta_kwlist |> Enum.at(id - 1)
-  end
-
-  def describe(meta_kwlist, id) do
-    get_kwlist(meta_kwlist, id) |> Keyword.get(:service_key)
-  end
-
-  @doc """
-  Uses the service key to dynamically generate the module name
-  for an external cache service
-  """
-  def load_external_api_module(meta_kwlist, id) do
-    short_module_name =
-      get_kwlist(meta_kwlist, id)
-      |> Keyword.get(:service_key)
-      |> String.capitalize()
-
-    module_name = "Elixir.Glue.GenCache.External.#{short_module_name}"
-
-    module =
-      try do
-        String.to_existing_atom(module_name)
-      rescue
-        ArgumentError ->
-          String.to_atom(module_name)
-      end
-
-    {:module, module} = Code.ensure_loaded(module)
-    module
-  end
-
-  @doc """
-  Wrapper/handler for making an HTTP request. Returns {:ok, response_body} if
-  succeeded, else {:error, response_body/reason}
-  """
-  def generic_http_request(url, headers \\ [], options \\ []) do
-    case HTTPoison.get(url, headers, options) do
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
-        cond do
-          status_code >= 200 and status_code < 400 ->
-            Logger.debug("Request to #{url} succeeded")
-            {:ok, body}
-
-          true ->
-            IO.inspect(body)
-            Logger.warn("#{url} request failed with status_code #{status_code}")
-            {:error, body}
-        end
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        Logger.warn("#{url} request failed with error:")
-        IO.inspect({:error, reason})
-        {:error, %{}}
-    end
-  end
-
-  @doc """
-  make a generic request to a URL with headers/options
-  and parse the JSON response to a map
-  """
-  def generic_json_request(url, headers \\ [], options \\ []) do
-    case HTTPoison.get(url, headers, options) do
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
-        response =
-          case Jason.decode(body) do
-            {:ok, json_map} -> %{"albums" => json_map}
-            {:error, _} -> %{"error" => "Error decoding response to JSON: #{body}"}
-          end
-
-        cond do
-          status_code >= 200 and status_code < 400 and
-              not Map.has_key?(response, "error") ->
-            Logger.debug("Request to #{url} succeeded")
-            {:ok, response}
-
-          true ->
-            IO.inspect(response)
-            Logger.warn("#{url} request failed with status_code #{status_code}")
-            {:error, response}
-        end
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        Logger.warn("#{url} request failed with error:")
-        IO.inspect({:error, reason})
-        {:error, %{}}
-    end
   end
 end
