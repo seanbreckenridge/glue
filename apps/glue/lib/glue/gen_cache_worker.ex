@@ -121,7 +121,7 @@ defmodule Glue.GenCache.Worker do
       |> Enum.reject(&Kernel.is_nil/1)
 
     update_tuples
-    |> Enum.map(fn {id, map_val} ->
+    |> Enum.map(fn {id, _map_val} ->
       Logger.info("Update for #{Utils.describe(meta, id)} succeeded, updating cache/db...")
     end)
 

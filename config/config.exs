@@ -20,8 +20,11 @@ trakt_rss_url =
 config :glue,
   albums: [db_id: 1, service_key: "albums", port: 8083, refresh_ms: :timer.hours(6)],
   wca: [db_id: 2, service_key: "wca", port: 8010, refresh_ms: :timer.hours(24 * 7)],
-  mal: [db_id: 3, service_key: "mal", port: 8000, refresh_ms: :timer.hours(4)],
+  mal: [db_id: 3, service_key: "mal", refresh_ms: :timer.hours(6)],
   trakt: [db_id: 4, service_key: "trakt", refresh_ms: :timer.hours(1), rss_url: trakt_rss_url]
+
+config :jikan_ex,
+  base_url: "http://localhost:8000/v3/"
 
 # Configures the endpoint
 config :glue, GlueWeb.Endpoint,
