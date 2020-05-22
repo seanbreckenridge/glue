@@ -5,9 +5,9 @@ if [ ! -e "$1" ]; then
   printf "No such file: %s\n" "$1" 1>&2
   exit 1
 fi
-
 export GLUE_DATABASE_URI=$(jq -r '.postgres_uri' "$1")
 export GLUE_SECRET_KEY_BASE=$(jq -r '.glue_secret' "$1")
+export TRAKT_RSS_URL=$(jq -r '.trakt_rss_url' "$1")
 
 export MIX_ENV=prod
 
