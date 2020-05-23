@@ -194,7 +194,7 @@ defmodule Glue.GenCache.Worker do
           state[:data]
           |> Map.drop(["wca"])
           |> GenerateFeed.normalize_feed()
-          |> Enum.take(120)
+          |> Enum.take(150)
         )
 
       # send off casts to image genservers
