@@ -26,13 +26,11 @@
 .card-text {
   margin-bottom: 0.5rem !important;
 }
-
 @media (max-width: 576px) {
   .card-columns {
     column-count: 1;
   }
 }
-
 @media (min-width: 576px) and (max-width: 768px) {
   .card-columns {
     column-count: 2;
@@ -43,33 +41,39 @@
     column-count: 3;
   }
 }
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) {
   .card-columns {
     column-count: 4;
   }
 }
-@media (min-width: 1200px) {
-  .card-columns {
-    column-count: 5;
-  }
- }
  footer {
      margin: 3rem;
      font-size: 1.2rem;
      text-align: center;
+ }
+ .card-block {
+     padding: 0.2rem 0.4rem;
+ }
+ .card a, .card a:hover, .card a:active, .card a:visited {
+     color: black;
+     text-decoration: none;
+ }
+ .card:hover {
+     transition: .2s;
+     transform: scale(1.01);
  }
 </style>
 <div class="container">
     <h1 id="page-title">media feed</h1>
     <div class="card-columns">
         <%= for entry <- @data.feed_data do %>
-            <div class="card">
+            <div class="card" data-type="<%= entry.type %>">
                 <a href="<%= entry.site_url %>">
                     <img class="card-img-top img-fluid" src="<%= entry.image_url %>" alt="">
                     <div class="card-block">
                         <h5 class="card-title"><%= entry.title %></h5>
                         <div class="card-text">
-                            <%= NaiveDateTime.to_string(entry.timestamp) %></p>
+                            <%= entry.timestamp %></p>
                         </div>
                     </div>
                     <!-- .card-content -->

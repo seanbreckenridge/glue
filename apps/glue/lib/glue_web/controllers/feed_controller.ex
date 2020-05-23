@@ -3,19 +3,27 @@ defmodule GlueWeb.FeedController do
   use GlueWeb, :controller
   alias GlueWeb.PageController.Utils
 
+  @minute :timer.minutes(1)
+  @hour :timer.hours(1)
+  @day :timer.hours(24)
+
   plug :put_layout, "app.html"
 
   def feed(conn, _params) do
+    now = NaiveDateTime.utc_now()
     cached_images = GenServer.call(Glue.GenCache.ImageCache.Worker, :get_cached_images)
 
     feed_data =
       GenServer.call(Glue.GenCache.Worker, :get_feed_data)
-      |> Enum.map(fn feed_info ->
+      |> Stream.map(fn feed_info ->
         if Map.has_key?(cached_images, feed_info.site_url) do
           %{feed_info | image_url: Map.get(cached_images, feed_info.site_url)}
         else
           feed_info
         end
+      end)
+      |> Enum.map(fn feed_info ->
+        %{feed_info | timestamp: descrive_naive_datetime(feed_info.timestamp, now)}
       end)
 
     data =
@@ -31,5 +39,28 @@ defmodule GlueWeb.FeedController do
       )
 
     render(conn, "index.html", data: data)
+  end
+
+  defp descrive_naive_datetime(time, now) do
+    describe_naive_datetime(NaiveDateTime.diff(now, time, :millisecond))
+  end
+
+  defp describe_naive_datetime(diff) when diff > @day,
+    do: quotient(diff, @day) |> describe_diff("day")
+
+  defp describe_naive_datetime(diff) when diff > @hour,
+    do: quotient(diff, @hour) |> describe_diff("hour")
+
+  defp describe_naive_datetime(diff),
+    do: quotient(diff, @minute) |> describe_diff("minute")
+
+  defp quotient(dividend, divisor), do: floor(dividend / divisor) |> Integer.to_string()
+
+  defp describe_diff(ago, duration_str) do
+    if ago == 1 do
+      "#{ago} #{duration_str} ago"
+    else
+      "#{ago} #{duration_str}s ago"
+    end
   end
 end
