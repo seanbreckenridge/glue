@@ -11,6 +11,8 @@ config :glue,
   ecto_repos: [Glue.Repo]
 
 trakt_rss_url = System.get_env("TRAKT_RSS_URL")
+trakt_api_key = System.get_env("TRAKT_API_KEY")
+tmdb_api_key = System.get_env("TMDB_API_KEY")
 
 # service key specifies the module name to get cached information for the GenCache,
 # at Glue.GenCache.External.ServiceKey
@@ -19,7 +21,9 @@ config :glue,
   albums: [db_id: 1, service_key: "albums", port: 8083, refresh_ms: :timer.hours(6)],
   wca: [db_id: 2, service_key: "wca", port: 8010, refresh_ms: :timer.hours(24 * 7)],
   mal: [db_id: 3, service_key: "mal", refresh_ms: :timer.hours(6)],
-  trakt: [db_id: 4, service_key: "trakt", refresh_ms: :timer.hours(1), rss_url: trakt_rss_url]
+  trakt: [db_id: 4, service_key: "trakt", refresh_ms: :timer.minutes(30), rss_url: trakt_rss_url],
+  trakt_api_key: trakt_api_key,
+  tmdb_api_key: tmdb_api_key
 
 config :jikan_ex,
   base_url: "http://localhost:8000/v3/"

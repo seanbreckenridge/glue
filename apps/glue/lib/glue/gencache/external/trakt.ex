@@ -38,6 +38,11 @@ defmodule Glue.GenCache.External.Trakt do
       :img_url,
       get_img_url(Map.get(feed_item_map, :content, ""))
     )
+    # convert to string keys instead of atoms
+    |> Enum.map(fn {k, v} ->
+      {Atom.to_string(k), v}
+    end)
+    |> Enum.into(%{})
   end
 
   # reutrns nil if fragment couldnt be parsed/image doesnt exist

@@ -12,6 +12,8 @@ defmodule Glue.Application do
       Glue.Repo,
       # Start the endpoint when the application starts
       GlueWeb.Endpoint,
+      # Start Image Caching Process for Feed
+      Glue.GenCache.ImageCache.Worker,
       # Start Cache Process for Feed
       Glue.GenCache.Worker
     ]

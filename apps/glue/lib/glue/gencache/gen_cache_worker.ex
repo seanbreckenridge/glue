@@ -182,9 +182,10 @@ defmodule Glue.GenCache.Worker do
   end
 
   # updates the cached feed value in this GenServer and
-  # casts values off to image caching genservers for specific endpoints.
+  # casts values off to image caching genserver for specific endpoints.
   defp update_cached_feed(state, should_update) do
     if should_update do
+      Logger.info("Updating cached feed...")
       # if the values changed, update the cached feed value
       state =
         Map.put(
@@ -197,6 +198,9 @@ defmodule Glue.GenCache.Worker do
         )
 
       # send off casts to image genservers
+      state
+      |> Map.get(:cached_feed)
+      |> Enum.map(&GenServer.cast(Glue.GenCache.ImageCache.Worker, {:cache_image, &1}))
 
       state
     else

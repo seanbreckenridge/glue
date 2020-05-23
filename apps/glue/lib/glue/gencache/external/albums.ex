@@ -20,7 +20,6 @@ defmodule Glue.GenCache.External.Albums do
       {:ok, response} ->
         cleaned_response =
           response
-          |> Map.get("albums")
           |> Enum.map(&Map.drop(&1, ["main_artists", "reasons", "other_artists"]))
 
         {:ok, {id, cleaned_response}}

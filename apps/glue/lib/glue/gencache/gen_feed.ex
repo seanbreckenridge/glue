@@ -114,6 +114,14 @@ defmodule Glue.GenCache.GenerateFeed do
 
   defp sort_feed_by_date(feed_list) do
     feed_list
+    |> Enum.each(fn feed_item ->
+      if is_nil(feed_item.timestamp) do
+        Logger.warn("timestamp for #{feed_item.title} is nil")
+        IO.inspect(feed_item)
+      end
+    end)
+
+    feed_list
     # remove anything without dates
     |> Enum.reject(&is_nil(&1.timestamp))
     # sort by date

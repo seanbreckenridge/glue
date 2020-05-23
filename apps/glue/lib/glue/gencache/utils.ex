@@ -95,19 +95,22 @@ defmodule Glue.GenCache.Utils do
       {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
         response =
           case Jason.decode(body) do
-            {:ok, json_map} -> %{"albums" => json_map}
+            {:ok, json_map} -> json_map
             {:error, _} -> %{"error" => "Error decoding response to JSON: #{body}"}
           end
 
         cond do
-          status_code >= 200 and status_code < 400 and
-              not Map.has_key?(response, "error") ->
+          is_map(response) and Map.has_key?(response, "error") ->
+            Logger.warn("#{url} request failed with status_code #{status_code}")
+            IO.inspect(response)
+
+          status_code >= 200 and status_code < 400 ->
             Logger.debug("Request to #{url} succeeded")
             {:ok, response}
 
           true ->
-            IO.inspect(response)
             Logger.warn("#{url} request failed with status_code #{status_code}")
+            IO.inspect(response)
             {:error, response}
         end
 
@@ -118,4 +121,3 @@ defmodule Glue.GenCache.Utils do
     end
   end
 end
-
