@@ -152,6 +152,6 @@ defmodule Glue.GenCache.ImageCache.Worker do
   # runs every 10 seconds, checking if it should cache any new images
   # but reduces load on APIs/FeedController
   def schedule_check() do
-    Process.send_after(self(), :cache_images, :timer.seconds(2))
+    Process.send_after(self(), :cache_images, :timer.seconds(10))
   end
 end
