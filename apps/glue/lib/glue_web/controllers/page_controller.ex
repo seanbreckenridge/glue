@@ -2,6 +2,7 @@ defmodule GlueWeb.PageController do
   use GlueWeb, :controller
 
   @main_page_here [
+    {"./feed", "Media Feed"},
     {"./mal_unapproved", "MAL Unapproved"},
     {"./animeshorts", "AnimeShorts"},
     {"./xkcd", "Favorite XKCDs"},
