@@ -46,9 +46,9 @@ defmodule Glue.GenCache.GenerateFeed do
         nil
     end
   end
+  defp album_date_to_naive_datetime(nil), do: nil
 
   defp parse_iso8601_date(nil), do: nil
-
   defp parse_iso8601_date(datestr) when is_bitstring(datestr) do
     case NaiveDateTime.from_iso8601(datestr) do
       {:ok, datetime} ->
