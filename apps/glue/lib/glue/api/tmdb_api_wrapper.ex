@@ -104,6 +104,10 @@ defmodule Glue.TMDB_API do
     slug = meta_info["show"]["ids"]["slug"]
     info = get_tmdb_info(meta_info)
 
+    if is_nil(info[:tmdb]) do
+      Logger.warn("No TMDB info for #{slug}")
+      nil
+    else
     path =
       case episode(info[:tmdb], info[:season], info[:episode]) do
         {:ok, episode_resp} ->
@@ -153,6 +157,7 @@ defmodule Glue.TMDB_API do
       "https://image.tmdb.org/t/p/w400" <> path
     else
       nil
+    end
     end
   end
 
