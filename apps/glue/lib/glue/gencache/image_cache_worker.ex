@@ -8,7 +8,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
   use GenServer
 
   require Logger
-  alias Glue.ImageCache.TraktAPI
+  alias Glue.TMDB_API
   import Ecto.Query, only: [from: 2]
 
   @cached_endpoints MapSet.new(["mal", "trakt"])
@@ -18,9 +18,8 @@ defmodule Glue.GenCache.ImageCache.Worker do
   end
 
   def init(_data) do
-    {:ok, pid} = Glue.GenCache.ImageCache.SlugID.start_link()
     schedule_check()
-    {:ok, %{uncached: [], image_cache: read_cache_from_db(), slug_cache_pid: pid}}
+    {:ok, %{uncached: [], image_cache: read_cache_from_db()}}
   end
 
   # recieves messages to cache images from GenCache.Worker
@@ -40,6 +39,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
   def handle_info(:cache_images, state) do
     # check if cache is up to date
     state = cache_images(state)
+    # IO.inspect(state[:image_cache])
     schedule_check()
     {:noreply, state}
   end
@@ -62,7 +62,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
         add_to_image_cache(
           state,
           uncached_feed_item.site_url,
-          cache_image(uncached_feed_item, state)
+          cache_image(uncached_feed_item)
         )
 
       # remove first item from list
@@ -73,7 +73,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
   end
 
   # feed_item passed is an uncached image, gets the image URL
-  def cache_image(feed_item, state) do
+  def cache_image(feed_item) do
     case feed_item.type do
       "mal" ->
         Logger.info("Requesting Image for MAL #{feed_item.site_url}...")
@@ -91,37 +91,15 @@ defmodule Glue.GenCache.ImageCache.Worker do
       "trakt" ->
         Logger.info("Requesting Image for Trakt #{feed_item.site_url}...")
 
-        case trim_trakt_url(feed_item.site_url) do
-          {:episode, _url} ->
-            # spawn in a separate process
-            TraktAPI.episode(feed_item.site_url, state[:slug_cache_pid])
-
-          {:movie, slug} ->
-            TraktAPI.movie(slug)
-
-          nil ->
-            nil
-        end
-    end
-  end
-
-  defp trim_trakt_url(url) do
-    case Regex.run(~r"https:\/\/trakt\.tv\/movies\/(.*)", url) do
-      # this matches an episode, not a movie
-      nil ->
         cond do
-          # make sure it really matches an episode
-          url |> String.contains?("episode") ->
-            {:episode, url}
+          # TV Show
+          Map.has_key?(feed_item.meta_info, "show") ->
+            TMDB_API.image_from_trakt_episode(feed_item.meta_info)
 
-          # else nil
+          # Movie
           true ->
-            Logger.warn("Could not parse Trakt URL: #{url}")
-            nil
+            TMDB_API.image_from_trakt_movie(feed_item.meta_info)
         end
-
-      [_, movie_slug] ->
-        {:movie, movie_slug |> String.trim("/") |> String.split("/") |> Enum.at(0)}
     end
   end
 
@@ -174,47 +152,6 @@ defmodule Glue.GenCache.ImageCache.Worker do
   # runs every 10 seconds, checking if it should cache any new images
   # but reduces load on APIs/FeedController
   def schedule_check() do
-    Process.send_after(self(), :cache_images, :timer.seconds(10))
-  end
-end
-
-defmodule Glue.GenCache.ImageCache.SlugID do
-  @moduledoc """
-  Caches Trakt TV show Slugs -> TMDB IDs
-  """
-
-  use GenServer
-
-  def start_link(data \\ []) do
-    GenServer.start_link(__MODULE__, data)
-  end
-
-  def init(_data) do
-    # starts empty whenever server is restarted, re-builds image cache over time
-
-    {:ok, %{}}
-  end
-
-  def get_tmdb_relation(pid, slug) do
-    GenServer.call(pid, {:get_trakt_tmdb_relation, slug})
-  end
-
-  def save_tmdb_relation(pid, slug, tmdb_id) do
-    GenServer.cast(pid, {:save_trakt_tmdb_relation, slug, tmdb_id})
-  end
-
-  def handle_call({:get_trakt_tmdb_relation, key}, _from, state) do
-    {:reply, Map.get(state, "#{key}"), state}
-  end
-
-  def handle_cast({:save_trakt_tmdb_relation, key, value}, state) do
-    state =
-      Map.put(
-        state,
-        "#{key}",
-        "#{value}"
-      )
-
-    {:noreply, state}
+    Process.send_after(self(), :cache_images, :timer.seconds(2))
   end
 end

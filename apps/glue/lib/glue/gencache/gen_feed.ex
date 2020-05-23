@@ -3,7 +3,8 @@ defmodule Glue.GenCache.FeedItem do
             timestamp: nil,
             image_url: nil,
             type: nil,
-            site_url: nil
+            site_url: nil,
+            meta_info: nil
 end
 
 defmodule Glue.GenCache.GenerateFeed do
@@ -46,9 +47,11 @@ defmodule Glue.GenCache.GenerateFeed do
         nil
     end
   end
+
   defp album_date_to_naive_datetime(nil), do: nil
 
   defp parse_iso8601_date(nil), do: nil
+
   defp parse_iso8601_date(datestr) when is_bitstring(datestr) do
     case NaiveDateTime.from_iso8601(datestr) do
       {:ok, datetime} ->
@@ -93,9 +96,10 @@ defmodule Glue.GenCache.GenerateFeed do
       %FeedItem{
         type: "trakt",
         image_url: nil,
-        timestamp: parse_iso8601_date(old_data["published"]),
+        timestamp: parse_iso8601_date(old_data["timestamp"]),
         title: old_data["title"],
-        site_url: old_data["url"]
+        site_url: old_data["site_url"],
+        meta_info: old_data["meta_info"]
       }
     end)
   end

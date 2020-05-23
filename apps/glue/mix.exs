@@ -24,7 +24,7 @@ defmodule Glue.MixProject do
   def application do
     [
       mod: {Glue.Application, []},
-      extra_applications: [:logger, :hackney, :runtime_tools, :httpoison, :elixir_feed_parser]
+      extra_applications: [:logger, :hackney, :runtime_tools, :httpoison]
     ]
   end
 
@@ -49,8 +49,6 @@ defmodule Glue.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:constant, "~> 0.0.1"},
       {:httpoison, "~> 1.6"},
-      {:elixir_feed_parser, "~> 0.0.1"},
-      {:floki, "~> 0.26.0"},
       {:jikan_ex, "~> 0.1.3"}
       # {:jikan_ex, path: "/home/sean/code/jikan_ex"}
     ]
