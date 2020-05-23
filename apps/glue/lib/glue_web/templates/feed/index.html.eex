@@ -23,6 +23,9 @@
   left: 0;
   width: 100%;
  }
+ .card {
+     background-color: whitesmoke;
+ }
 .card-text {
   margin-bottom: 0.5rem !important;
 }
