@@ -77,5 +77,5 @@
             </div>
         <% end %>
     </div>
-    <footer class="footer">Images for Anime/Manga are from <a href="https://myanimelist.net">MyAnimeList</a>, for other Movies/TV Shows from <a href="https://www.themoviedb.org/?language=en-US">theMovieDB</a>, and for Album art from <a href="https://discogs.com">discogs</a>.</footer>
+    <footer class="footer">Images for Anime/Manga are from <a href="https://myanimelist.net">MyAnimeList</a>, for other Movies/TV Shows from <a href="https://www.themoviedb.org/?language=en-US">theMovieDB</a>, and for Album art from <a href="https://discogs.com">Discogs</a>.</footer>
 </div>
