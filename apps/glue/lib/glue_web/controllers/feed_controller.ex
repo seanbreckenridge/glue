@@ -57,7 +57,7 @@ defmodule GlueWeb.FeedController do
   defp quotient(dividend, divisor), do: floor(dividend / divisor) |> Integer.to_string()
 
   defp describe_diff(ago, duration_str) do
-    if ago == 1 do
+    if ago == "1" do
       "#{ago} #{duration_str} ago"
     else
       "#{ago} #{duration_str}s ago"
