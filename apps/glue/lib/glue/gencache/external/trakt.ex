@@ -48,7 +48,7 @@ defmodule Glue.GenCache.External.Trakt do
         "title" => feed_item_map["movie"]["title"],
         "timestamp" => feed_item_map["watched_at"],
         "site_url" =>
-          "https=>//trakt.tv/movies/" <>
+          "https://trakt.tv/movies/" <>
             feed_item_map["movie"]["ids"]["slug"]
       }
     end
