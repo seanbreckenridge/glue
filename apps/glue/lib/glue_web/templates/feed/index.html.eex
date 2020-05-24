@@ -9,7 +9,8 @@
      font-family: 'VT323', Verdana, sans-serif;
      font-size: 5rem;
      text-align: center;
-     margin: 3rem 0rem;
+     margin-bottom: 3rem;
+     margin-top: 1rem;
  }
 .image-container {
   position: relative;
@@ -65,9 +66,21 @@
      transition: .2s;
      transform: scale(1.01);
  }
+ #page-title-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+ }
+ #page-title-container .h3 {
+   margin-top: 1rem;
+ }
 </style>
 <div class="container">
-    <h1 id="page-title">media feed</h1>
+  <div id="page-title-container">
+    <span class="h3"><a href="/">back home</a></span>
+    <span class="h1" id="page-title">media feed</h1>
+  </div>
     <div class="card-columns">
         <%= for entry <- @data.feed_data do %>
             <div class="card" data-type="<%= entry.type %>">
