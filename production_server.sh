@@ -19,8 +19,8 @@ fi
 mix deps.get --only prod
 mix compile
 
-npm install --prefix ./apps/glue/assets
-npm run deploy --prefix ./apps/glue/assets
+npm install --prefix ./apps/glue/assets 2>/dev/null
+npm run deploy --prefix ./apps/glue/assets 2>/dev/null
 mix phx.digest
 
 mix ecto.migrate

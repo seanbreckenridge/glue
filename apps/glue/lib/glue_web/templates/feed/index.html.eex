@@ -92,7 +92,6 @@
                             <%= entry.timestamp %></p>
                         </div>
                     </div>
-                    <!-- .card-content -->
                 </a>
             </div>
         <% end %>
