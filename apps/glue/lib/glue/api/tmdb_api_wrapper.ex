@@ -27,6 +27,11 @@ defmodule Glue.TMDB_API do
     case meta_info["ids"]["tmdb"] do
       nil ->
         Logger.warn("No tmdb entry for #{slug}, cant get image.")
+
+        # can send another message to check the next item in cache in 1 second, since no request was made
+        Process.whereis(Glue.GenCache.ImageCache.Worker)
+        |> Process.send_after(:cache_images, :timer.seconds(1))
+
         nil
 
       tmdb_id ->
@@ -106,58 +111,63 @@ defmodule Glue.TMDB_API do
 
     if is_nil(info[:tmdb]) do
       Logger.warn("No TMDB info for #{slug}")
+
+      # can send another message to check the next item in cache in 1 second, since no request was made
+      Process.whereis(Glue.GenCache.ImageCache.Worker)
+      |> Process.send_after(:cache_images, :timer.seconds(1))
+
       nil
     else
-    path =
-      case episode(info[:tmdb], info[:season], info[:episode]) do
-        {:ok, episode_resp} ->
-          still_path = Map.get(episode_resp, "still_path")
+      path =
+        case episode(info[:tmdb], info[:season], info[:episode]) do
+          {:ok, episode_resp} ->
+            still_path = Map.get(episode_resp, "still_path")
 
-          if is_nil(still_path) do
-            Logger.warn(
-              "Couldn't get episode still for #{info[:tmdb]} #{slug}, trying season poster..."
-            )
+            if is_nil(still_path) do
+              Logger.warn(
+                "Couldn't get episode still for #{info[:tmdb]} #{slug}, trying season poster..."
+              )
 
-            :timer.sleep(:timer.seconds(2))
+              :timer.sleep(:timer.seconds(2))
 
-            case season(info[:tmdb], info[:season]) do
-              {:ok, season_resp} ->
-                poster_path = Map.get(season_resp, "poster_path")
+              case season(info[:tmdb], info[:season]) do
+                {:ok, season_resp} ->
+                  poster_path = Map.get(season_resp, "poster_path")
 
-                if is_nil(poster_path) do
-                  Logger.warn(
-                    "Couldn't get season poster for #{info[:tmdb]} #{slug}, trying show poster..."
-                  )
+                  if is_nil(poster_path) do
+                    Logger.warn(
+                      "Couldn't get season poster for #{info[:tmdb]} #{slug}, trying show poster..."
+                    )
 
-                  :timer.sleep(:timer.seconds(2))
+                    :timer.sleep(:timer.seconds(2))
 
-                  case tv(info[:tmdb]) do
-                    {:ok, tv_resp} ->
-                      Map.get(tv_resp, "poster_path")
+                    case tv(info[:tmdb]) do
+                      {:ok, tv_resp} ->
+                        Map.get(tv_resp, "poster_path")
 
-                    {:error, _err} ->
-                      nil
+                      {:error, _err} ->
+                        nil
+                    end
+                  else
+                    poster_path
                   end
-                else
-                  poster_path
-                end
 
-              {:error, _err} ->
-                nil
+                {:error, _err} ->
+                  nil
+              end
+            else
+              still_path
             end
-          else
-            still_path
-          end
 
-        {:error, _err} ->
-          nil
+          {:error, _err} ->
+            nil
+        end
+
+      if not is_nil(path) do
+        "https://image.tmdb.org/t/p/w400" <> path
+      else
+        nil
       end
-
-    if not is_nil(path) do
-      "https://image.tmdb.org/t/p/w400" <> path
-    else
-      nil
-    end
     end
   end
 
