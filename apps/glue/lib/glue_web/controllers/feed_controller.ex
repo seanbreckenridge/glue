@@ -51,11 +51,16 @@ defmodule GlueWeb.FeedController do
   defp describe_naive_datetime(diff) when diff > @hour,
     do: quotient(diff, @hour) |> describe_diff("hour")
 
-  defp describe_naive_datetime(diff),
-    do: quotient(diff, @minute) |> describe_diff("minute")
+  defp describe_naive_datetime(diff) do
+    minutes_ago = quotient(diff, @minute)
+    if minutes_ago < 1 do
+      "now"
+    else
+      minutes_ago |> describe_diff("minute")
+    end
+  end
 
   defp quotient(dividend, divisor), do: floor(dividend / divisor)
-
   defp describe_diff(ago, duration_str) do
     if ago == 1 do
       "#{ago} #{duration_str} ago"
