@@ -1,7 +1,5 @@
 defmodule Glue.TraktAPI do
   require Logger
-  alias Glue.GenCache.Utils
-  alias Glue.TMDB_API
 
   use Tesla, only: [:get]
 
