@@ -35,7 +35,7 @@ defmodule Glue.GenCache.GenerateFeed do
            year,
            month,
            date,
-           12,
+           0,
            0,
            0
          ) do
@@ -68,9 +68,9 @@ defmodule Glue.GenCache.GenerateFeed do
     |> Enum.map(fn old_map ->
       %FeedItem{
         type: "albums",
-        image_url: old_map["album_artwork"],
+        image_url: old_map["album_artwork"] || "",
         title: "#{old_map["album_name"]} - #{old_map["cover_artist"]}",
-        site_url: old_map["discogs_url"],
+        site_url: old_map["discogs_url"] || "#",
         timestamp: album_date_to_naive_datetime(old_map["listened_str"])
       }
     end)
