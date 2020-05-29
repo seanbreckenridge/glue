@@ -10,7 +10,7 @@ defmodule GlueWeb.PageController do
   ]
 
   @main_page_elsewhere [
-    {"http://github.com/seanbreckenridge/", "Code", "/images/github.ico"},
+    {"http://gitlab.com/seanbreckenridge/", "Code", "/images/gitlab.png"},
     {"https://letterboxd.com/purplepinapples/", "Movies", "/images/letterboxd.png"},
     {"https://trakt.tv/users/purplepinapples/ratings/all/all/highest", "TV Shows",
      "/images/trakt.png"},
