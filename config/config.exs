@@ -20,7 +20,7 @@ config :glue,
   albums: [db_id: 1, service_key: "albums", port: 8083, refresh_ms: :timer.hours(3)],
   wca: [db_id: 2, service_key: "wca", port: 8010, refresh_ms: :timer.hours(24 * 7)],
   mal: [db_id: 3, service_key: "mal", refresh_ms: :timer.hours(6)],
-  trakt: [db_id: 4, service_key: "trakt", refresh_ms: :timer.minutes(45)],
+  trakt: [db_id: 4, service_key: "trakt", refresh_ms: :timer.minutes(30)],
   trakt_api_key: trakt_api_key,
   tmdb_api_key: tmdb_api_key
 
