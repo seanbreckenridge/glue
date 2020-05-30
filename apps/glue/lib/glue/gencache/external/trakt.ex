@@ -13,13 +13,24 @@ defmodule Glue.GenCache.External.Trakt do
   def update_cache(meta_kwlist) do
     id = meta_kwlist |> Keyword.get(:db_id)
 
-    {:ok, {id, request_trakt()}}
+    case request_trakt() do
+      nil ->
+        {:error, {id, nil}}
+
+      pages ->
+        {:ok, {id, pages}}
+    end
   end
 
   def request_trakt() do
     first_page = TraktAPI.history(1)
     second_page = TraktAPI.history(2)
-    Enum.concat(first_page, second_page) |> Enum.map(&cleanup_item/1)
+
+    if first_page |> Enum.empty?() or second_page |> Enum.empty?() do
+      nil
+    else
+      Enum.concat(first_page, second_page) |> Enum.map(&cleanup_item/1)
+    end
   end
 
   # extracts items that I want from the feed, the entries, grabs some of the attributes
