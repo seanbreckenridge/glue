@@ -28,8 +28,9 @@ defmodule Glue.TraktAPI do
       {:ok, %{body: body}} ->
         body
 
-      {:error, _} ->
-        Logger.warn("Could not get tmdb id from Trakt API Request")
+      {:error, err} ->
+        Logger.warn("Request to Trakt API for history #{page} failed")
+        IO.inspect(err)
         []
     end
   end
