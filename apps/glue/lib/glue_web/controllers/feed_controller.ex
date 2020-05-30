@@ -11,7 +11,7 @@ defmodule GlueWeb.FeedController do
 
   def feed(conn, _params) do
     now = NaiveDateTime.utc_now()
-    cached_images = GenServer.call(Glue.GenCache.ImageCache.Worker, :get_cached_images)
+    cached_images = GenServer.call(Glue.GenCache.ImageCache.Worker, :get_cached_images, :timer.seconds(10))
 
     feed_data =
       GenServer.call(Glue.GenCache.Worker, :get_feed_data)

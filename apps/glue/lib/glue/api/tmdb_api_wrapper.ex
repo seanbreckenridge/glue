@@ -5,7 +5,6 @@ defmodule Glue.TMDB_API do
 
   @api_key Application.get_env(:glue, :tmdb_api_key)
 
-  adapter(Tesla.Adapter.Hackney)
   plug(Tesla.Middleware.JSON)
 
   plug(Tesla.Middleware.BaseUrl, "https://api.themoviedb.org/3")

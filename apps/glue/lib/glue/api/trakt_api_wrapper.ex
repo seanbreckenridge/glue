@@ -3,7 +3,6 @@ defmodule Glue.TraktAPI do
 
   use Tesla, only: [:get]
 
-  adapter(Tesla.Adapter.Hackney)
   plug(Tesla.Middleware.JSON)
 
   plug(Tesla.Middleware.Headers, [
