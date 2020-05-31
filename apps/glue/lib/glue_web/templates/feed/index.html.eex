@@ -32,7 +32,8 @@
 }
 @media (max-width: 576px) {
   .card-columns {
-    column-count: 1;
+      column-count: 1;
+      margin: 0rem 3rem;
   }
 }
 @media (min-width: 576px) and (max-width: 768px) {
@@ -88,7 +89,7 @@
                 <a href="<%= entry.site_url %>">
                     <img class="card-img-top img-fluid" src="<%= entry.image_url %>" alt="">
                     <div class="card-block">
-                        <h5 class="card-title"><%= entry.title %></h5>
+                        <h4 class="card-title"><%= entry.title %></h4>
                         <div class="card-text">
                             <%= entry.timestamp %>
                         </div>
