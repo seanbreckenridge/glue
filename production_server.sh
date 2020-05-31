@@ -1,20 +1,46 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-FILEPATH=${1:?"Error: Pass JSON config file as first argument"}
-if [ ! -e "$1" ]; then
+DEFAULT_SECRET="${HOME}/vps/secret"
+
+if [ -e "$1" ]; then
+  FILEPATH="${1}"
+  shift
+else
+  if [ -e "$DEFAULT_SECRET" ]; then
+    FILEPATH="${HOME}/vps/secret"  # default location on my server
+
+  else
+    echo "Error: Pass JSON config file as first argument" 1>&2
+    exit 1
+  fi
+fi
+
+if [ ! -e "$FILEPATH" ]; then
 	printf "No such file: %s\n" "$1" 1>&2
 	exit 1
 fi
-export GLUE_DATABASE_URI=$(jq -r '.postgres_uri' "$1")
-export GLUE_SECRET_KEY_BASE=$(jq -r '.glue_secret' "$1")
-export TRAKT_API_KEY=$(jq -r '.trakt_api_key' "$1")
-export TMDB_API_KEY=$(jq -r '.tmdb_api_key' "$1")
+export GLUE_DATABASE_URI=$(jq -r '.postgres_uri' "$FILEPATH")
+export GLUE_SECRET_KEY_BASE=$(jq -r '.glue_secret' "$FILEPATH")
+export TRAKT_API_KEY=$(jq -r '.trakt_api_key' "$FILEPATH")
+export TMDB_API_KEY=$(jq -r '.tmdb_api_key' "$FILEPATH")
 
 export MIX_ENV=prod
 
-if [ "$2" = "-i" ]; then
-	bash
-fi
+case "$1" in
+  # drop into an interactive shell after loading environment secrets
+  -i)
+    echo "Droppig into interactive shell with secrets..."
+    bash
+    exit 0
+    ;;
+  --iex)
+    # drop into iex after loading environment secrets
+    iex -S mix
+    exit 0
+    ;;
+  *)
+  ;;
+esac
 
 mix deps.get --only prod
 mix compile
