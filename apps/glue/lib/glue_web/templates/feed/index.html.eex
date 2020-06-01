@@ -74,13 +74,10 @@
    justify-content: flex-start;
    align-items: center;
  }
- #page-title-container .h3 {
-   margin-top: 1rem;
- }
 </style>
+<div class="h3 back-home"><a href="/">back home</a></div>
 <div class="container">
   <div id="page-title-container">
-    <span class="h3"><a href="/">back home</a></span>
     <span class="h1" id="page-title">media feed</span>
   </div>
     <div class="card-columns">

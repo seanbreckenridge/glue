@@ -6,7 +6,7 @@
  .container {
      color: white;
      padding: 5rem;
-     padding-top: 5rem;
+     padding-top: 4rem;
  }
  table td, table th {
      padding: 0.5rem;
@@ -32,6 +32,7 @@
      display: inline-block;
  }
 </style>
+<div class="h3 back-home"><a href="/">back home</a></div>
 <div class="container">
     <h4>
         <div style="background-color: #0000FF">C</div>

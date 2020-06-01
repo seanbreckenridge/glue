@@ -13,3 +13,26 @@ html,
 body {
   font-family: "Roboto", Helvetica, sans-serif;
 }
+
+.back-home {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: "Courier New", Helvetica, sans-serif;
+  font-weight: 700 !important;
+}
+
+.back-home a,
+.back-home a:visited {
+  border: 1px solid #6a5bdb;
+  padding: 5px;
+  color: #6a5bdb;
+  text-decoration: none;
+  font-size: 1.75rem;
+}
+.back-home a:hover {
+  color: #4d4c7d;
+  text-decoration: underline;
+}
+.back-home a:active {
+  color: #827397;
+}
