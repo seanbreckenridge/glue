@@ -6,6 +6,6 @@ defmodule GlueWeb.FeedView do
   use GlueWeb, :view
 end
 
-defmodule GlueWeb.WCAView do
+defmodule GlueWeb.CubingView do
   use GlueWeb, :view
 end

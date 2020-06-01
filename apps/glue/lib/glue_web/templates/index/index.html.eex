@@ -68,7 +68,7 @@
  }
 </style>
 <div id="elm"></div>
-    <a id="rubiks" href="/wca">
+    <a id="rubiks" href="/cubing">
         <img src="<%= Routes.static_path(@conn, "/images/rubiks.gif") %>" alt="cubing"/>
     </a>
 <div class="container">

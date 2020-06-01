@@ -1,11 +1,11 @@
-defmodule GlueWeb.WCAController do
+defmodule GlueWeb.CubingController do
   require Logger
   use GlueWeb, :controller
   alias GlueWeb.Utils
 
   plug :put_layout, "app.html"
 
-  def wca(conn, _params) do
+  def cubing(conn, _params) do
     wca_data = GenServer.call(Glue.GenCache.Worker, :get_wca_data, :timer.seconds(10))
 
     events =

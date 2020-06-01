@@ -18,7 +18,7 @@ defmodule GlueWeb.Router do
 
     get "/", IndexController, :index
     get "/feed", FeedController, :feed
-    get "/wca", WCAController, :wca
+    get "/cubing", CubingController, :cubing
   end
 
   # Other scopes may use custom stacks.
