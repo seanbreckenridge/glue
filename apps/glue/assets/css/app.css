@@ -7,3 +7,9 @@
 @import "./star_keyframes.css";
 
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html,
+body {
+  font-family: "Roboto", Helvetica, sans-serif;
+}
