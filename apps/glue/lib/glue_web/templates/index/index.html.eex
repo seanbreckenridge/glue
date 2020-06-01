@@ -62,6 +62,10 @@
      top: 10vh;
      left: 10vw;
  }
+ #rubiks img {
+   width: 10vw;
+   height: auto;
+ }
 </style>
 <div id="elm"></div>
     <a id="rubiks" href="/wca">
