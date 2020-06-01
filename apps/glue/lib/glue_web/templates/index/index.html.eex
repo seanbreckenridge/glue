@@ -57,8 +57,16 @@
  .split-container {
      text-align: center;
  }
+ #rubiks {
+     position: absolute;
+     top: 10vh;
+     left: 10vw;
+ }
 </style>
 <div id="elm"></div>
+    <a id="rubiks" href="/wca">
+        <img src="<%= Routes.static_path(@conn, "/images/rubiks.gif") %>" alt="cubing"/>
+    </a>
 <div class="container">
     <div id="yo">yo</div>
     <div class="row split-container">

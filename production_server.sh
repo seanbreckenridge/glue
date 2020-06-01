@@ -51,4 +51,4 @@ mix phx.digest
 
 mix ecto.migrate
 
-exec mix phx.server
+exec mix --sname glue phx.server

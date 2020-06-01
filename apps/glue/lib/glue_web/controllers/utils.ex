@@ -1,4 +1,4 @@
-defmodule GlueWeb.PageController.Utils do
+defmodule GlueWeb.Utils do
   @moduledoc """
   Helper functions for the PageController
   """

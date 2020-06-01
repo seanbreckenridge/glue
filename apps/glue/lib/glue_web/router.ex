@@ -16,8 +16,9 @@ defmodule GlueWeb.Router do
   scope "/", GlueWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", IndexController, :index
     get "/feed", FeedController, :feed
+    get "/wca", WCAController, :wca
   end
 
   # Other scopes may use custom stacks.

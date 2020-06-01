@@ -1,4 +1,4 @@
-defmodule GlueWeb.PageController do
+defmodule GlueWeb.IndexController do
   use GlueWeb, :controller
 
   @main_page_here [
@@ -19,7 +19,7 @@ defmodule GlueWeb.PageController do
     {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/mal.png"}
   ]
 
-  alias GlueWeb.PageController.Utils
+  alias GlueWeb.Utils
 
   def index(conn, _params) do
     data = Utils.common_values() |> Utils.add_page_title()

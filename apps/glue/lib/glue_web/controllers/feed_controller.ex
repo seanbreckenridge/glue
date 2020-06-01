@@ -1,7 +1,7 @@
 defmodule GlueWeb.FeedController do
   require Logger
   use GlueWeb, :controller
-  alias GlueWeb.PageController.Utils
+  alias GlueWeb.Utils
 
   @minute :timer.minutes(1)
   @hour :timer.hours(1)
