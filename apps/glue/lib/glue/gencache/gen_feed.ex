@@ -35,7 +35,8 @@ defmodule Glue.GenCache.GenerateFeed do
            year,
            month,
            date,
-           0,
+      22, # put this at later in the day so that recent albums appear near top
+      # this puts it at about 4PM my time
            0,
            0
          ) do
