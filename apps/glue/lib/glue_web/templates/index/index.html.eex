@@ -64,6 +64,7 @@
  }
  #rubiks img {
    width: 10vw;
+   max-width: 125px;
    height: auto;
  }
 </style>
