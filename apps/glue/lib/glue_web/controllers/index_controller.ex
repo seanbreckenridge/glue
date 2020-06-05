@@ -6,7 +6,8 @@ defmodule GlueWeb.IndexController do
     {"/mal_unapproved", "MAL Unapproved"},
     {"/animeshorts", "AnimeShorts"},
     {"/xkcd", "Favorite XKCDs"},
-    {"/dvd", "DVD Logo"}
+    {"/dvd", "DVD Logo"},
+    {"/d/?dark", "Dotfiles"}
   ]
 
   @main_page_elsewhere [
