@@ -14,7 +14,7 @@
      border: 1px
  }
  .code {
-     background-color: #ddd;
+     background-color: #bebebe;
      padding: 0.2rem;
      color: black;
  }
