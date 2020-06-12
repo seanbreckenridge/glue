@@ -58,6 +58,7 @@
      position: absolute;
      top: 10vh;
      left: 10vw;
+     z-index: 2;
  }
  #rubiks img {
    width: 10vw;
