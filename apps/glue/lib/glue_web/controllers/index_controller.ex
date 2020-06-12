@@ -6,6 +6,7 @@ defmodule GlueWeb.IndexController do
     {"/mal_unapproved", "MAL Unapproved"},
     {"/animeshorts", "AnimeShorts"},
     {"https://seans-exobrain.netlify.app/", "ExoBrain"},
+    {"https://seans-exobrain.netlify.app/feed/", "Blog"},
     {"/xkcd", "Favorite XKCDs"},
     {"/dvd", "DVD Logo"},
     {"/d/?dark", "Dotfiles"}
