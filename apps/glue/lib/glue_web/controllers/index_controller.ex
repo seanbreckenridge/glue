@@ -5,8 +5,8 @@ defmodule GlueWeb.IndexController do
     {"/feed", "Media Feed"},
     {"/mal_unapproved", "MAL Unapproved"},
     {"/animeshorts", "AnimeShorts"},
-    {"https://seans-exobrain.netlify.app/", "ExoBrain"},
     {"https://seans-exobrain.netlify.app/feed/", "Blog"},
+    {"https://seans-exobrain.netlify.app/", "ExoBrain"},
     {"/xkcd", "Favorite XKCDs"},
     {"/dvd", "DVD Logo"},
     {"/d/?dark", "Dotfiles"}
