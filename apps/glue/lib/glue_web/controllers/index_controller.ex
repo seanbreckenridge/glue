@@ -13,12 +13,13 @@ defmodule GlueWeb.IndexController do
   ]
 
   @main_page_elsewhere [
-    {"http://gitlab.com/seanbreckenridge/", "Code", "/images/gitlab.png"},
     {"https://letterboxd.com/purplepinapples/", "Movies", "/images/letterboxd.png"},
     {"https://trakt.tv/users/purplepinapples/ratings/all/all/highest", "TV Shows",
      "/images/trakt.png"},
     {"https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
      "Music List", "/images/sheets.ico"},
+    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/gitlab.png"},
+    {"http://github.com/seanbreckenridge/", "GitHub", "/images/github.ico"},
     {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/mal.png"}
   ]
 
