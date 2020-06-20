@@ -1,4 +1,4 @@
-[Glue](https://sean.fish)
+# [Glue](https://sean.fish)
 
 Glue all the webapps together!
 
