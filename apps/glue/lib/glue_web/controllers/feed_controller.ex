@@ -11,7 +11,9 @@ defmodule GlueWeb.FeedController do
 
   def feed(conn, _params) do
     now = NaiveDateTime.utc_now()
-    cached_images = GenServer.call(Glue.GenCache.ImageCache.Worker, :get_cached_images, :timer.seconds(30))
+
+    cached_images =
+      GenServer.call(Glue.GenCache.ImageCache.Worker, :get_cached_images, :timer.seconds(30))
 
     feed_data =
       GenServer.call(Glue.GenCache.Worker, :get_feed_data)
@@ -53,6 +55,7 @@ defmodule GlueWeb.FeedController do
 
   defp describe_naive_datetime(diff) do
     minutes_ago = quotient(diff, @minute)
+
     if minutes_ago < 1 do
       "now"
     else
@@ -61,6 +64,7 @@ defmodule GlueWeb.FeedController do
   end
 
   defp quotient(dividend, divisor), do: floor(dividend / divisor)
+
   defp describe_diff(ago, duration_str) do
     if ago == 1 do
       "#{ago} #{duration_str} ago"
