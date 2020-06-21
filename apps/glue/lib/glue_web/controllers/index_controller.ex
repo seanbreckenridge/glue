@@ -8,8 +8,7 @@ defmodule GlueWeb.IndexController do
     {"https://exobrain.sean.fish/feed/", "Blog"},
     {"https://exobrain.sean.fish/", "ExoBrain"},
     {"/xkcd", "Favorite XKCDs"},
-    {"/dvd", "DVD Logo"},
-    {"/d/?dark", "Dotfiles"}
+    {"/dvd", "DVD Logo"}
   ]
 
   @main_page_elsewhere [
