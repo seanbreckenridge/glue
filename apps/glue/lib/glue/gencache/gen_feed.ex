@@ -85,11 +85,25 @@ defmodule Glue.GenCache.GenerateFeed do
       %FeedItem{
         type: "mal",
         image_url: nil,
-        title: "#{old_map["meta"] |> Map.get("name")} Episode #{old_map["increment"]}",
+        title: "#{old_map["meta"] |> Map.get("name")} #{old_map["meta"] |> mal_get_type()} #{old_map["increment"]}",
         site_url: old_map["meta"] |> Map.get("url"),
         timestamp: parse_iso8601_date(old_map["date"])
       }
     end)
+  end
+
+  # runs some regex again the MAL url to describe anime/manga types
+  def mal_get_type(meta_info) do
+    url = Map.get(meta_info, "url")
+    if is_nil(url) do  # default to episode if it doesnt exist for some reason
+      "Episode"
+    else
+      if is_nil(Regex.run(~r"myanimelist\.net\/anime", url)) do
+        "Chapter"
+      else
+        "Episode"
+      end
+    end
   end
 
   def normalize_trakt(trakt_data) do
