@@ -8,6 +8,10 @@
      padding: 5rem;
      padding-top: 4rem;
  }
+ table {
+      margin-left: auto;
+      margin-right: auto;
+ }
  table td, table th {
      padding: 0.5rem;
      text-align: center;
