@@ -18,9 +18,7 @@
      border: 1px
  }
  .code {
-     background-color: #bebebe;
-     padding: 0.2rem;
-     color: black;
+     font-family: Courier, sans-serif;
  }
  h4 {
      font-family: "Bungee", sans-serif;
