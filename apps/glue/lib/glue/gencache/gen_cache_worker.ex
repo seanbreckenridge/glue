@@ -183,30 +183,28 @@ defmodule Glue.GenCache.Worker do
 
   # updates the cached feed value in this GenServer and
   # casts values off to image caching genserver for specific endpoints.
-  defp update_cached_feed(state, should_update) do
-    if should_update do
-      Logger.info("Updating cached feed...")
-      # if the values changed, update the cached feed value
-      state =
-        Map.put(
-          state,
-          :cached_feed,
-          state[:data]
-          |> Map.drop(["wca"])
-          |> GenerateFeed.normalize_feed()
-          |> Enum.take(150)
-        )
+  defp update_cached_feed(state, true) do
+    Logger.info("Updating cached feed...")
+    # if the values changed, update the cached feed value
+    state =
+      Map.put(
+        state,
+        :cached_feed,
+        state[:data]
+        |> Map.drop(["wca"])
+        |> GenerateFeed.normalize_feed()
+        |> Enum.take(150)
+      )
 
-      # send off casts to image genservers
-      state
-      |> Map.get(:cached_feed)
-      |> Enum.map(&GenServer.cast(Glue.GenCache.ImageCache.Worker, {:cache_image, &1}))
+    # send off casts to image genservers
+    state
+    |> Map.get(:cached_feed)
+    |> Enum.map(&GenServer.cast(Glue.GenCache.ImageCache.Worker, {:cache_image, &1}))
 
-      state
-    else
-      state
-    end
+    state
   end
+
+  defp update_cached_feed(state, false), do: state
 
   # reads all values from the "gen_cache" table into a map, with service_key => cached_data
   # this is called once, when the application first launches
