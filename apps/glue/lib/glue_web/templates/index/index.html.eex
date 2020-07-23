@@ -48,6 +48,33 @@
      font-size: 5rem;
      margin-top: 10vh;
      margin-bottom: 1.5em;
+     animation: colorRotate 30s linear 0s infinite;
+ }
+ @keyframes colorRotate {
+     from {
+         color: #ff0000;
+     }
+     14% {
+         color: #ffa500;
+     }
+     28% {
+         color: #ffff00;
+     }
+     42% {
+         color: #008000;
+     }
+     57% {
+         color: #0000ff;
+     }
+     71% {
+         color: #4b0082;
+     }
+     85% {
+         color: #ee82ee;
+     }
+     100% {
+         color: #ff0000;
+     }
  }
  .vertical-flex-column {
      display: flex;
