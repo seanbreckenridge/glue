@@ -95,7 +95,7 @@ defmodule Glue.GenCache.GenerateFeed do
     end)
   end
 
-  # runs some regex again the MAL url to describe anime/manga types
+  # runs some regex against the MAL url to describe anime/manga types
   def mal_get_type(meta_info) do
     url = Map.get(meta_info, "url")
     # default to episode if it doesnt exist for some reason
