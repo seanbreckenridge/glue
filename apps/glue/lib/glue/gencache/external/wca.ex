@@ -13,8 +13,8 @@ defmodule Glue.GenCache.External.Wca do
   def update_cache(meta_kwlist) do
     Logger.info("Updating WCA cache...")
     id = meta_kwlist |> Keyword.get(:db_id)
-    album_port = meta_kwlist |> Keyword.get(:port)
-    url = "http://localhost:#{album_port}/2017BREC02"
+    wca_port = meta_kwlist |> Keyword.get(:port)
+    url = "http://localhost:#{wca_port}/2017BREC02"
 
     {status, response} = Utils.generic_json_request(url, [], recv_timeout: :timer.seconds(10))
     {status, {id, response}}
