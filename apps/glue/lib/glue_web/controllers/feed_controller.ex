@@ -29,7 +29,7 @@ defmodule GlueWeb.FeedController do
       end)
 
     data =
-      Utils.common_values("media feed")
+      Utils.common_values("feed")
       |> Utils.add_page_title()
       |> Map.put(
         :feed_data,
