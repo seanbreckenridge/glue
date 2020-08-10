@@ -92,7 +92,8 @@
      z-index: 2;
  }
  #rubiks img {
-   width: 10vw;
+   width: auto;
+   min-width: 10vh;
    max-width: 125px;
    height: auto;
  }
