@@ -17,7 +17,7 @@ defmodule GlueWeb.IndexController do
      "/images/trakt.png"},
     {"https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
      "Music List", "/images/sheets.ico"},
-    {"https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=my_rating&dir=desc&",
+    {"https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
      "Video Games", "/images/grouvee.ico"},
     {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/mal.png"},
     {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/gitlab.png"},
