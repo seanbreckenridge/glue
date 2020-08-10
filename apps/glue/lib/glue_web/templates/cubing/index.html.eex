@@ -26,6 +26,7 @@
      letter-spacing: 0px;
      font-size: 0;
      font-weight: bold;
+     text-align: center;
  }
  h4 div {
      font-size: 5rem;
