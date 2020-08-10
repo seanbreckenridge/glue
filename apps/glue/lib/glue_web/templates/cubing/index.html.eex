@@ -1,5 +1,4 @@
 <style>
- @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
  html, body {
      background-color: black;
  }
@@ -21,11 +20,12 @@
      font-family: Courier, sans-serif;
  }
  h4 {
-     font-family: "Bungee", sans-serif;
+     font-family: "Lucida Sans Unicode", sans-serif;
      color: black;
      padding: 0.2rem;
      letter-spacing: 0px;
      font-size: 0;
+     font-weight: bold;
  }
  h4 div {
      font-size: 5rem;
@@ -38,11 +38,11 @@
 <div class="container">
     <h4>
         <div style="background-color: #0000FF">C</div>
-        <div style="background-color: #FFFFFF">u</div>
-        <div style="background-color: #FFFF00">b</div>
-        <div style="background-color: #008000">i</div>
-        <div style="background-color: #FFA500">n</div>
-        <div style="background-color: #FF0000">g</div>
+        <div style="background-color: #FFFFFF">U</div>
+        <div style="background-color: #FFFF00">B</div>
+        <div style="background-color: #008000">I</div>
+        <div style="background-color: #FFA500">N</div>
+        <div style="background-color: #FF0000">G</div>
     </h4>
     <p>
         These are <a href="https://www.worldcubeassociation.org/persons/2017BREC02">my records</a> from <a href="https://worldcubeassosiation.org">WCA</a> (World Cube Assosiation) approved competitions. I've been to <%= @data.wca_data["competitions"] %> competitions and have <%= @data.wca_data["completed_solves"] %> completed official solves.
