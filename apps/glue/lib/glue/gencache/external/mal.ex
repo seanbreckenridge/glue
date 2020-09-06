@@ -7,7 +7,7 @@ defmodule Glue.GenCache.External.Mal do
 
   makes requests to update the cached data
   returns {:ok, {id, cached_value}}, where cached_value
-  is a map if it suceeds, else {:error, {id, err}}
+  is a map if it succeeds, else {:error, {id, err}}
   """
   def update_cache(meta_kwlist) do
     id = meta_kwlist |> Keyword.get(:db_id)

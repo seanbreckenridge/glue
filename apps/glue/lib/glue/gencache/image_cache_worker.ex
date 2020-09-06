@@ -1,7 +1,7 @@
 defmodule Glue.GenCache.ImageCache.Worker do
   @moduledoc """
   Caches Images for Trakt and MAL
-  Requests are recieved from the GenCache.Worker whenever feeds are updated
+  Requests are received from the GenCache.Worker whenever feeds are updated
   and are requested from GlueWeb FeedController to display images on the feed page.
   """
 
@@ -22,7 +22,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
     {:ok, %{uncached: [], image_cache: read_cache_from_db()}}
   end
 
-  # recieves messages to cache images from GenCache.Worker
+  # receives messages to cache images from GenCache.Worker
   # whenever the feed is updated
   def handle_cast({:cache_image, feed_item}, state) do
     # if this is one of the endpoints that this caches images for
@@ -137,7 +137,7 @@ defmodule Glue.GenCache.ImageCache.Worker do
   # and not is_nil(state[:image_cache][feed_item.site_url])
 
   defp add_to_image_cache(state, key, value) do
-    # if request suceeded, save value
+    # if request succeeded, save value
     if not is_nil(value) do
       %Glue.ImageCache{
         site_url: key,

@@ -46,7 +46,7 @@
         <div style="background-color: #FF0000">G</div>
     </h4>
     <p>
-        These are <a href="https://www.worldcubeassociation.org/persons/2017BREC02">my records</a> from <a href="https://worldcubeassosiation.org">WCA</a> (World Cube Assosiation) approved competitions. I've been to <%= @data.wca_data["competitions"] %> competitions and have <%= @data.wca_data["completed_solves"] %> completed official solves.
+        These are <a href="https://www.worldcubeassociation.org/persons/2017BREC02">my records</a> from <a href="https://worldcubeassosiation.org">WCA</a> (World Cube Association) approved competitions. I've been to <%= @data.wca_data["competitions"] %> competitions and have <%= @data.wca_data["completed_solves"] %> completed official solves.
     </p>
     <p>
         For those unfamiliar with the notation, a Single is the time for a single solve, and an Average is the average of the 3 middle solves of a set of 5 consecutive solves. As an example, if you had 5 solves like: <span class="code">(40.20) 30.54 28.39 (25.40) 32.50</span>, the average would be <span class="code">(30.54 + 28.39 + 32.50) / 3</span>.
