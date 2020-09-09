@@ -20,8 +20,8 @@ defmodule GlueWeb.IndexController do
     {"https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
      "Video Games", "/images/grouvee.ico"},
     {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/mal.png"},
-    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/gitlab.png"},
-    {"http://github.com/seanbreckenridge/", "GitHub", "/images/github.ico"}
+    {"http://github.com/seanbreckenridge/", "GitHub", "/images/github.ico"},
+    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/gitlab.png"}
   ]
 
   alias GlueWeb.Utils
