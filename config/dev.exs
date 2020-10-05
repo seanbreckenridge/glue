@@ -26,7 +26,7 @@ config :glue, GlueWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../apps/glue/assets", __DIR__)
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
@@ -60,7 +60,7 @@ config :glue, GlueWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/glue_web/{live,views}/.*(ex)$",
+      ~r"lib/glue_web/(live|views)/.*(ex)$",
       ~r"lib/glue_web/templates/.*(eex)$"
     ]
   ]

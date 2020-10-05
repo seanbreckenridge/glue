@@ -23,10 +23,11 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-port = System.get_env("GLUE_PORT") || "8082"
-
 config :glue, GlueWeb.Endpoint,
-  http: [:inet6, port: String.to_integer(port)],
+  http: [
+    port: String.to_integer(System.get_env("GLUE_PORT") || 8082),
+    transport_options: [socket_opts: [:inet6]]
+  ],
   secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
