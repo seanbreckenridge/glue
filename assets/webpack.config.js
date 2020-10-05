@@ -14,8 +14,7 @@ module.exports = (_env, options) => {
       ]
     },
     entry: {
-      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js']),
-      'react': ['./frontend/react.js']
+      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js', './frontend/react.js']),
     },
     output: {
       filename: '[name].js',
@@ -30,14 +29,14 @@ module.exports = (_env, options) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader'
+              loader: 'babel-loader',
             },
             {
-              loader: 'ts-loader'
+              loader: 'ts-loader',
             }
           ]
         }
-      ]
+      ],
     },
     resolve: {
       extensions: [".ts", ".js", ".tsx", ".jsx"]

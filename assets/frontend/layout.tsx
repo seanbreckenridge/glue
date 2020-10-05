@@ -18,7 +18,9 @@ const Layout: React.FunctionComponent = (props) => {
 
   return (
     <AppContextProvider value={UI}>
-      {props.children}
+      <main className="bg">
+        {props.children}
+      </main>
     </AppContextProvider>
   );
 }

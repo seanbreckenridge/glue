@@ -1,5 +1,8 @@
 tags*
 
+# ignore built css files that are compiled into JSX using webpack/postcss
+styles.css
+
 # The directory Mix will write compiled artifacts to.
 /_build/
 
