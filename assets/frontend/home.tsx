@@ -1,5 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AppContextConsumer } from "./layout";
 
 interface LinkInfo {
   url: string;
@@ -8,51 +9,36 @@ interface LinkInfo {
 }
 
 
-interface HomeProps {
-}
-
 interface PersonalInfo {
   here: LinkInfo[];
   elsewhere: LinkInfo[];
 }
 
-interface HomeState {
-  data?: PersonalInfo;
-  loading: boolean;
-}
 
+const Home: React.FC<{}> = () => {
 
-class Home extends Component<HomeProps, HomeState> {
+  const [data, setData] = useState<PersonalInfo>({ here: [], elsewhere: [] });
 
-  constructor(props: HomeProps) {
-    super(props);
-    this.state = {
-      loading: true,
-    }
-  }
-
-  loadData = async () => {
+  const loadData = async () => {
     axios.get("/api/data/personal")
-    .then(response => {
-      this.setState({
-        data: response.data,
-        loading: false,
-      });
-    });
+    .then(response => setData(response.data));
   };
 
-  componentDidMount() {
-    this.loadData();
-  }
+  useEffect(() => {
+    loadData();
+  }, []);
 
-  render() {
-    if (this.state.loading) {
-      return <h1>loading...</h1>
-    } else {
-      return <h1>State is {this.state.data!.here.length + this.state.data!.elsewhere.length}</h1>
-    }
-  }
-
+  return (
+    // requires function which receives value as child
+    <AppContextConsumer>
+      {appContext =>
+       (data.here !== undefined && data.here.length > 0) && (
+         <>
+           <p>{JSON.stringify(data)}</p>
+         </>
+      )}
+    </AppContextConsumer>
+  )
 }
 
 export default Home;
