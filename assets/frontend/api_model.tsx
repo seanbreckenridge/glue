@@ -57,6 +57,7 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
   return await axios.request<T>(
     {
       url: url,
+      responseType: 'json',
       transformResponse: (r: T) => r
     })
     .then((response: AxiosResponse<T>) => {

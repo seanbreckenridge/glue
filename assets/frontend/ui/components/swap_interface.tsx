@@ -10,11 +10,11 @@ const SwapInterfaceButton = ({text, isGui}: ISwapInterfaceButton) => {
 
   return (
     <div className="swap-interface">
-      <button className="swap-button">
+      <div className="swap-button menu-bar-item">
         <Link to={(isGui) ? "/tui" : "/"} className="swap-link">
           {text}
         </Link>
-      </button>
+      </div>
     </div>
   );
 }

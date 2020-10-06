@@ -32,6 +32,7 @@ $height-break-large: 600px;
 /* full screen */
 
 $outer_border_width: 5px;
+$inner_border_width: 2px;
 
 .full-screen {
   margin: 0;
@@ -71,19 +72,33 @@ $outer_border_width: 5px;
   margin-left: auto; /* move button to switch interface to top right */
 }
 
-button.swap-button {
-  padding: 5px 10px;
+.unlinkify {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.swap-button {
   font-family: inherit;
   font-weight: inherit;
 
   a {
+    border: 3px solid #000;
+    padding: 3px 10px;
+    border-radius: 4px;
     color: black;
     text-decoration: none;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
   }
 
-  a:hover {
-    color: black;
-  }
+
 }
 
 
@@ -104,10 +119,32 @@ $green_bg: #00da00;
   #menu-bar {
     color: black;
     background-color: white;
+    border-bottom: $inner_border_width solid black;
     align-items: center;
     padding-left: 2%;
     @include swidth(medium) { padding-left: 5%; }
     @include swidth(large) { padding-left: 10%; }
+
+    .menu-toolbar-item {
+      border: $inner_border_width solid black;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      &:hover {
+        color: white;
+        transition-delay: 0.05s;
+        transition-duration: 0s;
+        transition-timing-function: linear;
+        background-color: black;
+        cursor: pointer;
+      }
+
+      & * {
+        position: relative;
+        top: -1px;
+        color: inherit;
+      }
+    }
 
     .menu-bar-item {
       height: 30px;

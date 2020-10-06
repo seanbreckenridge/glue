@@ -28,7 +28,7 @@ end
 
 defmodule GlueWeb.PersonalInfo do
   @main_page_here [
-    {"/feed", "Media Feed"},
+    {"/#/feed", "Media Feed"},
     {"/mal_unapproved", "MAL Unapproved"},
     {"/animeshorts", "AnimeShorts"},
     {"https://exobrain.sean.fish/feed/", "Blog"},
