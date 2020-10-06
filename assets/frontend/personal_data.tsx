@@ -8,9 +8,9 @@ const PersonalData: React.FC<{}> = () => {
     <UIDataConsumer>
       {data =>
         (some(data) ?
-          <>
+          <div>
             {JSON.stringify(data!)}
-          </>
+          </div>
           :
           <>
             <p>Loading data...</p>
