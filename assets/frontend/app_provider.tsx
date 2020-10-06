@@ -4,7 +4,7 @@ import {
   requestAndSetPersonal, RCubingData, RFeedData, RPersonalData
 } from "./api_model";
 
-// https://stackoverflow.com/questions/58193424/passing-state-with-usecontext-in-typescript
+// https://stackoverflow.com/a/57908436/9348376
 
 interface IProps {
   children?: any;

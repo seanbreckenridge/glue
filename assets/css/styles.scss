@@ -36,6 +36,22 @@ $height-break-large: 600px;
   box-sizing: border-box;
 }
 
+
+#menu-bar {
+    height: 30px;
+    @include sheight(medium) { height: 40px; }
+    @include sheight(large) { height: 50px; }
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.swap-interface {
+  margin-left: auto; /* move button to switch interface to top right */
+}
+
 $green_bg: #00da00;
 $gui_border_width: 5px;
 
@@ -45,12 +61,8 @@ $gui_border_width: 5px;
   border: $gui_border_width solid black;
 
   #menu-bar {
-    height: 30px;
     color: black;
-    @include sheight(medium) { height: 40px; }
-    @include sheight(large) { height: 50px; }
     background-color: white;
-    display: flex;
   }
 }
 
@@ -60,4 +72,9 @@ $terminal_text: #fff;
 #tui {
   background-color: $terminal_bg;
   color: $terminal_text;
+
+  #menu-bar {
+    color: white;
+    background-color: darkgrey;
+  }
 }

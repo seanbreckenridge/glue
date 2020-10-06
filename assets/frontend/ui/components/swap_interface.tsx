@@ -10,7 +10,7 @@ const SwapInterfaceButton = ({text}: ISwapInterfaceButton) => {
     <AppContextConsumer>
       {(ctx: Context) => {
         return (
-          <div>
+          <div className="swap-interface">
             <button onClick={() => swapInterfaceType(ctx)}>
               {text}
             </button>

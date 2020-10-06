@@ -1,11 +1,17 @@
 import React from "react";
 import {AppContextConsumer, Context, swapInterfaceType} from "../app_provider";
+import SwapInterfaceButton from "./components/swap_interface";
 
 const TUI: React.FC<{}> = () => {
   return (
     <>
       <div id="tui" className="full-screen">
-        <SwapInterfaceButton />
+        <div id="menu-bar">
+          <div>
+            Terminal Bar Menu
+          </div>
+          <SwapInterfaceButton text="Switch to Graphical Interface"/>
+        </div>
         <pre>
           $ ....
         </pre>
@@ -13,21 +19,4 @@ const TUI: React.FC<{}> = () => {
     </>
   );
 }
-
-const SwapInterfaceButton: React.FC<{}> = () => {
-  return (
-    <AppContextConsumer>
-      {(ctx: Context) => {
-        return (
-          <div className="swap-interface-button">
-            <button onClick={() => swapInterfaceType(ctx)}>
-              Switch to Desktop
-            </button>
-          </div>
-        );
-      }}
-    </AppContextConsumer>
-  );
-}
-
 export default TUI;
