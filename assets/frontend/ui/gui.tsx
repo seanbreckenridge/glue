@@ -54,7 +54,7 @@ const GUI: React.FC<{}> = () => {
 };
 
 interface IHomeIconsProps {
-  data: Nullable<RPersonalData> | undefined;
+  data: Unset<RPersonalData>;
 }
 
 function HomeIcons(props: IHomeIconsProps) {

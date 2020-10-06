@@ -1,2 +1,2 @@
-type Nullable<T> = T | null;
+type Unset<T> = T | undefined;
 type Result<T> = T | Error;
