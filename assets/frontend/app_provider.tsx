@@ -4,18 +4,16 @@ import {
   requestAndSetPersonal, RCubingData, RFeedData, RPersonalData
 } from "./api_model";
 
+// defines the connection with the API, exposes that context/state
+// using hooks to the rest of the application
+
 // https://stackoverflow.com/a/57908436/9348376
 
 interface IProps {
   children?: any;
 }
 
-type UIOptions = {
-  gui: boolean;
-}
-
 type Context = {
-  opts: UIOptions,
   info?: RPersonalData,
   feed?: RFeedData,
   cubing?: RCubingData,
@@ -26,22 +24,10 @@ type Context = {
 type setContextFunc = Dispatch<SetStateAction<Context>>;
 
 const initialContext: Context = {
-  opts: { gui: true },
   setContext: (): void => {
     throw new Error('setContext function must be overridden');
   },
 };
-
-// swaps from GUI to TUI or back from TUI to GUI
-function swapInterfaceType(ctx: Context): void {
-  ctx.setContext({
-    ...ctx,
-    opts: {
-      ...ctx.opts,
-      gui: !ctx.opts.gui,
-    }
-  });
-}
 
 const AppContext = createContext<Context>(initialContext);
 
@@ -76,6 +62,4 @@ export {
   AppContextProvider,
   AppContextConsumer,
   setContextFunc,
-  swapInterfaceType,
-};
-
+}

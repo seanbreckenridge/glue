@@ -29,6 +29,10 @@ $height-break-large: 600px;
   }
 }
 
+/* full screen */
+
+$outer_border_width: 5px;
+
 .full-screen {
   margin: 0;
   min-height: 100vh;
@@ -36,7 +40,11 @@ $height-break-large: 600px;
   box-sizing: border-box;
 }
 
+.root-el {
+  /* */
+}
 
+/* shared menu bar styling */
 #menu-bar {
     height: 30px;
     @include sheight(medium) { height: 40px; }
@@ -48,17 +56,18 @@ $height-break-large: 600px;
     padding-right: 5px;
 }
 
+/* button which switches between GUI/TUI */
 .swap-interface {
   margin-left: auto; /* move button to switch interface to top right */
 }
 
+
 $green_bg: #00da00;
-$gui_border_width: 5px;
 
 #gui {
   background-color: $green_bg;
   color: white;
-  border: $gui_border_width solid black;
+  border: $outer_border_width solid black;
 
   #menu-bar {
     color: black;
@@ -66,15 +75,16 @@ $gui_border_width: 5px;
   }
 }
 
-$terminal_bg: #000;
-$terminal_text: #fff;
+$terminal_bg: #121212;
+$terminal_text: #ecedf0;
 
 #tui {
   background-color: $terminal_bg;
   color: $terminal_text;
 
   #menu-bar {
-    color: white;
-    background-color: darkgrey;
+    color: black;
+    background-color: #d0d2d1;
+    border-radius: 5px 5px 0px 0px;
   }
 }

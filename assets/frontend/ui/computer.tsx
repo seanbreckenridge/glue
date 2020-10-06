@@ -2,6 +2,11 @@ import React from "react";
 import {AppContextProvider, AppContextConsumer, Context} from "../app_provider"
 import GUI from "./gui";
 import TUI from "./tui";
+import {
+  Switch,
+  Route,
+  HashRouter
+} from "react-router-dom";
 // import {some, ok} from "./utils";
 
 // top level of interface
@@ -21,13 +26,23 @@ const Computer: React.FC<{}> = () => {
 export const HomeScreen: React.FC<{}> = () => {
   return (
     <>
-    <AppContextConsumer>
-      {(ctx: Context) => {
-        return (ctx.opts.gui) ? <GUI /> : <TUI />
-      }}
-    </AppContextConsumer>
+      <HashRouter>
+        <Switch>
+          <Route path="/tui">
+            <TUI />
+          </Route>
+          <Route path="/">
+            <GUI />
+          </Route>
+        </Switch>
+      </HashRouter>
     </>
   );
 }
+    // <AppContextConsumer>
+    //   {(ctx: Context) => {
+    //     return (ctx.opts.gui) ? <GUI /> : <TUI />
+    //   }}
+    // </AppContextConsumer>
 
 export default Computer;

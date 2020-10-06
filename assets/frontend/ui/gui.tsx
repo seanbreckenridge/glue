@@ -12,12 +12,12 @@ import SwapInterfaceButton from "./components/swap_interface";
 const GUI: React.FC<{}> = () => {
   return (
     <>
-      <div id="gui" className="full-screen">
+      <div id="gui" className="full-screen root-el">
         <div id="menu-bar">
           <div>
             Menu bar contents
           </div>
-          <SwapInterfaceButton text="Switch to Terminal"/>
+          <SwapInterfaceButton text="Switch to Terminal" isGui={true}/>
         </div>
         <HashRouter>
           <Switch>

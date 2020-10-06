@@ -1,23 +1,19 @@
 import React from "react";
-import {AppContextConsumer, Context, swapInterfaceType} from "../../app_provider";
+import { Link } from "react-router-dom";
 
 interface ISwapInterfaceButton {
+  isGui: boolean;
   text: string;
 }
 
-const SwapInterfaceButton = ({text}: ISwapInterfaceButton) => {
+const SwapInterfaceButton = ({text, isGui}: ISwapInterfaceButton) => {
+
   return (
-    <AppContextConsumer>
-      {(ctx: Context) => {
-        return (
-          <div className="swap-interface">
-            <button onClick={() => swapInterfaceType(ctx)}>
-              {text}
-            </button>
-          </div>
-        );
-      }}
-    </AppContextConsumer>
+    <div className="swap-interface">
+      <Link to={(isGui)? "/tui": "/"}>
+        {text}
+      </Link>
+    </div>
   );
 }
 
