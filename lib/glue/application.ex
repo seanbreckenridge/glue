@@ -15,6 +15,8 @@ defmodule Glue.Application do
       {Phoenix.PubSub, name: Glue.PubSub},
       # Start the Endpoint (http/https)
       GlueWeb.Endpoint,
+      # start cachex process for caching feed requests
+      {Cachex, name: :feed_cache},
       # Start Feed and Image Cache genservers
       Glue.Feed.ImageCache.Server,
       Glue.Feed.Server

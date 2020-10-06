@@ -46,7 +46,8 @@ defmodule Glue.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:httpoison, "~> 1.6"},
-      {:jikan_ex, "~> 0.1.4"}
+      {:jikan_ex, "~> 0.1.4"},
+      {:cachex, "~>3.3.0"},
     ]
   end
 

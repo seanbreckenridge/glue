@@ -54,37 +54,53 @@ defmodule GlueWeb.PersonalInfo do
 end
 
 defmodule GlueWeb.Feed do
+  require Logger
+
   @minute :timer.minutes(1)
   @hour :timer.hours(1)
   @day :timer.hours(24)
 
   def get(count, format_dates \\ true) do
-    now = NaiveDateTime.utc_now()
+    cache_key = "#{count}.#{format_dates}"
+    {:ok, cached_feed_data} = Cachex.get(:feed_cache, cache_key)
 
-    cached_images =
-      GenServer.call(Glue.Feed.ImageCache.Server, :get_cached_images, :timer.seconds(30))
+    if is_nil(cached_feed_data) do
+      Logger.debug("feed request cache miss for key #{cache_key}, computing value...")
+      now = NaiveDateTime.utc_now()
 
-    %{
-      feed:
-        GenServer.call(Glue.Feed.Server, :get_feed_data, :timer.seconds(30))
-        # attach images
-        |> Stream.map(fn feed_info ->
-          if Map.has_key?(cached_images, feed_info.site_url) do
-            %{feed_info | image_url: Map.get(cached_images, feed_info.site_url)}
-          else
-            feed_info
-          end
-        end)
-        # format date if asked to
-        |> Enum.map(fn feed_info ->
-          if format_dates do
-            %{feed_info | timestamp: descrive_naive_datetime(feed_info.timestamp, now)}
-          else
-            feed_info
-          end
-        end)
-        |> Enum.take(count)
-    }
+      cached_images =
+        GenServer.call(Glue.Feed.ImageCache.Server, :get_cached_images, :timer.seconds(30))
+
+      feed_data = %{
+        feed:
+          GenServer.call(Glue.Feed.Server, :get_feed_data, :timer.seconds(30))
+          # attach images
+          |> Stream.map(fn feed_info ->
+            if Map.has_key?(cached_images, feed_info.site_url) do
+              %{feed_info | image_url: Map.get(cached_images, feed_info.site_url)}
+            else
+              feed_info
+            end
+          end)
+          # format date if asked to
+          |> Enum.map(fn feed_info ->
+            if format_dates do
+              %{feed_info | timestamp: descrive_naive_datetime(feed_info.timestamp, now)}
+            else
+              feed_info
+            end
+          end)
+          |> Enum.take(count)
+      }
+
+      # this cache is invalidated in Glue.Feed.Server, whenever anything new is
+      # added to the feed data
+      {:ok, _} = Cachex.put(:feed_cache, cache_key, feed_data, ttl: :timer.minutes(30))
+      feed_data
+    else
+      Logger.debug("feed request cache hit for key #{cache_key}, using cached value...")
+      cached_feed_data
+    end
   end
 
   defp descrive_naive_datetime(time, now) do

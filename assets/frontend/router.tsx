@@ -4,14 +4,14 @@ import {
   Route,
   HashRouter
 } from "react-router-dom";
-import Home from "./home";
+import PersonalData from "./personal_data";
 import Cubing from "./cubing";
 import Feed from "./feed";
-import Layout from "./layout";
+import Loading from "./loading";
 
 function Routes() {
   return (
-    <Layout>
+    <Loading>
       <HashRouter>
         <Switch>
         <Route path="/cubing">
@@ -21,11 +21,11 @@ function Routes() {
           <Feed />
         </Route>
         <Route path="/">
-          <Home />
+          <PersonalData />
         </Route>
         </Switch>
       </HashRouter>
-    </Layout>
+    </Loading>
   );
 }
 

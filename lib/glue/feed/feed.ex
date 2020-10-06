@@ -181,6 +181,7 @@ defmodule Glue.Feed.Server do
     update_cached_feed(state, length(update_tuples) > 0 or is_nil(state[:cached_feed]))
   end
 
+  defp update_cached_feed(state, false), do: state
   # updates the cached feed value in this GenServer and
   # casts values off to image caching genserver for specific endpoints.
   defp update_cached_feed(state, true) do
@@ -200,10 +201,13 @@ defmodule Glue.Feed.Server do
     |> Map.get(:cached_feed)
     |> Enum.map(&GenServer.cast(Glue.Feed.ImageCache.Server, {:cache_image, &1}))
 
+    # if we're here, that means we updated something in the feed
+    # invalidate the cachex HTTP request cache for the feed endpoint
+    {:ok, _count_entries_cleared } = Cachex.clear(:feed_cache)
+
+
     state
   end
-
-  defp update_cached_feed(state, false), do: state
 
   # reads all values from the "feed_cache" table into a map, with service_key => cached_data
   # this is called once, when the application first launches
