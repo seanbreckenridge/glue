@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cubing: React.FC<{}> = () => {
+const Cubing = () => {
   return ( <h1>Welcome to Cubing</h1> )
 };
 

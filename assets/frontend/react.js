@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Router from "./router";
+import Computer from "./ui/computer";
 
 ReactDOM.render(
-  <Router />,
+  <Computer />,
   document.getElementById("root")
 );

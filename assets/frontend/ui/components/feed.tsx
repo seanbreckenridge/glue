@@ -1,6 +1,6 @@
 import React from "react";
 
-const Feed: React.FC<{}> = () => {
+const Feed = () => {
   return ( <h1>Welcome to Feed</h1> )
 };
 

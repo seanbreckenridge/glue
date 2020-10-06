@@ -1,7 +1,63 @@
-main {
-  color: blue;
+$width-break-small: 360px;
+$width-break-large: 1024px;
 
-  div {
-    font-size: 150%;
+$height-break-small: 300px;
+$height-break-large: 600px;
+
+
+@mixin swidth($media) {
+  @if $media == small {
+    @media only screen and (max-width: $width-break-small) { @content; }
   }
+  @else if $media == medium {
+    @media only screen and (min-width: $width-break-small + 1) and (max-width: $width-break-large - 1) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (min-width: $width-break-large) { @content; }
+  }
+}
+
+@mixin sheight($media) {
+  @if $media == small {
+    @media only screen and (max-height: $height-break-small) { @content; }
+  }
+  @else if $media == medium {
+    @media only screen and (min-height: $height-break-small + 1) and (max-height: $height-break-large - 1) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (min-height: $height-break-large) { @content; }
+  }
+}
+
+.full-screen {
+  margin: 0;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+$green_bg: #00da00;
+$gui_border_width: 5px;
+
+#gui {
+  background-color: $green_bg;
+  color: white;
+  border: $gui_border_width solid black;
+
+  #menu-bar {
+    height: 30px;
+    color: black;
+    @include sheight(medium) { height: 40px; }
+    @include sheight(large) { height: 50px; }
+    background-color: white;
+    display: flex;
+  }
+}
+
+$terminal_bg: #000;
+$terminal_text: #fff;
+
+#tui {
+  background-color: $terminal_bg;
+  color: $terminal_text;
 }

@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {UIData, setDataFunc} from "./loading";
+import {Context, setContextFunc} from "./app_provider";
 
 interface LinkInfo {
   url: string;
@@ -67,31 +67,40 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
 }
 
 // request and set personal info
-const requestAndSetPersonal = async (setData: setDataFunc) => {
+const requestAndSetPersonal = async (setData: setContextFunc) => {
   loadInterfaceMatches<PersonalData>("/api/data/personal")
     .then((response: RPersonalData) => {
-      setData((oldData: UIData): UIData => {
-        return {...oldData, info: response}
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          info: response
+        }
       })
     })
 }
 
 // request and set feed data
-const requestAndSetFeed = async (setData: setDataFunc) => {
+const requestAndSetFeed = async (setData: setContextFunc) => {
   loadInterfaceMatches<FeedData>("/api/data/feed")
     .then((response: RFeedData) => {
-      setData((oldData: UIData): UIData => {
-        return {...oldData, feed: response}
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          feed: response
+        }
       })
     })
 }
 
 // request and set cubing data
-const requestAndSetCubing = async (setData: setDataFunc) => {
+const requestAndSetCubing = async (setData: setContextFunc) => {
   loadInterfaceMatches<CubingData>("/api/data/cubing")
     .then((response: RCubingData) => {
-      setData((oldData: UIData): UIData => {
-        return {...oldData, cubing: response}
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          cubing: response
+        }
       })
     })
 }
