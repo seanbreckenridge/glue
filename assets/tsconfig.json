@@ -4,6 +4,9 @@
       "es2015",
       "dom"
     ],
+    "typeRoots": [
+      "./types.d.ts"
+    ],
     "target": "es5",
     "moduleResolution": "node",
     "module": "ESNext",

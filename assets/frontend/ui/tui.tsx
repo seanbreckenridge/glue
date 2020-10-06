@@ -1,6 +1,7 @@
 import React from "react";
 // import {AppContextConsumer, Context, swapInterfaceType} from "../app_provider";
 import SwapInterfaceButton from "./components/swap_interface";
+import TUITerminal from "./components/terminal";
 
 const TUI: React.FC<{}> = () => {
   return (
@@ -8,13 +9,12 @@ const TUI: React.FC<{}> = () => {
       <div id="tui" className="full-screen root-el">
         <div id="menu-bar">
           <div>
-            Terminal Bar Menu
           </div>
           <SwapInterfaceButton text="Switch to Graphical Interface" isGui={false}/>
         </div>
-        <pre>
-          $ ....
-        </pre>
+        <div id="window-body">
+          <TUITerminal />
+        </div>
       </div>
     </>
   );

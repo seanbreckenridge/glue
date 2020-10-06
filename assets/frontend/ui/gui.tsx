@@ -14,11 +14,12 @@ const GUI: React.FC<{}> = () => {
     <>
       <div id="gui" className="full-screen root-el">
         <div id="menu-bar">
-          <div>
-            Menu bar contents
+          <div className="menu-bar-item">
+            sean
           </div>
           <SwapInterfaceButton text="Switch to Terminal" isGui={true}/>
         </div>
+        <div id="window-body">
         <HashRouter>
           <Switch>
             <Route path="/cubing">
@@ -35,6 +36,7 @@ const GUI: React.FC<{}> = () => {
             </Route>
           </Switch>
         </HashRouter>
+        </div>
       </div>
     </>
   );

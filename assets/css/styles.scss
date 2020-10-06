@@ -41,7 +41,11 @@ $outer_border_width: 5px;
 }
 
 .root-el {
-  /* */
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
 
 /* shared menu bar styling */
@@ -49,16 +53,44 @@ $outer_border_width: 5px;
     height: 30px;
     @include sheight(medium) { height: 40px; }
     @include sheight(large) { height: 50px; }
+
+    /* self flex props */
+    flex: 0 1 auto;
+
+    /* for children */
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-right: 2%;
+    @include swidth(medium) { padding-right: 5%; }
+    @include swidth(large) { padding-right: 10%; }
 }
 
 /* button which switches between GUI/TUI */
 .swap-interface {
   margin-left: auto; /* move button to switch interface to top right */
+}
+
+button.swap-button {
+  padding: 5px 10px;
+  font-family: inherit;
+  font-weight: inherit;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+
+/* div that encompasses the rest of the page (not the menu bar) */
+#window-body {
+  // grow rest of page
+  flex: 1 1 auto;
 }
 
 
@@ -72,6 +104,30 @@ $green_bg: #00da00;
   #menu-bar {
     color: black;
     background-color: white;
+    align-items: center;
+    padding-left: 2%;
+    @include swidth(medium) { padding-left: 5%; }
+    @include swidth(large) { padding-left: 10%; }
+
+    .menu-bar-item {
+      height: 30px;
+      line-height: 30px;
+      @include sheight(medium) {
+        height: 40px;
+        line-height: 40px;
+      }
+      @include sheight(large) {
+        height: 50px;
+        line-height: 50px;
+      }
+      box-sizing: border-box;
+    }
+  }
+
+  #window-body {
+    padding-left: 2%;
+    padding-right: 2%;
+    padding: 1em;
   }
 }
 
@@ -81,10 +137,36 @@ $terminal_text: #ecedf0;
 #tui {
   background-color: $terminal_bg;
   color: $terminal_text;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 
   #menu-bar {
     color: black;
     background-color: #d0d2d1;
     border-radius: 5px 5px 0px 0px;
+
+  }
+
+  code {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+  }
+
+  pre {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 5%;
+  }
+
+  .disabled-message {
+    font-size: 150%;
+  }
+
+  .dummy-error-text {
+    color: red;
   }
 }
