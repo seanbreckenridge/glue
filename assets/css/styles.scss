@@ -248,6 +248,23 @@ $green_bg: #00da00;
         @include swidth(large) {
           flex-basis: 33%;
         }
+        
+        &.selected  {
+
+          img.desktop-icon-interactable {
+            -moz-filter: grayscale(1);
+            -ms-filter: grayscale(1);
+            -o-filter: grayscale(1);
+            filter: grayscale(1);
+            outline: 1px grey dotted;
+          }
+
+          figcaption.desktop-icon-interactable {
+            color: $offwhite;
+            background-color: black;
+            outline: 1px grey dotted;
+          }
+        }
 
         figure.desktop-icon {
           display: flex;
@@ -274,6 +291,8 @@ $green_bg: #00da00;
           }
 
           figcaption {
+            padding-right: 1em;
+            padding-left: 1em;
             @include swidth(small) {
               margin-top: 5px;
               max-width: 60px;
@@ -289,9 +308,7 @@ $green_bg: #00da00;
 
             background-color: $offwhite;
             color: black;
-            padding-left: 1em;
-            padding-right: 1em;
-
+            
             pre {
               text-align: center;
 
@@ -352,6 +369,9 @@ $green_bg: #00da00;
         align-items: center;
 
         &:hover {
+          -moz-filter: invert(1);
+          -ms-filter: invert(1);
+          -o-filter: invert(1);
           filter: invert(100%);
           cursor: pointer;
         }

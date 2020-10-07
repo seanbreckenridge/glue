@@ -50,7 +50,7 @@ defmodule GlueWeb.PersonalInfo do
     {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/icons/gitlab.png"}
   ]
 
-  def get(), do: %{here: @main_page_here, elsewhere: @main_page_elsewhere}
+  def get(), do: %{links: Enum.concat([@main_page_here, @main_page_elsewhere])}
 end
 
 defmodule GlueWeb.Feed do

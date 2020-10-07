@@ -8,8 +8,7 @@ interface LinkInfo {
 }
 
 interface PersonalData {
-  here: LinkInfo[];
-  elsewhere: LinkInfo[];
+  links: LinkInfo[]
 }
 
 // individual feed items

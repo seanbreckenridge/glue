@@ -1,9 +1,8 @@
 defmodule GlueWeb.DataView do
   # personal info
-  def render("personal_info.json", %{here: here_data, elsewhere: elsewhere_data}) do
+  def render("personal_info.json", %{links: links}) do
     %{
-      "here" => here_data |> Enum.map(&serialize_tuple/1),
-      "elsewhere" => elsewhere_data |> Enum.map(&serialize_tuple/1)
+      "links" => links |> Enum.map(&serialize_tuple/1)
     }
   end
 

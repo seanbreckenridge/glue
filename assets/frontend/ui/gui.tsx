@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import {Link} from "react-router-dom";
 import SwapInterfaceButton from "./components/swap_interface";
 import {AppContextConsumer, Context} from "../app_provider";
 import {PersonalData} from "../api_model";
-import HomeIcons from "./components/desktop_icon";
+import {HomeIcons} from "./components/desktop_icon";
 import DesktopErrorDialog from "./components/desktop_error_dialog";
 import WhatDoNow from "./components/what_do_now";
 import {some, errored} from "../utils";
@@ -28,11 +28,19 @@ const GUI: React.FC<{}> = () => {
   )
 };
 
-const HomeDesktopBody = () => {
+type selectedIconType = string;
+const selectedIconDefault = "";
+export type setIconFunc = Dispatch<SetStateAction<selectedIconType>>;
 
+
+const HomeDesktopBody = () => {
   // If there was an API error displaying the home page info,
   // whether or not the user clicked the 'x' button
   const [userClosedError, setUserClosedError] = useState(false);
+
+  // what icon the user currently has clicked/highlighted
+  // use the icon caption as the key
+  const [selectedIcon, setSelectedIcon] = useState(selectedIconDefault);
 
   return (
     <div id="desktop-body">
@@ -52,7 +60,7 @@ const HomeDesktopBody = () => {
                       closeDialog={() => setUserClosedError(true)} />
                     : <WhatDoNow />
                   // everything loaded fine
-                  : <HomeIcons data={value.info as PersonalData} />
+                  : <HomeIcons data={value.info as PersonalData} selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} />
               }
             </>
           )
@@ -61,5 +69,6 @@ const HomeDesktopBody = () => {
     </div>
   )
 }
+
 
 export default GUI;
