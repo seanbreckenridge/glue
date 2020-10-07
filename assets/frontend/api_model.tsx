@@ -4,12 +4,10 @@ import {Context, setContextFunc} from "./app_provider";
 interface LinkInfo {
   url: string;
   name: string;
-  image?: string;
+  icon?: string;
 }
 
-interface PersonalData {
-  links: LinkInfo[]
-}
+type PersonalData = LinkInfo[]
 
 // individual feed items
 interface FeedItem {

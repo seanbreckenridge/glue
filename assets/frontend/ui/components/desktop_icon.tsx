@@ -54,14 +54,14 @@ function HomeIcons(props: IHomeIcons) {
   console.log(props.selectedIcon);
   return (
     <div className="home-icons-container">
-      {props.data.links.map((el) =>
+      {props.data.map((el) =>
         <div key={el.name} className={clsx("home-icon", props.selectedIcon == el.name && "selected")}>
           <DesktopIcon
             click={() => console.log("clicked " + el.name)}
             mouseEnter={() => props.setSelectedIcon(el.name)}
             mouseLeave={() => props.setSelectedIcon('')} // set to empty string, which means nothing is highlighted
             caption={el.name}
-            iconurl={el.image ?? 'https://sean.fish/favicon.ico'} />
+            iconurl={el.icon ?? 'https://sean.fish/favicon.ico'} />
         </div>
       )}
     </div>

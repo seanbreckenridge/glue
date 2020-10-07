@@ -26,31 +26,36 @@ defmodule GlueWeb.DataController do
   end
 end
 
+defmodule GlueWeb.PersonalInfoItem do
+  @derive Jason.Encoder
+  defstruct name: "",
+            url: nil,
+            icon: nil
+end
+
 defmodule GlueWeb.PersonalInfo do
-  @main_page_here [
-    {"/#/feed", "Media Feed"},
-    {"/mal_unapproved", "MAL Unapproved"},
-    {"/animeshorts", "AnimeShorts"},
-    {"https://exobrain.sean.fish/feed/", "Blog"},
-    {"https://exobrain.sean.fish/", "ExoBrain"},
-    {"/xkcd", "Favorite XKCDs"},
-    {"/dvd", "DVD Logo"}
+
+  @personal_info [
+    %GlueWeb.PersonalInfoItem{url: "/#/feed", name: "Media Feed"},
+    %GlueWeb.PersonalInfoItem{url: "/mal_unapproved", name: "MAL Unapproved"},
+    %GlueWeb.PersonalInfoItem{url: "/animeshorts", name: "AnimeShorts"},
+    %GlueWeb.PersonalInfoItem{url: "https://exobrain.sean.fish/feed/", name: "Blog"},
+    %GlueWeb.PersonalInfoItem{url: "https://exobrain.sean.fish/", name: "ExoBrain"},
+    %GlueWeb.PersonalInfoItem{url: "/xkcd", name: "Favorite XKCDs"},
+    %GlueWeb.PersonalInfoItem{url: "/dvd", name: "DVD Logo"},
+    %GlueWeb.PersonalInfoItem{url: "https://letterboxd.com/purplepinapples/", name: "Movies", icon: "/images/icons/letterboxd.png"},
+    %GlueWeb.PersonalInfoItem{url: "https://trakt.tv/users/purplepinapples/ratings/all/all/highest", name: "TV Shows",
+     icon: "/images/icons/trakt.png"},
+    %GlueWeb.PersonalInfoItem{url: "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
+     name: "Music List", icon: "/images/icons/sheets.ico"},
+    %GlueWeb.PersonalInfoItem{url: "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
+     name: "Video Games", icon: "/images/icons/grouvee.ico"},
+    %GlueWeb.PersonalInfoItem{url: "https://myanimelist.net/profile/purplepinapples", name: "Anime", icon: "/images/icons/mal.png"},
+    %GlueWeb.PersonalInfoItem{url: "http://github.com/seanbreckenridge/", name: "GitHub", icon: "/images/icons/github.ico"},
+    %GlueWeb.PersonalInfoItem{url: "http://gitlab.com/seanbreckenridge/", name: "GitLab", icon: "/images/icons/gitlab.png"}
   ]
 
-  @main_page_elsewhere [
-    {"https://letterboxd.com/purplepinapples/", "Movies", "/images/icons/letterboxd.png"},
-    {"https://trakt.tv/users/purplepinapples/ratings/all/all/highest", "TV Shows",
-     "/images/icons/trakt.png"},
-    {"https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
-     "Music List", "/images/icons/sheets.ico"},
-    {"https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
-     "Video Games", "/images/icons/grouvee.ico"},
-    {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/icons/mal.png"},
-    {"http://github.com/seanbreckenridge/", "GitHub", "/images/icons/github.ico"},
-    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/icons/gitlab.png"}
-  ]
-
-  def get(), do: %{links: Enum.concat([@main_page_here, @main_page_elsewhere])}
+  def get(), do: %{links: @personal_info}
 end
 
 defmodule GlueWeb.Feed do
