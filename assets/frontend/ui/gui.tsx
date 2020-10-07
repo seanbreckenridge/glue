@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-  Link,
-  HashRouter
-} from "react-router-dom";
-import Cubing from "./components/cubing";
-import Feed from "./components/feed";
+import {Link} from "react-router-dom";
 import SwapInterfaceButton from "./components/swap_interface";
 import {AppContextConsumer, Context} from "../app_provider";
-import {RPersonalData, PersonalData} from "../api_model";
+import {PersonalData} from "../api_model";
+import DesktopIcon from "./components/desktop_icon";
 import {some, ok} from "../utils";
 
 const GUI: React.FC<{}> = () => {
@@ -25,68 +19,60 @@ const GUI: React.FC<{}> = () => {
           <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
         </div>
         <div id="window-body">
-          <AppContextConsumer>
-            {(value: Context) => {
-              return (
-                <HashRouter>
-                  <Switch>
-                    <Route path="/cubing">
-                      <Cubing />
-                    </Route>
-                    <Route path="/feed">
-                      <Feed />
-                    </Route>
-                    <Route path="/">
-                      <>
-                        {/* Default home screen */}
-                        <HomeIcons data={value.info} />
-                      </>
-                    </Route>
-                  </Switch>
-                </HashRouter>
-              );
-            }}
-          </ AppContextConsumer>
+          <HomeDesktopBody />
         </div>
       </div>
     </>
-  );
+  )
 };
 
-interface IHomeIconsProps {
-  data: Unset<RPersonalData>;
-}
-
-function HomeIcons(props: IHomeIconsProps) {
-  // while request is loading/we dont have data (is undefined/null)
-  if (!some(props.data)) {
-    return <h3>Loading...</h3>
-  }
-  // check that the request finished properly (is not error)
-  if (!ok(props.data)) {
-    return <h3 style={{color: 'red'}}>Error</h3>
-  }
+const HomeDesktopBody = () => {
   return (
     <>
-      {(props.data as PersonalData).here.map((hInfo) =>
-        <div key={hInfo.name}>
-          <a className="here icon-link" href={hInfo.url}>
-            {hInfo.name}
-          </a>
-        </div>
-      )}
-      <br />
-      {(props.data as PersonalData).elsewhere.map((eInfo) =>
-        <div key={eInfo.name}>
-          <img src={eInfo.image!} alt={eInfo.name} />
-          <a className="here icon-link" href={eInfo.url}>
-            {eInfo.name}
-          </a>
-        </div>
-      )}
+      <AppContextConsumer>
+        {(value: Context) => {
+          return (
+            <>
+              {(!some(value.info)) ?
+                <>
+                  <h3>Loading...</h3>
+                </>
+                :
+                !(ok(value.info)) ?
+                  <>
+                    <h3>Error...</h3>
+                  </>
+                  :
+                  <HomeIcons data={value.info as PersonalData} />
+              }
+            </>
+          )
+        }}
+      </AppContextConsumer>
     </>
-  );
+  )
 }
 
+interface IHomeIcons {
+  data: PersonalData;
+}
+
+const HomeIcons = ({data}: IHomeIcons) => {
+  return (
+    <div className="home-icons-container">
+      {data.here.map((el) =>
+        <div key={el.name} className="home-icon">
+          <DesktopIcon caption={el.name} iconurl={el.image ?? 'https://sean.fish/favicon.ico'} />
+        </div>
+      )}
+      < br />
+      {data.elsewhere.map((el) =>
+        <div key={el.name} className="home-icon">
+          <DesktopIcon caption={el.name} iconurl={el.image ?? 'https://sean.fish/favicon.ico'} />
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default GUI;

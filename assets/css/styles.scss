@@ -29,6 +29,22 @@ $height-break-large: 600px;
   }
 }
 
+html {
+  height: 100%;
+}
+
+ body {
+  height: 100%;
+  max-height: 100%;
+  float: left;
+  width: 100%;
+ }
+
+#root {
+  box-sizing: border-box;
+  height: 100%;
+}
+
 /* full screen */
 
 $outer_border_width: 5px;
@@ -36,8 +52,6 @@ $inner_border_width: 2px;
 
 .full-screen {
   margin: 0;
-  min-height: 100vh;
-  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -98,7 +112,6 @@ $inner_border_width: 2px;
     }
   }
 
-
 }
 
 
@@ -126,9 +139,16 @@ $green_bg: #00da00;
     @include swidth(large) { padding-left: 10%; }
 
     .menu-toolbar-item {
-      border: $inner_border_width solid black;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 1%;
+      padding-right: 1%;
+      @include swidth(medium) {
+        padding-left: 3%; 
+        padding-right: 3%;
+      }
+      @include swidth(large) {
+        padding-left: 3%;
+        padding-right: 3%;
+      }
 
       &:hover {
         color: white;
@@ -165,6 +185,72 @@ $green_bg: #00da00;
     padding-left: 2%;
     padding-right: 2%;
     padding: 1em;
+
+    .home-icons-container {
+      display: flex;
+      flex-flow: column wrap;
+      box-sizing: border-box;
+      padding: 1em;
+
+      // full view height - navbar height (dependeing on height) 1em + 1m for padding (on .home-icons-container + .widow-body)
+      // and then 1em as a buffer/padding for this element.
+      height: calc(100vh - 30px - 3em);
+      @include sheight(medium) {
+        height: calc(100vh - 40px - 3em);
+      }
+      @include sheight(large) {
+        height: calc(100vh - 50px - 3em);
+      }
+
+      .home-icon {
+        // center the figure/text in the container that scales 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 20%;
+        @include swidth(large) { flex-basis: 33%; }
+
+        figure {
+          display: flex;
+          flex-flow: column;
+
+          img {
+            margin-left: auto;
+            margin-right: auto;
+            @include swidth(small) { height: 30px; }
+            @include swidth(medium) { height: 60px; }
+            @include swidth(large) { height: 80px; }
+          }
+          }
+
+        figcaption {
+          @include swidth(small) {
+            margin-top: 5px;
+            max-width: 60px;
+          }
+          @include swidth(medium) {
+            margin-top: 5px;
+            max-width: 80px;
+          }
+          @include swidth(large) {
+            margin-top: 5px;
+            max-width: 100px;
+          }
+
+          pre {
+            text-align: center;
+             
+            code {
+              white-space: pre-wrap; /* css-3 */
+              white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+              white-space: -pre-wrap; /* Opera 4-6 */
+              white-space: -o-pre-wrap; /* Opera 7 */
+              word-wrap: break-word; /* Internet Explorer 5.5+ */
+            }
+          }
+        }
+      }
+    }
   }
 }
 
