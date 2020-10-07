@@ -9,13 +9,9 @@ interface IDesktopIcon {
 }
 
 // TODO: accept a function which does what this does when its clicked
-// attach a class here when the user clicks on this,
-// then when they click on it again, it runs the function
-// 'double click'
-// when they first click, the class should style by
+// on hover, invert
+// on click, run callback
 // adding a dotted border to figcaption, and inverting colors
-// after the second, remove the class, and animate the dialog
-// opening
 
 // darken onHover
 // flip contrast on click
