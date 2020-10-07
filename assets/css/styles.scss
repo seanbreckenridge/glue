@@ -249,9 +249,15 @@ $green_bg: #00da00;
           flex-basis: 33%;
         }
 
-        figure {
+        figure.desktop-icon {
           display: flex;
           flex-flow: column;
+
+          .desktop-icon-interactable {
+            &:hover {
+              cursor: pointer;
+            }
+          }
 
           img {
             margin-left: auto;
@@ -266,31 +272,36 @@ $green_bg: #00da00;
               height: 80px;
             }
           }
-        }
 
-        figcaption {
-          @include swidth(small) {
-            margin-top: 5px;
-            max-width: 60px;
-          }
-          @include swidth(medium) {
-            margin-top: 5px;
-            max-width: 80px;
-          }
-          @include swidth(large) {
-            margin-top: 5px;
-            max-width: 100px;
-          }
+          figcaption {
+            @include swidth(small) {
+              margin-top: 5px;
+              max-width: 60px;
+            }
+            @include swidth(medium) {
+              margin-top: 5px;
+              max-width: 100px;
+            }
+            @include swidth(large) {
+              margin-top: 5px;
+              max-width: 130px;
+            }
 
-          pre {
-            text-align: center;
+            background-color: $offwhite;
+            color: black;
+            padding-left: 1em;
+            padding-right: 1em;
 
-            code {
-              white-space: pre-wrap; /* css-3 */
-              white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-              white-space: -pre-wrap; /* Opera 4-6 */
-              white-space: -o-pre-wrap; /* Opera 7 */
-              word-wrap: break-word; /* Internet Explorer 5.5+ */
+            pre {
+              text-align: center;
+
+              code {
+                white-space: pre-wrap; /* css-3 */
+                white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+                white-space: -pre-wrap; /* Opera 4-6 */
+                white-space: -o-pre-wrap; /* Opera 7 */
+                word-wrap: break-word; /* Internet Explorer 5.5+ */
+              }
             }
           }
         }

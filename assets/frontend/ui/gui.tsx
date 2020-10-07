@@ -45,7 +45,7 @@ const HomeDesktopBody = () => {
                 : (errored(value.info))
                   // if there was an API error
                   ? (!userClosedError)
-                    // If the user hasn't hit the 'x' button the dialog
+                    // If the user hasn't hit the 'x' button in the dialog
                     ? <DesktopErrorDialog
                       msg="Error fetching data..."
                       err={value.info as Error}

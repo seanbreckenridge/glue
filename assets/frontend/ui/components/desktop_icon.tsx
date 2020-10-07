@@ -8,16 +8,25 @@ interface IDesktopIcon {
   iconurl: string;
 }
 
+// TODO: accept a function which does what this does when its clicked
+// attach a class here when the user clicks on this,
+// then when they click on it again, it runs the function
+// 'double click'
+// when they first click, the class should style by
+// adding a dotted border to figcaption, and inverting colors
+// after the second, remove the class, and animate the dialog
+// opening
+
 // darken onHover
 // flip contrast on click
 const DesktopIcon = ({caption, iconurl}: IDesktopIcon) => {
   return (
     <>
-      <figure>
-        <img src={iconurl} alt={caption} />
+      <figure className="desktop-icon">
+        <img className="desktop-icon-interactable" src={iconurl} alt={caption} />
         <figcaption>
           <pre>
-            <code>
+            <code className="desktop-icon-interactable">
               {caption}
             </code>
           </pre>
