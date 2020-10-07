@@ -4,6 +4,7 @@ import SwapInterfaceButton from "./components/swap_interface";
 import {AppContextConsumer, Context} from "../app_provider";
 import {PersonalData} from "../api_model";
 import DesktopIcon from "./components/desktop_icon";
+import DesktopErrorDialog from "./components/desktop_error_dialog";
 import {some, ok} from "../utils";
 
 const GUI: React.FC<{}> = () => {
@@ -19,7 +20,7 @@ const GUI: React.FC<{}> = () => {
           <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
         </div>
         <div id="window-body">
-          <HomeDesktopBody />
+            <HomeDesktopBody />
         </div>
       </div>
     </>
@@ -27,8 +28,9 @@ const GUI: React.FC<{}> = () => {
 };
 
 const HomeDesktopBody = () => {
+
   return (
-    <>
+    <div id="desktop-body">
       <AppContextConsumer>
         {(value: Context) => {
           return (
@@ -39,9 +41,7 @@ const HomeDesktopBody = () => {
                 </>
                 :
                 !(ok(value.info)) ?
-                  <>
-                    <h3>Error...</h3>
-                  </>
+                  <DesktopErrorDialog msg="Error fetching data..." err={value.info as Error} />
                   :
                   <HomeIcons data={value.info as PersonalData} />
               }
@@ -49,7 +49,7 @@ const HomeDesktopBody = () => {
           )
         }}
       </AppContextConsumer>
-    </>
+    </div>
   )
 }
 

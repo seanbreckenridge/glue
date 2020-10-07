@@ -7,7 +7,6 @@ import {
   Route,
   HashRouter
 } from "react-router-dom";
-// import {some, ok} from "./utils";
 
 // top level of interface
 // renders the the initial loading screen, makes requests off to APi

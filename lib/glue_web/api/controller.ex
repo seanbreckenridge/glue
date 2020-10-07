@@ -38,16 +38,16 @@ defmodule GlueWeb.PersonalInfo do
   ]
 
   @main_page_elsewhere [
-    {"https://letterboxd.com/purplepinapples/", "Movies", "/images/letterboxd.png"},
+    {"https://letterboxd.com/purplepinapples/", "Movies", "/images/icons/letterboxd.png"},
     {"https://trakt.tv/users/purplepinapples/ratings/all/all/highest", "TV Shows",
-     "/images/trakt.png"},
+     "/images/icons/trakt.png"},
     {"https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
-     "Music List", "/images/sheets.ico"},
+     "Music List", "/images/icons/sheets.ico"},
     {"https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
-     "Video Games", "/images/grouvee.ico"},
-    {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/mal.png"},
-    {"http://github.com/seanbreckenridge/", "GitHub", "/images/github.ico"},
-    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/gitlab.png"}
+     "Video Games", "/images/icons/grouvee.ico"},
+    {"https://myanimelist.net/profile/purplepinapples", "Anime", "/images/icons/mal.png"},
+    {"http://github.com/seanbreckenridge/", "GitHub", "/images/icons/github.ico"},
+    {"http://gitlab.com/seanbreckenridge/", "GitLab", "/images/icons/gitlab.png"}
   ]
 
   def get(), do: %{here: @main_page_here, elsewhere: @main_page_elsewhere}

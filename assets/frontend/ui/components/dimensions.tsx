@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react';
 // https://stackoverflow.com/a/36862446/9348376
 
 interface Dimensions {
-  width: number;
-  height: number;
+  browserWidth: number;
+  browserHeight: number;
 }
 
 function getWindowDimensions(): Dimensions {
   const { innerWidth: width, innerHeight: height } = window;
   return {
-    width,
-    height
+    browserWidth : width,
+    browserHeight: height,
   };
 }
 
