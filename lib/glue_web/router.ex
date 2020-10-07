@@ -27,7 +27,7 @@ defmodule GlueWeb.Router do
   # def cached_response(conn, _opts, cache_time_seconds \\ 600)
   #     when is_integer(cache_time_seconds) do
   #   # Pass the number of seconds this request can be cached using
-  #   # the CacheControl header as an argument. Else, defualts to 10 minutes
+  #   # the CacheControl header as an argument. Else, defaults to 10 minutes
   #   new_headers =
   #     conn.resp_headers
   #     |> Enum.map(fn {header_name, header_value} ->
