@@ -51,23 +51,19 @@ const Dialog = ({children, hitCloseCallback, title, msg, isErr, width, height, x
             <span>×</span>
           </div>
           <div className="dialog-menu-title">
-            {(some(dialogTitle)) &&
-              <div className="dialog-title-text">
-                  {dialogTitle}
-              </div>
-            }
+            {(some(dialogTitle))
+              && <div className="dialog-title-text"> {dialogTitle} </div>}
           </div>
         </div>
         <div className="dialog-body">
-          {(some(msg)) ?
-            <div className="dialog-message">
-              {msg}
-              {children}
-            </div>
-            :
-            <>
-              {children}
-            </>
+          { // if the user provided a message, render it *and* the children
+            (some(msg))
+              ? <div className="dialog-message">
+                {msg}
+                {children}
+              </div>
+              // else just render the children
+              : <> {children} </>
           }
         </div>
         <div className="dialog-bottom-right-icon"></div>

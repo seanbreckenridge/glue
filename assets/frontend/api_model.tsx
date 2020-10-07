@@ -69,6 +69,8 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
 
 // request and set personal info
 const requestAndSetPersonal = async (setData: setContextFunc) => {
+  // swap lines to test the error message modal (by causing a 404 axios request error)
+  // loadInterfaceMatches<PersonalData>("/api/data/personall")
   loadInterfaceMatches<PersonalData>("/api/data/personal")
     .then((response: RPersonalData) => {
       setData((oldData: Context): Context => {

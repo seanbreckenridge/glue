@@ -4,42 +4,48 @@ $width-break-large: 1024px;
 $height-break-small: 300px;
 $height-break-large: 600px;
 
-
 @mixin swidth($media) {
   @if $media == small {
-    @media only screen and (max-width: $width-break-small) { @content; }
-  }
-  @else if $media == medium {
-    @media only screen and (min-width: $width-break-small + 1) and (max-width: $width-break-large - 1) { @content; }
-  }
-  @else if $media == large {
-    @media only screen and (min-width: $width-break-large) { @content; }
+    @media only screen and (max-width: $width-break-small) {
+      @content;
+    }
+  } @else if $media == medium {
+    @media only screen and (min-width: $width-break-small + 1) and (max-width: $width-break-large - 1) {
+      @content;
+    }
+  } @else if $media == large {
+    @media only screen and (min-width: $width-break-large) {
+      @content;
+    }
   }
 }
 
 @mixin sheight($media) {
   @if $media == small {
-    @media only screen and (max-height: $height-break-small) { @content; }
-  }
-  @else if $media == medium {
-    @media only screen and (min-height: $height-break-small + 1) and (max-height: $height-break-large - 1) { @content; }
-  }
-  @else if $media == large {
-    @media only screen and (min-height: $height-break-large) { @content; }
+    @media only screen and (max-height: $height-break-small) {
+      @content;
+    }
+  } @else if $media == medium {
+    @media only screen and (min-height: $height-break-small + 1) and (max-height: $height-break-large - 1) {
+      @content;
+    }
+  } @else if $media == large {
+    @media only screen and (min-height: $height-break-large) {
+      @content;
+    }
   }
 }
-
 
 html {
   height: 100%;
 }
 
- body {
+body {
   height: 100%;
   max-height: 100%;
   float: left;
   width: 100%;
- }
+}
 
 #root {
   box-sizing: border-box;
@@ -62,26 +68,34 @@ $inner_border_width: 2px;
   display: flex;
   flex-flow: column;
   height: 100%;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
 }
 
 /* shared menu bar styling */
 #menu-bar {
-    height: 30px;
-    @include sheight(medium) { height: 40px; }
-    @include sheight(large) { height: 50px; }
+  height: 30px;
+  @include sheight(medium) {
+    height: 40px;
+  }
+  @include sheight(large) {
+    height: 50px;
+  }
 
-    /* self flex props */
-    flex: 0 1 auto;
+  /* self flex props */
+  flex: 0 1 auto;
 
-    /* for children */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-right: 2%;
-    @include swidth(medium) { padding-right: 5%; }
-    @include swidth(large) { padding-right: 10%; }
+  /* for children */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-right: 2%;
+  @include swidth(medium) {
+    padding-right: 5%;
+  }
+  @include swidth(large) {
+    padding-right: 10%;
+  }
 }
 
 /* button which switches between GUI/TUI */
@@ -114,16 +128,13 @@ $inner_border_width: 2px;
       color: $offwhite;
     }
   }
-
 }
-
 
 /* div that encompasses the rest of the page (not the menu bar) */
 #window-body {
   // grow rest of page
   flex: 1 1 auto;
 }
-
 
 $green_bg: #00da00;
 
@@ -138,14 +149,18 @@ $green_bg: #00da00;
     border-bottom: $inner_border_width solid black;
     align-items: center;
     padding-left: 2%;
-    @include swidth(medium) { padding-left: 5%; }
-    @include swidth(large) { padding-left: 10%; }
+    @include swidth(medium) {
+      padding-left: 5%;
+    }
+    @include swidth(large) {
+      padding-left: 10%;
+    }
 
     .menu-toolbar-item {
       padding-left: 1%;
       padding-right: 1%;
       @include swidth(medium) {
-        padding-left: 3%; 
+        padding-left: 3%;
         padding-right: 3%;
       }
       @include swidth(large) {
@@ -194,6 +209,20 @@ $green_bg: #00da00;
       width: 100%;
     }
 
+    #what-do-now {
+      color: black;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        margin: 1em;
+      }
+    }
+
     .home-icons-container {
       display: flex;
       flex-flow: column wrap;
@@ -211,12 +240,14 @@ $green_bg: #00da00;
       }
 
       .home-icon {
-        // center the figure/text in the container that scales 
+        // center the figure/text in the container that scales
         display: flex;
         justify-content: center;
         align-items: center;
         flex-basis: 20%;
-        @include swidth(large) { flex-basis: 33%; }
+        @include swidth(large) {
+          flex-basis: 33%;
+        }
 
         figure {
           display: flex;
@@ -225,11 +256,17 @@ $green_bg: #00da00;
           img {
             margin-left: auto;
             margin-right: auto;
-            @include swidth(small) { height: 30px; }
-            @include swidth(medium) { height: 60px; }
-            @include swidth(large) { height: 80px; }
+            @include swidth(small) {
+              height: 30px;
+            }
+            @include swidth(medium) {
+              height: 60px;
+            }
+            @include swidth(large) {
+              height: 80px;
+            }
           }
-          }
+        }
 
         figcaption {
           @include swidth(small) {
@@ -247,7 +284,7 @@ $green_bg: #00da00;
 
           pre {
             text-align: center;
-             
+
             code {
               white-space: pre-wrap; /* css-3 */
               white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -260,7 +297,6 @@ $green_bg: #00da00;
       }
     }
   }
-
 
   $dialog_exit_button_width: 25px;
   $dialog_gutter_width: 10px;
@@ -275,7 +311,6 @@ $green_bg: #00da00;
     flex-flow: column;
     overflow: hidden;
 
-
     .dialog-menu-bar-container {
       // self-flex info to stick to top stick to top
       display: flex;
@@ -283,18 +318,14 @@ $green_bg: #00da00;
       min-height: 20px;
       width: 100%;
       border: 2px solid black;
-          background:
-        -moz-radial-gradient(black 15%, transparent 16%),
-        -moz-radial-gradient(black 15%, transparent 16%),
-        $offwhite;
-    background:
-        -webkit-radial-gradient(black 15%, transparent 16%),
-        -webkit-radial-gradient(black 15%, transparent 16%),
-        $offwhite;
-    background-position: 0 0, 10px 10px;
-    -webkit-background-size: 5px 5px;
-    -moz-background-size: 5px 5px;
-    background-size: 5px 5px;
+      background: -moz-radial-gradient(black 15%, transparent 16%),
+        -moz-radial-gradient(black 15%, transparent 16%), $offwhite;
+      background: -webkit-radial-gradient(black 15%, transparent 16%),
+        -webkit-radial-gradient(black 15%, transparent 16%), $offwhite;
+      background-position: 0 0, 10px 10px;
+      -webkit-background-size: 5px 5px;
+      -moz-background-size: 5px 5px;
+      background-size: 5px 5px;
 
       .dialog-exit-button {
         flex: 0 1 auto;
@@ -334,17 +365,15 @@ $green_bg: #00da00;
         justify-content: center;
         align-items: center;
         line-height: $dialog_exit_button_width; // for background to cover, width == height for square
-        
+
         .dialog-title-text {
           background: $offwhite;
           padding-left: 1em;
           padding-right: 1em;
           position: relative;
           right: $dialog_exit_button_width;
-          
         }
       }
-
     }
 
     .dialog-body {
@@ -357,9 +386,8 @@ $green_bg: #00da00;
       border-bottom: 2px solid black;
       margin-right: $dialog_gutter_width;
       margin-bottom: $dialog_gutter_width;
-
     }
- 
+
     &.error {
       .dialog-menu-bar-container {
         color: red;
@@ -405,7 +433,6 @@ $terminal_text: #ecedf0;
     color: black;
     background-color: #d0d2d1;
     border-radius: 5px 5px 0px 0px;
-
   }
 
   code {

@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import SwapInterfaceButton from "./components/swap_interface";
 import {AppContextConsumer, Context} from "../app_provider";
 import {PersonalData} from "../api_model";
-import DesktopIcon from "./components/desktop_icon";
+import HomeIcons from "./components/desktop_icon";
 import DesktopErrorDialog from "./components/desktop_error_dialog";
-import {some, ok} from "../utils";
+import WhatDoNow from "./components/what_do_now";
+import {some, errored} from "../utils";
 
 const GUI: React.FC<{}> = () => {
   return (
@@ -20,7 +21,7 @@ const GUI: React.FC<{}> = () => {
           <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
         </div>
         <div id="window-body">
-            <HomeDesktopBody />
+          <HomeDesktopBody />
         </div>
       </div>
     </>
@@ -29,48 +30,34 @@ const GUI: React.FC<{}> = () => {
 
 const HomeDesktopBody = () => {
 
+  // If there was an API error displaying the home page info,
+  // whether or not the user clicked the 'x' button
+  const [userClosedError, setUserClosedError] = useState(false);
+
   return (
     <div id="desktop-body">
       <AppContextConsumer>
         {(value: Context) => {
           return (
             <>
-              {(!some(value.info)) ?
-                <>
-                  <h3>Loading...</h3>
-                </>
-                :
-                !(ok(value.info)) ?
-                  <DesktopErrorDialog msg="Error fetching data..." err={value.info as Error} />
-                  :
-                  <HomeIcons data={value.info as PersonalData} />
+              {(!some(value.info))
+                ? <h3>Loading...</h3>
+                : (errored(value.info))
+                  // if there was an API error
+                  ? (!userClosedError)
+                    // If the user hasn't hit the 'x' button the dialog
+                    ? <DesktopErrorDialog
+                      msg="Error fetching data..."
+                      err={value.info as Error}
+                      closeDialog={() => setUserClosedError(true)} />
+                    : <WhatDoNow />
+                  // everything loaded fine
+                  : <HomeIcons data={value.info as PersonalData} />
               }
             </>
           )
         }}
       </AppContextConsumer>
-    </div>
-  )
-}
-
-interface IHomeIcons {
-  data: PersonalData;
-}
-
-const HomeIcons = ({data}: IHomeIcons) => {
-  return (
-    <div className="home-icons-container">
-      {data.here.map((el) =>
-        <div key={el.name} className="home-icon">
-          <DesktopIcon caption={el.name} iconurl={el.image ?? 'https://sean.fish/favicon.ico'} />
-        </div>
-      )}
-      < br />
-      {data.elsewhere.map((el) =>
-        <div key={el.name} className="home-icon">
-          <DesktopIcon caption={el.name} iconurl={el.image ?? 'https://sean.fish/favicon.ico'} />
-        </div>
-      )}
     </div>
   )
 }

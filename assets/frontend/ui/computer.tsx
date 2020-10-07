@@ -1,5 +1,5 @@
 import React from "react";
-import {AppContextProvider, AppContextConsumer, Context} from "../app_provider"
+import {AppContextProvider} from "../app_provider"
 import GUI from "./gui";
 import TUI from "./tui";
 import {
@@ -17,7 +17,7 @@ const Computer: React.FC<{}> = () => {
         <HomeScreen />
       </AppContextProvider>
     </>
-  );
+  )
 }
 
 // render home page, switch between GUI and TUI
@@ -38,10 +38,11 @@ export const HomeScreen: React.FC<{}> = () => {
     </>
   );
 }
-    // <AppContextConsumer>
-    //   {(ctx: Context) => {
-    //     return (ctx.opts.gui) ? <GUI /> : <TUI />
-    //   }}
-    // </AppContextConsumer>
+
+// <AppContextConsumer>
+//   {(ctx: Context) => {
+//     return (ctx.opts.gui) ? <GUI /> : <TUI />
+//   }}
+// </AppContextConsumer>
 
 export default Computer;

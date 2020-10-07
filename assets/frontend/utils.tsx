@@ -8,6 +8,10 @@ function ok<T>(r: Result<T>): boolean {
   return !(r instanceof Error);
 }
 
+function errored<T>(r: Result<T>): boolean {
+  return (r instanceof Error);
+}
+
 function some<T>(r: Unset<T>): boolean {
   // https://stackoverflow.com/a/28984306/9348376
   // think using double equals is right here?
@@ -16,5 +20,6 @@ function some<T>(r: Unset<T>): boolean {
 
 export {
   some,
+  errored,
   ok,
 }
