@@ -262,7 +262,7 @@ $green_bg: #00da00;
         align-items: center;
         flex-basis: 20%;
         @include swidth(large) {
-          flex-basis: 33%;
+          flex-basis: 20%;
         }
 
         &.selected {

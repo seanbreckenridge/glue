@@ -203,8 +203,7 @@ defmodule Glue.Feed.Server do
 
     # if we're here, that means we updated something in the feed
     # invalidate the cachex HTTP request cache for the feed endpoint
-    {:ok, _count_entries_cleared } = Cachex.clear(:feed_cache)
-
+    {:ok, _count_entries_cleared} = Cachex.clear(:feed_cache)
 
     state
   end

@@ -34,7 +34,6 @@ defmodule GlueWeb.PersonalInfoItem do
 end
 
 defmodule GlueWeb.PersonalInfo do
-
   @personal_info [
     %GlueWeb.PersonalInfoItem{name: "Media Feed"},
     %GlueWeb.PersonalInfoItem{name: "Cubing"},
@@ -44,16 +43,43 @@ defmodule GlueWeb.PersonalInfo do
     %GlueWeb.PersonalInfoItem{url: "https://exobrain.sean.fish/", name: "ExoBrain"},
     %GlueWeb.PersonalInfoItem{url: "/xkcd", name: "Favorite XKCDs"},
     %GlueWeb.PersonalInfoItem{url: "/dvd", name: "DVD Logo"},
-    %GlueWeb.PersonalInfoItem{url: "https://letterboxd.com/purplepinapples/", name: "Movies", icon: "/images/icons/letterboxd.png"},
-    %GlueWeb.PersonalInfoItem{url: "https://trakt.tv/users/purplepinapples/ratings/all/all/highest", name: "TV Shows",
-     icon: "/images/icons/trakt.png"},
-    %GlueWeb.PersonalInfoItem{url: "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
-     name: "Music List", icon: "/images/icons/sheets.ico"},
-    %GlueWeb.PersonalInfoItem{url: "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
-     name: "Video Games", icon: "/images/icons/grouvee.ico"},
-    %GlueWeb.PersonalInfoItem{url: "https://myanimelist.net/profile/purplepinapples", name: "Anime", icon: "/images/icons/mal.png"},
-    %GlueWeb.PersonalInfoItem{url: "http://github.com/seanbreckenridge/", name: "GitHub", icon: "/images/icons/github.ico"},
-    %GlueWeb.PersonalInfoItem{url: "http://gitlab.com/seanbreckenridge/", name: "GitLab", icon: "/images/icons/gitlab.png"}
+    %GlueWeb.PersonalInfoItem{
+      url: "https://letterboxd.com/purplepinapples/",
+      name: "Movies",
+      icon: "/images/icons/letterboxd.png"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url: "https://trakt.tv/users/purplepinapples/ratings/all/all/highest",
+      name: "TV Shows",
+      icon: "/images/icons/trakt.png"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url:
+        "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit#gid=1451660661",
+      name: "Music List",
+      icon: "/images/icons/sheets.ico"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url:
+        "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
+      name: "Video Games",
+      icon: "/images/icons/grouvee.ico"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url: "https://myanimelist.net/profile/purplepinapples",
+      name: "Anime",
+      icon: "/images/icons/mal.png"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url: "http://github.com/seanbreckenridge/",
+      name: "GitHub",
+      icon: "/images/icons/github.ico"
+    },
+    %GlueWeb.PersonalInfoItem{
+      url: "http://gitlab.com/seanbreckenridge/",
+      name: "GitLab",
+      icon: "/images/icons/gitlab.png"
+    }
   ]
 
   def get(), do: %{links: @personal_info}
