@@ -215,11 +215,6 @@ $green_bg: #00da00;
     padding-right: 2%;
     padding: 1em;
 
-    #desktop-body {
-      height: 100%;
-      width: 100%;
-    }
-
     #what-do-now {
       color: black;
       height: 100%;
@@ -249,21 +244,27 @@ $green_bg: #00da00;
     }
 
     #home-icons-container {
-      display: flex;
-      flex-flow: column wrap;
+      display: inline-flex;
       box-sizing: border-box;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      align-items: flex-start;
       padding: 1em;
       height: 100%;
 
       .home-icon {
         // center the figure/text in the container that scales
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 3em;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-basis: 20%;
-        @include swidth(large) {
-          flex-basis: 20%;
-        }
+        // @include swidth(large) {
+        //   flex-basis: 10%;
+        // }
 
         &.selected {
           img.desktop-icon-interactable {

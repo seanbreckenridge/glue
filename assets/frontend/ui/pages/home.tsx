@@ -1,24 +1,14 @@
 import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
-import { PersonalData } from "../../api_model";
-import { setIconFunc } from "../gui";
 import clsx from "clsx";
 import DesktopIcon from "./../components/desktop_icon";
-import { LinkInfo } from "../../api_model";
 import Dialog from "../components/dialog";
 import Feed from "./feed";
 import Cubing from "./cubing";
+import { LinkInfo, Data, MediaElsewhere } from "../../data";
 import {
   getWindowDimensions,
   jitterCenterLocation,
 } from "./../components/dimensions";
-
-// global data for currently selected icon
-// and icon data
-interface IHome {
-  data: PersonalData;
-  selectedIcon: string;
-  setSelectedIcon: setIconFunc;
-}
 
 // custom pages implemeneted in react
 interface IHashActionFunc {
@@ -101,6 +91,39 @@ const overWriteActions: IHashActionFunc = {
       });
     };
   },
+  "Me Elsewhere": (setwMsg: setWindowMsg) => {
+    return () => {
+      const { browserWidth, browserHeight } = getWindowDimensions();
+      const { x, y } = jitterCenterLocation();
+      const mediaWidth = browserWidth * 0.5;
+      const mediaHeight = browserHeight * 0.5;
+      const windowId = Date.now().toString();
+      const mediaDialog = (
+        <>
+          <Dialog
+            isErr={false}
+            x={x - mediaWidth / 2}
+            y={y - mediaHeight / 2}
+            width={mediaWidth}
+            height={mediaHeight}
+            title="media elsewhere"
+            // when close it hit, set the message to kill this window
+            hitCloseCallback={() =>
+              setwMsg({ spawn: false, windowId: windowId })
+            }
+          >
+            <h4>{JSON.stringify(MediaElsewhere)}</h4>
+          </Dialog>
+        </>
+      );
+      // when the icon is clicked, set the message to spawn this window
+      setwMsg({
+        spawn: true,
+        windowId: windowId,
+        windowObj: mediaDialog,
+      });
+    };
+  },
 };
 
 // represents the current windows on the screen
@@ -136,7 +159,7 @@ function getAction(el: LinkInfo, setwMsg: setWindowMsg): Function {
   } else if (el.url !== undefined && el.url !== "") {
     return () => {
       // (reloads the page, to an external URL)
-      window.location.href = el.url;
+      window.location.href = el.url!;
     };
   }
   throw Error("Could not find an appropriate action for " + JSON.stringify(el));
@@ -155,7 +178,7 @@ function removeWindow(
   return newWindows;
 }
 
-function Home({ data, selectedIcon, setSelectedIcon }: IHome) {
+function Home() {
   // currently displayed floating windows
   const [guiWindows, setWindows] = useState(windowDefault);
 
@@ -166,6 +189,10 @@ function Home({ data, selectedIcon, setSelectedIcon }: IHome) {
   // added using setWindows in this scope. If they're to be killed, they
   // add the object with spawn: false; and they're filtered out of the window list
   const [wMsg, setwMsg] = useState(windowMsgDefault);
+
+  // what icon the user currently has clicked/highlighted
+  // use the icon caption as the key
+  const [selectedIcon, setSelectedIcon] = useState("");
 
   useEffect(() => {
     // if we have a new message (spawn/kill window), do something with it
@@ -196,7 +223,7 @@ function Home({ data, selectedIcon, setSelectedIcon }: IHome) {
         ))}
       </>
       <div id="home-icons-container">
-        {data.map((el) => (
+        {Data.map((el) => (
           <div
             key={el.name}
             className={clsx("home-icon", selectedIcon == el.name && "selected")}

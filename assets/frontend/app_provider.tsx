@@ -8,10 +8,8 @@ import React, {
 import {
   requestAndSetCubing,
   requestAndSetFeed,
-  requestAndSetPersonal,
   RCubingData,
   RFeedData,
-  RPersonalData,
 } from "./api_model";
 
 // defines the connection with the API, exposes that context/state
@@ -24,7 +22,6 @@ interface IProps {
 }
 
 type Context = {
-  info?: RPersonalData;
   feed?: RFeedData;
   cubing?: RCubingData;
   // setContext: Dispatch<SetStateAction<Context>>;
@@ -49,7 +46,6 @@ const AppContextProvider = ({ children }: IProps): JSX.Element => {
   // whenever requests are done
   const loadData = async () => {
     requestAndSetCubing(setContext);
-    requestAndSetPersonal(setContext);
     requestAndSetFeed(setContext);
   };
 

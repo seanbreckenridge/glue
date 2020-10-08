@@ -3,6 +3,7 @@ import { Context, AppContextConsumer } from "../../app_provider";
 import WrapApiError from "../components/wrap_api_error";
 // import {CubingData} from "./../../api_model";
 
+
 export default function Cubing() {
   return (
     <>
@@ -18,3 +19,4 @@ export default function Cubing() {
     </>
   );
 }
+

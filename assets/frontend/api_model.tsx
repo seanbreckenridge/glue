@@ -1,14 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { Context, setContextFunc } from "./app_provider";
 
-interface LinkInfo {
-  url: string;
-  name: string;
-  icon?: string;
-}
-
-type PersonalData = LinkInfo[];
-
 // individual feed items
 interface FeedItem {
   image_url?: string;
@@ -44,7 +36,6 @@ interface CubingTimes {
 }
 
 // result (Value|Err) types
-type RPersonalData = Result<PersonalData>;
 type RFeedData = Result<FeedData>;
 type RCubingData = Result<CubingData>;
 
@@ -63,24 +54,6 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
       return e;
     });
 }
-
-// request and set personal info
-const requestAndSetPersonal = async (setData: setContextFunc) => {
-  // swap lines to test the error message modal (by causing a 404 axios request error)
-  // loadInterfaceMatches<PersonalData>("/api/data/personall")
-  loadInterfaceMatches<PersonalData>("/api/data/personal").then(
-    (response: RPersonalData) => {
-      setData(
-        (oldData: Context): Context => {
-          return {
-            ...oldData,
-            info: response,
-          };
-        }
-      );
-    }
-  );
-};
 
 // request and set feed data
 const requestAndSetFeed = async (setData: setContextFunc) => {
@@ -115,14 +88,10 @@ const requestAndSetCubing = async (setData: setContextFunc) => {
 };
 
 export {
-  LinkInfo,
-  PersonalData,
   FeedData,
   CubingData,
   RFeedData,
-  RPersonalData,
   RCubingData,
   requestAndSetCubing,
-  requestAndSetPersonal,
   requestAndSetFeed,
 };
