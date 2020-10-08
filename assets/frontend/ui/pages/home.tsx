@@ -1,130 +1,10 @@
 import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
 import clsx from "clsx";
 import DesktopIcon from "./../components/desktop_icon";
-import Dialog from "../components/dialog";
-import Feed from "./feed";
-import Cubing from "./cubing";
-import { LinkInfo, Data, MediaElsewhere } from "../../data";
-import {
-  getWindowDimensions,
-  jitterCenterLocation,
-} from "./../components/dimensions";
-
-// custom pages implemeneted in react
-interface IHashActionFunc {
-  // weird that page is needed here
-  [page: string]: Function;
-}
-
-const fullScreenDialogScale = 0.75;
-
-// create a closure around the state. could probably also
-// be done with useContext, but this works
-//
-// returns a function which receieves the message interface
-// as an argument,  which returns the function that launches this onClick
-// action (open the dialog, does something on the page)
-const overWriteActions: IHashActionFunc = {
-  "Media Feed": (setwMsg: setWindowMsg) => {
-    return () => {
-      const { browserWidth, browserHeight } = getWindowDimensions();
-      const { x, y } = jitterCenterLocation();
-      const feedDialogWidth = browserWidth * fullScreenDialogScale;
-      const feedDialogHeight = browserHeight * fullScreenDialogScale;
-      const windowId = Date.now().toString();
-      const feedDialog = (
-        <>
-          <Dialog
-            isErr={false}
-            x={x - feedDialogWidth / 2}
-            y={y - feedDialogHeight / 2}
-            width={feedDialogWidth}
-            height={feedDialogHeight}
-            title="media feed"
-            // when close it hit, set the message to kill this window
-            hitCloseCallback={() =>
-              setwMsg({ spawn: false, windowId: windowId })
-            }
-          >
-            <Feed />
-          </Dialog>
-        </>
-      );
-      // when the icon is clicked, set the message to spawn this window
-      setwMsg({
-        spawn: true,
-        windowId: windowId,
-        windowObj: feedDialog,
-      });
-    };
-  },
-  Cubing: (setwMsg: setWindowMsg) => {
-    return () => {
-      const { browserWidth, browserHeight } = getWindowDimensions();
-      const { x, y } = jitterCenterLocation();
-      const cubingDialogWidth = browserWidth * fullScreenDialogScale;
-      const cubingDialogHeight = browserHeight * fullScreenDialogScale;
-      const windowId = Date.now().toString();
-      const cubingDialog = (
-        <>
-          <Dialog
-            isErr={false}
-            x={x - cubingDialogWidth / 2}
-            y={y - cubingDialogHeight / 2}
-            width={cubingDialogWidth}
-            height={cubingDialogHeight}
-            title="cubing"
-            // when close it hit, set the message to kill this window
-            hitCloseCallback={() =>
-              setwMsg({ spawn: false, windowId: windowId })
-            }
-          >
-            <Cubing />
-          </Dialog>
-        </>
-      );
-      // when the icon is clicked, set the message to spawn this window
-      setwMsg({
-        spawn: true,
-        windowId: windowId,
-        windowObj: cubingDialog,
-      });
-    };
-  },
-  "Me Elsewhere": (setwMsg: setWindowMsg) => {
-    return () => {
-      const { browserWidth, browserHeight } = getWindowDimensions();
-      const { x, y } = jitterCenterLocation();
-      const mediaWidth = browserWidth * 0.5;
-      const mediaHeight = browserHeight * 0.5;
-      const windowId = Date.now().toString();
-      const mediaDialog = (
-        <>
-          <Dialog
-            isErr={false}
-            x={x - mediaWidth / 2}
-            y={y - mediaHeight / 2}
-            width={mediaWidth}
-            height={mediaHeight}
-            title="media elsewhere"
-            // when close it hit, set the message to kill this window
-            hitCloseCallback={() =>
-              setwMsg({ spawn: false, windowId: windowId })
-            }
-          >
-            <h4>{JSON.stringify(MediaElsewhere)}</h4>
-          </Dialog>
-        </>
-      );
-      // when the icon is clicked, set the message to spawn this window
-      setwMsg({
-        spawn: true,
-        windowId: windowId,
-        windowObj: mediaDialog,
-      });
-    };
-  },
-};
+import { Link } from "react-router-dom";
+import SwapInterfaceButton from "./../components/swap_interface";
+import { getAction } from "./actions";
+import { IconData } from "../../data";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -149,22 +29,6 @@ type windowMsg = _windowMsg | undefined;
 const windowMsgDefault: windowMsg = undefined;
 export type setWindowMsg = Dispatch<SetStateAction<windowMsg>>;
 
-// returns what this icon does when its clicked
-function getAction(el: LinkInfo, setwMsg: setWindowMsg): Function {
-  const action: Function = overWriteActions[el.name];
-  if (action !== undefined) {
-    // create the closure so that actions have
-    // access to the set window message functions
-    return action(setwMsg);
-  } else if (el.url !== undefined && el.url !== "") {
-    return () => {
-      // (reloads the page, to an external URL)
-      window.location.href = el.url!;
-    };
-  }
-  throw Error("Could not find an appropriate action for " + JSON.stringify(el));
-}
-
 function removeWindow(
   windows: IWindowMap,
   excludeWindowId: string
@@ -188,7 +52,7 @@ function Home() {
   // when windows are created, they set themself here, and then are
   // added using setWindows in this scope. If they're to be killed, they
   // add the object with spawn: false; and they're filtered out of the window list
-  const [wMsg, setwMsg] = useState(windowMsgDefault);
+  const [wMsg, setwMsg]: [windowMsg, setWindowMsg] = useState(windowMsgDefault);
 
   // what icon the user currently has clicked/highlighted
   // use the icon caption as the key
@@ -216,29 +80,46 @@ function Home() {
   // TODO: on resize, 'update'? somehow the dialogs
   // so that if its off the page, it resnaps/moves to the current viewport
   return (
-    <div id="home-icons-window-wrapper">
-      <>
-        {Object.keys(guiWindows).map((wid) => (
-          <div key={wid.toString()}>{guiWindows[wid]}</div>
-        ))}
-      </>
-      <div id="home-icons-container">
-        {Data.map((el) => (
-          <div
-            key={el.name}
-            className={clsx("home-icon", selectedIcon == el.name && "selected")}
-          >
-            <DesktopIcon
-              click={getAction(el, setwMsg)}
-              mouseEnter={() => setSelectedIcon(el.name)}
-              mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
-              caption={el.name}
-              iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
-            />
-          </div>
-        ))}
+    <>
+      <div id="menu-bar">
+        <div className="menu-toolbar-item menu-bar-item">
+          <Link className="unlinkify" to="/">
+            sean
+          </Link>
+        </div>
+        <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
       </div>
-    </div>
+      <div id="window-body">
+        <div id="desktop-body">
+          <div id="home-icons-window-wrapper">
+            <>
+              {Object.keys(guiWindows).map((wid) => (
+                <div key={wid.toString()}>{guiWindows[wid]}</div>
+              ))}
+            </>
+            <div id="home-icons-container">
+              {IconData.map((el) => (
+                <div
+                  key={el.name}
+                  className={clsx(
+                    "home-icon",
+                    selectedIcon == el.name && "selected"
+                  )}
+                >
+                  <DesktopIcon
+                    click={getAction(el, setwMsg)}
+                    mouseEnter={() => setSelectedIcon(el.name)}
+                    mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
+                    caption={el.name}
+                    iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -29,7 +29,7 @@ const MediaElsewhere: LinkInfo[] = [
   },
 ];
 
-const Data: LinkInfo[] = [
+const IconData: LinkInfo[] = [
   {
     name: "ExoBrain",
     url: "https://exobrain.sean.fish",
@@ -49,4 +49,4 @@ const Data: LinkInfo[] = [
   },
 ];
 
-export { LinkInfo, Data, MediaElsewhere };
+export { LinkInfo, IconData, MediaElsewhere };
