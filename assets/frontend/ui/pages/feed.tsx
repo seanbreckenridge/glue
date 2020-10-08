@@ -20,7 +20,6 @@ export function FeedWindow(setwMsg: setWindowMsg): Function {
     const feedDialog = (
       <>
         <Dialog
-          isErr={false}
           x={x - feedDialogWidth / 2}
           y={y - feedDialogHeight / 2}
           width={feedDialogWidth}

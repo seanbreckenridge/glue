@@ -17,7 +17,6 @@ export function ElseWhereWindow(setwMsg: setWindowMsg): Function {
     const mediaDialog = (
       <>
         <Dialog
-          isErr={false}
           x={x - mediaWidth / 2}
           y={y - mediaHeight / 2}
           width={mediaWidth}

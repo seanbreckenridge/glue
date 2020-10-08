@@ -2,14 +2,13 @@ import React from "react";
 import clsx from "clsx";
 import { Rnd } from "react-rnd";
 import { some } from "../../utils";
-import { getWindowDimensions } from "./dimensions";
 
 interface IDialogProps {
   x: number;
   y: number;
   width?: number;
   height?: number;
-  isErr: boolean;
+  isErr?: boolean;
   hitCloseCallback: Function;
   title?: string;
   // have to provide one of these. If msg is not
@@ -27,7 +26,10 @@ const Dialog = (props: IDialogProps) => {
   const dialogWidth = props.width ?? defaultDialogWidth;
   const dialogHeight = props.height ?? defaultDialogHeight;
 
-  const dialogTitle = props.title ?? (props.isErr ? "ERROR" : null);
+  // false by default
+  const errorDialog = props.isErr ?? false;
+
+  const dialogTitle = props.title ?? (errorDialog ? "ERROR" : null);
 
   return (
     <Rnd
@@ -39,7 +41,7 @@ const Dialog = (props: IDialogProps) => {
       }}
       bounds="#desktop-body"
     >
-      <div className={clsx("dialog", props.isErr && "error")}>
+      <div className={clsx("dialog", errorDialog && "error")}>
         <div className="dialog-menu-bar-container">
           <div
             className="dialog-exit-button"
