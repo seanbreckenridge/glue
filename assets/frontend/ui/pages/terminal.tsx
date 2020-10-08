@@ -5,13 +5,11 @@ const TUITerminal = () => {
   return (
     <>
       <pre className="disabled-message">
-        <code>
-          $ the terminal is currently disabled...
-        </code>
+        <code>$ the terminal is currently disabled...</code>
       </pre>
       <pre className="dummy-error-text">
         <code>
-        {`(not a real error occurred in the <div> component):
+          {`(not a real error occurred in the <div> component):
 in div (created by TUI)
 in div (created by TUI)
 in TUI (created by HomeScreen)
@@ -32,6 +30,6 @@ __webpack_require__ app.js:20
         </code>
       </pre>
     </>
-  )
+  );
 };
 export default TUITerminal;

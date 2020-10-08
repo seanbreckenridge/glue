@@ -1,12 +1,10 @@
-import React, {Dispatch, SetStateAction, useState} from "react";
-import {Link} from "react-router-dom";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { Link } from "react-router-dom";
 import SwapInterfaceButton from "./components/swap_interface";
-import {AppContextConsumer, Context} from "../app_provider";
-import {PersonalData} from "../api_model";
-import HomeIcons from "./components/home_icons";
-import DesktopErrorDialog from "./components/desktop_error_dialog";
-import WhatDoNow from "./components/what_do_now";
-import {some, errored} from "../utils";
+import { AppContextConsumer, Context } from "../app_provider";
+import { PersonalData } from "../api_model";
+import Home from "./pages/home";
+import WrapApiError from "./components/wrap_api_error";
 
 const GUI: React.FC<{}> = () => {
   return (
@@ -21,23 +19,18 @@ const GUI: React.FC<{}> = () => {
           <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
         </div>
         <div id="window-body">
-          <HomeDesktopBody />
+          <DesktopBody />
         </div>
       </div>
     </>
-  )
+  );
 };
 
 type selectedIconType = string;
 const selectedIconDefault = "";
 export type setIconFunc = Dispatch<SetStateAction<selectedIconType>>;
 
-
-const HomeDesktopBody = () => {
-  // If there was an API error displaying the home page info,
-  // whether or not the user clicked the 'x' button
-  const [userClosedError, setUserClosedError] = useState(false);
-
+const DesktopBody = () => {
   // what icon the user currently has clicked/highlighted
   // use the icon caption as the key
   const [selectedIcon, setSelectedIcon] = useState(selectedIconDefault);
@@ -47,28 +40,18 @@ const HomeDesktopBody = () => {
       <AppContextConsumer>
         {(value: Context) => {
           return (
-            <>
-              {(!some(value.info))
-                ? <h3>Loading...</h3>
-                : (errored(value.info))
-                  // if there was an API error
-                  ? (!userClosedError)
-                    // If the user hasn't hit the 'x' button in the dialog
-                    ? <DesktopErrorDialog
-                      msg="Error fetching data..."
-                      err={value.info as Error}
-                      closeDialog={() => setUserClosedError(true)} />
-                    : <WhatDoNow />
-                  // everything loaded fine
-                  : <HomeIcons data={value.info as PersonalData} selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} />
-              }
-            </>
-          )
+            <WrapApiError data={value.info}>
+              <Home
+                data={value.info as PersonalData}
+                selectedIcon={selectedIcon}
+                setSelectedIcon={setSelectedIcon}
+              />
+            </WrapApiError>
+          );
         }}
       </AppContextConsumer>
     </div>
-  )
-}
-
+  );
+};
 
 export default GUI;

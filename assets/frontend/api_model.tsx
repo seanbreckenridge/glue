@@ -1,5 +1,5 @@
-import axios, {AxiosResponse} from "axios";
-import {Context, setContextFunc} from "./app_provider";
+import axios, { AxiosResponse } from "axios";
+import { Context, setContextFunc } from "./app_provider";
 
 interface LinkInfo {
   url: string;
@@ -7,7 +7,7 @@ interface LinkInfo {
   icon?: string;
 }
 
-type PersonalData = LinkInfo[]
+type PersonalData = LinkInfo[];
 
 // individual feed items
 interface FeedItem {
@@ -48,62 +48,71 @@ type RPersonalData = Result<PersonalData>;
 type RFeedData = Result<FeedData>;
 type RCubingData = Result<CubingData>;
 
-
 // when the interface directly matches the response, we can use a generic function
 async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
-  return await axios.request<T>(
-    {
+  return await axios
+    .request<T>({
       url: url,
-      responseType: 'json',
-      transformResponse: (r: T) => r
+      responseType: "json",
+      transformResponse: (r: T) => r,
     })
     .then((response: AxiosResponse<T>) => {
       return response.data;
-    }).catch((e: Error) => {
-      return e;
     })
+    .catch((e: Error) => {
+      return e;
+    });
 }
 
 // request and set personal info
 const requestAndSetPersonal = async (setData: setContextFunc) => {
   // swap lines to test the error message modal (by causing a 404 axios request error)
   // loadInterfaceMatches<PersonalData>("/api/data/personall")
-  loadInterfaceMatches<PersonalData>("/api/data/personal")
-    .then((response: RPersonalData) => {
-      setData((oldData: Context): Context => {
-        return {
-          ...oldData,
-          info: response
+  loadInterfaceMatches<PersonalData>("/api/data/personal").then(
+    (response: RPersonalData) => {
+      setData(
+        (oldData: Context): Context => {
+          return {
+            ...oldData,
+            info: response,
+          };
         }
-      })
-    })
-}
+      );
+    }
+  );
+};
 
 // request and set feed data
 const requestAndSetFeed = async (setData: setContextFunc) => {
-  loadInterfaceMatches<FeedData>("/api/data/feed")
-    .then((response: RFeedData) => {
-      setData((oldData: Context): Context => {
-        return {
-          ...oldData,
-          feed: response
+  loadInterfaceMatches<FeedData>("/api/data/feed").then(
+    (response: RFeedData) => {
+      setData(
+        (oldData: Context): Context => {
+          return {
+            ...oldData,
+            feed: response,
+          };
         }
-      })
-    })
-}
+      );
+    }
+  );
+};
 
 // request and set cubing data
 const requestAndSetCubing = async (setData: setContextFunc) => {
-  loadInterfaceMatches<CubingData>("/api/data/cubing")
-    .then((response: RCubingData) => {
-      setData((oldData: Context): Context => {
-        return {
-          ...oldData,
-          cubing: response
+  loadInterfaceMatches<CubingData>("/api/data/cubing").then(
+    (response: RCubingData) => {
+      setData(
+        (oldData: Context): Context => {
+          return {
+            ...oldData,
+            cubing: response,
+          };
         }
-      })
-    })
-}
+      );
+    }
+  );
+};
 
 export {
   LinkInfo,
@@ -116,4 +125,4 @@ export {
   requestAndSetCubing,
   requestAndSetPersonal,
   requestAndSetFeed,
-}
+};

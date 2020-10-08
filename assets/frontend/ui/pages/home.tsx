@@ -1,22 +1,32 @@
-import React, {useEffect, Dispatch, SetStateAction, useState} from "react";
-import {PersonalData} from "../../api_model";
-import {setIconFunc} from "../gui";
+import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
+import { PersonalData } from "../../api_model";
+import { setIconFunc } from "../gui";
 import clsx from "clsx";
-import DesktopIcon from "./desktop_icon";
-import {LinkInfo} from "../../api_model";
-import Dialog from "./dialog";
+import DesktopIcon from "./../components/desktop_icon";
+import { LinkInfo } from "../../api_model";
+import Dialog from "../components/dialog";
 import Feed from "./feed";
+import Cubing from "./cubing";
+import {
+  getWindowDimensions,
+  jitterCenterLocation,
+} from "./../components/dimensions";
 
-interface IHomeIcons {
+// global data for currently selected icon
+// and icon data
+interface IHome {
   data: PersonalData;
   selectedIcon: string;
   setSelectedIcon: setIconFunc;
 }
 
+// custom pages implemeneted in react
 interface IHashActionFunc {
   // weird that page is needed here
   [page: string]: Function;
 }
+
+const fullScreenDialogScale = 0.75;
 
 // create a closure around the state. could probably also
 // be done with useContext, but this works
@@ -27,31 +37,71 @@ interface IHashActionFunc {
 const overWriteActions: IHashActionFunc = {
   "Media Feed": (setwMsg: setWindowMsg) => {
     return () => {
+      const { browserWidth, browserHeight } = getWindowDimensions();
+      const { x, y } = jitterCenterLocation();
+      const feedDialogWidth = browserWidth * fullScreenDialogScale;
+      const feedDialogHeight = browserHeight * fullScreenDialogScale;
       const windowId = Date.now().toString();
-      const feedDialog = <>
-        <Dialog isErr={false}
-          title="media feed"
-          // when close it hit, set the message to kill this window
-          hitCloseCallback={() => setwMsg({spawn: false, windowId: windowId})} >
-          <Feed />
-        </Dialog >
-      </>
+      const feedDialog = (
+        <>
+          <Dialog
+            isErr={false}
+            x={x - feedDialogWidth / 2}
+            y={y - feedDialogHeight / 2}
+            width={feedDialogWidth}
+            height={feedDialogHeight}
+            title="media feed"
+            // when close it hit, set the message to kill this window
+            hitCloseCallback={() =>
+              setwMsg({ spawn: false, windowId: windowId })
+            }
+          >
+            <Feed />
+          </Dialog>
+        </>
+      );
       // when the icon is clicked, set the message to spawn this window
-      setwMsg(
-        {
-          spawn: true,
-          windowId: windowId,
-          windowObj: feedDialog
-        }
-      )
-    }
+      setwMsg({
+        spawn: true,
+        windowId: windowId,
+        windowObj: feedDialog,
+      });
+    };
   },
-  "Cubing": (setwMsg: setWindowMsg) => {
+  Cubing: (setwMsg: setWindowMsg) => {
     return () => {
-      console.log("opening cubing page...")
-    }
-  }
-}
+      const { browserWidth, browserHeight } = getWindowDimensions();
+      const { x, y } = jitterCenterLocation();
+      const cubingDialogWidth = browserWidth * fullScreenDialogScale;
+      const cubingDialogHeight = browserHeight * fullScreenDialogScale;
+      const windowId = Date.now().toString();
+      const cubingDialog = (
+        <>
+          <Dialog
+            isErr={false}
+            x={x - cubingDialogWidth / 2}
+            y={y - cubingDialogHeight / 2}
+            width={cubingDialogWidth}
+            height={cubingDialogHeight}
+            title="cubing"
+            // when close it hit, set the message to kill this window
+            hitCloseCallback={() =>
+              setwMsg({ spawn: false, windowId: windowId })
+            }
+          >
+            <Cubing />
+          </Dialog>
+        </>
+      );
+      // when the icon is clicked, set the message to spawn this window
+      setwMsg({
+        spawn: true,
+        windowId: windowId,
+        windowObj: cubingDialog,
+      });
+    };
+  },
+};
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -61,7 +111,7 @@ interface IWindowMap {
 }
 
 // start with no windows
-const windowDefault: IWindowMap = {}
+const windowDefault: IWindowMap = {};
 export type setWindowFunc = Dispatch<SetStateAction<IWindowMap>>;
 
 // represents a message from an icon to the state
@@ -87,12 +137,15 @@ function getAction(el: LinkInfo, setwMsg: setWindowMsg): Function {
     return () => {
       // (reloads the page, to an external URL)
       window.location.href = el.url;
-    }
+    };
   }
-  throw Error("Could not find an appropriate action for " + JSON.stringify(el))
+  throw Error("Could not find an appropriate action for " + JSON.stringify(el));
 }
 
-function removeWindow(windows: IWindowMap, excludeWindowId: string): IWindowMap {
+function removeWindow(
+  windows: IWindowMap,
+  excludeWindowId: string
+): IWindowMap {
   const newWindows: IWindowMap = {};
   Object.keys(windows).forEach((wId) => {
     if (wId !== excludeWindowId) {
@@ -102,7 +155,7 @@ function removeWindow(windows: IWindowMap, excludeWindowId: string): IWindowMap 
   return newWindows;
 }
 
-function HomeIcons({data, selectedIcon, setSelectedIcon}: IHomeIcons) {
+function Home({ data, selectedIcon, setSelectedIcon }: IHome) {
   // currently displayed floating windows
   const [guiWindows, setWindows] = useState(windowDefault);
 
@@ -122,15 +175,15 @@ function HomeIcons({data, selectedIcon, setSelectedIcon}: IHomeIcons) {
         setWindows({
           ...guiWindows,
           // [] interpolates the value as the keyname
-          [wMsg!.windowId]: wMsg.windowObj!
-        })
+          [wMsg!.windowId]: wMsg.windowObj!,
+        });
       } else {
         // we have a window to kill
-        setWindows(removeWindow(guiWindows, wMsg!.windowId))
+        setWindows(removeWindow(guiWindows, wMsg!.windowId));
       }
       setwMsg(undefined);
     }
-  }, [wMsg]) // only call the useEffect hook when wMsg changes
+  }, [wMsg]); // only call the useEffect hook when wMsg changes
 
   // TODO: match against URL hash and open corresponding window?
   // TODO: on resize, 'update'? somehow the dialogs
@@ -138,26 +191,28 @@ function HomeIcons({data, selectedIcon, setSelectedIcon}: IHomeIcons) {
   return (
     <div id="home-icons-window-wrapper">
       <>
-        {Object.keys(guiWindows).map((wid) =>
-          <div key={(wid.toString())}>
-            {guiWindows[wid]}
-          </div>
-        )}
+        {Object.keys(guiWindows).map((wid) => (
+          <div key={wid.toString()}>{guiWindows[wid]}</div>
+        ))}
       </>
       <div id="home-icons-container">
-        {data.map((el) =>
-          <div key={el.name} className={clsx("home-icon", selectedIcon == el.name && "selected")}>
+        {data.map((el) => (
+          <div
+            key={el.name}
+            className={clsx("home-icon", selectedIcon == el.name && "selected")}
+          >
             <DesktopIcon
               click={getAction(el, setwMsg)}
               mouseEnter={() => setSelectedIcon(el.name)}
-              mouseLeave={() => setSelectedIcon('')} // set to empty string, which means nothing is highlighted
+              mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
               caption={el.name}
-              iconurl={el.icon ?? 'https://sean.fish/favicon.ico'} />
+              iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
+            />
           </div>
-        )}
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default HomeIcons;
+export default Home;

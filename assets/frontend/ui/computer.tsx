@@ -1,12 +1,8 @@
 import React from "react";
-import {AppContextProvider} from "../app_provider"
+import { AppContextProvider } from "../app_provider";
 import GUI from "./gui";
 import TUI from "./tui";
-import {
-  Switch,
-  Route,
-  HashRouter
-} from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 
 // top level of interface
 // renders the the initial loading screen, makes requests off to APi
@@ -17,8 +13,8 @@ const Computer: React.FC<{}> = () => {
         <HomeScreen />
       </AppContextProvider>
     </>
-  )
-}
+  );
+};
 
 // render home page, switch between GUI and TUI
 // TODO: add loading animation
@@ -37,7 +33,7 @@ export const HomeScreen: React.FC<{}> = () => {
       </HashRouter>
     </>
   );
-}
+};
 
 // <AppContextConsumer>
 //   {(ctx: Context) => {

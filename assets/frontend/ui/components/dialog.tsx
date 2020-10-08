@@ -1,16 +1,16 @@
 import React from "react";
 import clsx from "clsx";
-import {Rnd} from 'react-rnd';
-import useWindowDimensions from "./dimensions";
-import {some} from "../../utils";
+import { Rnd } from "react-rnd";
+import { some } from "../../utils";
+import { getWindowDimensions } from "./dimensions";
 
 interface IDialogProps {
-  isErr: boolean;
-  hitCloseCallback: Function;
+  x: number;
+  y: number;
   width?: number;
   height?: number;
-  x?: number;
-  y?: number;
+  isErr: boolean;
+  hitCloseCallback: Function;
   title?: string;
   // have to provide one of these. If msg is not
   // provided, uses children
@@ -20,58 +20,57 @@ interface IDialogProps {
   children?: any;
 }
 
-// TODO: z-index this onto the top? or just make sure icons do go over this
-const Dialog = ({children, hitCloseCallback, title, msg, isErr, width, height, x, y}: IDialogProps) => {
-  // browser size
-  const {browserHeight, browserWidth} = useWindowDimensions()
+export const defaultDialogWidth = 200;
+export const defaultDialogHeight = 100;
 
-  const dialogWidth = width ?? 200;
-  const dialogHeight = height ?? 100;
+const Dialog = (props: IDialogProps) => {
+  const dialogWidth = props.width ?? defaultDialogWidth;
+  const dialogHeight = props.height ?? defaultDialogHeight;
 
-  // if values aren't provided, default is to:
-  // center dialog on x axis, 1/3rd down the page on y
-  // subtract half of the height/width to actually center dialog
-  // (as opposed to top left corner)
-  const xPos = x ?? (browserWidth / 2) - (dialogWidth / 2);
-  const yPos = y ?? (browserHeight / 3) - (dialogHeight / 2);
-
-  const dialogTitle = title ?? ((isErr) ? "ERROR" : null);
+  const dialogTitle = props.title ?? (props.isErr ? "ERROR" : null);
 
   return (
-    <Rnd default={{
-      x: xPos,
-      y: yPos,
-      width: dialogWidth,
-      height: dialogHeight,
-    }}
+    <Rnd
+      default={{
+        x: props.x,
+        y: props.y,
+        width: dialogWidth,
+        height: dialogHeight,
+      }}
       bounds="#desktop-body"
     >
-      <div className={clsx('dialog', isErr && 'error')}>
+      <div className={clsx("dialog", props.isErr && "error")}>
         <div className="dialog-menu-bar-container">
-          <div className="dialog-exit-button" onClick={() => hitCloseCallback()}>
+          <div
+            className="dialog-exit-button"
+            onClick={() => props.hitCloseCallback()}
+          >
             <span>×</span>
           </div>
           <div className="dialog-menu-title">
-            {(some(dialogTitle))
-              && <div className="dialog-title-text"> {dialogTitle} </div>}
+            {some(dialogTitle) && (
+              <div className="dialog-title-text"> {dialogTitle} </div>
+            )}
           </div>
         </div>
         <div className="dialog-body">
-          { // if the user provided a message, render it *and* the children
-            (some(msg))
-              ? <div className="dialog-message">
-                {msg}
-                {children}
+          {
+            // if the user provided a message, render it *and* the children
+            some(props.msg) ? (
+              <div className="dialog-message">
+                {props.msg}
+                {props.children}
               </div>
+            ) : (
               // else just render the children
-              : <> {children} </>
+              <> {props.children} </>
+            )
           }
         </div>
         <div className="dialog-bottom-right-icon"></div>
       </div>
     </Rnd>
-  )
-}
+  );
+};
 
 export default Dialog;
-

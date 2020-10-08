@@ -72,6 +72,17 @@ $inner_border_width: 2px;
   font-weight: bold;
 }
 
+.wrap-error {
+  height: 100%;
+  width: 100%;
+
+  h3 {
+    margin-top: 20%;
+    text-align: center;
+    vertical-align: center;
+  }
+}
+
 /* shared menu bar styling */
 #menu-bar {
   height: 30px;
@@ -220,6 +231,8 @@ $green_bg: #00da00;
 
       p {
         margin: 1em;
+        margin-left: 20%;
+        margin-right: 20%;
       }
     }
 
@@ -329,6 +342,7 @@ $green_bg: #00da00;
   }
 
   $dialog_exit_button_width: 25px;
+  $dialog_title_line_height: 20px;
   $dialog_gutter_width: 10px;
 
   .dialog {
@@ -397,7 +411,7 @@ $green_bg: #00da00;
         display: flex;
         justify-content: center;
         align-items: center;
-        line-height: $dialog_exit_button_width; // for background to cover, width == height for square
+        line-height: $dialog_title_line_height;
 
         .dialog-title-text {
           background: $offwhite;

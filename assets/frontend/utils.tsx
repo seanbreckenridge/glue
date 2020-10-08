@@ -9,7 +9,7 @@ function ok<T>(r: Result<T>): boolean {
 }
 
 function errored<T>(r: Result<T>): boolean {
-  return (r instanceof Error);
+  return r instanceof Error;
 }
 
 function some<T>(r: Unset<T>): boolean {
@@ -18,8 +18,4 @@ function some<T>(r: Unset<T>): boolean {
   return r != null;
 }
 
-export {
-  some,
-  errored,
-  ok,
-}
+export { some, errored, ok };

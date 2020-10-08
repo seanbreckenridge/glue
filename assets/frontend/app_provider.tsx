@@ -1,7 +1,17 @@
-import React, {createContext, useEffect, useState, Dispatch, SetStateAction } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import {
-  requestAndSetCubing, requestAndSetFeed,
-  requestAndSetPersonal, RCubingData, RFeedData, RPersonalData
+  requestAndSetCubing,
+  requestAndSetFeed,
+  requestAndSetPersonal,
+  RCubingData,
+  RFeedData,
+  RPersonalData,
 } from "./api_model";
 
 // defines the connection with the API, exposes that context/state
@@ -14,18 +24,18 @@ interface IProps {
 }
 
 type Context = {
-  info?: RPersonalData,
-  feed?: RFeedData,
-  cubing?: RCubingData,
+  info?: RPersonalData;
+  feed?: RFeedData;
+  cubing?: RCubingData;
   // setContext: Dispatch<SetStateAction<Context>>;
-  setContext: setContextFunc,
+  setContext: setContextFunc;
 };
 
 type setContextFunc = Dispatch<SetStateAction<Context>>;
 
 const initialContext: Context = {
   setContext: (): void => {
-    throw new Error('setContext function must be overridden');
+    throw new Error("setContext function must be overridden");
   },
 };
 
@@ -62,4 +72,4 @@ export {
   AppContextProvider,
   AppContextConsumer,
   setContextFunc,
-}
+};
