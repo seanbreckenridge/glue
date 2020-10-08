@@ -223,12 +223,7 @@ $green_bg: #00da00;
       }
     }
 
-    .home-icons-container {
-      display: flex;
-      flex-flow: column wrap;
-      box-sizing: border-box;
-      padding: 1em;
-
+    #home-icons-window-wrapper {
       // full view height - navbar height (dependeing on height) 1em + 1m for padding (on .home-icons-container + .widow-body)
       // and then 1em as a buffer/padding for this element.
       height: calc(100vh - 30px - 3em);
@@ -238,6 +233,14 @@ $green_bg: #00da00;
       @include sheight(large) {
         height: calc(100vh - 50px - 3em);
       }
+    }
+
+    #home-icons-container {
+      display: flex;
+      flex-flow: column wrap;
+      box-sizing: border-box;
+      padding: 1em;
+      height: 100%;
 
       .home-icon {
         // center the figure/text in the container that scales
@@ -248,9 +251,8 @@ $green_bg: #00da00;
         @include swidth(large) {
           flex-basis: 33%;
         }
-        
-        &.selected  {
 
+        &.selected {
           img.desktop-icon-interactable {
             -moz-filter: grayscale(1);
             -ms-filter: grayscale(1);
@@ -308,7 +310,7 @@ $green_bg: #00da00;
 
             background-color: $offwhite;
             color: black;
-            
+
             pre {
               text-align: center;
 

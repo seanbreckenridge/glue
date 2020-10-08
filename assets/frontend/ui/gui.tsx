@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import SwapInterfaceButton from "./components/swap_interface";
 import {AppContextConsumer, Context} from "../app_provider";
 import {PersonalData} from "../api_model";
-import {HomeIcons} from "./components/desktop_icon";
+import HomeIcons from "./components/home_icons";
 import DesktopErrorDialog from "./components/desktop_error_dialog";
 import WhatDoNow from "./components/what_do_now";
 import {some, errored} from "../utils";

@@ -36,7 +36,8 @@ end
 defmodule GlueWeb.PersonalInfo do
 
   @personal_info [
-    %GlueWeb.PersonalInfoItem{url: "/#/feed", name: "Media Feed"},
+    %GlueWeb.PersonalInfoItem{name: "Media Feed"},
+    %GlueWeb.PersonalInfoItem{name: "Cubing"},
     %GlueWeb.PersonalInfoItem{url: "/mal_unapproved", name: "MAL Unapproved"},
     %GlueWeb.PersonalInfoItem{url: "/animeshorts", name: "AnimeShorts"},
     %GlueWeb.PersonalInfoItem{url: "https://exobrain.sean.fish/feed/", name: "Blog"},

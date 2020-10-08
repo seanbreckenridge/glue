@@ -20,6 +20,7 @@ interface IDialogProps {
   children?: any;
 }
 
+// TODO: z-index this onto the top? or just make sure icons do go over this
 const Dialog = ({children, hitCloseCallback, title, msg, isErr, width, height, x, y}: IDialogProps) => {
   // browser size
   const {browserHeight, browserWidth} = useWindowDimensions()
