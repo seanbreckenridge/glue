@@ -63,7 +63,7 @@ defmodule GlueWeb.Feed do
 
       # this cache is invalidated in Glue.Feed.Server, whenever anything new is
       # added to the feed data
-      {:ok, _} = Cachex.put(:feed_cache, cache_key, feed_data, ttl: :timer.minutes(30))
+      {:ok, _} = Cachex.put(:feed_cache, cache_key, feed_data, ttl: :timer.hours(6))
       feed_data
     else
       Logger.debug("feed request cache hit for key #{cache_key}, using cached value...")
