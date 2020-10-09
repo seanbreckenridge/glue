@@ -1,4 +1,6 @@
 #!/bin/bash
+# accepts the secret file from https://github.com/seanbreckenridge/vps
+# see the secret.dist file there
 
 DEFAULT_SECRET="${HOME}/vps/secret"
 
