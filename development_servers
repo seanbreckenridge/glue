@@ -1,6 +1,9 @@
 #!/bin/bash -eu
 # while on my machine, start the development servers
 
+# https://sean.fish/d/.local/scripts/linux/services?dark
+sudo services start
+
 python3 "${REPOS}/albums/server/app.py" &
 "${REPOS}/wca_userinfo/run_server" &
 cd "${REPOS}/docker-jikan" && ./run
