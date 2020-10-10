@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+# while on my machine, start the development servers
+
+python3 "${REPOS}/albums/server/app.py" &
+"${REPOS}/wca_userinfo/run_server" &
+cd "${REPOS}/docker-jikan" && ./run
+
+kill $(jobs -p)
