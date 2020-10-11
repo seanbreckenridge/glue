@@ -407,13 +407,13 @@ $border_color: #eee;
         justify-content: center;
         align-items: center;
         outline: 1px solid $bg;
+        cursor: pointer; // https://github.com/facebook/react/issues/134
 
         &:hover {
           -moz-filter: invert(100%);
           -ms-filter: invert(100%);
           -o-filter: invert(100%);
           filter: invert(100%);
-          cursor: pointer;
         }
 
         &:active {
