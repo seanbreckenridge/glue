@@ -75,7 +75,7 @@ const CubingBody = ({ data }: ICubingBody) => {
         </a>{" "}
         from <a href="https://www.worldcubeassociation.org/">WCA</a> (World Cube
         Association) approved competitions. I've been to {data.competitions}{" "}
-        competitions and have {data.completed_solves}completed official solves.
+        competitions and have {data.completed_solves} completed official solves.
       </p>
       <p>
         For those unfamiliar with the notation, a Single is the time for a
