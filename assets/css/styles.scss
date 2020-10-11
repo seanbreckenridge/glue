@@ -365,7 +365,6 @@ $green_bg: #00da00;
     width: 100%;
     display: flex;
     flex-flow: column;
-    overflow: hidden;
 
     .dialog-menu-bar-container {
       // self-flex info to stick to top stick to top
@@ -445,6 +444,44 @@ $green_bg: #00da00;
       border-bottom: 2px solid black;
       margin-right: $dialog_gutter_width;
       margin-bottom: $dialog_gutter_width;
+      overflow-x: auto;
+      overflow-y: auto;
+
+      .wrap-error {
+        height: 100%;
+        width: 100%;
+        overflow-x: inherit;
+        overflow-y: inherit;
+
+        .cubing-body {
+        height: 100%;
+        width: 100%;
+        padding: 1em;
+        box-sizing: border-box;
+        p {
+          padding: 0.25rem;
+        }
+        table {
+          margin-top: 2em;
+          margin-bottom: 2em;
+          margin-left: auto;
+          margin-right: auto;
+          th {
+            border-bottom: solid 1px black;
+            border-top: solid 1px black;
+          }
+          td, th{
+            padding: 0.2rem;
+            text-align: center;
+            border-left: solid 1px black;
+            border-right: solid 1px black;
+          }
+          tr:last-child {
+            border-bottom: solid 1px black;
+          }
+        }
+      }
+    }
     }
 
     &.error {

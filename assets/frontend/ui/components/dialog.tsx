@@ -62,6 +62,8 @@ const Dialog = (props: IDialogProps) => {
         <div className="dialog-body">
           {
             // if the user provided a message, render it *and* the children
+            // TODO: add scroll in react, right column should have up/down greyed out when content fits
+            // may be required for scrolling on mobile
             some(props.msg) ? (
               <div className="dialog-message">
                 {props.msg}

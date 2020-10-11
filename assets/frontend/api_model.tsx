@@ -17,7 +17,7 @@ interface CubingData {
   competitions: number;
   wca_id: string;
   gender: string;
-  events: CubingRecords;
+  events: CubingRecords[];
 }
 
 // both single and average times for one event
@@ -94,4 +94,5 @@ export {
   RCubingData,
   requestAndSetCubing,
   requestAndSetFeed,
+  CubingRecords,
 };
