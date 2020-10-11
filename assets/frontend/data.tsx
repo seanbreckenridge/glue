@@ -29,24 +29,48 @@ const MediaElsewhere: LinkInfo[] = [
   },
 ];
 
+const MiscApps: LinkInfo[] = [
+  {
+    name: "MAL Unapproved",
+    url: "/mal_unapproved/",
+  },
+  {
+    name: "AnimeShorts",
+    url: "/animeshorts/",
+  },
+  {
+    name: "DVD Logo",
+    url: "/dvd/",
+  }
+]
+
 const IconData: LinkInfo[] = [
+  {
+    name: "Media Feed",
+    icon: "/images/frontend/camerafeed.png"
+  },
   {
     name: "ExoBrain",
     url: "https://exobrain.sean.fish",
-  },
-  {
-    name: "Media Feed",
+    icon: "/images/frontend/brain.png"
   },
   {
     name: "Cubing",
+    icon: "/images/frontend/rubikscube.png"
   },
   {
     name: "Blog",
     url: "https://exobrain.sean.fish/feed/",
+    icon: "/images/frontend/feather.png"
   },
   {
-    name: "Media Accts"
+    name: "Media Accts",
+    icon: "/images/frontend/musicnote.png"
   },
+  {
+    name: "Misc",
+    icon: "/images/frontend/misc.png"
+  }
 ];
 
-export { LinkInfo, IconData, MediaElsewhere };
+export {LinkInfo, IconData, MediaElsewhere, MiscApps};

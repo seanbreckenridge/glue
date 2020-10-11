@@ -251,7 +251,7 @@ $green_bg: #00da00;
       display: inline-flex;
       box-sizing: border-box;
       flex-flow: column wrap;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
       padding: 1em;
       height: 100%;
@@ -272,10 +272,10 @@ $green_bg: #00da00;
 
         &.selected {
           img.desktop-icon-interactable {
-            -moz-filter: grayscale(1);
-            -ms-filter: grayscale(1);
-            -o-filter: grayscale(1);
-            filter: grayscale(1);
+            -moz-filter: invert(1);
+            -ms-filter: invert(1);
+            -o-filter: invert(1);
+            filter: invert(1);
             outline: 1px grey dotted;
           }
 
@@ -472,6 +472,11 @@ $green_bg: #00da00;
           padding-right: 1em;
           box-sizing: border-box;
         }
+      }
+
+      .linklist div {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
       }
 
       .cubing-body {

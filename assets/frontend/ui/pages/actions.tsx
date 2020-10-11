@@ -1,6 +1,7 @@
 import { FeedWindow } from "./feed";
 import { CubingWindow } from "./cubing";
 import { MediaAccountsWindow } from "./media_accounts";
+import { MiscWindow } from "./misc";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./home";
 
@@ -38,6 +39,7 @@ export const actions: IHashActionFunc = {
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
+  "Misc": MiscWindow,
 };
 
 // returns what this icon does when its clicked
