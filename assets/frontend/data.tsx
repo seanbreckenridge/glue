@@ -15,8 +15,7 @@ const MediaElsewhere: LinkInfo[] = [
   },
   {
     name: "Music [Spreadsheet]",
-    url:
-      "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
+    url: "https://sean.fish/s/albums",
   },
   {
     name: "Video Games [Grouvee]",
