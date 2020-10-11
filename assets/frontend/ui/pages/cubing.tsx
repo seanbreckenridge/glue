@@ -23,7 +23,7 @@ export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
     const cubingDialog = (
       <>
         <Dialog
-          x={Math.max(x - minWidth, x - cubingDialogWidth / 2)}
+          x={x - cubingDialogWidth / 2 - minWidth / 5}
           y={y - cubingDialogHeight / 2 - minHeight / 5}
           width={cubingDialogWidth}
           height={cubingDialogHeight}

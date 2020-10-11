@@ -45,7 +45,7 @@ const IconData: LinkInfo[] = [
     url: "https://exobrain.sean.fish/feed/",
   },
   {
-    name: "Media Accounts",
+    name: "Media Accts"
   },
 ];
 

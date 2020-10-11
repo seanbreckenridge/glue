@@ -354,7 +354,6 @@ $green_bg: #00da00;
   }
 
   $dialog_exit_button_width: 25px;
-  $dialog_title_line_height: 29px; // + border height
   $dialog_gutter_width: 10px;
 
   .dialog {
@@ -436,7 +435,6 @@ $green_bg: #00da00;
         display: flex;
         justify-content: center;
         align-items: center;
-        line-height: $dialog_title_line_height;
 
         .dialog-title-text {
           background: $offwhite;

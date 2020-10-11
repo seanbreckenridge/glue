@@ -37,7 +37,7 @@ export const fullScreenDialogScale = 0.75;
 export const actions: IHashActionFunc = {
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
-  "Media Accounts": MediaAccountsWindow,
+  "Media Accts": MediaAccountsWindow,
 };
 
 // returns what this icon does when its clicked
