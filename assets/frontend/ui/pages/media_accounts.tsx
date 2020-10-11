@@ -11,7 +11,7 @@ import { launchWindowFunc } from "./actions";
 const minHeight = 200;
 const minWidth = 320;
 
-export function ElseWhereWindow(setwMsg: setWindowMsg): launchWindowFunc {
+export function MediaAccountsWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
@@ -21,7 +21,7 @@ export function ElseWhereWindow(setwMsg: setWindowMsg): launchWindowFunc {
     const mediaDialog = (
       <>
         <Dialog
-          /* average of the center - minWidth and center - windowWidth
+          /* average af the center - minWidth and center - windowWidth
            * seems to work well for this window size on both mobile/desktop */
           x={(x - minWidth + (x - mediaWidth / 2)) / 2}
           y={Math.max(y - minHeight, y - mediaHeight / 2)}
@@ -29,11 +29,19 @@ export function ElseWhereWindow(setwMsg: setWindowMsg): launchWindowFunc {
           height={mediaHeight}
           minHeight={minHeight}
           minWidth={minWidth}
-          title="media elsewhere"
+          title="media accounts"
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
-          <ElseWhere />
+          <div className="media-accounts">
+            {MediaElsewhere.map((el: LinkInfo) => (
+              <div key={el.name}>
+                <span>
+                  <a href={el.url}>{el.name}</a>
+                </span>
+              </div>
+            ))}
+          </div>
         </Dialog>
       </>
     );
@@ -45,17 +53,3 @@ export function ElseWhereWindow(setwMsg: setWindowMsg): launchWindowFunc {
     });
   };
 }
-
-const ElseWhere = () => {
-  return (
-    <div className="elsewhere">
-      {MediaElsewhere.map((el: LinkInfo) => (
-        <div key={el.name}>
-          <span>
-            <a href={el.url}>{el.name}</a>
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-};

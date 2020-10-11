@@ -1,6 +1,6 @@
 import { FeedWindow } from "./feed";
 import { CubingWindow } from "./cubing";
-import { ElseWhereWindow } from "./elsewhere";
+import { MediaAccountsWindow } from "./media_accounts";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./home";
 
@@ -37,7 +37,7 @@ export const fullScreenDialogScale = 0.75;
 export const actions: IHashActionFunc = {
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
-  "Media Accounts": ElseWhereWindow,
+  "Media Accounts": MediaAccountsWindow,
 };
 
 // returns what this icon does when its clicked

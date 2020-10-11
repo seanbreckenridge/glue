@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { Rnd } from "react-rnd";
 import { some } from "../../utils";
+import Repeatable from "react-repeatable";
 
 interface IDialogProps {
   x: number;
@@ -24,14 +25,81 @@ interface IDialogProps {
 export const defaultDialogWidth = 200;
 export const defaultDialogHeight = 100;
 
+interface windowData {
+  height: number;
+  width: number;
+  // size of the entire scrollable element
+  fullY: number;
+}
+
 const Dialog = (props: IDialogProps) => {
+  // dialog related
   const dialogWidth = props.width ?? defaultDialogWidth;
   const dialogHeight = props.height ?? defaultDialogHeight;
-
-  // false by default
   const errorDialog = props.isErr ?? false;
-
   const dialogTitle = props.title ?? (errorDialog ? "ERROR" : null);
+  const hasMsg = some(props.msg);
+
+  const defaultWindowData: windowData = {
+    width: dialogWidth,
+    height: dialogHeight,
+    fullY: 0,
+  };
+
+  // scroll related
+  const [scrollOffset, setScrollOffset] = useState<number>(0);
+  const [winData, setWinData] = useState(defaultWindowData);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // disable dragging/resizing while mousing over butons
+  const [dragDisable, setDragDisable] = useState<boolean>(false);
+  const [resizable, setResizable] = useState<boolean>(true);
+
+  const scrollTo = (height: number) => {
+    const el: HTMLDivElement | null = scrollRef.current;
+    if (el === null) {
+      return;
+    }
+    el.scrollTo({ top: height });
+    setScrollOffset(height);
+  };
+
+  const handleScrollUp = () => {
+    scrollTo(Math.max(0, scrollOffset - winData.height / 3));
+  };
+
+  const handleScrollDown = () => {
+    scrollTo(Math.min(winData.fullY, scrollOffset + winData.height / 3));
+  };
+
+  const handleEnableRND = () => {
+    setDragDisable(false);
+    setResizable(true);
+  };
+
+  const handleDisableRND = () => {
+    setDragDisable(true);
+    setResizable(false);
+  };
+
+  const saveElementData = () => {
+    const el: HTMLDivElement | null = scrollRef.current;
+    if (el === null) {
+      return;
+    }
+    const elData: ClientRect = scrollRef.current!.getBoundingClientRect();
+    setWinData({
+      height: elData.height,
+      width: elData.width,
+      fullY: el.scrollHeight,
+    });
+  };
+
+  useEffect(() => {
+    // onload, save element attributes
+    saveElementData();
+    scrollTo(0); // start at 0, to fix leftover client data from reloads
+  }, []);
 
   return (
     <Rnd
@@ -42,14 +110,20 @@ const Dialog = (props: IDialogProps) => {
         height: dialogHeight,
       }}
       bounds="#desktop-body"
+      onResizeStop={saveElementData}
+      onDragStop={saveElementData}
       minHeight={props.minHeight}
       minWidth={props.minWidth}
+      disableDragging={dragDisable}
+      enableResizing={resizable}
     >
       <div className={clsx("dialog", errorDialog && "error")}>
         <div className="dialog-menu-bar-container">
           <div
-            className="dialog-exit-button"
+            className="dialog-menu-button dialog-exit-button"
             onClick={() => props.hitCloseCallback()}
+            onMouseEnter={handleDisableRND}
+            onMouseLeave={handleEnableRND}
           >
             <span>×</span>
           </div>
@@ -58,24 +132,61 @@ const Dialog = (props: IDialogProps) => {
               <div className="dialog-title-text"> {dialogTitle} </div>
             )}
           </div>
+          <div
+            className="dialog-menu-button dialog-up-button"
+            onMouseEnter={handleDisableRND}
+            onMouseLeave={handleEnableRND}
+            onClick={handleScrollUp}
+          >
+            <Repeatable
+              tag="button"
+              type="button"
+              repeatInterval={100}
+              repeatCount={9999}
+              onHold={handleScrollUp}
+            >
+              ▲
+            </Repeatable>
+          </div>
+          <div
+            className="dialog-menu-button dialog-down-button"
+            onMouseEnter={handleDisableRND}
+            onMouseLeave={handleEnableRND}
+            onClick={handleScrollDown}
+          >
+            <Repeatable
+              tag="button"
+              type="button"
+              repeatInterval={100}
+              repeatCount={9999}
+              onHold={handleScrollDown}
+            >
+              ▼
+            </Repeatable>
+          </div>
         </div>
-        <div className="dialog-body">
+        <div
+          ref={scrollRef}
+          className={clsx("dialog-body", hasMsg && "dialog-message")}
+          onWheel={(e) => {
+            e.preventDefault();
+            scrollTo(scrollOffset + e.deltaY * 15);
+          }}
+        >
           {
             // if the user provided a message, render it *and* the children
-            // TODO: add scroll in react, right column should have up/down greyed out when content fits
-            // may be required for scrolling on mobile
-            // add buttons to the top right like https://i.imgur.com/bJCIDoO.png
-            some(props.msg) ? (
-              <div className="dialog-message">
+            hasMsg ? (
+              <>
                 {props.msg}
                 {props.children}
-              </div>
+              </>
             ) : (
               // else just render the children
               <> {props.children} </>
             )
           }
         </div>
+        {/* TODO: add scrollbar on the right offset, use scrollOffset, winData.x and winData.fullY to create the rect */}
         <div className="dialog-bottom-right-icon"></div>
       </div>
     </Rnd>
