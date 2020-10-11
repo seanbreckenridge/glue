@@ -3,4 +3,4 @@
 shellcheck *_server
 shfmt-in-place *_server
 mix format
-fd '\.tsx|\.scss' -X prettier -w
+fd '\.tsx$|\.scss$|\.js$|\.json$' -X prettier -w
