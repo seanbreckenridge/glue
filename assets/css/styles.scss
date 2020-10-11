@@ -536,6 +536,21 @@ $border_color: #eee;
           width: 100%;
           display: block;
 
+          // unset global styles for links
+          color: inherit;
+          &:hover {
+            color: unset;
+          }
+          &:visited {
+            color: unset;
+          }
+          &:active {
+            -moz-filter: unset;
+            -ms-filter: unset;
+            -o-filter: unset;
+            filter: unset;
+          }
+
           .feed-item-row {
             width: 100%;
             min-height: 50px;
@@ -547,6 +562,10 @@ $border_color: #eee;
             &:hover {
               background-color: darkslategray;
               transition: 0.05s;
+            }
+
+            &:active {
+              background-color: #5d6997;
             }
 
             .feed-item-image {
