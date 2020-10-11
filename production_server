@@ -59,4 +59,4 @@ mix compile
 
 npm install --prefix ./assets 2>/dev/null
 npm run deploy --prefix ./assets 2>/dev/null
-exec mix server
+exec mix prod.server

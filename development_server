@@ -4,8 +4,13 @@
 # https://sean.fish/d/.local/scripts/linux/services?dark
 sudo services start
 
+# https://github.com/seanbreckenridge/albums
 python3 "${REPOS}/albums/server/app.py" &
+# https://github.com/seanbreckenridge/wca_userinfo
 "${REPOS}/wca_userinfo/run_server" &
-cd "${REPOS}/docker-jikan" && ./run
+# https://github.com/seanbreckenridge/docker-jikan
+cd "${REPOS}/docker-jikan" && ./run &
+
+mix phx.server
 
 kill $(jobs -p)
