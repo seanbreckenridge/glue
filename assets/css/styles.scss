@@ -58,10 +58,11 @@ body {
 
 /* full screen */
 
-$offwhite: #eee;
-
 $outer_border_width: 5px;
 $inner_border_width: 2px;
+
+$bg: #222;
+$border_color: #eee;
 
 .full-screen {
   margin: 0;
@@ -132,15 +133,15 @@ $inner_border_width: 2px;
   font-weight: inherit;
 
   a {
-    border: 3px solid #000;
+    border: 3px solid $border_color;
     padding: 3px 10px;
     border-radius: 4px;
-    color: black;
+    color: $bg;
     text-decoration: none;
 
     &:hover {
-      background-color: black;
-      color: $offwhite;
+      background-color: #eee;
+      color: $bg;
     }
   }
 }
@@ -151,17 +152,31 @@ $inner_border_width: 2px;
   flex: 1 1 auto;
 }
 
-$green_bg: #00da00;
-
 #gui {
-  background-color: $green_bg;
-  color: $offwhite;
+  background-color: $bg;
+  color: $border_color;
   border: $outer_border_width solid black;
+
+  a {
+    color: #43e3af;
+    &:hover {
+      color: #5d6997;
+    }
+    &:visited {
+      color: #2e9d59;
+    }
+    &:active {
+      -moz-filter: invert(1);
+      -ms-filter: invert(1);
+      -o-filter: invert(1);
+      filter: invert(1);
+    }
+  }
 
   #menu-bar {
     color: black;
-    background-color: $offwhite;
-    border-bottom: $inner_border_width solid black;
+    background-color: $border_color;
+    border-bottom: $inner_border_width solid $border_color;
     align-items: center;
     padding-left: 2%;
     @include swidth(medium) {
@@ -184,7 +199,7 @@ $green_bg: #00da00;
       }
 
       &:hover {
-        color: $offwhite;
+        color: $border_color;
         transition-delay: 0.05s;
         transition-duration: 0s;
         transition-timing-function: linear;
@@ -220,7 +235,7 @@ $green_bg: #00da00;
     padding: 1em;
 
     #what-do-now {
-      color: black;
+      color: $border_color;
       height: 100%;
       width: 100%;
       display: flex;
@@ -280,7 +295,7 @@ $green_bg: #00da00;
           }
 
           figcaption.desktop-icon-interactable {
-            color: $offwhite;
+            color: $border_color;
             background-color: black;
             outline: 1px grey dotted;
           }
@@ -333,7 +348,7 @@ $green_bg: #00da00;
               max-width: 130px;
             }
 
-            background-color: $offwhite;
+            background-color: $border_color;
             color: black;
 
             pre {
@@ -357,9 +372,9 @@ $green_bg: #00da00;
   $dialog_gutter_width: 10px;
 
   .dialog {
-    background-color: $offwhite;
-    color: black;
-    border: 2px solid black;
+    background-color: $bg;
+    color: #eee;
+    border: 2px solid $border_color;
     height: 100%;
     width: 100%;
     display: flex;
@@ -371,20 +386,20 @@ $green_bg: #00da00;
       flex: 0 1 auto;
       min-height: 20px;
       width: calc(100% - 10px - 2px); // dialog_gutter_width - border width
-      border: 2px solid black;
+      border: 2px solid $border_color;
       border-top: none;
       border-left: none;
       background: -moz-radial-gradient(black 15%, transparent 16%),
-        -moz-radial-gradient(black 15%, transparent 16%), $offwhite;
+        -moz-radial-gradient(black 15%, transparent 16%), $border_color;
       background: -webkit-radial-gradient(black 15%, transparent 16%),
-        -webkit-radial-gradient(black 15%, transparent 16%), $offwhite;
+        -webkit-radial-gradient(black 15%, transparent 16%), $border_color;
       background-position: 0 0, 10px 10px;
       -webkit-background-size: 5px 5px;
       -moz-background-size: 5px 5px;
       background-size: 5px 5px;
 
       .dialog-menu-button {
-        background: $offwhite;
+        background: $border_color;
         padding: 0;
         overflow: hidden;
         width: $dialog_exit_button_width;
@@ -393,6 +408,7 @@ $green_bg: #00da00;
         display: flex;
         justify-content: center;
         align-items: center;
+        outline: 1px solid $bg;
 
         &:hover {
           -moz-filter: invert(100%);
@@ -409,6 +425,7 @@ $green_bg: #00da00;
           filter: invert(80%);
         }
 
+        /* menu button styling */
         & > span {
           margin: 1px;
           text-align: center;
@@ -419,7 +436,6 @@ $green_bg: #00da00;
 
       .dialog-exit-button {
         flex: 0 1 auto;
-        border-right: 2px double black;
 
         & span {
           font-size: 120%;
@@ -437,7 +453,8 @@ $green_bg: #00da00;
         align-items: center;
 
         .dialog-title-text {
-          background: $offwhite;
+          background: $border_color;
+          color: black;
           padding-left: 1em;
           padding-right: 1em;
           right: $dialog_exit_button_width;
@@ -451,8 +468,8 @@ $green_bg: #00da00;
       justify-content: center;
       align-items: center;
       padding: 5px;
-      border-right: 2px solid black;
-      border-bottom: 2px solid black;
+      border-right: 2px solid $border_color;
+      border-bottom: 2px solid $border_color;
       margin-right: $dialog_gutter_width;
       margin-bottom: $dialog_gutter_width;
 
@@ -495,7 +512,7 @@ $green_bg: #00da00;
           th,
           td {
             vertical-align: middle;
-            border: solid 1px black;
+            border: solid 1px $border_color;
           }
           td,
           th {
@@ -524,7 +541,7 @@ $green_bg: #00da00;
             flex-flow: row nowrap;
 
             &:hover {
-              background-color: lightgray;
+              background-color: darkslategray;
               transition: 0.05s;
             }
 
@@ -542,6 +559,7 @@ $green_bg: #00da00;
             }
 
             .feed-item-description {
+              color: $border_color;
               width: 75%;
               display: flex;
               padding: 1.5em;
@@ -571,12 +589,12 @@ $green_bg: #00da00;
       // to bottom right of dialog
       right: -1px;
       bottom: -1px;
-      background-color: $offwhite;
+      background-color: $bg;
       // basic border
-      border: solid black 2px;
+      border: solid $border_color 2px;
       // design
-      border-right: solid black 4px;
-      border-bottom: solid black 4px;
+      border-right: solid $border_color 4px;
+      border-bottom: solid $border_color 4px;
       padding-left: 5px;
       padding-top: 5px;
       height: $dialog_gutter_width;

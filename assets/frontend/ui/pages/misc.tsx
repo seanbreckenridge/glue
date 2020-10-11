@@ -1,8 +1,7 @@
 import { launchWindowFunc } from "./actions";
 import { setWindowMsg } from "./home";
-import {LinkWindow} from "./link_list";
-import {MiscApps} from "../../data";
-
+import { LinkWindow } from "./link_list";
+import { MiscApps } from "../../data";
 
 export function MiscWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return LinkWindow({

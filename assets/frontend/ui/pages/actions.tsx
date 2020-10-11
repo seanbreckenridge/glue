@@ -39,7 +39,7 @@ export const actions: IHashActionFunc = {
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
-  "Misc": MiscWindow,
+  Misc: MiscWindow,
 };
 
 // returns what this icon does when its clicked

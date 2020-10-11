@@ -41,36 +41,36 @@ const MiscApps: LinkInfo[] = [
   {
     name: "DVD Logo",
     url: "/dvd/",
-  }
-]
+  },
+];
 
 const IconData: LinkInfo[] = [
   {
     name: "Media Feed",
-    icon: "/images/frontend/camerafeed.png"
+    icon: "/images/frontend/camerafeed.png",
   },
   {
     name: "ExoBrain",
     url: "https://exobrain.sean.fish",
-    icon: "/images/frontend/brain.png"
+    icon: "/images/frontend/brain.png",
   },
   {
     name: "Cubing",
-    icon: "/images/frontend/rubikscube.png"
+    icon: "/images/frontend/rubikscube.png",
   },
   {
     name: "Blog",
     url: "https://exobrain.sean.fish/feed/",
-    icon: "/images/frontend/feather.png"
+    icon: "/images/frontend/feather.png",
   },
   {
     name: "Media Accts",
-    icon: "/images/frontend/musicnote.png"
+    icon: "/images/frontend/musicnote.png",
   },
   {
     name: "Misc",
-    icon: "/images/frontend/misc.png"
-  }
+    icon: "/images/frontend/misc.png",
+  },
 ];
 
-export {LinkInfo, IconData, MediaElsewhere, MiscApps};
+export { LinkInfo, IconData, MediaElsewhere, MiscApps };

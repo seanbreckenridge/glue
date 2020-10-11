@@ -21,7 +21,7 @@ interface ILinkWindow {
 
 export function LinkWindow(props: ILinkWindow): launchWindowFunc {
   const minWidth = props.minWidth ?? defaultMinWidth;
-  const minHeight = props.minHeight ?? (props.links.length * linkLineHeight);
+  const minHeight = props.minHeight ?? props.links.length * linkLineHeight;
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
@@ -41,7 +41,9 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
           minWidth={minWidth}
           title={props.title}
           // when close it hit, set the message to kill this window
-          hitCloseCallback={() => props.setwMsg({ spawn: false, windowId: windowId })}
+          hitCloseCallback={() =>
+            props.setwMsg({ spawn: false, windowId: windowId })
+          }
         >
           <div className="linklist">
             {props.links.map((el: LinkInfo) => (
