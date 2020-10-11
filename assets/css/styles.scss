@@ -312,10 +312,8 @@ $border_color: #eee;
             flex-flow: inherit;
           }
 
-          .desktop-icon-interactable {
-            &:hover {
-              cursor: pointer;
-            }
+          &:hover {
+            cursor: pointer;
           }
 
           img {

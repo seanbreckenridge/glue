@@ -65,9 +65,9 @@ const DesktopIcon = (props: IDesktopIcon) => {
       >
         <LinkWrap url={props.url!}>
           <img
-            className="desktop-icon-interactable"
             src={props.iconurl}
             alt={props.caption}
+            className="desktop-icon-interactable"
           />
         </LinkWrap>
         <LinkWrap url={props.url!}>
