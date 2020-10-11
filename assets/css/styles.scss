@@ -354,7 +354,7 @@ $green_bg: #00da00;
   }
 
   $dialog_exit_button_width: 25px;
-  $dialog_title_line_height: 20px;
+  $dialog_title_line_height: 29px; // + border height
   $dialog_gutter_width: 10px;
 
   .dialog {
@@ -442,7 +442,6 @@ $green_bg: #00da00;
           background: $offwhite;
           padding-left: 1em;
           padding-right: 1em;
-          position: relative;
           right: $dialog_exit_button_width;
         }
       }
@@ -492,6 +491,7 @@ $green_bg: #00da00;
           margin-right: auto;
           th,
           td {
+            vertical-align: middle;
             border: solid 1px black;
           }
           td,
