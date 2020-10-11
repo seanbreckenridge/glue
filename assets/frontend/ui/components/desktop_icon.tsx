@@ -41,8 +41,10 @@ const DesktopIcon = (props: IDesktopIcon) => {
       <figure
         className="desktop-icon"
         onClick={() => props.click!()}
-        onMouseEnter={() => props.mouseEnter()}
-        onMouseLeave={() => props.mouseLeave()}
+        onTouchStart={props.mouseEnter}
+        onTouchEnd={props.mouseLeave}
+        onMouseEnter={props.mouseEnter}
+        onMouseLeave={props.mouseLeave}
       >
         <img
           className="desktop-icon-interactable"
@@ -60,8 +62,10 @@ const DesktopIcon = (props: IDesktopIcon) => {
     return (
       <figure
         className="desktop-icon"
-        onMouseEnter={() => props.mouseEnter()}
-        onMouseLeave={() => props.mouseLeave()}
+        onTouchStart={props.mouseEnter}
+        onTouchEnd={props.mouseLeave}
+        onMouseEnter={props.mouseEnter}
+        onMouseLeave={props.mouseLeave}
       >
         <LinkWrap url={props.url!}>
           <img

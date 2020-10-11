@@ -131,7 +131,8 @@ const Dialog = (props: IDialogProps) => {
         <div className="dialog-menu-bar-container">
           <div
             className="dialog-menu-button dialog-exit-button"
-            onClick={() => props.hitCloseCallback()}
+            onClick={props.hitCloseCallback}
+            onTouchEnd={props.hitCloseCallback} // also close on touch events
             onMouseEnter={handleDisableRND}
             onMouseLeave={handleEnableRND}
           >
@@ -144,6 +145,11 @@ const Dialog = (props: IDialogProps) => {
           </div>
           <div
             className="dialog-menu-button dialog-up-button"
+            onTouchStart={handleDisableRND} // disable dragging when user starts touching
+            onTouchEnd={() => {
+              handleEnableRND();
+              handleScrollUp(); // scroll on touch end, else you have to do weird double clicks
+            }}
             onMouseEnter={handleDisableRND}
             onMouseLeave={handleEnableRND}
             onClick={handleScrollUp}
@@ -160,6 +166,11 @@ const Dialog = (props: IDialogProps) => {
           </div>
           <div
             className="dialog-menu-button dialog-down-button"
+            onTouchStart={handleDisableRND}
+            onTouchEnd={() => {
+              handleEnableRND();
+              handleScrollDown();
+            }}
             onMouseEnter={handleDisableRND}
             onMouseLeave={handleEnableRND}
             onClick={handleScrollDown}

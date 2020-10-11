@@ -470,12 +470,11 @@ $border_color: #eee;
       border-bottom: 2px solid $border_color;
       margin-right: $dialog_gutter_width;
       margin-bottom: $dialog_gutter_width;
-
+      overflow-x: auto;
       overflow-y: hidden;
 
       &.dialog-message {
         height: 100%;
-        overflow-x: auto;
         overflow-y: auto;
         display: flex;
         flex-flow: column nowrap;
