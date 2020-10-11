@@ -1,37 +1,39 @@
-const path = require('path');
-const glob = require('glob');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require("path");
+const glob = require("glob");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = (_env, options) => {
-  const devMode = options.mode !== 'production';
+  const devMode = options.mode !== "production";
 
   return {
     optimization: {
       minimizer: [
         new TerserPlugin({ cache: true, parallel: true, sourceMap: devMode }),
         new OptimizeCSSAssetsPlugin({}),
-      ]
+      ],
     },
     // not perfect, emits some extra modules (e.g. styles.js), but it works
     // everything hot-reloads in development mode properly, the correct
     // filepaths are set in the html eex layout file
     entry: {
-      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js', './frontend/react.js']),
-      'styles': glob.sync('./css/*.?(s)css'),
+      app: glob
+        .sync("./vendor/**/*.js")
+        .concat(["./js/app.js", "./frontend/react.js"]),
+      styles: glob.sync("./css/*.?(s)css"),
     },
     output: {
       // filename: '[name].js',
       filename: (pathData) => {
         // console.log(pathData);
-        return (pathData.chunk.id == "styles") ? "[name].css" : "[name].js";
+        return pathData.chunk.id == "styles" ? "[name].css" : "[name].js";
       },
-      path: path.resolve(__dirname, '../priv/static/bundle/'),
+      path: path.resolve(__dirname, "../priv/static/bundle/"),
     },
-    devtool: devMode ? 'eval-cheap-module-source-map' : undefined,
+    devtool: devMode ? "eval-cheap-module-source-map" : undefined,
     module: {
       rules: [
         {
@@ -39,30 +41,25 @@ module.exports = (_env, options) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader',
+              loader: "babel-loader",
             },
             {
-              loader: 'ts-loader',
-            }
-          ]
+              loader: "ts-loader",
+            },
+          ],
         },
         {
           test: /\.[s]?css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
-          ],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ],
     },
     resolve: {
-      extensions: [".ts", ".js", ".tsx", ".jsx", ".css", ".scss"]
+      extensions: [".ts", ".js", ".tsx", ".jsx", ".css", ".scss"],
     },
     plugins: [
-      new MiniCssExtractPlugin({ filename: '../bundle/bundle.css' }),
-      new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
-    ]
-    .concat(devMode ? [new HardSourceWebpackPlugin()] : [])
-  }
+      new MiniCssExtractPlugin({ filename: "../bundle/bundle.css" }),
+      new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
+    ].concat(devMode ? [new HardSourceWebpackPlugin()] : []),
+  };
 };

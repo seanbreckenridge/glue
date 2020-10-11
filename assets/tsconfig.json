@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "typeRoots": [
-      "./types.d.ts"
-    ],
+    "lib": ["es2015", "dom"],
+    "typeRoots": ["./types.d.ts"],
     "target": "es5",
     "moduleResolution": "node",
     "module": "ESNext",
@@ -17,8 +12,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": [
-    "/node_modules/**/*"
-  ]
+  "exclude": ["/node_modules/**/*"]
 }
-
