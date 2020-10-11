@@ -304,16 +304,13 @@ $border_color: #eee;
         figure.desktop-icon {
           display: flex;
           flex-flow: column;
+          cursor: pointer;
 
           /* if this is a link instead of onClick
            * inherit flex properties */
           & > a {
             display: inherit;
             flex-flow: inherit;
-          }
-
-          &:hover {
-            cursor: pointer;
           }
 
           img {
