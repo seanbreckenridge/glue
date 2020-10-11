@@ -57,7 +57,7 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
 
 // request and set feed data
 const requestAndSetFeed = async (setData: setContextFunc) => {
-  loadInterfaceMatches<FeedData>("/api/data/feed").then(
+  loadInterfaceMatches<FeedData>("/api/data/feed?format_dates").then(
     (response: RFeedData) => {
       setData(
         (oldData: Context): Context => {
@@ -88,6 +88,7 @@ const requestAndSetCubing = async (setData: setContextFunc) => {
 };
 
 export {
+  FeedItem,
   FeedData,
   CubingData,
   RFeedData,

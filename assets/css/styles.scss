@@ -448,40 +448,82 @@ $green_bg: #00da00;
       overflow-y: auto;
 
       .wrap-error {
-        height: 100%;
-        width: 100%;
+        /* for cubing/feed, this is what needs to be modified */
         overflow-x: inherit;
         overflow-y: inherit;
 
         .cubing-body {
-        height: 100%;
-        width: 100%;
-        padding: 1em;
-        box-sizing: border-box;
-        p {
-          padding: 0.25rem;
+          height: 100%;
+          width: 100%;
+          padding: 1em;
+          box-sizing: border-box;
+          p {
+            padding: 0.25rem;
+          }
+          table {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            margin-left: auto;
+            margin-right: auto;
+            th,
+            td {
+              border: solid 1px black;
+            }
+            td,
+            th {
+              padding: 0.2rem;
+              text-align: center;
+            }
+          }
         }
-        table {
-          margin-top: 2em;
-          margin-bottom: 2em;
-          margin-left: auto;
-          margin-right: auto;
-          th {
-            border-bottom: solid 1px black;
-            border-top: solid 1px black;
-          }
-          td, th{
-            padding: 0.2rem;
-            text-align: center;
-            border-left: solid 1px black;
-            border-right: solid 1px black;
-          }
-          tr:last-child {
-            border-bottom: solid 1px black;
+
+        .feed-body {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-flow: column nowrap;
+
+          a {
+            width: 100%;
+            display: block;
+
+            .feed-item-row {
+              width: 100%;
+              min-height: 50px;
+              outline: 1px solid lightgrey;
+              max-height: 200px;
+              display: flex;
+              flex-flow: row nowrap;
+
+              &:hover {
+                background-color: lightgray;
+                transition: 0.05s;
+              }
+
+              .feed-item-image {
+                width: 25%;
+                overflow: hidden;
+                display: flex;
+
+                img {
+                  vertical-align: center;
+                  align-self: center;
+                }
+              }
+
+              .feed-item-description {
+                width: 75%;
+                display: flex;
+                padding: 1.5em;
+                box-sizing: border-box;
+                flex-flow: column nowrap;
+                align-items: center;
+                justify-content: center;
+              }
+            }
           }
         }
       }
-    }
     }
 
     &.error {

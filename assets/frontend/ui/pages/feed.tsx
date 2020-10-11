@@ -1,7 +1,7 @@
 import React from "react";
 import { Context, AppContextConsumer } from "../../app_provider";
 import WrapApiError from "../components/wrap_api_error";
-import { FeedData } from "./../../api_model";
+import { FeedData, FeedItem } from "./../../api_model";
 import { setWindowMsg } from "./home";
 import {
   getWindowDimensions,
@@ -48,7 +48,7 @@ function Feed() {
         {(value: Context) => {
           return (
             <WrapApiError data={value.feed}>
-              <FeedPaginator data={value.feed as FeedData} />
+              <FeedData data={value.feed! as FeedData} />
             </WrapApiError>
           );
         }}
@@ -61,6 +61,24 @@ interface IFeedPaginator {
   data: FeedData;
 }
 
-const FeedPaginator = ({ data }: IFeedPaginator) => {
-  return <div>{JSON.stringify(data)}</div>;
+const FeedData = ({ data }: IFeedPaginator) => {
+  return (
+    <div className="feed-body">
+      {data.map((item: FeedItem, index: number) => {
+        return (
+          <a href={item.site_url} className="unlinkify" key={index}>
+            <div className="feed-item-row">
+              <div className="feed-item-image">
+                <img src={item.image_url} alt="" />
+              </div>
+              <div className="feed-item-description">
+                <p>{item.title}</p>
+                <p>{item.timestamp}</p>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  );
 };
