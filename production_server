@@ -59,8 +59,4 @@ mix compile
 
 npm install --prefix ./assets 2>/dev/null
 npm run deploy --prefix ./assets 2>/dev/null
-mix phx.digest
-
-mix ecto.migrate
-
-exec mix phx.server
+exec mix server
