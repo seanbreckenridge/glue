@@ -6,3 +6,4 @@ Handles caching information for albums/tv shows/movies, and [cubing](https://git
 
 The `./development_server` and `./production_server` scripts connect to the companion servers (for serving anime, albums, and cubing information). This server and my production servers are run with `supervisor` by some code [here](https://github.com/seanbreckenridge/vps).
 
+![](https://i.imgur.com/Zgeanfu.png)
