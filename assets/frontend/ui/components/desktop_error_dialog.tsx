@@ -8,7 +8,7 @@ interface IDesktopErrorDialogProps {
   width?: number;
   msg: string;
   err?: Error; // if provided, renders the error message text as another node
-  closeDialog: Function;
+  closeDialog: () => void;
 }
 
 const DesktopErrorDialog = (props: IDesktopErrorDialogProps) => {

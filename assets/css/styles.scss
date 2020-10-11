@@ -290,6 +290,13 @@ $green_bg: #00da00;
           display: flex;
           flex-flow: column;
 
+          /* if this is a link instead of onClick
+           * inherit flex properties */
+          & > a {
+            display: inherit;
+            flex-flow: inherit;
+          }
+
           .desktop-icon-interactable {
             &:hover {
               cursor: pointer;

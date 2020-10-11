@@ -5,27 +5,35 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
-import { MediaElsewhere } from "../../data";
+import { MediaElsewhere, LinkInfo } from "../../data";
+import { launchWindowFunc } from "./actions";
 
-export function ElseWhereWindow(setwMsg: setWindowMsg): Function {
+const minHeight = 200;
+const minWidth = 320;
+
+export function ElseWhereWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
-    const mediaWidth = browserWidth * 0.5;
-    const mediaHeight = browserHeight * 0.5;
+    const mediaWidth = browserWidth * 0.2;
+    const mediaHeight = browserHeight * 0.2;
     const windowId = Date.now().toString();
     const mediaDialog = (
       <>
         <Dialog
-          x={x - mediaWidth / 2}
-          y={y - mediaHeight / 2}
+          /* average of the center - minWidth and center - windowWidth
+           * seems to work well for this window size on both mobile/desktop */
+          x={(x - minWidth + (x - mediaWidth / 2)) / 2}
+          y={Math.max(y - minHeight, y - mediaHeight / 2)}
           width={mediaWidth}
           height={mediaHeight}
+          minHeight={minHeight}
+          minWidth={minWidth}
           title="media elsewhere"
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
-          <h4>{JSON.stringify(MediaElsewhere)}</h4>
+          <ElseWhere />
         </Dialog>
       </>
     );
@@ -37,3 +45,17 @@ export function ElseWhereWindow(setwMsg: setWindowMsg): Function {
     });
   };
 }
+
+const ElseWhere = () => {
+  return (
+    <div className="elsewhere">
+      {MediaElsewhere.map((el: LinkInfo) => (
+        <div key={el.name}>
+          <span>
+            <a href={el.url}>{el.name}</a>
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};

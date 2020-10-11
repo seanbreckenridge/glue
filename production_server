@@ -30,7 +30,6 @@ TMDB_API_KEY="$(jq -r '.tmdb_api_key' "$FILEPATH")"
 MIX_ENV=prod
 export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY MIX_ENV
 
-
 case "$1" in
 # drop into an interactive shell after loading environment secrets
 --shell)

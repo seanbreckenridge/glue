@@ -8,8 +8,10 @@ interface IDialogProps {
   y: number;
   width?: number;
   height?: number;
+  minWidth?: number;
+  minHeight?: number;
   isErr?: boolean;
-  hitCloseCallback: Function;
+  hitCloseCallback: () => void;
   title?: string;
   // have to provide one of these. If msg is not
   // provided, uses children
@@ -40,6 +42,8 @@ const Dialog = (props: IDialogProps) => {
         height: dialogHeight,
       }}
       bounds="#desktop-body"
+      minHeight={props.minHeight}
+      minWidth={props.minWidth}
     >
       <div className={clsx("dialog", errorDialog && "error")}>
         <div className="dialog-menu-bar-container">

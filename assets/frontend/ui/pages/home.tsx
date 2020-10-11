@@ -2,8 +2,8 @@ import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
 import clsx from "clsx";
 import DesktopIcon from "./../components/desktop_icon";
 import { Link } from "react-router-dom";
-import SwapInterfaceButton from "./../components/swap_interface";
-import { getAction } from "./actions";
+// import SwapInterfaceButton from "./../components/swap_interface";
+import { getAction, launchWindowFunc } from "./actions";
 import { IconData } from "../../data";
 
 // represents the current windows on the screen
@@ -87,7 +87,8 @@ function Home() {
             sean
           </Link>
         </div>
-        <SwapInterfaceButton text="Switch to Terminal" isGui={true} />
+        {/* disable TUI for now (while it doesnt exist) */}
+        {/* <SwapInterfaceButton text="Switch to Terminal" isGui={true} /> */}
       </div>
       <div id="window-body">
         <div id="desktop-body">
@@ -98,23 +99,32 @@ function Home() {
               ))}
             </>
             <div id="home-icons-container">
-              {IconData.map((el) => (
-                <div
-                  key={el.name}
-                  className={clsx(
-                    "home-icon",
-                    selectedIcon == el.name && "selected"
-                  )}
-                >
-                  <DesktopIcon
-                    click={getAction(el, setwMsg)}
-                    mouseEnter={() => setSelectedIcon(el.name)}
-                    mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
-                    caption={el.name}
-                    iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
-                  />
-                </div>
-              ))}
+              {IconData.map((el) => {
+                const action: string | launchWindowFunc = getAction(
+                  el,
+                  setwMsg
+                );
+                const isURL: boolean =
+                  typeof action === "string" || action instanceof String;
+                return (
+                  <div
+                    key={el.name}
+                    className={clsx(
+                      "home-icon",
+                      selectedIcon == el.name && "selected"
+                    )}
+                  >
+                    <DesktopIcon
+                      url={isURL ? (action as string) : undefined}
+                      click={!isURL ? (action as launchWindowFunc) : undefined}
+                      mouseEnter={() => setSelectedIcon(el.name)}
+                      mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
+                      caption={el.name}
+                      iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

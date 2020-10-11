@@ -4,12 +4,24 @@ import { ElseWhereWindow } from "./elsewhere";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./home";
 
+// pass it the setWindowMsg function, it returns a function which opens
+// the window, and returns nothing
+export type launchWindowFunc = () => void;
+
+// type of functions which create functions which virtual windows (Feed/Cubing)
+export type createsLaunchWindowFunc = (
+  setwMsg: setWindowMsg
+) => launchWindowFunc;
+
 // interface to define what happens when the user clicks on things
 
 // custom pages implemeneted in react
 interface IHashActionFunc {
   // weird that page is needed here
-  [page: string]: Function;
+  // returns a function, which when passed the function to update
+  // the setWindowMsg state, returns a launchWindowFunc (a
+  // function which when called, launches a virtual dialog/window)
+  [page: string]: createsLaunchWindowFunc;
 }
 
 // dont do 100% because of the margin on the home page
@@ -25,21 +37,25 @@ export const fullScreenDialogScale = 0.75;
 export const actions: IHashActionFunc = {
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
-  "Me Elsewhere": ElseWhereWindow,
+  "Media Accounts": ElseWhereWindow,
 };
 
 // returns what this icon does when its clicked
-export function getAction(el: LinkInfo, setwMsg: setWindowMsg): Function {
-  const action: Function = actions[el.name];
+// see ../components/desktop_icon.tsx for what this can
+// return. It either returns a function which launches the
+// virtual window, or a string, which is the URL to create
+// a link element from
+export function getAction(
+  el: LinkInfo,
+  setwMsg: setWindowMsg
+): string | launchWindowFunc {
+  const action: createsLaunchWindowFunc = actions[el.name];
   if (action !== undefined) {
     // create the closure so that actions have
     // access to the set window message functions
     return action(setwMsg);
   } else if (el.url !== undefined && el.url !== "") {
-    return () => {
-      // (reloads the page, to an external URL)
-      window.location.href = el.url!;
-    };
+    return el.url;
   }
   throw Error("Could not find an appropriate action for " + JSON.stringify(el));
 }

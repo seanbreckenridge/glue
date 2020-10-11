@@ -8,9 +8,9 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
-import { fullScreenDialogScale } from "./actions";
+import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
-export function FeedWindow(setwMsg: setWindowMsg): Function {
+export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();

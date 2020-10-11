@@ -15,6 +15,11 @@ python3 "${REPOS}/albums/server/app.py" &
 # https://github.com/seanbreckenridge/docker-jikan
 cd "${REPOS}/docker-jikan" && ./run &
 
+until curl -s 'localhost:8000' 2>/dev/null 1>&2; do
+	echo "Waiting for docker to be up..."
+	sleep 1
+done
+
 mix phx.server
 
 kill $(jobs -p)
