@@ -69,7 +69,12 @@ const Dialog = (props: IDialogProps) => {
   };
 
   const handleScrollDown = () => {
-    scrollTo(Math.min(winData.fullY, scrollOffset + winData.height / 3));
+    scrollTo(
+      Math.min(
+        winData.fullY - winData.height,
+        scrollOffset + winData.height / 3
+      )
+    );
   };
 
   const handleEnableRND = () => {
@@ -175,7 +180,18 @@ const Dialog = (props: IDialogProps) => {
           className={clsx("dialog-body", hasMsg && "dialog-message")}
           onWheel={(e) => {
             e.preventDefault();
-            scrollTo(scrollOffset + e.deltaY * 15);
+            let targetScrollHeight: number = scrollOffset + e.deltaY * 15;
+
+            // make sure this is within bounds, else default
+            if (targetScrollHeight < 0) {
+              targetScrollHeight = 0;
+            } else {
+              const maxScrollHeight = winData.fullY - winData.height;
+              if (targetScrollHeight > maxScrollHeight) {
+                targetScrollHeight = maxScrollHeight;
+              }
+            }
+            scrollTo(targetScrollHeight);
           }}
         >
           {
