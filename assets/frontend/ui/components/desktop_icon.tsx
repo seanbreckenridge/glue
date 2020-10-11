@@ -41,8 +41,8 @@ const DesktopIcon = (props: IDesktopIcon) => {
       <figure
         className="desktop-icon"
         onClick={() => {
-          props.click!()
-          props.mouseLeave() // also deselect icon
+          props.click!();
+          props.mouseLeave(); // also deselect icon
         }}
         onTouchStart={props.mouseEnter}
         onTouchEnd={props.mouseLeave}

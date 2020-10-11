@@ -11,6 +11,7 @@ import {
   RCubingData,
   RFeedData,
 } from "./api_model";
+import { some } from "./utils";
 
 // defines the connection with the API, exposes that context/state
 // using hooks to the rest of the application
@@ -24,6 +25,9 @@ interface IProps {
 type Context = {
   feed?: RFeedData;
   cubing?: RCubingData;
+  // hard to model this without making it 'global',
+  // as windows get launched from closures with different function aritys
+  selectedWindow?: string;
   // setContext: Dispatch<SetStateAction<Context>>;
   setContext: setContextFunc;
 };
@@ -34,6 +38,19 @@ const initialContext: Context = {
   setContext: (): void => {
     throw new Error("setContext function must be overridden");
   },
+};
+
+const setSelectedWindow = (setCtx: setContextFunc, windowId?: string) => {
+  if (some(windowId)) {
+    setCtx(
+      (oldData: Context): Context => {
+        return {
+          ...oldData,
+          selectedWindow: windowId,
+        };
+      }
+    );
+  }
 };
 
 const AppContext = createContext<Context>(initialContext);
@@ -68,4 +85,5 @@ export {
   AppContextProvider,
   AppContextConsumer,
   setContextFunc,
+  setSelectedWindow,
 };

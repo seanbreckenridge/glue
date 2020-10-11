@@ -260,6 +260,16 @@ $border_color: #eee;
       @include sheight(large) {
         height: calc(100vh - 50px - 3em);
       }
+
+      #floating-windows {
+        .rnd {
+          z-index: 2; // this is so that images don't overlap the windows
+
+          &.top-dialog {
+            z-index: 3; // the selected window, can only be one of these at a time, managed by the AppContext
+          }
+        }
+      }
     }
 
     #home-icons-container {

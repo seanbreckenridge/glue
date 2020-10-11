@@ -25,6 +25,7 @@ export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
           width={feedDialogWidth}
           height={feedDialogHeight}
           title="media feed"
+          windowId={windowId}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >

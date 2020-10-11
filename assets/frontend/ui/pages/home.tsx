@@ -93,11 +93,11 @@ function Home() {
       <div id="window-body">
         <div id="desktop-body">
           <div id="home-icons-window-wrapper">
-            <>
+            <div id="floating-windows">
               {Object.keys(guiWindows).map((wid) => (
                 <div key={wid.toString()}>{guiWindows[wid]}</div>
               ))}
-            </>
+            </div>
             <div id="home-icons-container">
               {IconData.map((el) => {
                 const action: string | launchWindowFunc = getAction(
