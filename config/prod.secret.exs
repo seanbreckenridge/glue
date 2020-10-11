@@ -25,7 +25,7 @@ secret_key_base =
 
 config :glue, GlueWeb.Endpoint,
   http: [
-    port: String.to_integer(System.get_env("GLUE_PORT") || 8082),
+    port: String.to_integer(System.get_env("GLUE_PORT") || "8082"),
     transport_options: [socket_opts: [:inet6]]
   ],
   secret_key_base: secret_key_base

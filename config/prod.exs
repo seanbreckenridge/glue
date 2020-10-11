@@ -10,7 +10,8 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :glue, GlueWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  http: [port: String.to_integer(System.get_env("GLUE_PORT") || "8082")],
+  url: [host: "sean.fish", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production

@@ -1,37 +1,39 @@
-#!/bin/bash
+#!/bin/bash -e
 # accepts the secret file from https://github.com/seanbreckenridge/vps
 # see the secret.dist file there
 
-DEFAULT_SECRET="${HOME}/vps/secret"
+# defualt location on my server
+declare FILEPATH DEFAULT_SECRET
+readonly DEFAULT_SECRET="${REPOS:-${HOME}}/vps/secret"
 
-if [ -e "$1" ]; then
-	FILEPATH="${1}"
-	shift
+if [[ -n "${2}" ]]; then
+	FILEPATH="${2}"
 else
-	if [ -e "$DEFAULT_SECRET" ]; then
-		FILEPATH="${HOME}/vps/secret" # default location on my server
-
+	if [[ -e "${DEFAULT_SECRET}" ]]; then
+		FILEPATH="${DEFAULT_SECRET}"
 	else
-		echo "Error: Pass JSON config file as first argument" 1>&2
+		echo "Error: Pass JSON config file as second argument" 1>&2
 		exit 1
 	fi
 fi
 
-if [ ! -e "$FILEPATH" ]; then
+if [[ ! -r "${FILEPATH}" ]]; then
 	printf "No such file: %s\n" "$1" 1>&2
 	exit 1
 fi
 
-export GLUE_DATABASE_URI=$(jq -r '.postgres_uri' "$FILEPATH")
-export GLUE_SECRET_KEY_BASE=$(jq -r '.glue_secret' "$FILEPATH")
-export TRAKT_API_KEY=$(jq -r '.trakt_api_key' "$FILEPATH")
-export TMDB_API_KEY=$(jq -r '.tmdb_api_key' "$FILEPATH")
+declare GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY
+GLUE_DATABASE_URI="$(jq -r '.postgres_uri' "$FILEPATH")"
+GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "$FILEPATH")"
+TRAKT_API_KEY="$(jq -r '.trakt_api_key' "$FILEPATH")"
+TMDB_API_KEY="$(jq -r '.tmdb_api_key' "$FILEPATH")"
+export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY
 
 export MIX_ENV=prod
 
 case "$1" in
 # drop into an interactive shell after loading environment secrets
--i)
+--shell)
 	echo "Dropping into interactive shell with secrets..."
 	bash
 	exit 0
@@ -41,8 +43,15 @@ case "$1" in
 	iex -S mix
 	exit 0
 	;;
-*) ;;
+--run)
+	:
+	;;
 
+*)
+	echo "Must specify one of:"
+	grep -P '^\s*--?\w+\)' "$(realpath "$0")" | tr -d '); '
+	exit 1
+	;;
 esac
 
 mix deps.get --only prod
