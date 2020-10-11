@@ -73,13 +73,18 @@ const Dialog = (props: IDialogProps) => {
   };
 
   const handleEnableRND = () => {
-    setDragDisable(false);
-    setResizable(true);
+    // incase the x button was clicked, make sure element still exists
+    if (scrollRef) {
+      setDragDisable(false);
+      setResizable(true);
+    }
   };
 
   const handleDisableRND = () => {
-    setDragDisable(true);
-    setResizable(false);
+    if (scrollRef) {
+      setDragDisable(true);
+      setResizable(false);
+    }
   };
 
   const saveElementData = () => {
