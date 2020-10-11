@@ -72,7 +72,7 @@ const CubingBody = ({ data }: ICubingBody) => {
         <a href="https://www.worldcubeassociation.org/persons/2017BREC02">
           my records
         </a>{" "}
-        from <a href="https://worldcubeassosiation.org">WCA</a> (World Cube
+        from <a href="https://www.worldcubeassociation.org/">WCA</a> (World Cube
         Association) approved competitions. I've been to {data.competitions}{" "}
         competitions and have {data.completed_solves}completed official solves.
       </p>

@@ -38,21 +38,18 @@ const DesktopIcon = (props: IDesktopIcon) => {
   // this is so that control-click works on external links
   if (some(props.click)) {
     return (
-      <figure className="desktop-icon">
+      <figure
+        className="desktop-icon"
+        onClick={() => props.click!()}
+        onMouseEnter={() => props.mouseEnter()}
+        onMouseLeave={() => props.mouseLeave()}
+      >
         <img
           className="desktop-icon-interactable"
           src={props.iconurl}
           alt={props.caption}
-          onClick={() => props.click!()}
-          onMouseEnter={() => props.mouseEnter()}
-          onMouseLeave={() => props.mouseLeave()}
         />
-        <figcaption
-          className="desktop-icon-interactable"
-          onClick={() => props.click!()}
-          onMouseEnter={() => props.mouseEnter()}
-          onMouseLeave={() => props.mouseLeave()}
-        >
+        <figcaption className="desktop-icon-interactable">
           <pre>
             <code>{props.caption}</code>
           </pre>
@@ -61,22 +58,20 @@ const DesktopIcon = (props: IDesktopIcon) => {
     );
   } else if (some(props.url)) {
     return (
-      <figure className="desktop-icon">
+      <figure
+        className="desktop-icon"
+        onMouseEnter={() => props.mouseEnter()}
+        onMouseLeave={() => props.mouseLeave()}
+      >
         <LinkWrap url={props.url!}>
           <img
             className="desktop-icon-interactable"
             src={props.iconurl}
             alt={props.caption}
-            onMouseEnter={() => props.mouseEnter()}
-            onMouseLeave={() => props.mouseLeave()}
           />
         </LinkWrap>
         <LinkWrap url={props.url!}>
-          <figcaption
-            className="desktop-icon-interactable"
-            onMouseEnter={() => props.mouseEnter()}
-            onMouseLeave={() => props.mouseLeave()}
-          >
+          <figcaption className="desktop-icon-interactable">
             <pre>
               <code>{props.caption}</code>
             </pre>
