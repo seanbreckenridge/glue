@@ -8,6 +8,7 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
+import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
 export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
@@ -67,7 +68,7 @@ const FeedData = ({ data }: IFeedPaginator) => {
     <div className="feed-body">
       {data.map((item: FeedItem, index: number) => {
         return (
-          <a href={item.site_url} className="unlinkify" key={index}>
+          <TapLink href={item.site_url} className="unlinkify" key={index}>
             <div className="feed-item-row">
               <div className="feed-item-image">
                 <img src={item.image_url} alt="" />
@@ -77,7 +78,7 @@ const FeedData = ({ data }: IFeedPaginator) => {
                 <p>{item.timestamp}</p>
               </div>
             </div>
-          </a>
+          </TapLink>
         );
       })}
     </div>

@@ -5,6 +5,7 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
+import TapLink from "../components/taplink";
 import { LinkInfo } from "../../data";
 import { launchWindowFunc } from "./actions";
 
@@ -50,7 +51,7 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
             {props.links.map((el: LinkInfo) => (
               <div key={el.name}>
                 <span>
-                  <a href={el.url}>{el.name}</a>
+                  <TapLink href={el.url}>{el.name}</TapLink>
                 </span>
               </div>
             ))}

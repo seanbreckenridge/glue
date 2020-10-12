@@ -8,6 +8,7 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
+import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
 const minHeight = 500;
@@ -70,12 +71,13 @@ const CubingBody = ({ data }: ICubingBody) => {
     <div className="cubing-body">
       <p>
         These are{" "}
-        <a href="https://www.worldcubeassociation.org/persons/2017BREC02">
+        <TapLink href="https://www.worldcubeassociation.org/persons/2017BREC02">
           my records
-        </a>{" "}
-        from <a href="https://www.worldcubeassociation.org/">WCA</a> (World Cube
-        Association) approved competitions. I've been to {data.competitions}{" "}
-        competitions and have {data.completed_solves} completed official solves.
+        </TapLink>{" "}
+        from <TapLink href="https://www.worldcubeassociation.org/">WCA</TapLink>{" "}
+        (World Cube Association) approved competitions. I've been to{" "}
+        {data.competitions} competitions and have {data.completed_solves}{" "}
+        completed official solves.
       </p>
       <p>
         For those unfamiliar with the notation, a Single is the time for a
@@ -122,32 +124,39 @@ const CubingBody = ({ data }: ICubingBody) => {
       </table>
       <p>
         Only hardware I really care about is my 3x3, which is a{" "}
-        <a href="https://www.thecubicle.com/products/moyu-weilong-gts3-m">
+        <TapLink href="https://www.thecubicle.com/products/moyu-weilong-gts3-m">
           Moyu GTS3M
-        </a>
+        </TapLink>
         . For a lot of my other puzzles I just bought whatever the standard
         mid-range cubes are.
       </p>
       <p>
         For competition, I use full{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/CFOP_method">
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/CFOP_method">
           CFOP
-        </a>{" "}
+        </TapLink>{" "}
         with some{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/COLL">COLL</a> for
-        3x3,{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/Yau_method">Yau</a>{" "}
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/COLL">
+          COLL
+        </TapLink>{" "}
+        for 3x3,{" "}
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/Yau_method">
+          Yau
+        </TapLink>{" "}
         for 4x4, and{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/Ortega_Method">
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/Ortega_Method">
           Ortega
-        </a>{" "}
+        </TapLink>{" "}
         for 2x2. For other events I'm only familiar with the basics. I've played
         around with{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/Roux_method">
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/Roux_method">
           Roux
-        </a>{" "}
+        </TapLink>{" "}
         (~average around 40 seconds), currently use 2-look{" "}
-        <a href="https://www.speedsolving.com/wiki/index.php/CMLL">CMLL</a>.
+        <TapLink href="https://www.speedsolving.com/wiki/index.php/CMLL">
+          CMLL
+        </TapLink>
+        .
       </p>
     </div>
   );
