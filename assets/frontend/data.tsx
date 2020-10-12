@@ -4,6 +4,8 @@ interface LinkInfo {
   icon?: string;
 }
 
+const requestFeedCount = 150;
+
 const MediaElsewhere: LinkInfo[] = [
   {
     name: "Movies [Letterboxd]",
@@ -91,4 +93,11 @@ const IconData: LinkInfo[] = [
   },
 ];
 
-export { LinkInfo, IconData, MediaElsewhere, MiscApps, Programming };
+export {
+  LinkInfo,
+  IconData,
+  MediaElsewhere,
+  MiscApps,
+  Programming,
+  requestFeedCount,
+};

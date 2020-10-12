@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { Context, setContextFunc } from "./app_provider";
+import { requestFeedCount } from "./data";
 
 // individual feed items
 interface FeedItem {
@@ -57,18 +58,18 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
 
 // request and set feed data
 const requestAndSetFeed = async (setData: setContextFunc) => {
-  loadInterfaceMatches<FeedData>("/api/data/feed?count=200&format_dates").then(
-    (response: RFeedData) => {
-      setData(
-        (oldData: Context): Context => {
-          return {
-            ...oldData,
-            feed: response,
-          };
-        }
-      );
-    }
-  );
+  loadInterfaceMatches<FeedData>(
+    `/api/data/feed?count=${requestFeedCount}&format_dates`
+  ).then((response: RFeedData) => {
+    setData(
+      (oldData: Context): Context => {
+        return {
+          ...oldData,
+          feed: response,
+        };
+      }
+    );
+  });
 };
 
 // request and set cubing data

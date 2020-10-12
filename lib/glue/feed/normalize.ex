@@ -1,5 +1,5 @@
 defmodule Glue.Feed.FeedItem do
-  @derive {Jason.Encoder, except: [:meta_info]}
+  @derive {Jason.Encoder, except: [:meta_info, :type]}
   defstruct title: "",
             timestamp: nil,
             image_url: nil,
