@@ -47,6 +47,17 @@ const MiscApps: LinkInfo[] = [
   },
 ];
 
+const Programming: LinkInfo[] = [
+  {
+    name: "Github",
+    url: "https://github.com/seanbreckenridge",
+  },
+  {
+    name: "Gitlab",
+    url: "https://gitlab.com/seanbreckenridge",
+  },
+];
+
 const IconData: LinkInfo[] = [
   {
     name: "Media Feed",
@@ -74,6 +85,10 @@ const IconData: LinkInfo[] = [
     name: "Misc",
     icon: "/images/frontend/misc.png",
   },
+  {
+    name: "Programming",
+    icon: "/images/frontend/laptop.png",
+  },
 ];
 
-export { LinkInfo, IconData, MediaElsewhere, MiscApps };
+export { LinkInfo, IconData, MediaElsewhere, MiscApps, Programming };

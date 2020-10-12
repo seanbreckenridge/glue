@@ -9,7 +9,7 @@ import TapLink from "../components/taplink";
 import { LinkInfo } from "../../data";
 import { launchWindowFunc } from "./actions";
 
-const linkLineHeight = 30;
+const linkLineHeight = 20;
 const defaultMinWidth = 320;
 
 interface ILinkWindow {
@@ -22,12 +22,13 @@ interface ILinkWindow {
 
 export function LinkWindow(props: ILinkWindow): launchWindowFunc {
   const minWidth = props.minWidth ?? defaultMinWidth;
-  const minHeight = props.minHeight ?? props.links.length * linkLineHeight;
+  const minHeight = props.minHeight ?? 50 + props.links.length * linkLineHeight;
+  console.log(minHeight);
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
-    const linkWidth = browserWidth * 0.2;
-    const linkHeight = browserHeight * 0.2;
+    const linkWidth = Math.min(browserWidth * 0.2, minWidth);
+    const linkHeight = Math.min(browserHeight * 0.2, minHeight);
     const windowId = Date.now().toString();
     const linkDialog = (
       <>
