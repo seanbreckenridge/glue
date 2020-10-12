@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import SwapInterfaceButton from "./../components/swap_interface";
 import { getAction, launchWindowFunc } from "./actions";
 import { IconData } from "../../data";
+import { getWindowDimensions } from "./../components/dimensions";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -42,6 +43,19 @@ function removeWindow(
   return newWindows;
 }
 
+// rectangles the user can draw on the screen
+interface _draggedRect {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  browserWidth: number;
+  browserHeight: number;
+}
+type draggedRect = _draggedRect | undefined;
+const draggedRectDefault = undefined;
+const dragBuffer = 3; // to make sure nothing weird happens with scrollbar, keep a small buffer
+
 function Home() {
   // currently displayed floating windows
   const [guiWindows, setWindows] = useState(windowDefault);
@@ -58,6 +72,7 @@ function Home() {
   // use the icon caption as the key
   const [selectedIcon, setSelectedIcon] = useState("");
 
+  // handle window spawn/kill
   useEffect(() => {
     // if we have a new message (spawn/kill window), do something with it
     if (wMsg !== undefined) {
@@ -76,6 +91,44 @@ function Home() {
     }
   }, [wMsg]); // only call the useEffect hook when wMsg changes
 
+  // let the user draw rectangles on the desktop
+  const [dragRect, setDragRect] = useState<draggedRect>(draggedRectDefault);
+
+  const createRect = (x: number, y: number) => {
+    const { browserHeight, browserWidth } = getWindowDimensions();
+    setDragRect({
+      x1: x,
+      x2: x,
+      y1: y,
+      y2: y,
+      browserHeight: browserHeight,
+      browserWidth: browserWidth,
+    });
+  };
+
+  const updateRect = (x: number, y: number) => {
+    // bounds checking
+    if (x > dragRect!.browserWidth) {
+      x = dragRect!.browserWidth - 3;
+    } else if (x <= 0) {
+      x = dragBuffer;
+    }
+    if (y > dragRect!.browserHeight) {
+      y = dragRect!.browserHeight - 3;
+    } else if (y <= 0) {
+      y = dragBuffer;
+    }
+    setDragRect({
+      ...dragRect!,
+      x2: x,
+      y2: y,
+    });
+  };
+
+  const deleteRect = () => {
+    setDragRect(undefined);
+  };
+
   // TODO: match against URL hash and open corresponding window?
   // TODO: on resize, 'update'? somehow the dialogs
   // so that if its off the page, it resnaps/moves to the current viewport
@@ -92,12 +145,26 @@ function Home() {
       </div>
       <div id="window-body">
         <div id="desktop-body">
-          <div id="home-icons-window-wrapper">
+          <div
+            id="home-icons-window-wrapper"
+            // capture events for drawing the rectangle
+            onMouseDown={(event) => createRect(event.clientX, event.clientY)}
+            onMouseMove={(event: React.DragEvent<HTMLDivElement>) => {
+              if (dragRect !== undefined) {
+                updateRect(event.clientX, event.clientY);
+              }
+            }}
+            onMouseUp={(_) => deleteRect()}
+            onMouseLeave={(_) => deleteRect()}
+          >
+            {/* dialog/windows */}
             <div id="floating-windows">
               {Object.keys(guiWindows).map((wid) => (
                 <div key={wid.toString()}>{guiWindows[wid]}</div>
               ))}
             </div>
+            {/* drawable rectangle */}
+            {dragRect !== undefined ? <DragRect {...dragRect} /> : <></>}
             <div id="home-icons-container">
               {IconData.map((el) => {
                 const action: string | launchWindowFunc = getAction(
@@ -132,5 +199,36 @@ function Home() {
     </>
   );
 }
+
+const DragRect = (props: _draggedRect) => {
+  // by default, assume the user dragged down and to the right
+  let topLeftX: number = props.x1;
+  let topLeftY: number = props.y1;
+  let height: number = props.y2 - props.y1;
+  let width: number = props.x2 - props.x1;
+  // if the user dragged left, x2 > x1
+  if (props.x1 >= props.x2) {
+    topLeftX = props.x2;
+    width = props.x1 - props.x2;
+  }
+  // if user dragged up
+  if (props.y1 >= props.y2) {
+    topLeftY = props.y2;
+    height = props.y1 - props.y2;
+  }
+  return (
+    <div
+      id="draggable-rect"
+      style={{
+        top: topLeftY,
+        left: topLeftX,
+        height: height,
+        width: width,
+      }}
+    >
+      <div className="draggable-rect-body"></div>
+    </div>
+  );
+};
 
 export default Home;

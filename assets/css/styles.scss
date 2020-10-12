@@ -261,6 +261,16 @@ $border_color: #eee;
         height: calc(100vh - 50px - 3em);
       }
 
+      #draggable-rect {
+        position: absolute;
+        outline: 2px lightgrey dotted;
+
+        .draggable-rect-body {
+          opacity: 0;
+          background-color: inherit;
+        }
+      }
+
       #floating-windows {
         .rnd {
           z-index: 2; // this is so that images don't overlap the windows
