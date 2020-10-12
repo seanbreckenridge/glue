@@ -9,7 +9,7 @@ import TapLink from "../components/taplink";
 import { LinkInfo } from "../../data";
 import { launchWindowFunc } from "./actions";
 
-const linkLineHeight = 20;
+const linkLineHeight = 30;
 const defaultMinWidth = 320;
 
 interface ILinkWindow {
@@ -22,7 +22,8 @@ interface ILinkWindow {
 
 export function LinkWindow(props: ILinkWindow): launchWindowFunc {
   const minWidth = props.minWidth ?? defaultMinWidth;
-  const minHeight = props.minHeight ?? 50 + props.links.length * linkLineHeight;
+  // 40 is a buffer for the menu bar
+  const minHeight = props.minHeight ?? 40 + props.links.length * linkLineHeight;
   console.log(minHeight);
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
@@ -52,7 +53,7 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
             {props.links.map((el: LinkInfo) => (
               <div key={el.name}>
                 <span>
-                  <TapLink href={el.url}>{el.name}</TapLink>
+                  <TapLink className="linklist-item" href={el.url}>{el.name}</TapLink>
                 </span>
               </div>
             ))}
