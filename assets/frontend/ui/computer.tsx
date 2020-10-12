@@ -16,7 +16,7 @@ const Computer: React.FC<{}> = () => {
 
 // TODO: add loading animation
 export const HomeScreen: React.FC<{}> = () => {
-  return <GUI />
+  return <GUI />;
 };
 
 export default Computer;

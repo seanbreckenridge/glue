@@ -132,7 +132,11 @@ function Home() {
   return (
     <>
       <div id="menu-bar">
-        <TapLink href="/" id="site-title" className="menu-toolbar-item menu-bar-item unlinkify pixel-large">
+        <TapLink
+          href="/"
+          id="site-title"
+          className="menu-toolbar-item menu-bar-item unlinkify pixel-large"
+        >
           sean
         </TapLink>
       </div>
