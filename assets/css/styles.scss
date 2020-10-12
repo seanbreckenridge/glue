@@ -689,41 +689,41 @@ $offwhite: #eee;
   }
 }
 
-$terminal_bg: #121212;
-$terminal_text: #ecedf0;
-
-#tui {
-  background-color: $terminal_bg;
-  color: $terminal_text;
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-
-  #menu-bar {
-    color: black;
-    background-color: #d0d2d1;
-    border-radius: 5px 5px 0px 0px;
-  }
-
-  code {
-    white-space: pre-wrap; /* css-3 */
-    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-    white-space: -pre-wrap; /* Opera 4-6 */
-    white-space: -o-pre-wrap; /* Opera 7 */
-    word-wrap: break-word; /* Internet Explorer 5.5+ */
-  }
-
-  pre {
-    padding-left: 10%;
-    padding-right: 10%;
-    margin-top: 5%;
-  }
-
-  .disabled-message {
-    font-size: 150%;
-  }
-
-  .dummy-error-text {
-    color: red;
-  }
-}
+// $terminal_bg: #121212;
+// $terminal_text: #ecedf0;
+//
+// #tui {
+//   background-color: $terminal_bg;
+//   color: $terminal_text;
+//   display: flex;
+//   flex-flow: column;
+//   height: 100%;
+//
+//   #menu-bar {
+//     color: black;
+//     background-color: #d0d2d1;
+//     border-radius: 5px 5px 0px 0px;
+//   }
+//
+//   code {
+//     white-space: pre-wrap; /* css-3 */
+//     white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+//     white-space: -pre-wrap; /* Opera 4-6 */
+//     white-space: -o-pre-wrap; /* Opera 7 */
+//     word-wrap: break-word; /* Internet Explorer 5.5+ */
+//   }
+//
+//   pre {
+//     padding-left: 10%;
+//     padding-right: 10%;
+//     margin-top: 5%;
+//   }
+//
+//   .disabled-message {
+//     font-size: 150%;
+//   }
+//
+//   .dummy-error-text {
+//     color: red;
+//   }
+// }

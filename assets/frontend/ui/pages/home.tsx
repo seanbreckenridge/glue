@@ -1,11 +1,10 @@
 import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
 import clsx from "clsx";
-import DesktopIcon from "./../components/desktop_icon";
-import { Link } from "react-router-dom";
-// import SwapInterfaceButton from "./../components/swap_interface";
+import DesktopIcon from "../components/desktop_icon";
+import TapLink from "../components/taplink";
 import { getAction, launchWindowFunc } from "./actions";
 import { IconData } from "../../data";
-import { getWindowDimensions } from "./../components/dimensions";
+import { getWindowDimensions } from "../components/dimensions";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -129,20 +128,13 @@ function Home() {
     setDragRect(undefined);
   };
 
-  // TODO: match against URL hash/route and open corresponding dialog window?
   // TODO: [low priority] on resize, 'update'? somehow the dialogs; so that if its off the page, it resnaps/moves to the current viewport
   return (
     <>
       <div id="menu-bar">
-        <Link
-          className="menu-toolbar-item menu-bar-item unlinkify pixel-large"
-          id="site-title"
-          to="/"
-        >
+        <TapLink href="/" id="site-title" className="menu-toolbar-item menu-bar-item unlinkify pixel-large">
           sean
-        </Link>
-        {/* disable TUI for now (while it doesnt exist) */}
-        {/* <SwapInterfaceButton text="Switch to Terminal" isGui={true} /> */}
+        </TapLink>
       </div>
       <div id="window-body">
         <div id="desktop-body">
