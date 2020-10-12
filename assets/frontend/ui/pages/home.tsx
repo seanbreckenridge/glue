@@ -129,9 +129,8 @@ function Home() {
     setDragRect(undefined);
   };
 
-  // TODO: match against URL hash and open corresponding window?
-  // TODO: on resize, 'update'? somehow the dialogs
-  // so that if its off the page, it resnaps/moves to the current viewport
+  // TODO: match against URL hash/route and open corresponding dialog window?
+  // TODO: [low priority] on resize, 'update'? somehow the dialogs; so that if its off the page, it resnaps/moves to the current viewport
   return (
     <>
       <div id="menu-bar">
