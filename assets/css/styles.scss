@@ -159,11 +159,11 @@ $border_color: #eee;
 
   a {
     color: #43e3af;
-    &:hover {
-      color: #5d6997;
-    }
     &:visited {
       color: #2e9d59;
+    }
+    &:hover {
+      color: #5d6997;
     }
     &:active {
       -moz-filter: invert(1);
