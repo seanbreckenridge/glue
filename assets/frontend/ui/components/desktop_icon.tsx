@@ -50,7 +50,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
         onMouseLeave={props.mouseLeave}
       >
         <img
-          className="desktop-icon-interactable"
+          className="icon-img desktop-icon-interactable"
           src={props.iconurl}
           alt={props.caption}
         />
@@ -62,6 +62,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
       </figure>
     );
   } else if (some(props.url)) {
+    const isExternal = props.url!.startsWith("http");
     return (
       <figure
         className="desktop-icon"
@@ -70,11 +71,22 @@ const DesktopIcon = (props: IDesktopIcon) => {
         onMouseEnter={props.mouseEnter}
         onMouseLeave={props.mouseLeave}
       >
+        {isExternal ? (
+          <img
+            className={`external-arrow ${props.caption
+              .replace(" ", "-")
+              .toLowerCase()}`}
+            src="/images/icons/external.png"
+            alt=""
+          />
+        ) : (
+          <></>
+        )}
         <LinkWrap url={props.url!}>
           <img
             src={props.iconurl}
             alt={props.caption}
-            className="desktop-icon-interactable"
+            className="icon-img desktop-icon-interactable"
           />
         </LinkWrap>
         <LinkWrap url={props.url!}>

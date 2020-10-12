@@ -315,6 +315,7 @@ $border_color: #eee;
           display: flex;
           flex-flow: column;
           cursor: pointer;
+          position: relative;
 
           /* if this is a link instead of onClick
            * inherit flex properties */
@@ -323,7 +324,7 @@ $border_color: #eee;
             flex-flow: inherit;
           }
 
-          img {
+          img.icon-img {
             margin-left: auto;
             margin-right: auto;
             @include swidth(small) {
@@ -334,6 +335,33 @@ $border_color: #eee;
             }
             @include swidth(large) {
               height: 80px;
+            }
+          }
+
+          img.external-arrow {
+            position: absolute;
+            @include swidth(small) {
+              height: 20px;
+            }
+            @include swidth(medium) {
+              height: 30px;
+            }
+            @include swidth(large) {
+              height: 40px;
+            }
+            width: auto;
+            top: 0;
+            right: 0;
+
+            // dynamically created class names according to the caption
+            &.blog {
+              right: -15px;
+              top: -5px;
+            }
+
+            &.exobrain {
+              top: -5px;
+              right: 5px;
             }
           }
 

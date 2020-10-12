@@ -24,7 +24,6 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
   const minWidth = props.minWidth ?? defaultMinWidth;
   // 40 is a buffer for the menu bar
   const minHeight = props.minHeight ?? 40 + props.links.length * linkLineHeight;
-  console.log(minHeight);
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
