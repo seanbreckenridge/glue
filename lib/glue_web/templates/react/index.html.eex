@@ -1,1 +1,21 @@
 <div id="root"></div>
+<noscript>
+  <p>
+  Hi. This page requires JavaScript, you can see what it looks like <a href="https://camo.githubusercontent.com/6e3e2a4a0ef1ca41244fdf5348736e6b89281bce/68747470733a2f2f692e696d6775722e636f6d2f5a6765616e66752e706e67">here</a>.
+  </p>
+  <p>
+    This links off to some of my other projects, here are some links:
+  </p>
+  <ul>
+    <li><a href="https://exobrain.sean.fish/">Exobrain</a></li>
+    <li><a href="https://github.com/seanbreckenridge">Github</a></li>
+    <li>WebApps
+      <ul>
+        <li><a href="/animeshorts">AnimeShorts</a></li>
+        <li><a href="/mal_unapproved">MAL Unapproved</a></li>
+        <li><a href="/dvd">DVD Logo</a></li>
+        <li><a href="/xkcd">Favorite XKCDs</a></li>
+      </ul>
+    </li>
+  </ul>
+</noscript>

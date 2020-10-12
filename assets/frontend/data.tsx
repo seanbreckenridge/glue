@@ -41,6 +41,10 @@ const MiscApps: LinkInfo[] = [
     name: "DVD Logo",
     url: "/dvd/",
   },
+  {
+    name: "Favorite XKCDs",
+    url: "/xkcd",
+  },
 ];
 
 const IconData: LinkInfo[] = [
