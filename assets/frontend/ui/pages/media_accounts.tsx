@@ -7,7 +7,7 @@ export function MediaAccountsWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return LinkWindow({
     setwMsg: setwMsg,
     links: MediaElsewhere,
-    title: "media accounts",
-    minWidth: 380,
+    title: "media accts",
+    minWidth: 320,
   });
 }
