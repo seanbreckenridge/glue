@@ -53,7 +53,9 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
             {props.links.map((el: LinkInfo) => (
               <div key={el.name}>
                 <span>
-                  <TapLink className="linklist-item" href={el.url}>{el.name}</TapLink>
+                  <TapLink className="linklist-item" href={el.url}>
+                    {el.name}
+                  </TapLink>
                 </span>
               </div>
             ))}
