@@ -12,7 +12,7 @@ import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
 const minHeight = 400;
-const minWidth = 350;
+const minWidth = 300;
 
 export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {

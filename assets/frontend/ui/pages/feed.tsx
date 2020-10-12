@@ -11,7 +11,7 @@ import Dialog from "../components/dialog";
 import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
-const minWidth = 380;
+const minWidth = 300;
 const minHeight = 200;
 
 export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
