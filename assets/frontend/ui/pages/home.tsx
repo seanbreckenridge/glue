@@ -134,11 +134,13 @@ function Home() {
   return (
     <>
       <div id="menu-bar">
-        <div className="menu-toolbar-item menu-bar-item">
-          <Link className="unlinkify" to="/">
-            sean
-          </Link>
-        </div>
+        <Link
+          className="menu-toolbar-item menu-bar-item unlinkify pixel-large"
+          id="site-title"
+          to="/"
+        >
+          sean
+        </Link>
         {/* disable TUI for now (while it doesnt exist) */}
         {/* <SwapInterfaceButton text="Switch to Terminal" isGui={true} /> */}
       </div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>sean</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/bundle/bundle.css") %>"/>
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/bundle/app.js") %>"></script>
+    <style>
+      @font-face {
+        font-family: 'PressStart';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/fonts/PressStart.ttf');
+      }
+    </style>
+  </head>
+  <body>
+    <%= @inner_content %>
+  </body>
+</html>

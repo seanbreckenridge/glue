@@ -11,6 +11,9 @@ import Dialog from "../components/dialog";
 import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
+const minWidth = 380;
+const minHeight = 200;
+
 export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
@@ -27,6 +30,8 @@ export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
           height={feedDialogHeight}
           title="media feed"
           windowId={windowId}
+          minWidth={minWidth}
+          minHeight={minHeight}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >

@@ -11,7 +11,7 @@ import Dialog from "../components/dialog";
 import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
-const minHeight = 500;
+const minHeight = 400;
 const minWidth = 350;
 
 export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
@@ -24,12 +24,14 @@ export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
     const cubingDialog = (
       <>
         <Dialog
-          x={x - cubingDialogWidth / 2 - minWidth / 5}
-          y={y - cubingDialogHeight / 2 - minHeight / 5}
+          x={x - cubingDialogWidth / 2}
+          y={y - cubingDialogHeight / 2}
           width={cubingDialogWidth}
           height={cubingDialogHeight}
           title="cubing"
           windowId={windowId}
+          minHeight={minHeight}
+          minWidth={minWidth}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >

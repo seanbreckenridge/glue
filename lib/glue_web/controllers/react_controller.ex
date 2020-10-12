@@ -6,6 +6,8 @@ defmodule GlueWeb.ReactController do
   That uses react router, so its just the one route here to embed the root div
   """
 
+  plug :put_layout, "react_layout.html"
+
   def catchall(conn, _params) do
     render(conn, "index.html")
   end

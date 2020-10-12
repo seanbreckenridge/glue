@@ -1,9 +1,5 @@
-// Fonts to look into
-// https://www.fontspace.com/press-start-2p-font-f11591
-// http://openlab.ring.gr.jp/efont/shinonome/
-
-$width-break-small: 360px;
-$width-break-large: 1024px;
+$width-break-small: 450px;
+$width-break-large: 800px;
 
 $height-break-small: 300px;
 $height-break-large: 600px;
@@ -62,7 +58,7 @@ $outer_border_width: 5px;
 $inner_border_width: 2px;
 
 $bg: #222;
-$border_color: #eee;
+$offwhite: #eee;
 
 .full-screen {
   margin: 0;
@@ -75,6 +71,16 @@ $border_color: #eee;
   height: 100%;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
+}
+
+.pixel {
+  font-family: "PressStart", "Courier New", Courier, monospace;
+  font-size: 1rem;
+}
+
+.pixel-large {
+  font-family: "PressStart", "Courier New", Courier, monospace;
+  font-size: 120%;
 }
 
 .wrap-error {
@@ -133,14 +139,14 @@ $border_color: #eee;
   font-weight: inherit;
 
   a {
-    border: 3px solid $border_color;
+    border: 3px solid $offwhite;
     padding: 3px 10px;
     border-radius: 4px;
     color: $bg;
     text-decoration: none;
 
     &:hover {
-      background-color: #eee;
+      background-color: $offwhite;
       color: $bg;
     }
   }
@@ -154,7 +160,7 @@ $border_color: #eee;
 
 #gui {
   background-color: $bg;
-  color: $border_color;
+  color: $offwhite;
   border: $outer_border_width solid black;
 
   a {
@@ -175,8 +181,8 @@ $border_color: #eee;
 
   #menu-bar {
     color: black;
-    background-color: $border_color;
-    border-bottom: $inner_border_width solid $border_color;
+    background-color: $offwhite;
+    border-bottom: $inner_border_width solid $offwhite;
     align-items: center;
     padding-left: 2%;
     @include swidth(medium) {
@@ -184,6 +190,19 @@ $border_color: #eee;
     }
     @include swidth(large) {
       padding-left: 10%;
+    }
+
+    #site-title {
+      color: unset;
+      &:hover {
+        color: $offwhite;
+      }
+      &:active {
+        -moz-filter: invert(0.8);
+        -ms-filter: invert(0.8);
+        -o-filter: invert(0.8);
+        filter: invert(0.8);
+      }
     }
 
     .menu-toolbar-item {
@@ -199,7 +218,7 @@ $border_color: #eee;
       }
 
       &:hover {
-        color: $border_color;
+        color: $offwhite;
         transition-delay: 0.05s;
         transition-duration: 0s;
         transition-timing-function: linear;
@@ -209,7 +228,6 @@ $border_color: #eee;
 
       & * {
         position: relative;
-        top: -1px;
         color: inherit;
       }
     }
@@ -235,7 +253,7 @@ $border_color: #eee;
     padding: 1em;
 
     #what-do-now {
-      color: $border_color;
+      color: $offwhite;
       height: 100%;
       width: 100%;
       display: flex;
@@ -317,7 +335,7 @@ $border_color: #eee;
           }
 
           figcaption.desktop-icon-interactable {
-            color: $border_color;
+            color: $offwhite;
             background-color: black;
             outline: 1px grey dotted;
           }
@@ -382,23 +400,27 @@ $border_color: #eee;
             padding-left: 1em;
             @include swidth(small) {
               margin-top: 5px;
-              max-width: 60px;
+              max-width: 80px;
+              font-size: 80%;
             }
             @include swidth(medium) {
               margin-top: 5px;
-              max-width: 100px;
+              font-size: 90%;
+              max-width: 120px;
             }
             @include swidth(large) {
               margin-top: 5px;
-              max-width: 130px;
+              max-width: 220px;
             }
 
-            background-color: $border_color;
+            background-color: $offwhite;
             color: black;
 
             pre {
               text-align: center;
-
+              padding-top: 0.2em;
+              padding-bottom: 0.2em;
+              text-align: center;
               code {
                 white-space: pre-wrap; /* css-3 */
                 white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -419,7 +441,7 @@ $border_color: #eee;
   .dialog {
     background-color: $bg;
     color: #eee;
-    border: 2px solid $border_color;
+    border: 2px solid $offwhite;
     height: 100%;
     width: 100%;
     display: flex;
@@ -431,20 +453,20 @@ $border_color: #eee;
       flex: 0 1 auto;
       min-height: 20px;
       width: calc(100% - 10px - 2px); // dialog_gutter_width - border width
-      border: 2px solid $border_color;
+      border: 2px solid $offwhite;
       border-top: none;
       border-left: none;
       background: -moz-radial-gradient(black 15%, transparent 16%),
-        -moz-radial-gradient(black 15%, transparent 16%), $border_color;
+        -moz-radial-gradient(black 15%, transparent 16%), $offwhite;
       background: -webkit-radial-gradient(black 15%, transparent 16%),
-        -webkit-radial-gradient(black 15%, transparent 16%), $border_color;
+        -webkit-radial-gradient(black 15%, transparent 16%), $offwhite;
       background-position: 0 0, 10px 10px;
       -webkit-background-size: 5px 5px;
       -moz-background-size: 5px 5px;
       background-size: 5px 5px;
 
       .dialog-menu-button {
-        background: $border_color;
+        background: $offwhite;
         padding: 0;
         overflow: hidden;
         width: $dialog_exit_button_width;
@@ -498,7 +520,7 @@ $border_color: #eee;
         align-items: center;
 
         .dialog-title-text {
-          background: $border_color;
+          background: $offwhite;
           color: black;
           padding-left: 1em;
           padding-right: 1em;
@@ -513,8 +535,8 @@ $border_color: #eee;
       justify-content: center;
       align-items: center;
       padding: 5px;
-      border-right: 2px solid $border_color;
-      border-bottom: 2px solid $border_color;
+      border-right: 2px solid $offwhite;
+      border-bottom: 2px solid $offwhite;
       margin-right: $dialog_gutter_width;
       margin-bottom: $dialog_gutter_width;
       overflow-x: auto;
@@ -556,7 +578,7 @@ $border_color: #eee;
           th,
           td {
             vertical-align: middle;
-            border: solid 1px $border_color;
+            border: solid 1px $offwhite;
           }
           td,
           th {
@@ -622,7 +644,7 @@ $border_color: #eee;
             }
 
             .feed-item-description {
-              color: $border_color;
+              color: $offwhite;
               width: 75%;
               display: flex;
               padding: 1.5em;
@@ -654,10 +676,10 @@ $border_color: #eee;
       bottom: -1px;
       background-color: $bg;
       // basic border
-      border: solid $border_color 2px;
+      border: solid $offwhite 2px;
       // design
-      border-right: solid $border_color 4px;
-      border-bottom: solid $border_color 4px;
+      border-right: solid $offwhite 4px;
+      border-bottom: solid $offwhite 4px;
       padding-left: 5px;
       padding-top: 5px;
       height: $dialog_gutter_width;

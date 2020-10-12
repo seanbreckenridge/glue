@@ -170,7 +170,10 @@ const Dialog = (props: IDialogProps) => {
                 </div>
                 <div className="dialog-menu-title">
                   {dialogTitle && (
-                    <div className="dialog-title-text"> {dialogTitle} </div>
+                    <div className="dialog-title-text pixel">
+                      {" "}
+                      {dialogTitle}{" "}
+                    </div>
                   )}
                 </div>
                 <div

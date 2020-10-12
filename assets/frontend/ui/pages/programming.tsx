@@ -8,6 +8,6 @@ export function ProgrammingWindow(setwMsg: setWindowMsg): launchWindowFunc {
     setwMsg: setwMsg,
     links: Programming,
     title: "programming",
-    minWidth: 280,
+    minWidth: 320,
   });
 }

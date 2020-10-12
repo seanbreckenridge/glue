@@ -33,7 +33,7 @@ module.exports = (_env, options) => {
       },
       path: path.resolve(__dirname, "../priv/static/bundle/"),
     },
-    devtool: devMode ? "eval-cheap-module-source-map" : undefined,
+    devtool: devMode ? "eval-cheap-module-source-map" : false,
     module: {
       rules: [
         {

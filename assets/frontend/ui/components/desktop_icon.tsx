@@ -53,7 +53,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
           src={props.iconurl}
           alt={props.caption}
         />
-        <figcaption className="desktop-icon-interactable">
+        <figcaption className="pixel desktop-icon-interactable">
           <pre>
             <code>{props.caption}</code>
           </pre>
@@ -78,7 +78,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
           />
         </LinkWrap>
         <LinkWrap url={props.url!}>
-          <figcaption className="desktop-icon-interactable">
+          <figcaption className="pixel desktop-icon-interactable">
             <pre>
               <code>{props.caption}</code>
             </pre>
