@@ -19,7 +19,7 @@ export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
     const cubingDialogWidth = browserWidth * fullScreenDialogScale;
-    const cubingDialogHeight = browserHeight * fullScreenDialogScale;
+    const cubingDialogHeight = browserHeight * 0.6;
     const windowId = Date.now().toString();
     const cubingDialog = (
       <>
