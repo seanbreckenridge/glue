@@ -11,7 +11,6 @@ import {
   RCubingData,
   RFeedData,
 } from "./api_model";
-import { some } from "./utils";
 
 // defines the connection with the API, exposes that context/state
 // using hooks to the rest of the application
@@ -41,16 +40,14 @@ const initialContext: Context = {
 };
 
 const setSelectedWindow = (setCtx: setContextFunc, windowId?: string) => {
-  if (some(windowId)) {
-    setCtx(
-      (oldData: Context): Context => {
-        return {
-          ...oldData,
-          selectedWindow: windowId,
-        };
-      }
-    );
-  }
+  setCtx(
+    (oldData: Context): Context => {
+      return {
+        ...oldData,
+        selectedWindow: windowId,
+      };
+    }
+  );
 };
 
 const AppContext = createContext<Context>(initialContext);

@@ -1,5 +1,4 @@
 import React from "react";
-import { some } from "../../utils";
 import { launchWindowFunc } from "../pages/actions";
 
 // wrap some child element as an 'a' element
@@ -36,7 +35,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
   // if its a link, wraps the image/text in a <a>
   //
   // this is so that control-click works on external links
-  if (some(props.click)) {
+  if (props.click !== undefined) {
     return (
       <figure
         className="desktop-icon"
@@ -61,7 +60,7 @@ const DesktopIcon = (props: IDesktopIcon) => {
         </figcaption>
       </figure>
     );
-  } else if (some(props.url)) {
+  } else if (props.url !== undefined) {
     const isExternal = props.url!.startsWith("http");
     return (
       <figure
@@ -71,17 +70,6 @@ const DesktopIcon = (props: IDesktopIcon) => {
         onMouseEnter={props.mouseEnter}
         onMouseLeave={props.mouseLeave}
       >
-        {isExternal ? (
-          <img
-            className={`external-arrow ${props.caption
-              .replace(" ", "-")
-              .toLowerCase()}`}
-            src="/images/icons/external.png"
-            alt=""
-          />
-        ) : (
-          <></>
-        )}
         <LinkWrap url={props.url!}>
           <img
             src={props.iconurl}
@@ -96,6 +84,17 @@ const DesktopIcon = (props: IDesktopIcon) => {
             </pre>
           </figcaption>
         </LinkWrap>
+        {isExternal ? (
+          <img
+            className={`external-arrow ${props.caption
+              .replace(" ", "-")
+              .toLowerCase()}`}
+            src="/images/icons/external.png"
+            alt=""
+          />
+        ) : (
+          <></>
+        )}
       </figure>
     );
   } else {

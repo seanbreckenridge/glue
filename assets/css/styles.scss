@@ -306,11 +306,13 @@ $border_color: #eee;
         // }
 
         &.selected {
-          img.desktop-icon-interactable {
+          img {
             -moz-filter: invert(1);
             -ms-filter: invert(1);
             -o-filter: invert(1);
             filter: invert(1);
+          }
+          .desktop-icon-interactable {
             outline: 1px grey dotted;
           }
 

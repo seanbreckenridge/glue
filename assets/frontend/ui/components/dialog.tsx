@@ -3,7 +3,6 @@ import clsx from "clsx";
 import Repeatable from "react-repeatable";
 import { Rnd } from "react-rnd";
 
-import { some } from "../../utils";
 import {
   AppContextConsumer,
   setSelectedWindow,
@@ -49,8 +48,9 @@ const Dialog = (props: IDialogProps) => {
   const dialogWidth = props.width ?? defaultDialogWidth;
   const dialogHeight = props.height ?? defaultDialogHeight;
   const errorDialog = props.isErr ?? false;
-  const dialogTitle = props.title ?? (errorDialog ? "ERROR" : null);
-  const hasMsg = some(props.msg);
+  const dialogTitle: string | null =
+    props.title ?? (errorDialog ? "ERROR" : null);
+  const hasMsg = props.msg !== undefined;
 
   const defaultWindowData: windowData = {
     width: dialogWidth,
@@ -126,7 +126,7 @@ const Dialog = (props: IDialogProps) => {
   return (
     <AppContextConsumer>
       {(value: Context) => {
-        const dialogObj = (
+        return (
           <Rnd
             default={{
               x: props.x,
@@ -146,6 +146,11 @@ const Dialog = (props: IDialogProps) => {
             onDragStart={() => setSelfSelected(value, props.windowId)}
             onResizeStart={() => setSelfSelected(value, props.windowId)}
             onTouchStart={() => setSelfSelected(value, props.windowId)}
+            onMouseDown={(event: MouseEvent) => {
+              // when user clicks, drags or resizes a window
+              // dont draw rectangles on the desktop
+              event.stopPropagation();
+            }}
             className={clsx(
               "rnd",
               value.selectedWindow === props.windowId && "top-dialog"
@@ -164,7 +169,7 @@ const Dialog = (props: IDialogProps) => {
                   <span>×</span>
                 </div>
                 <div className="dialog-menu-title">
-                  {some(dialogTitle) && (
+                  {dialogTitle && (
                     <div className="dialog-title-text"> {dialogTitle} </div>
                   )}
                 </div>
@@ -251,8 +256,6 @@ const Dialog = (props: IDialogProps) => {
             </div>
           </Rnd>
         );
-        setSelfSelected(value);
-        return dialogObj;
       }}
     </AppContextConsumer>
   );

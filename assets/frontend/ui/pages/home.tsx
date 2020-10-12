@@ -147,14 +147,16 @@ function Home() {
           <div
             id="home-icons-window-wrapper"
             // capture events for drawing the rectangle
-            onMouseDown={(event) => createRect(event.clientX, event.clientY)}
-            onMouseMove={(event: React.DragEvent<HTMLDivElement>) => {
+            onMouseDown={(event) => {
+              createRect(event.clientX, event.clientY);
+            }}
+            onMouseMove={(event) => {
               if (dragRect !== undefined) {
                 updateRect(event.clientX, event.clientY);
               }
             }}
-            onMouseUp={(_) => deleteRect()}
-            onMouseLeave={(_) => deleteRect()}
+            onMouseUp={deleteRect}
+            onMouseLeave={deleteRect}
           >
             {/* dialog/windows */}
             <div id="floating-windows">

@@ -1,6 +1,5 @@
 import React from "react";
 import Dialog from "./dialog";
-import { some } from "../../utils";
 import useWindowDimensions from "./dimensions";
 
 interface IDesktopErrorDialogProps {
@@ -36,7 +35,7 @@ const DesktopErrorDialog = (props: IDesktopErrorDialogProps) => {
     >
       {/* there was an error!, include the stacktrace as children, in addition to the message*/}
       {
-        some(props.err) ? (
+        props.err !== undefined ? (
           <div className="dialog-error-stacktrace"> {props.err!.message} </div>
         ) : (
           <></>
