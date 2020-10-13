@@ -50,17 +50,8 @@ export function ReadmeWindow(setwMsg: setWindowMsg): launchWindowFunc {
 const ReadmeBody = () => {
   return (
     <div className="readme-body">
-      <h3>Hi!</h3>
-      <p>Name's Sean</p>
-      <p>
-        Other than{" "}
-        <TapLink href="https://github.com/seanbreckenridge/">Github</TapLink>, I
-        don't use social media that much. If you're interested in my thoughts,
-        my <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has
-        lots of those. Feel free to email me{" "}
-        <TapLink href="mailto:ssbreckenridge@me.com">here</TapLink>.
-      </p>
-      <hr />
+      <h3 className="hi">Hi!</h3>
+      <p>Name's Sean.</p>
       <p>
         The Icons here are mostly applications or links to other places I live
         on the internet.
@@ -69,6 +60,16 @@ const ReadmeBody = () => {
         The windows here can be resized and dragged around. The top left button
         can be used to close windows; the arrows in the top right can be used to
         scroll (try in 'Media Feed')
+      </p>
+
+      <hr />
+      <p>
+        Other than{" "}
+        <TapLink href="https://github.com/seanbreckenridge/">Github</TapLink>, I
+        don't use social media that much. If you're interested in my thoughts,
+        my <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has
+        lots of those. Feel free to email me{" "}
+        <TapLink href="mailto:ssbreckenridge@me.com">here</TapLink>.
       </p>
       <h5>Thanks for visiting!</h5>
     </div>

@@ -628,9 +628,13 @@ body {
 
       .readme-body {
         width: 90%;
-        margin-top: 2em;
+        height: 90%;
         height: 100%;
         text-align: left;
+
+        .hi {
+          margin-top: 2rem;
+        }
 
         hr {
           color: $offwhite;
@@ -643,9 +647,7 @@ body {
         }
 
         h3 {
-          text-decoration: underline;
-          font-size: 140%;
-          margin-bottom: 1em;
+          font-size: 170%;
         }
 
         h5 {
