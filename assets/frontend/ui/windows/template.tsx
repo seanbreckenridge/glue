@@ -1,18 +1,16 @@
 // this isnt used for any page, its the file I copy/paste when starting a new window
 import React from "react";
-import {setWindowMsg} from "./../home";
-import {
-  jitterCenterLocation
-} from "./../components/dimensions";
+import { setWindowMsg } from "./../home";
+import { jitterCenterLocation } from "./../components/dimensions";
 import Dialog from "../components/dialog";
-import {launchWindowFunc} from "./actions";
+import { launchWindowFunc } from "./actions";
 
 const minHeight = 150;
 const minWidth = 250;
 
 export function Window(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
-    const {x, y} = jitterCenterLocation();
+    const { x, y } = jitterCenterLocation();
     const windowId = Date.now().toString();
     const dialogObj = (
       <>
@@ -26,7 +24,7 @@ export function Window(setwMsg: setWindowMsg): launchWindowFunc {
           minHeight={minHeight}
           minWidth={minWidth}
           // when close it hit, set the message to kill this window
-          hitCloseCallback={() => setwMsg({spawn: false, windowId: windowId})}
+          hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <Body />
         </Dialog>
@@ -41,10 +39,6 @@ export function Window(setwMsg: setWindowMsg): launchWindowFunc {
   };
 }
 
-
 const Body = () => {
-  return (
-    <>
-    </>
-  )
+  return <></>;
 };

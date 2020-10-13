@@ -10,7 +10,7 @@ import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 const minHeight = 400;
 const minWidth = 300;
 
-export function BrowserWindow(setwMsg: setWindowMsg): launchWindowFunc {
+export function TextEditorWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserWidth, browserHeight } = getWindowDimensions();
     const { x, y } = jitterCenterLocation();
@@ -24,15 +24,15 @@ export function BrowserWindow(setwMsg: setWindowMsg): launchWindowFunc {
           y={y - dialogHeight / 2}
           width={dialogWidth}
           height={dialogHeight}
-          title="browser"
+          title="TextEdit"
           windowId={windowId}
           minHeight={minHeight}
-          disableBodyDragging={true}
           minWidth={minWidth}
+          disableBodyDragging={true}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
-          <Browser />
+          <TextEditor />
         </Dialog>
       </>
     );
@@ -45,59 +45,83 @@ export function BrowserWindow(setwMsg: setWindowMsg): launchWindowFunc {
   };
 }
 
-const defaultURL = "https://en.wikipedia.org/wiki/Special:Random";
+// https://stackoverflow.com/a/30832210/9348376
+function downloadTextFile(data: string, filename: string) {
+  let file: Blob = new Blob([data], { type: "text/plain" });
+  if (window.navigator.msSaveOrOpenBlob)
+    // IE10+
+    window.navigator.msSaveOrOpenBlob(file, filename);
+  else {
+    // Others
+    let a: HTMLAnchorElement = document.createElement("a");
+    let url: string = URL.createObjectURL(file);
+    a.href = url;
+    a.download = filename;
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 0);
+  }
+}
 
-const Browser = () => {
-  const [formUrl, setFormUrl] = useState<string>(defaultURL);
-  const [iframeURL, setIFrameURL] = useState<string>(defaultURL);
-  const textField = useRef<HTMLInputElement>(null);
+const defaultFilename = "Untitled.txt";
 
-  const handleSubmit = () => {
-    // prepend http if needed
-    let httpUrl: string = (" " + formUrl).slice(1); // deep copy
-    if (!httpUrl.startsWith("http")) {
-      httpUrl = "http://" + httpUrl;
-    }
-    setIFrameURL(httpUrl);
+const TextEditor = () => {
+  const [textAreaContents, setTextAreaContents] = useState<string>("");
+  const [filename, setFilename] = useState<string>(defaultFilename);
+  const filenameTextField = useRef<HTMLInputElement>(null);
+
+  const handleSave = () => {
+    downloadTextFile(textAreaContents, filename);
   };
 
   return (
-    <div className="browser-body">
-      <div className="browser-controls">
+    <div className="textedit-body">
+      <div className="textedit-controls">
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleSubmit();
+            handleSave();
           }}
         >
           <input
-            ref={textField}
+            ref={filenameTextField}
             onTouchEnd={() => {
-              textField.current!.focus();
+              filenameTextField.current!.focus();
             }} // for mobile
             type="text"
-            name="url"
+            name="filename"
             className="controls-input"
-            value={formUrl}
+            placeholder={defaultFilename}
+            value={filename}
             onChange={(e: any) => {
-              setFormUrl(e.target.value);
+              setFilename(e.target.value);
             }}
           />
           <a
             href="#"
             className="input-go pixel unlinkify"
-            onTouchEnd={handleSubmit}
-            onClick={handleSubmit}
+            onTouchEnd={handleSave}
+            onClick={handleSave}
           >
-            Go
+            SAVE
           </a>
           {/* so that ctrl enter works */}
           <input type="submit" style={{ display: "none" }} />
         </form>
       </div>
-      <div className="iframe-wrapper">
-        <iframe src={iframeURL}> </iframe>
-      </div>
+      <textarea
+        placeholder="Enter text here..."
+        name="textedit"
+        autoFocus
+        value={textAreaContents}
+        onChange={(e: any) => {
+          setTextAreaContents(e.target.value);
+        }}
+      />
     </div>
   );
 };

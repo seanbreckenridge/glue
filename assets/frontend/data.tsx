@@ -94,6 +94,9 @@ const IconData: LinkInfo[] = [
   {
     name: "Browser",
   },
+  {
+    name: "TextEdit",
+  },
 ];
 
 export {
