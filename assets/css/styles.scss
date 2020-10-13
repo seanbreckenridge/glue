@@ -567,9 +567,11 @@ body {
 
       // "GO" button for forms
       .input-go {
-        height: 20px;
+        position: relative;
+        top: 4px;
         background-color: lightgrey;
         padding: 0.6em;
+        margin-right: 1em;
         border-radius: 0.4em;
 
         &:hover {

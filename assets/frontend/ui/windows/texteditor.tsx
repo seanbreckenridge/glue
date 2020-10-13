@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { paragraph } from "txtgen";
 import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
@@ -78,6 +79,10 @@ const TextEditor = () => {
     downloadTextFile(textAreaContents, filename);
   };
 
+  const randomizeText = () => {
+    setTextAreaContents(paragraph());
+  };
+
   return (
     <div className="textedit-body">
       <div className="textedit-controls">
@@ -108,6 +113,14 @@ const TextEditor = () => {
             onClick={handleSave}
           >
             SAVE
+          </a>
+          <a
+            href="#"
+            className="input-go pixel unlinkify"
+            onTouchEnd={randomizeText}
+            onClick={randomizeText}
+          >
+            RANDOMIZE
           </a>
           {/* so that ctrl enter works */}
           <input type="submit" style={{ display: "none" }} />
