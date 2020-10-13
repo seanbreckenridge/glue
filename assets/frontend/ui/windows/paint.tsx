@@ -183,8 +183,10 @@ export const PaintControls = ({
   const colorRef = useRef<HTMLInputElement>(null);
 
   const handleRandomizeButton = () => {
-    setColorPalette(randomColorArray(pSize));
-    const newCol = randomColor();
+    const newArr = randomColorArray(pSize);
+    setColorPalette(newArr);
+    // pick one of the random colors from the new palette
+    const newCol = newArr[Math.floor(Math.random() * pSize)];
     setChosenColor(newCol);
     setCurrentColor(newCol);
   };
