@@ -83,14 +83,14 @@ const Browser = () => {
               setFormUrl(e.target.value);
             }}
           />
-          <TapLink
+          <a
             href="#"
             className="browser-go pixel unlinkify"
             onTouchEnd={handleSubmit}
             onClick={handleSubmit}
           >
             Go
-          </TapLink>
+          </a>
           {/* so that ctrl enter works */}
           <input type="submit" style={{ display: "none" }} />
         </form>
