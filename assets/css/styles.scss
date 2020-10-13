@@ -415,6 +415,7 @@ body {
               font-size: 80%;
             }
             @include swidth(large) {
+              font-size: 95%;
               max-width: 150px;
             }
 
@@ -521,7 +522,7 @@ body {
         flex: 0 1 auto;
 
         & span {
-          font-size: 120%;
+          font-size: 150%;
         }
       }
 
@@ -620,6 +621,35 @@ body {
             padding: 0.2rem;
             text-align: center;
           }
+        }
+      }
+
+      .readme-body {
+        width: 90%;
+        margin-top: 2em;
+        height: 100%;
+        text-align: left;
+
+        hr {
+          color: $offwhite;
+        }
+
+        h3,
+        h5,
+        p {
+          margin-bottom: 1em;
+        }
+
+        h3 {
+          text-decoration: underline;
+          font-size: 140%;
+          margin-bottom: 1em;
+        }
+
+        h5 {
+          text-decoration: underline;
+          font-size: 120%;
+          margin-bottom: 1em;
         }
       }
 

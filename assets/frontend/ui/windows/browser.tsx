@@ -29,7 +29,7 @@ export function BrowserWindow(setwMsg: setWindowMsg): launchWindowFunc {
           minHeight={minHeight}
           disableBodyDragging={true}
           minWidth={minWidth}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <Browser />

@@ -23,7 +23,7 @@ export function Window(setwMsg: setWindowMsg): launchWindowFunc {
           windowId={windowId}
           minHeight={minHeight}
           minWidth={minWidth}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <Body />

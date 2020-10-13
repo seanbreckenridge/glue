@@ -43,7 +43,7 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
           minWidth={minWidth}
           title={props.title}
           windowId={windowId}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() =>
             props.setwMsg({ spawn: false, windowId: windowId })
           }

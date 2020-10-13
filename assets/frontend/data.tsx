@@ -62,6 +62,9 @@ const Programming: LinkInfo[] = [
 
 const IconData: LinkInfo[] = [
   {
+    name: "README",
+  },
+  {
     name: "Media Feed",
     icon: "/images/frontend/camerafeed.png",
   },

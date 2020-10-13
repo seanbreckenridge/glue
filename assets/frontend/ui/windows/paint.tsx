@@ -37,19 +37,23 @@ export function PaintWindow(setwMsg: setWindowMsg): launchWindowFunc {
           minHeight={minHeight}
           minWidth={minWidth}
           disableBodyDragging={true}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <BrowserView>
             <Paint />
           </BrowserView>
           <MobileView>
-            <p style={{
-              width: '100%',
-              textAlign: 'center',
-              marginLeft: '1rem',
-              marginRight: '1rem'
-              }}>Sorry, painting doesn't work on mobile...</p>
+            <p
+              style={{
+                width: "100%",
+                textAlign: "center",
+                marginLeft: "1rem",
+                marginRight: "1rem",
+              }}
+            >
+              Sorry, painting doesn't work on mobile...
+            </p>
           </MobileView>
         </Dialog>
       </>

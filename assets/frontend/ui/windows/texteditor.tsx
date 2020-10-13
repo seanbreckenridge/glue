@@ -29,7 +29,7 @@ export function TextEditorWindow(setwMsg: setWindowMsg): launchWindowFunc {
           minHeight={minHeight}
           minWidth={minWidth}
           disableBodyDragging={true}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <TextEditor />

@@ -32,7 +32,7 @@ export function FeedWindow(setwMsg: setWindowMsg): launchWindowFunc {
           windowId={windowId}
           minWidth={minWidth}
           minHeight={minHeight}
-          // when close it hit, set the message to kill this window
+          // when close is hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
           <Feed />
