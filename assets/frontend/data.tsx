@@ -63,6 +63,7 @@ const Programming: LinkInfo[] = [
 const IconData: LinkInfo[] = [
   {
     name: "README",
+    icon: "/images/frontend/notepad.png",
   },
   {
     name: "Media Feed",
@@ -96,15 +97,20 @@ const IconData: LinkInfo[] = [
   },
   {
     name: "Browser",
+    icon: "/images/frontend/globe.png",
   },
   {
     name: "TextEdit",
+    icon: "/images/frontend/texteditor.png",
   },
   {
     name: "Paint",
+    icon: "/images/frontend/paint.png",
+
   },
   {
     name: "Customize",
+    icon: "/images/frontend/hammer_wrench.png",
   },
 ];
 
