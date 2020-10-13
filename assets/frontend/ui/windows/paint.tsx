@@ -44,7 +44,12 @@ export function PaintWindow(setwMsg: setWindowMsg): launchWindowFunc {
             <Paint />
           </BrowserView>
           <MobileView>
-            <p>Sorry, painting doesn't work on mobile...</p>
+            <p style={{
+              width: '100%',
+              textAlign: 'center',
+              marginLeft: '1rem',
+              marginRight: '1rem'
+              }}>Sorry, painting doesn't work on mobile...</p>
           </MobileView>
         </Dialog>
       </>

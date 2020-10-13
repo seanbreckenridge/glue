@@ -311,8 +311,16 @@ body {
 
       .home-icon {
         // center the figure/text in the container that scales
-        margin-top: 2em;
-        margin-bottom: 2em;
+        margin-top: 1.75em;
+        margin-bottom: 1.75em;
+        @include swidth(medium) {
+          margin-top: 1.25rem;
+          margin-bottom: 1.25rem;
+        }
+        @include swidth(small) {
+          margin-top: 0.75em;
+          margin-bottom: 0.75em;
+        }
         margin-left: auto;
         margin-right: auto;
         padding-right: 3em;
@@ -407,7 +415,7 @@ body {
               font-size: 80%;
             }
             @include swidth(large) {
-              max-width: 200px;
+              max-width: 150px;
             }
 
             background-color: $offwhite;
