@@ -62,6 +62,8 @@ defmodule GlueWeb.Router do
 
     get "/data/feed", DataController, :feed
     get "/data/cubing", DataController, :cubing
+
+    resources "/gb_comment", GuestBookCommentController, only: [:index, :create]
   end
 
   # Enables LiveDashboard only for development
