@@ -5,12 +5,15 @@ interface IGUI {
   backgroundColor: string;
 }
 
-const GUI = ({backgroundColor}: IGUI) => {
+const GUI = ({ backgroundColor }: IGUI) => {
   return (
-    <div id="gui" className="full-screen root-el"
+    <div
+      id="gui"
+      className="full-screen root-el"
       style={{
-        backgroundColor: backgroundColor
-      }}>
+        backgroundColor: backgroundColor,
+      }}
+    >
       <Home />
     </div>
   );

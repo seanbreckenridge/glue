@@ -91,6 +91,9 @@ const IconData: LinkInfo[] = [
     name: "Programming",
     icon: "/images/frontend/laptop.png",
   },
+  {
+    name: "Browser",
+  },
 ];
 
 export {

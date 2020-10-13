@@ -21,7 +21,7 @@ interface IDialogProps {
   title?: string;
   windowId?: string;
   // dont allow user to drag while hovering body
-  // disableBodyDragging?: boolean;
+  disableBodyDragging?: boolean;
   // have to provide one of these. If msg is not
   // provided, uses children
   // If both are provided, renders message in a div.dialog-message
@@ -70,7 +70,7 @@ const Dialog = (props: IDialogProps) => {
   const dialogTitle: string | null =
     props.title ?? (errorDialog ? "ERROR" : null);
   const hasMsg = props.msg !== undefined;
-  // const disableBodyDragging = props.disableBodyDragging ?? false;
+  const disableBodyDragging = props.disableBodyDragging ?? false;
 
   const defaultWindowData: windowData = {
     width: dialogWidth,
@@ -186,9 +186,9 @@ const Dialog = (props: IDialogProps) => {
     showWindowParts();
     // if this is only meant to be dragged by the title, disable dragging here
     // the arrow functions in the body check if this is disabled before firing the handleEnableRND
-    // if (disableBodyDragging) {
-    //   setDragDisable(false);
-    // }
+    if (disableBodyDragging) {
+      setDragDisable(false);
+    }
     scrollTo(0); // start at 0, to fix leftover client data from reloads
   }, []);
 
@@ -331,17 +331,15 @@ const Dialog = (props: IDialogProps) => {
                     }
                     scrollTo(targetScrollHeight);
                   }}
-                  // for elements that want it, disable/enable dragging on the body
-                  // when hovered
-                  // onMouseEnter={() => {
-                  //   setDragDisable(disableBodyDragging)
-                  // }}
-                  // onTouchStart={() => {
-                  //   setDragDisable(disableBodyDragging)
-                  // }}
-                  // onClick={() => {
-                  //   setDragDisable(disableBodyDragging)
-                  // }}
+                  // for elements that want it, disable/enable
+                  // dragging on the body when hovered
+                  onMouseEnter={() => {
+                    setDragDisable(disableBodyDragging);
+                  }}
+                  onClick={() => {
+                    setDragDisable(disableBodyDragging);
+                  }}
+                  onMouseLeave={handleEnableRND}
                 >
                   {
                     // if the user provided a message, render it *and* the children

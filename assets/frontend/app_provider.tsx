@@ -52,7 +52,10 @@ const setSelectedWindow = (setCtx: setContextFunc, windowId?: string) => {
   );
 };
 
-const setBackgroundColor = (setCtx: setContextFunc, backgroundColor: string) => {
+const setBackgroundColor = (
+  setCtx: setContextFunc,
+  backgroundColor: string
+) => {
   setCtx(
     (oldData: Context): Context => {
       return {

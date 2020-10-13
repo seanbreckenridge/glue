@@ -31,7 +31,6 @@ export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
           title="cubing"
           windowId={windowId}
           minHeight={minHeight}
-          disableBodyDragging={true}
           minWidth={minWidth}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
