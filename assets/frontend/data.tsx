@@ -58,6 +58,14 @@ const Programming: LinkInfo[] = [
     name: "Gitlab",
     url: "https://gitlab.com/seanbreckenridge",
   },
+  {
+    name: "Project List",
+    url: "https://exobrain.sean.fish/projects/",
+  },
+  {
+    name: "PyPi",
+    url: "https://pypi.org/user/seanbreckenridge/",
+  }
 ];
 
 const IconData: LinkInfo[] = [
