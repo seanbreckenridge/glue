@@ -53,15 +53,14 @@ const ReadmeBody = () => {
       <h3 className="hi">Hi!</h3>
       <p>Name's Sean.</p>
       <p>
-        The Icons here are mostly applications or links to other places I live
-        on the internet.
+        The Icons here are mostly little applications, links to other places I
+        live on the internet, or some of my writing/projects.
       </p>
       <p>
         The windows here can be resized and dragged around. The top left button
         can be used to close windows; the arrows in the top right can be used to
-        scroll (try in 'Media Feed')
+        scroll (try in 'Media Feed').
       </p>
-
       <hr />
       <p>
         Other than{" "}
