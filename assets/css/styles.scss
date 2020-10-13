@@ -439,13 +439,24 @@ $offwhite: #eee;
   $dialog_gutter_width: 10px;
 
   .dialog {
-    background-color: $bg;
     color: #eee;
     border: 2px solid $offwhite;
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-flow: column;
+
+    .dialog-part-hidden {
+      opacity: 0;
+    }
+
+    .dialog-loading-container {
+      background-color: $bg;
+      display: flex;
+      flex-flow: column;
+      height: 100%;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
 
     .dialog-menu-bar-container {
       // self-flex info to stick to top stick to top
@@ -530,6 +541,7 @@ $offwhite: #eee;
     }
 
     .dialog-body {
+      // regular stuff
       flex: 1 1 auto;
       display: flex;
       justify-content: center;
