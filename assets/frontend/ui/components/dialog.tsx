@@ -183,18 +183,22 @@ const Dialog = (props: IDialogProps) => {
   useEffect(() => {
     // onload, save element attributes
     saveElementData();
+    // start animation for diffierent parts of the window
     showWindowParts();
     // if this is only meant to be dragged by the title, disable dragging here
     // the arrow functions in the body check if this is disabled before firing the handleEnableRND
     if (disableBodyDragging) {
       setDragDisable(false);
     }
-    scrollTo(0); // start at 0, to fix leftover client data from reloads
+    scrollTo(0); // start at 0, to fix leftover client data from reloads?
   }, []);
 
   return (
     <AppContextConsumer>
       {(value: Context) => {
+        // memoize this in this context so I dont recreate it a bunch
+        const setSelfSelectedCtx = () => setSelfSelected(value, props.windowId);
+
         return (
           <Rnd
             default={{
@@ -211,10 +215,10 @@ const Dialog = (props: IDialogProps) => {
             disableDragging={dragDisable}
             enableResizing={resizable}
             // onClick/Drag/Touch, increase z-index of this window
-            onClick={() => setSelfSelected(value, props.windowId)}
-            onDragStart={() => setSelfSelected(value, props.windowId)}
-            onResizeStart={() => setSelfSelected(value, props.windowId)}
-            onTouchStart={() => setSelfSelected(value, props.windowId)}
+            onClick={setSelfSelectedCtx}
+            onDragStart={setSelfSelectedCtx}
+            onResizeStart={setSelfSelectedCtx}
+            onTouchStart={setSelfSelectedCtx}
             onMouseDown={(event: MouseEvent) => {
               // when user clicks, drags or resizes a window
               // dont draw rectangles on the desktop
@@ -355,7 +359,7 @@ const Dialog = (props: IDialogProps) => {
                   }
                   {/* a dummy element that recives the context, with a useEffect hook
                     that selects this when its launched */}
-                  <AutoFocusDialog ctx={value} windowId={props.windowId} />
+                  <AutoFocusDialog setSelfFunc={setSelfSelectedCtx} />
                 </div>
                 {/* TODO: add scrollbar on the right offset, use scrollOffset, winData.x and winData.fullY to create the rect */}
                 <div className="dialog-bottom-right-icon"></div>
@@ -369,13 +373,12 @@ const Dialog = (props: IDialogProps) => {
 };
 
 interface IAutoFocusDialog {
-  ctx: Context;
-  windowId?: string;
+  setSelfFunc: () => void;
 }
 
-const AutoFocusDialog = ({ ctx, windowId }: IAutoFocusDialog) => {
+const AutoFocusDialog = ({ setSelfFunc }: IAutoFocusDialog) => {
   useEffect(() => {
-    setSelfSelected(ctx, windowId);
+    setSelfFunc();
   }, []);
   return <></>;
 };
