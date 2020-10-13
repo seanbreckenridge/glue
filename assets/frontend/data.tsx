@@ -65,7 +65,7 @@ const Programming: LinkInfo[] = [
   {
     name: "PyPi",
     url: "https://pypi.org/user/seanbreckenridge/",
-  }
+  },
 ];
 
 const IconData: LinkInfo[] = [
@@ -114,7 +114,6 @@ const IconData: LinkInfo[] = [
   {
     name: "Paint",
     icon: "/images/frontend/paint.png",
-
   },
   {
     name: "Customize",

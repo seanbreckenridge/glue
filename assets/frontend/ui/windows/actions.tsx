@@ -42,7 +42,7 @@ export const fullScreenDialogScale = 0.75;
 // as an argument,  which returns the function that launches this onClick
 // action (open the dialog, does something on the page)
 export const actions: IHashActionFunc = {
-  "README": ReadmeWindow,
+  README: ReadmeWindow,
   "Media Feed": FeedWindow,
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
