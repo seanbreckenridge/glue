@@ -358,58 +358,48 @@ $offwhite: #eee;
             margin-left: auto;
             margin-right: auto;
             @include swidth(small) {
-              height: 30px;
-            }
-            @include swidth(medium) {
-              height: 60px;
-            }
-            @include swidth(large) {
-              height: 80px;
-            }
-          }
-
-          img.external-arrow {
-            position: absolute;
-            @include swidth(small) {
               height: 20px;
             }
             @include swidth(medium) {
               height: 30px;
             }
             @include swidth(large) {
-              height: 40px;
+              height: 50px;
             }
+          }
+
+          img.external-arrow {
+            position: absolute;
+            height: 15px;
             width: auto;
             top: 0;
             right: 0;
 
             // dynamically created class names according to the caption
             &.blog {
-              right: -15px;
+              right: 10px;
               top: -5px;
             }
 
             &.exobrain {
-              top: -5px;
-              right: 5px;
+              top: -2px;
+              right: 40px;
             }
           }
 
           figcaption {
             padding-right: 1em;
             padding-left: 1em;
+            margin-top: 5px;
             @include swidth(small) {
-              margin-top: 5px;
-              max-width: 80px;
-              font-size: 80%;
+              max-width: 50px;
+              font-size: 60%;
             }
             @include swidth(medium) {
-              margin-top: 5px;
+              max-width: 100px;
               font-size: 90%;
-              max-width: 120px;
             }
             @include swidth(large) {
-              margin-top: 5px;
               max-width: 220px;
             }
 
