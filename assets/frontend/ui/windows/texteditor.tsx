@@ -24,7 +24,7 @@ export function TextEditorWindow(setwMsg: setWindowMsg): launchWindowFunc {
           y={y - dialogHeight / 2}
           width={dialogWidth}
           height={dialogHeight}
-          title="TextEdit"
+          title="textedit"
           windowId={windowId}
           minHeight={minHeight}
           minWidth={minWidth}

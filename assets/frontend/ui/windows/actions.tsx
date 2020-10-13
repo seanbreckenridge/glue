@@ -4,6 +4,7 @@ import { MediaAccountsWindow } from "./media_accounts";
 import { MiscWindow } from "./misc";
 import { BrowserWindow } from "./browser";
 import { TextEditorWindow } from "./texteditor";
+import { PaintWindow } from "./paint";
 import { ProgrammingWindow } from "./programming";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./../home";
@@ -46,6 +47,7 @@ export const actions: IHashActionFunc = {
   Programming: ProgrammingWindow,
   Browser: BrowserWindow,
   TextEdit: TextEditorWindow,
+  Paint: PaintWindow,
 };
 
 // returns what this icon does when its clicked
