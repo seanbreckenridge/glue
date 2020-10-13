@@ -733,6 +733,10 @@ body {
         height: 100%;
         width: 100%;
 
+        input[name="color"] {
+          width: 8em;
+        }
+
         .palette-box {
           height: 20px;
           border: 1px solid black;
@@ -824,10 +828,16 @@ body {
 
       .customize-body {
         display: flex;
+        height: 100%;
+        width: 100%;
         flex-flow: column nowrap;
-        margin-top: 5%;
-        margin-bottom: 5%;
-        justify-content: space-around;
+        justify-content: center;
+        align-items: center;
+
+        .description {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+        }
       }
     }
 

@@ -100,6 +100,9 @@ const IconData: LinkInfo[] = [
   {
     name: "Paint",
   },
+  {
+    name: "Customize",
+  },
 ];
 
 export {

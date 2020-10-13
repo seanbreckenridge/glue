@@ -1,4 +1,10 @@
-import React, { useState, Dispatch, SetStateAction, ChangeEvent } from "react";
+import React, {
+  useState,
+  useRef,
+  Dispatch,
+  SetStateAction,
+  ChangeEvent,
+} from "react";
 import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
@@ -7,7 +13,7 @@ import {
 import Dialog from "../components/dialog";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 import CanvasDraw from "react-canvas-draw";
-// TODO isMobile from user agent, display disabled message
+import { BrowserView, MobileView } from "react-device-detect";
 
 const minHeight = 400;
 const minWidth = 300;
@@ -34,7 +40,12 @@ export function PaintWindow(setwMsg: setWindowMsg): launchWindowFunc {
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}
         >
-          <Paint />
+          <BrowserView>
+            <Paint />
+          </BrowserView>
+          <MobileView>
+            <p>Sorry, painting doesn't work on mobile...</p>
+          </MobileView>
         </Dialog>
       </>
     );
@@ -99,6 +110,7 @@ const Paint = () => {
           initialRadius={defaultRadius}
           setCurrentColor={setChosenColor}
           setBrushSize={setRadius}
+          paletteSize={15}
         />
       </div>
       <div className="paint-canvas">
@@ -131,13 +143,14 @@ function isColor(strColor: string): boolean {
 
 interface IColorPicker {
   initialColor: string;
-  initialRadius: number;
+  initialRadius?: number;
   setCurrentColor: Dispatch<SetStateAction<string>>;
-  setBrushSize: Dispatch<SetStateAction<number>>;
+  setBrushSize?: Dispatch<SetStateAction<number>>;
   paletteSize?: number;
 }
 
-const PaintControls = ({
+// Also used in the customize window
+export const PaintControls = ({
   initialColor,
   initialRadius,
   setCurrentColor,
@@ -147,11 +160,26 @@ const PaintControls = ({
   let pSize = paletteSize ?? 10;
 
   const [chosenColor, setChosenColor] = useState<string>(initialColor);
-  const [radius, setRadius] = useState<number>(initialRadius);
+  const [radius, setRadius] = useState<number>(initialRadius ?? defaultRadius);
   const [error, setError] = useState<string | null>(null);
   const [colorPalette, setColorPalette] = useState<string[]>(
     randomColorArray(pSize)
   );
+
+  const colorRef = useRef<HTMLInputElement>(null);
+
+  const handleRandomizeButton = () => {
+    setColorPalette(randomColorArray(pSize));
+    const newCol = randomColor();
+    setChosenColor(newCol);
+    setCurrentColor(newCol);
+  };
+
+  const handleColorChange = (toColor: string) => {
+    setError(null);
+    setChosenColor(toColor);
+    setCurrentColor(toColor);
+  };
 
   return (
     <div className="color-picker">
@@ -163,28 +191,34 @@ const PaintControls = ({
               backgroundColor: chosenColor,
             }}
           ></div>
+          {initialRadius !== undefined && (
+            <input
+              type="number"
+              name="brush-size"
+              value={radius}
+              style={{
+                maxWidth: 40,
+              }}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const parsedVal: number = parseInt(e.target.value);
+                if (isNaN(parsedVal)) {
+                  setError(`Could not convert ${e.target.value} to an number`);
+                } else {
+                  setError(null);
+                  if (setBrushSize) {
+                    setBrushSize(parsedVal);
+                  }
+                }
+                setRadius(isNaN(parsedVal) ? initialRadius : parsedVal);
+              }}
+            />
+          )}
           <input
-            type="number"
-            name="brush-size"
-            value={radius}
-            style={{
-              maxWidth: 40,
-            }}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              const parsedVal: number = parseInt(e.target.value);
-              if (isNaN(parsedVal)) {
-                setError(`Could not convert ${e.target.value} to an number`);
-              } else {
-                setError(null);
-                setBrushSize(parsedVal);
-              }
-              setRadius(isNaN(parsedVal) ? initialRadius : parsedVal);
-            }}
-          />
-          <input
+            ref={colorRef}
             type="text"
             name="color"
             value={chosenColor}
+            onTouchEnd={() => colorRef.current!.focus()}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const candidateColor: string = e.target.value;
               setChosenColor(candidateColor); // so that the input field actually works
@@ -199,12 +233,8 @@ const PaintControls = ({
           <a
             href="#"
             className="input-go pixel unlinkify"
-            onClick={() => {
-              setColorPalette(randomColorArray(pSize));
-              const newCol = randomColor();
-              setChosenColor(newCol);
-              setCurrentColor(newCol);
-            }}
+            onClick={handleRandomizeButton}
+            onTouchEnd={handleRandomizeButton}
           >
             RANDOMIZE
           </a>
@@ -220,11 +250,8 @@ const PaintControls = ({
               style={{
                 backgroundColor: palColor,
               }}
-              onClick={() => {
-                setError(null);
-                setChosenColor(palColor);
-                setCurrentColor(palColor);
-              }}
+              onClick={() => handleColorChange(palColor)}
+              onTouchEnd={() => handleColorChange(palColor)}
             ></div>
           );
         })}

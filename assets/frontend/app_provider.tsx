@@ -33,9 +33,10 @@ type Context = {
 };
 
 type setContextFunc = Dispatch<SetStateAction<Context>>;
+const defaultBackgroundColor = "#222";
 
 const initialContext: Context = {
-  backgroundColor: "#222",
+  backgroundColor: defaultBackgroundColor,
   setContext: (): void => {
     throw new Error("setContext function must be overridden");
   },

@@ -29,6 +29,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "react": "^16.13.1",
     "react-canvas-draw": "^1.1.1",
+    "react-device-detect": "^1.14.0",
     "react-dom": "^16.13.1",
     "react-repeatable": "^2.0.1",
     "react-rnd": "^10.2.3",

@@ -6,6 +6,7 @@ import { BrowserWindow } from "./browser";
 import { TextEditorWindow } from "./texteditor";
 import { PaintWindow } from "./paint";
 import { ProgrammingWindow } from "./programming";
+import { CustomizeWindow } from "./customize";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./../home";
 
@@ -48,6 +49,7 @@ export const actions: IHashActionFunc = {
   Browser: BrowserWindow,
   TextEdit: TextEditorWindow,
   Paint: PaintWindow,
+  Customize: CustomizeWindow,
 };
 
 // returns what this icon does when its clicked
