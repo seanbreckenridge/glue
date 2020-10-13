@@ -384,6 +384,13 @@ $offwhite: #eee;
             &.exobrain {
               top: -2px;
               right: 40px;
+
+              @include swidth(medium) {
+                right: 20px;
+              }
+              @include swidth(small) {
+                right: 12px;
+              }
             }
           }
 
@@ -396,11 +403,11 @@ $offwhite: #eee;
               font-size: 60%;
             }
             @include swidth(medium) {
-              max-width: 100px;
-              font-size: 90%;
+              max-width: 70px;
+              font-size: 80%;
             }
             @include swidth(large) {
-              max-width: 220px;
+              max-width: 200px;
             }
 
             background-color: $offwhite;
