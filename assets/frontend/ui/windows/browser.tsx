@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
+import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
 const minHeight = 400;
@@ -45,11 +46,21 @@ export function BrowserWindow(setwMsg: setWindowMsg): launchWindowFunc {
   };
 }
 
-const defaultURL = "https://www.youtube.com/embed/8xeBGx2bfxc";
+const defaultURL = "https://en.wikipedia.org/wiki/Special:Random";
 
 const Browser = () => {
   const [formUrl, setFormUrl] = useState<string>(defaultURL);
   const [iframeURL, setIFrameURL] = useState<string>(defaultURL);
+  const textField = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = () => {
+    // prepend http if needed
+    let httpUrl: string = (" " + formUrl).slice(1); // deep copy
+    if (!httpUrl.startsWith("http")) {
+      httpUrl = "http://" + httpUrl;
+    }
+    setIFrameURL(httpUrl);
+  };
 
   return (
     <div className="browser-body">
@@ -57,23 +68,31 @@ const Browser = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            // prepend http if needed
-            let httpUrl: string = (" " + formUrl).slice(1); // deep copy
-            if (!httpUrl.startsWith("http")) {
-              httpUrl = "http://" + httpUrl;
-            }
-            setIFrameURL(httpUrl);
+            handleSubmit();
           }}
         >
           <input
+            ref={textField}
+            onTouchEnd={() => {
+              textField.current!.focus();
+            }} // for mobile
             type="text"
             name="url"
             value={formUrl}
-            onChange={(e) => {
+            onChange={(e: any) => {
               setFormUrl(e.target.value);
             }}
           />
-          <input className="pixel" type="submit" value="GO" />
+          <TapLink
+            href="#"
+            className="browser-go pixel unlinkify"
+            onTouchEnd={handleSubmit}
+            onClick={handleSubmit}
+          >
+            Go
+          </TapLink>
+          {/* so that ctrl enter works */}
+          <input type="submit" style={{ display: "none" }} />
         </form>
       </div>
       <div className="iframe-wrapper">

@@ -687,8 +687,16 @@ body {
             height: 30px;
           }
 
-          input[type="submit"] {
-            height: 35px;
+          .browser-go {
+            height: 20px;
+            background-color: lightgrey;
+            padding: 0.6em;
+            border-radius: 0.4em;
+
+            &:hover {
+              background-color: lightslategray;
+              color: $offwhite;
+            }
           }
         }
 
