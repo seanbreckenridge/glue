@@ -5,7 +5,6 @@ import {
   jitterCenterLocation,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
-import TapLink from "../components/taplink";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
 
 const minHeight = 400;
