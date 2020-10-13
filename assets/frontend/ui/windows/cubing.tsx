@@ -2,7 +2,7 @@ import React from "react";
 import { Context, AppContextConsumer } from "../../app_provider";
 import { CubingData, CubingRecords } from "../../api_model";
 import WrapApiError from "../components/wrap_api_error";
-import { setWindowMsg } from "./home";
+import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
   jitterCenterLocation,
@@ -31,6 +31,7 @@ export function CubingWindow(setwMsg: setWindowMsg): launchWindowFunc {
           title="cubing"
           windowId={windowId}
           minHeight={minHeight}
+          disableBodyDragging={true}
           minWidth={minWidth}
           // when close it hit, set the message to kill this window
           hitCloseCallback={() => setwMsg({ spawn: false, windowId: windowId })}

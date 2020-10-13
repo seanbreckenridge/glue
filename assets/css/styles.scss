@@ -45,6 +45,7 @@ body {
   max-height: 100%;
   float: left;
   width: 100%;
+  background-color: black; // fallback
 }
 
 #root {
@@ -159,7 +160,6 @@ $offwhite: #eee;
 }
 
 #gui {
-  background-color: $bg;
   color: $offwhite;
   border: $outer_border_width solid black;
 
@@ -664,6 +664,14 @@ $offwhite: #eee;
             }
           }
         }
+      }
+
+      .customize-body {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        justify-content: space-around;
       }
     }
 

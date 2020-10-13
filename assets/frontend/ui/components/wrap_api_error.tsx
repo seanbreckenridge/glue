@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DesktopErrorDialog from "./desktop_error_dialog";
-import WhatDoNow from "../pages/what_do_now";
+import WhatDoNow from "../windows/what_do_now";
 import { some, errored } from "../../utils";
 
 interface IWrapError<T> {

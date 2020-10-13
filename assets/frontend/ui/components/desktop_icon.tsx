@@ -1,5 +1,5 @@
 import React from "react";
-import { launchWindowFunc } from "../pages/actions";
+import { launchWindowFunc } from "../windows/actions";
 
 // wrap some child element as an 'a' element
 interface ILinkWrap {

@@ -1,5 +1,5 @@
 import React from "react";
-import { setWindowMsg } from "./home";
+import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
   jitterCenterLocation,

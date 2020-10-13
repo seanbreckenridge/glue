@@ -27,6 +27,7 @@ type Context = {
   // hard to model this without making it 'global',
   // as windows get launched from closures with different function aritys
   selectedWindow?: string;
+  backgroundColor: string;
   // setContext: Dispatch<SetStateAction<Context>>;
   setContext: setContextFunc;
 };
@@ -34,6 +35,7 @@ type Context = {
 type setContextFunc = Dispatch<SetStateAction<Context>>;
 
 const initialContext: Context = {
+  backgroundColor: "#222",
   setContext: (): void => {
     throw new Error("setContext function must be overridden");
   },
@@ -45,6 +47,17 @@ const setSelectedWindow = (setCtx: setContextFunc, windowId?: string) => {
       return {
         ...oldData,
         selectedWindow: windowId,
+      };
+    }
+  );
+};
+
+const setBackgroundColor = (setCtx: setContextFunc, backgroundColor: string) => {
+  setCtx(
+    (oldData: Context): Context => {
+      return {
+        ...oldData,
+        backgroundColor: backgroundColor,
       };
     }
   );
@@ -83,4 +96,5 @@ export {
   AppContextConsumer,
   setContextFunc,
   setSelectedWindow,
+  setBackgroundColor,
 };

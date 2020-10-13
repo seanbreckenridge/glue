@@ -1,10 +1,10 @@
 import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
 import clsx from "clsx";
-import DesktopIcon from "../components/desktop_icon";
-import TapLink from "../components/taplink";
-import { getAction, launchWindowFunc } from "./actions";
-import { IconData } from "../../data";
-import { getWindowDimensions } from "../components/dimensions";
+import DesktopIcon from "./components/desktop_icon";
+import TapLink from "./components/taplink";
+import { getAction, launchWindowFunc } from "./windows/actions";
+import { IconData } from "../data";
+import { getWindowDimensions } from "./components/dimensions";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer

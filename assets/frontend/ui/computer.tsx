@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContextProvider } from "../app_provider";
+import {AppContextProvider, Context, AppContextConsumer} from "../app_provider";
 import GUI from "./gui";
 
 // top level of interface
@@ -16,7 +16,15 @@ const Computer: React.FC<{}> = () => {
 
 // TODO: add loading animation
 export const HomeScreen: React.FC<{}> = () => {
-  return <GUI />;
+  return (
+    <AppContextConsumer>
+      {(value: Context) => {
+        return (
+          <GUI backgroundColor={value.backgroundColor} />
+        )
+      }}
+    </AppContextConsumer>
+  )
 };
 
 export default Computer;

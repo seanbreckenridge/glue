@@ -1,5 +1,5 @@
 import { launchWindowFunc } from "./actions";
-import { setWindowMsg } from "./home";
+import { setWindowMsg } from "./../home";
 import { LinkWindow } from "./link_list";
 import { MediaElsewhere } from "../../data";
 

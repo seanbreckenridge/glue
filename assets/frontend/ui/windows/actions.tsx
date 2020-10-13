@@ -4,7 +4,7 @@ import { MediaAccountsWindow } from "./media_accounts";
 import { MiscWindow } from "./misc";
 import { ProgrammingWindow } from "./programming";
 import { LinkInfo } from "../../data";
-import { setWindowMsg } from "./home";
+import { setWindowMsg } from "./../home";
 
 // pass it the setWindowMsg function, it returns a function which opens
 // the window, and returns nothing
