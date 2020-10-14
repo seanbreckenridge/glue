@@ -1,5 +1,13 @@
 // this isnt used for any page, its the file I copy/paste when starting a new window
-import React, { useRef, useState, ChangeEvent } from "react";
+import React, {
+  useRef,
+  useState,
+  useMemo,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
+import axios, { AxiosResponse } from "axios";
 import { setWindowMsg } from "./../home";
 import { GuestBookComments, GuestBookComment } from "../../api_model";
 import WrapApiError from "../components/wrap_api_error";
@@ -10,16 +18,36 @@ import {
 import Dialog from "../components/dialog";
 import { launchWindowFunc, fullScreenDialogScale } from "./actions";
 import { Context, AppContextConsumer } from "../../app_provider";
+import { ok } from "../../utils";
 
 const minHeight = 400;
 const minWidth = 300;
 
 // assumes values are valid here
-function handleRequest(name: string, comment: string): void {
-  // send request
-  console.log(name);
-  console.log(comment);
-  // open dialog notifying the user of approval process
+async function handleRequest(
+  name: string,
+  comment: string,
+  setResponse: Dispatch<SetStateAction<string>>
+): Promise<void> {
+  const res: AxiosResponse | Error = await axios
+    .post("/api/gb_comment/", { name: name, comment: comment })
+    .then((response: AxiosResponse) => {
+      return response.data;
+    })
+    .catch((e: Error) => {
+      return e;
+    });
+  if (setResponse) {
+    if (ok(res)) {
+      setResponse(
+        "Thanks! Your comment should appear here in a few hours, I review these before they go live."
+      );
+    } else {
+      setResponse(
+        "There was an error adding your comment... If this doesn't fix itself, you can email me at 'ssbreckenridge@me.com'"
+      );
+    }
+  }
 }
 
 export function GuestBookWindow(setwMsg: setWindowMsg): launchWindowFunc {
@@ -49,7 +77,9 @@ export function GuestBookWindow(setwMsg: setWindowMsg): launchWindowFunc {
               {(value: Context) => {
                 return (
                   <WrapApiError data={value.comments}>
-                    <GuestBook data={value.comments! as GuestBookComments} />
+                    <GuestBook
+                      comments={value.comments! as GuestBookComments}
+                    />
                   </WrapApiError>
                 );
               }}
@@ -68,19 +98,20 @@ export function GuestBookWindow(setwMsg: setWindowMsg): launchWindowFunc {
 }
 
 interface IGuestBook {
-  data: GuestBookComments;
+  comments: GuestBookComments;
 }
 
-const GuestBook = ({ data }: IGuestBook) => {
+const GuestBook = ({ comments }: IGuestBook) => {
   return (
     <>
       <GuestBookForm />
       <div className="guestbook-comments">
-        {data.data.map((cmnt: GuestBookComment) => {
+        {comments.map((cmnt: GuestBookComment) => {
           return (
             <div key={cmnt.id} className="comment-row">
               <div className="comment-name">{cmnt.name}</div>
               <div className="comment-text">{cmnt.comment}</div>
+              <div className="comment-date">{cmnt.at}</div>
               <hr />
             </div>
           );
@@ -94,6 +125,7 @@ const GuestBookForm = () => {
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
   const nameField = useRef<HTMLInputElement>(null);
   const commentField = useRef<HTMLTextAreaElement>(null);
@@ -104,7 +136,7 @@ const GuestBookForm = () => {
     if (validateName() && validateComment()) {
       setName("");
       setComment("");
-      handleRequest(nameVal, commentVal);
+      handleRequest(nameVal, commentVal, setStatus);
     }
   };
 
@@ -201,6 +233,7 @@ const GuestBookForm = () => {
         {/* so that ctrl enter works */}
         <input type="submit" style={{ display: "none" }} />
         <span className="guestbook-error">{error}</span>
+        <span className="guestbook-response">{status}</span>
       </form>
     </>
   );

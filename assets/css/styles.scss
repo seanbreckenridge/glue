@@ -847,9 +847,6 @@ textarea {
           flex-flow: row nowrap;
           justify-content: center;
           align-items: center;
-
-          input[name="url"] {
-          }
         }
 
         .iframe-wrapper {
@@ -965,6 +962,10 @@ textarea {
             .comment-text {
               margin-top: 0.1em;
               margin-bottom: 0.3em;
+            }
+
+            .comment-date {
+              font-size: 75%;
             }
           }
         }

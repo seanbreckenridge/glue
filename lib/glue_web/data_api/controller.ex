@@ -24,9 +24,7 @@ end
 defmodule GlueWeb.Feed do
   require Logger
 
-  @minute :timer.minutes(1)
-  @hour :timer.hours(1)
-  @day :timer.hours(24)
+  alias Glue.DateUtils
 
   def get(count, format_dates \\ true) do
     cache_key = "#{count}.#{format_dates}"
@@ -53,7 +51,10 @@ defmodule GlueWeb.Feed do
           # format date if asked to
           |> Enum.map(fn feed_info ->
             if format_dates do
-              %{feed_info | timestamp: descrive_naive_datetime(feed_info.timestamp, now)}
+              %{
+                feed_info
+                | timestamp: DateUtils.descrive_naive_datetime(feed_info.timestamp, now)
+              }
             else
               feed_info
             end
@@ -68,36 +69,6 @@ defmodule GlueWeb.Feed do
     else
       Logger.debug("feed request cache hit for key #{cache_key}, using cached value...")
       cached_feed_data
-    end
-  end
-
-  defp descrive_naive_datetime(time, now) do
-    describe_naive_datetime(NaiveDateTime.diff(now, time, :millisecond))
-  end
-
-  defp describe_naive_datetime(diff) when diff > @day,
-    do: quotient(diff, @day) |> describe_diff("day")
-
-  defp describe_naive_datetime(diff) when diff > @hour,
-    do: quotient(diff, @hour) |> describe_diff("hour")
-
-  defp describe_naive_datetime(diff) do
-    minutes_ago = quotient(diff, @minute)
-
-    if minutes_ago < 1 do
-      "now"
-    else
-      minutes_ago |> describe_diff("minute")
-    end
-  end
-
-  defp quotient(dividend, divisor), do: floor(dividend / divisor)
-
-  defp describe_diff(ago, duration_str) do
-    if ago == 1 do
-      "#{ago} #{duration_str} ago"
-    else
-      "#{ago} #{duration_str}s ago"
     end
   end
 end

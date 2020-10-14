@@ -40,11 +40,10 @@ interface GuestBookComment {
   id: number;
   name: string;
   comment: string;
+  at: string;
 }
 
-interface GuestBookComments {
-  data: GuestBookComment[];
-}
+type GuestBookComments = GuestBookComment[];
 
 // result (Value|Err) types
 type RFeedData = Result<FeedData>;

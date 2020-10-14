@@ -30,10 +30,12 @@ defmodule Glue.GuestBookComments do
       [%GuestBookComment{}, ...]
   """
   def list_approved_gb_comment do
-    Repo.all(
+    query =
       from c in GuestBookComment,
+        order_by: c.id,
         where: c.approved and not c.denied
-    )
+
+    Repo.all(query |> reverse_order)
   end
 
   @doc """
