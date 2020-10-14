@@ -391,12 +391,12 @@ textarea {
             // dynamically created class names according to the caption
             &.blog {
               right: 10px;
-              top: -5px;
+              top: -3px;
             }
 
             &.exobrain {
               top: -2px;
-              right: 40px;
+              right: 30px;
 
               @include swidth(medium) {
                 right: 20px;
