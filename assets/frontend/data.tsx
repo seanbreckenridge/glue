@@ -119,6 +119,9 @@ const IconData: LinkInfo[] = [
     name: "Customize",
     icon: "/images/frontend/hammer_wrench.png",
   },
+  {
+    name: "Guest Book",
+  },
 ];
 
 export {

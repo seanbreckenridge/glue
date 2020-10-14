@@ -36,9 +36,20 @@ interface CubingTimes {
   world: string;
 }
 
+interface GuestBookComment {
+  id: number;
+  name: string;
+  comment: string;
+}
+
+interface GuestBookComments {
+  data: GuestBookComment[];
+}
+
 // result (Value|Err) types
 type RFeedData = Result<FeedData>;
 type RCubingData = Result<CubingData>;
+type RGuestBookComments = Result<GuestBookComments>;
 
 // when the interface directly matches the response, we can use a generic function
 async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
@@ -88,13 +99,33 @@ const requestAndSetCubing = async (setData: setContextFunc) => {
   );
 };
 
+// request and set guestbook comments data
+const requestAndSetComments = async (setData: setContextFunc) => {
+  loadInterfaceMatches<GuestBookComments>("/api/gb_comment").then(
+    (response: RGuestBookComments) => {
+      setData(
+        (oldData: Context): Context => {
+          return {
+            ...oldData,
+            comments: response,
+          };
+        }
+      );
+    }
+  );
+};
+
 export {
   FeedItem,
   FeedData,
   CubingData,
   RFeedData,
   RCubingData,
+  RGuestBookComments,
   requestAndSetCubing,
   requestAndSetFeed,
+  requestAndSetComments,
   CubingRecords,
+  GuestBookComment,
+  GuestBookComments,
 };

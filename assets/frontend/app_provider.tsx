@@ -8,8 +8,10 @@ import React, {
 import {
   requestAndSetCubing,
   requestAndSetFeed,
+  requestAndSetComments,
   RCubingData,
   RFeedData,
+  RGuestBookComments,
 } from "./api_model";
 
 // defines the connection with the API, exposes that context/state
@@ -24,6 +26,7 @@ interface IProps {
 type Context = {
   feed?: RFeedData;
   cubing?: RCubingData;
+  comments?: RGuestBookComments;
   // hard to model this without making it 'global',
   // as windows get launched from closures with different function aritys
   selectedWindow?: string;
@@ -78,6 +81,7 @@ const AppContextProvider = ({ children }: IProps): JSX.Element => {
   const loadData = async () => {
     requestAndSetCubing(setContext);
     requestAndSetFeed(setContext);
+    requestAndSetComments(setContext);
   };
 
   useEffect(() => {
