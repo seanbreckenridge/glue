@@ -55,7 +55,7 @@ case "$1" in
 --print-count)
 	mix run -e Glue.GuestBookComments.CLI.new_count || exit $?
 	exit 0
-  ;;
+	;;
 --run)
 	:
 	;;
