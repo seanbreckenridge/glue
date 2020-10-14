@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { paragraph } from "txtgen";
+
 import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,

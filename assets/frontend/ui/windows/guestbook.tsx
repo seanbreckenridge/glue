@@ -2,12 +2,12 @@
 import React, {
   useRef,
   useState,
-  useMemo,
   ChangeEvent,
   Dispatch,
   SetStateAction,
 } from "react";
 import axios, { AxiosResponse } from "axios";
+
 import { setWindowMsg } from "./../home";
 import { GuestBookComments, GuestBookComment } from "../../api_model";
 import WrapApiError from "../components/wrap_api_error";

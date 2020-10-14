@@ -5,6 +5,9 @@ import React, {
   SetStateAction,
   ChangeEvent,
 } from "react";
+import CanvasDraw from "react-canvas-draw";
+import { BrowserView, MobileView } from "react-device-detect";
+
 import { setWindowMsg } from "./../home";
 import {
   getWindowDimensions,
@@ -12,8 +15,6 @@ import {
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
 import { fullScreenDialogScale, launchWindowFunc } from "./actions";
-import CanvasDraw from "react-canvas-draw";
-import { BrowserView, MobileView } from "react-device-detect";
 
 const minHeight = 400;
 const minWidth = 300;
