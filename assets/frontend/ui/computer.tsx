@@ -43,7 +43,6 @@ function renderFrame(
       return oldFrame + 1;
     });
     setTimeout(() => {
-      console.log(currentFrame);
       renderFrame(currentFrame + 1, setLoadingFunc);
     }, frameDuration);
   }
