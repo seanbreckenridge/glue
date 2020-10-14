@@ -68,7 +68,8 @@ const ReadmeBody = () => {
         don't use social media that much. If you're interested in my thoughts,
         my <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has
         lots of those. Feel free to email me{" "}
-        <TapLink href="mailto:ssbreckenridge@me.com">here</TapLink>.
+        <TapLink href="mailto:ssbreckenridge@me.com">here</TapLink>. You
+        can also sign the Guest Book here, I look at that every few hours.
       </p>
       <h5>Thanks for visiting!</h5>
     </div>
