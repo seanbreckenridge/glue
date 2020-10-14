@@ -137,7 +137,7 @@ function Home() {
           id="site-title"
           className="menu-toolbar-item menu-bar-item unlinkify pixel-large"
         >
-          sean
+          <h1>sean</h1>
         </TapLink>
       </div>
       <div id="window-body">
