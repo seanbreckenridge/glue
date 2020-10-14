@@ -141,11 +141,15 @@ const GuestBookForm = () => {
   };
 
   const focusName = () => {
-    nameField.current!.focus();
+    if (nameField !== null) {
+      nameField.current!.focus();
+    }
   };
 
   const focusCommentField = () => {
-    commentField.current!.focus();
+    if (commentField !== null) {
+      commentField.current!.focus();
+    }
   };
 
   // if the name isnt provided, looks it up in state
