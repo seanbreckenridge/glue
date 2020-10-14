@@ -89,4 +89,12 @@ defmodule Glue.GuestBookComments.CLI do
     Repo.all(GuestBookComment)
     |> prompt_comments()
   end
+
+  def new_count() do
+    new_count =
+      new_comments()
+      |> Enum.count()
+
+    IO.puts("COUNT:#{new_count}")
+  end
 end
