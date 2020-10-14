@@ -2,10 +2,15 @@ defmodule Glue.DateUtils do
   @minute :timer.minutes(1)
   @hour :timer.hours(1)
   @day :timer.hours(24)
+  @week @day * 7
 
   def descrive_naive_datetime(time, now) do
     describe_naive_datetime(NaiveDateTime.diff(now, time, :millisecond))
   end
+
+  # only show this if its more than 2 weeks ago
+  def describe_naive_datetime(diff) when diff > @week * 4,
+    do: quotient(diff, @week) - 1 |> describe_diff("week")
 
   def describe_naive_datetime(diff) when diff > @day,
     do: quotient(diff, @day) |> describe_diff("day")
