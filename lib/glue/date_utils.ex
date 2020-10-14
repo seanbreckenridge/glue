@@ -10,7 +10,7 @@ defmodule Glue.DateUtils do
 
   # only show this if its more than 2 weeks ago
   def describe_naive_datetime(diff) when diff > @week * 4,
-    do: quotient(diff, @week) - 1 |> describe_diff("week")
+    do: (quotient(diff, @week) - 1) |> describe_diff("week")
 
   def describe_naive_datetime(diff) when diff > @day,
     do: quotient(diff, @day) |> describe_diff("day")

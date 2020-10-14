@@ -31,7 +31,8 @@ const loadingText: string[] = [
 ];
 
 const loadingTextLength = loadingText.length;
-const frameDuration = 100;
+const frameDuration = 200;
+const lastFrameDuration = 1000;
 
 function renderFrame(
   currentFrame: number,
@@ -42,9 +43,14 @@ function renderFrame(
     setLoadingFunc((oldFrame) => {
       return oldFrame + 1;
     });
-    setTimeout(() => {
-      renderFrame(currentFrame + 1, setLoadingFunc);
-    }, frameDuration);
+    // for the last setTimeout, wait longer so that the user
+    // can read the loading text a bit
+    setTimeout(
+      () => {
+        renderFrame(currentFrame + 1, setLoadingFunc);
+      },
+      currentFrame == loadingTextLength - 2 ? lastFrameDuration : frameDuration
+    );
   }
 }
 
