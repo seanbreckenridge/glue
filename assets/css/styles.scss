@@ -847,11 +847,23 @@ textarea {
 
         .browser-controls {
           flex: 0 1 auto;
+          width: 60%;
 
           display: flex;
           flex-flow: row nowrap;
           justify-content: center;
           align-items: center;
+
+          form {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+
+            input {
+              width: 50%;
+            }
+          }
         }
 
         .iframe-wrapper {
