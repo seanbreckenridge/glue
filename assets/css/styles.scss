@@ -404,7 +404,7 @@ textarea {
 
             &.exobrain {
               top: -2px;
-              right: 30px;
+              right: 38px;
 
               @include swidth(medium) {
                 right: 20px;
@@ -429,7 +429,7 @@ textarea {
             }
             @include swidth(large) {
               font-size: 95%;
-              max-width: 100px;
+              max-width: 125px;
             }
 
             background-color: $offwhite;
