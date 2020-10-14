@@ -4,6 +4,7 @@ defmodule Glue.GuestBookComments.GuestBookComment do
 
   schema "gb_comment" do
     field :approved, :boolean, default: false
+    field :denied, :boolean, default: false
     field :comment, :string
     field :name, :string
 
@@ -13,7 +14,7 @@ defmodule Glue.GuestBookComments.GuestBookComment do
   @doc false
   def changeset(guest_book_comment, attrs) do
     guest_book_comment
-    |> cast(attrs, [:name, :comment, :approved])
-    |> validate_required([:name, :comment, :approved])
+    |> cast(attrs, [:name, :comment, :approved, :denied])
+    |> validate_required([:name, :comment, :approved, :denied])
   end
 end

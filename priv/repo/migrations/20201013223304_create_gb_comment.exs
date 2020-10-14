@@ -6,9 +6,9 @@ defmodule Glue.Repo.Migrations.CreateGbComment do
       add :name, :string
       add :comment, :string
       add :approved, :boolean, default: false, null: false
+      add :denied, :boolean, default: false, null: false
 
       timestamps()
     end
-
   end
 end

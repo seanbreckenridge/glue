@@ -22,6 +22,21 @@ defmodule Glue.GuestBookComments do
   end
 
   @doc """
+  Return the list of approved gb_comment.
+
+  ## Examples
+
+      iex> list_approved_gb_comment()
+      [%GuestBookComment{}, ...]
+  """
+  def list_approved_gb_comment do
+    Repo.all(
+      from c in GuestBookComment,
+        where: c.approved and not c.denied
+    )
+  end
+
+  @doc """
   Gets a single guest_book_comment.
 
   Raises `Ecto.NoResultsError` if the Guest book comment does not exist.

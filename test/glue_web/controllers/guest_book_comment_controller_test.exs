@@ -34,7 +34,11 @@ defmodule GlueWeb.GuestBookCommentControllerTest do
 
   describe "create guest_book_comment" do
     test "renders guest_book_comment when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.guest_book_comment_path(conn, :create), guest_book_comment: @create_attrs)
+      conn =
+        post(conn, Routes.guest_book_comment_path(conn, :create),
+          guest_book_comment: @create_attrs
+        )
+
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.guest_book_comment_path(conn, :show, id))
@@ -48,7 +52,11 @@ defmodule GlueWeb.GuestBookCommentControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.guest_book_comment_path(conn, :create), guest_book_comment: @invalid_attrs)
+      conn =
+        post(conn, Routes.guest_book_comment_path(conn, :create),
+          guest_book_comment: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -56,8 +64,15 @@ defmodule GlueWeb.GuestBookCommentControllerTest do
   describe "update guest_book_comment" do
     setup [:create_guest_book_comment]
 
-    test "renders guest_book_comment when data is valid", %{conn: conn, guest_book_comment: %GuestBookComment{id: id} = guest_book_comment} do
-      conn = put(conn, Routes.guest_book_comment_path(conn, :update, guest_book_comment), guest_book_comment: @update_attrs)
+    test "renders guest_book_comment when data is valid", %{
+      conn: conn,
+      guest_book_comment: %GuestBookComment{id: id} = guest_book_comment
+    } do
+      conn =
+        put(conn, Routes.guest_book_comment_path(conn, :update, guest_book_comment),
+          guest_book_comment: @update_attrs
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.guest_book_comment_path(conn, :show, id))
@@ -70,8 +85,15 @@ defmodule GlueWeb.GuestBookCommentControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
-    test "renders errors when data is invalid", %{conn: conn, guest_book_comment: guest_book_comment} do
-      conn = put(conn, Routes.guest_book_comment_path(conn, :update, guest_book_comment), guest_book_comment: @invalid_attrs)
+    test "renders errors when data is invalid", %{
+      conn: conn,
+      guest_book_comment: guest_book_comment
+    } do
+      conn =
+        put(conn, Routes.guest_book_comment_path(conn, :update, guest_book_comment),
+          guest_book_comment: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -79,7 +101,10 @@ defmodule GlueWeb.GuestBookCommentControllerTest do
   describe "delete guest_book_comment" do
     setup [:create_guest_book_comment]
 
-    test "deletes chosen guest_book_comment", %{conn: conn, guest_book_comment: guest_book_comment} do
+    test "deletes chosen guest_book_comment", %{
+      conn: conn,
+      guest_book_comment: guest_book_comment
+    } do
       conn = delete(conn, Routes.guest_book_comment_path(conn, :delete, guest_book_comment))
       assert response(conn, 204)
 

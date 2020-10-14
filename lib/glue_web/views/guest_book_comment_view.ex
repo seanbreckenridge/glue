@@ -11,9 +11,11 @@ defmodule GlueWeb.GuestBookCommentView do
   end
 
   def render("guest_book_comment.json", %{guest_book_comment: guest_book_comment}) do
-    %{id: guest_book_comment.id,
+    %{
+      id: guest_book_comment.id,
       name: guest_book_comment.name,
       comment: guest_book_comment.comment,
-      approved: guest_book_comment.approved}
+      approved: guest_book_comment.approved
+    }
   end
 end
