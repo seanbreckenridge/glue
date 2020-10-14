@@ -1,10 +1,14 @@
 import React, { useEffect, Dispatch, SetStateAction, useState } from "react";
 import clsx from "clsx";
+
+import { Context, AppContextConsumer } from "../app_provider";
+import { PageHits } from "../api_model";
 import DesktopIcon from "./components/desktop_icon";
 import TapLink from "./components/taplink";
 import { getAction, launchWindowFunc } from "./windows/actions";
 import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
+import { ok } from "../utils";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -166,6 +170,7 @@ function Home() {
         >
           <h1>sean</h1>
         </TapLink>
+        <PageHitCounter />
       </div>
       <div id="window-body">
         <div id="desktop-body">
@@ -257,5 +262,45 @@ const DragRect = (props: _draggedRect) => {
     </div>
   );
 };
+
+const PageHitCounter = () => {
+  return (
+    <AppContextConsumer>
+      {(value: Context) => {
+        let hits: number = 0;
+        if (ok(value.pageHits)) {
+          hits = (value.pageHits as PageHits).count;
+        }
+        return (
+          <div id="page-hits">
+            <PageHitRender count={hits} />
+          </div>
+        );
+      }}
+    </AppContextConsumer>
+  );
+};
+
+interface IPageHitRender {
+  count: number;
+}
+
+const PageHitRender = React.memo(({ count }: IPageHitRender) => {
+  return (
+    <>
+      <div className="page-hit-title">page hits:</div>
+      {count
+        .toString()
+        .split("")
+        .map((n: string, i: number) => {
+          return (
+            <div key={i} className="page-hit-box">
+              {n}
+            </div>
+          );
+        })}
+    </>
+  );
+});
 
 export default Home;

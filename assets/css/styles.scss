@@ -214,6 +214,27 @@ textarea {
       }
     }
 
+    #page-hits {
+      margin-left: auto;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+
+      .page-hit-title {
+        margin-right: 0.5em;
+      }
+
+      .page-hit-box {
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5em;
+        text-align: center;
+        border: 1px solid $bg;
+        box-sizing: border-box;
+      }
+    }
+
     .menu-toolbar-item {
       padding-left: 1%;
       padding-right: 1%;

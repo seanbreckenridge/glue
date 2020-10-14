@@ -10,8 +10,11 @@ import {
   requestAndSetCubing,
   requestAndSetFeed,
   requestAndSetComments,
+  requestAndSetPageHits,
+  sendPageHit,
   RCubingData,
   RFeedData,
+  RPageHits,
   RGuestBookComments,
 } from "./api_model";
 
@@ -28,6 +31,7 @@ type Context = {
   feed?: RFeedData;
   cubing?: RCubingData;
   comments?: RGuestBookComments;
+  pageHits?: RPageHits;
   // hard to model this without making it 'global',
   // as windows get launched from closures with different function aritys
   selectedWindow?: string;
@@ -83,6 +87,8 @@ const AppContextProvider = ({ children }: IProps): JSX.Element => {
     requestAndSetCubing(setContext);
     requestAndSetFeed(setContext);
     requestAndSetComments(setContext);
+    requestAndSetPageHits(setContext);
+    sendPageHit();
   };
 
   useEffect(() => {

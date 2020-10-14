@@ -44,12 +44,17 @@ interface GuestBookComment {
   at: string;
 }
 
+interface PageHits {
+  count: number;
+}
+
 type GuestBookComments = GuestBookComment[];
 
 // result (Value|Err) types
 type RFeedData = Result<FeedData>;
 type RCubingData = Result<CubingData>;
 type RGuestBookComments = Result<GuestBookComments>;
+type RPageHits = Result<PageHits>;
 
 // when the interface directly matches the response, we can use a generic function
 async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
@@ -115,16 +120,50 @@ const requestAndSetComments = async (setData: setContextFunc) => {
   );
 };
 
+// request and set page hits
+const requestAndSetPageHits = async (setData: setContextFunc) => {
+  loadInterfaceMatches<PageHits>("/api/page_hit").then(
+    (response: RPageHits) => {
+      setData(
+        (oldData: Context): Context => {
+          return {
+            ...oldData,
+            pageHits: response,
+          };
+        }
+      );
+    }
+  );
+};
+
+const sendPageHit = async () => {
+  // assumes values are valid here
+  // const _res: AxiosResponse | Error =
+  await axios
+    .post("/api/page_hit")
+    .then((response: AxiosResponse) => {
+      return response.data;
+    })
+    .catch((e: Error) => {
+      return e;
+    });
+  // console.log(res)
+};
+
 export {
   FeedItem,
   FeedData,
   CubingData,
+  PageHits,
+  RPageHits,
   RFeedData,
   RCubingData,
   RGuestBookComments,
   requestAndSetCubing,
   requestAndSetFeed,
   requestAndSetComments,
+  requestAndSetPageHits,
+  sendPageHit,
   CubingRecords,
   GuestBookComment,
   GuestBookComments,
