@@ -43,15 +43,15 @@ case "$1" in
 	exit 0
 	;;
 --approve-comments)
-  # approve any new comments
-  mix run -e Glue.GuestBookComments.CLI.main || exit $?
-  exit 0
-  ;;
+	# approve any new comments
+	mix run -e Glue.GuestBookComments.CLI.main || exit $?
+	exit 0
+	;;
 --review-comments)
-  # re-approve/deny all comments
-  mix run -e Glue.GuestBookComments.CLI.all || exit $?
-  exit 0
-  ;;
+	# re-approve/deny all comments
+	mix run -e Glue.GuestBookComments.CLI.all || exit $?
+	exit 0
+	;;
 --run)
 	:
 	;;

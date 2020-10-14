@@ -35,7 +35,10 @@ defmodule Glue.GuestBookComments.CLI do
 
     IO.inspect(new_comment)
     print_comment(new_comment)
-    resp = IO.gets(prompt || "Approve Comment? ['a' for approve, 'd' for deny, 'del' for delete] ") |> String.trim()
+
+    resp =
+      IO.gets(prompt || "Approve Comment? ['a' for approve, 'd' for deny, 'del' for delete] ")
+      |> String.trim()
 
     cond do
       resp == "a" ->

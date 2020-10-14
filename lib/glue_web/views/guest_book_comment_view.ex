@@ -18,7 +18,7 @@ defmodule GlueWeb.GuestBookCommentView do
     %{
       id: guest_book_comment.id,
       name: guest_book_comment.name,
-      comment: guest_book_comment.comment,
+      comment: guest_book_comment.comment
     }
   end
 end

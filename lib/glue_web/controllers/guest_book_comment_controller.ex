@@ -19,7 +19,9 @@ defmodule GlueWeb.GuestBookCommentController do
     if String.length(comment) > @message_limit do
       conn
       |> put_status(400)
-      |> render("error.json", %{message: "'comment' is too long. Must be #{@message_limit} characters or less."})
+      |> render("error.json", %{
+        message: "'comment' is too long. Must be #{@message_limit} characters or less."
+      })
     else
       with {:ok, %GuestBookComment{} = guest_book_comment} <-
              GuestBookComments.create_guest_book_comment(%{
