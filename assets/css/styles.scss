@@ -164,6 +164,10 @@ textarea {
   flex: 1 1 auto;
 }
 
+.loading-text {
+  color: $offwhite;
+}
+
 #gui {
   color: $offwhite;
   border: $outer_border_width solid black;
