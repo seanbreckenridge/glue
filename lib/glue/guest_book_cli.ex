@@ -1,5 +1,4 @@
 defmodule Glue.GuestBookComments.CLI do
-
   @moduledoc """
   This module defines a CLI interface with the guestbook comments
   database contents, its how I approve/deny comments
@@ -21,7 +20,7 @@ defmodule Glue.GuestBookComments.CLI do
   def new_comments() do
     Repo.all(
       from c in GuestBookComment,
-      where: c.approved == false and c.denied == false
+        where: c.approved == false and c.denied == false
     )
   end
 
@@ -33,14 +32,21 @@ defmodule Glue.GuestBookComments.CLI do
     if error do
       IO.puts("Didn't recieve 'a' or 'd'")
     end
+
     IO.inspect(new_comment)
     print_comment(new_comment)
-    resp = IO.gets(prompt || "Approve Comment? ['a' for approve, 'd' for deny] ") |> String.trim()
+    resp = IO.gets(prompt || "Approve Comment? ['a' for approve, 'd' for deny, 'del' for delete] ") |> String.trim()
+
     cond do
       resp == "a" ->
         :approve
+
       resp == "d" ->
         :deny
+
+      resp == "del" ->
+        :delete
+
       true ->
         approve_prompt_loop(new_comment, prompt, true)
     end
@@ -49,9 +55,13 @@ defmodule Glue.GuestBookComments.CLI do
   def prompt(new_comment) do
     case approve_prompt_loop(new_comment) do
       :approve ->
-        GuestBookComments.update_guest_book_comment(new_comment, %{approved: true})
+        GuestBookComments.update_guest_book_comment(new_comment, %{approved: true, denied: false})
+
       :deny ->
-        GuestBookComments.update_guest_book_comment(new_comment, %{denied: true})
+        GuestBookComments.update_guest_book_comment(new_comment, %{denied: true, approved: false})
+
+      :delete ->
+        GuestBookComments.delete_guest_book_comment(new_comment)
     end
   end
 
@@ -69,10 +79,11 @@ defmodule Glue.GuestBookComments.CLI do
     |> prompt_comments()
   end
 
-  def print_all() do
+  @doc """
+  Incase I made a mistake, let me prompt and mark against all current comments
+  """
+  def all() do
     Repo.all(GuestBookComment)
-    |> Enum.each(fn cmnt ->
-      IO.inspect(cmnt)
-    end)
+    |> prompt_comments()
   end
 end

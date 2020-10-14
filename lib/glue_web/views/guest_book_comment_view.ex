@@ -10,12 +10,15 @@ defmodule GlueWeb.GuestBookCommentView do
     %{data: render_one(guest_book_comment, GuestBookCommentView, "guest_book_comment.json")}
   end
 
+  def render("error.json", %{message: err_msg}) do
+    %{data: Jason.encode!(%{error: err_msg})}
+  end
+
   def render("guest_book_comment.json", %{guest_book_comment: guest_book_comment}) do
     %{
       id: guest_book_comment.id,
       name: guest_book_comment.name,
       comment: guest_book_comment.comment,
-      approved: guest_book_comment.approved
     }
   end
 end
