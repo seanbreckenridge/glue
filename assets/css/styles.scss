@@ -318,6 +318,10 @@ textarea {
       padding: 1em;
       height: 100%;
 
+      .home-icon-hide {
+        display: none !important;
+      }
+
       .home-icon {
         // center the figure/text in the container that scales
         margin-top: 1.75em;

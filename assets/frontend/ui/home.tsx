@@ -55,6 +55,25 @@ type draggedRect = _draggedRect | undefined;
 const draggedRectDefault = undefined;
 const dragBuffer = 3; // to make sure nothing weird happens with scrollbar, keep a small buffer
 
+const desktopRenderTick = 60;
+
+// increment the state for which icons should be shown
+function renderDesktopIconFrame(
+  currentFrame: number,
+  frameCount: number,
+  setLoadingFunc: Dispatch<SetStateAction<number>>
+): void {
+  // there are desktop icons to render
+  if (currentFrame < frameCount) {
+    setLoadingFunc((oldFrame) => {
+      return oldFrame + 1;
+    });
+    setTimeout(() => {
+      renderDesktopIconFrame(currentFrame + 1, frameCount, setLoadingFunc);
+    }, desktopRenderTick);
+  }
+}
+
 function Home() {
   // currently displayed floating windows
   const [guiWindows, setWindows] = useState(windowDefault);
@@ -70,6 +89,14 @@ function Home() {
   // what icon the user currently has clicked/highlighted
   // use the icon caption as the key
   const [selectedIcon, setSelectedIcon] = useState("");
+
+  // animate icons appearing on screen
+  const [loading, setLoading] = useState<number>(0);
+
+  // start animating desktop icons when this loads
+  useEffect(() => {
+    renderDesktopIconFrame(loading, IconData.length, setLoading);
+  }, []);
 
   // handle window spawn/kill
   useEffect(() => {
@@ -165,7 +192,7 @@ function Home() {
             {/* drawable rectangle */}
             {dragRect !== undefined ? <DragRect {...dragRect} /> : <></>}
             <div id="home-icons-container">
-              {IconData.map((el) => {
+              {IconData.map((el, i) => {
                 const action: string | launchWindowFunc = getAction(
                   el,
                   setwMsg
@@ -177,7 +204,8 @@ function Home() {
                     key={el.name}
                     className={clsx(
                       "home-icon",
-                      selectedIcon == el.name && "selected"
+                      selectedIcon == el.name && "selected",
+                      i >= loading && "home-icon-hide"
                     )}
                   >
                     <DesktopIcon
