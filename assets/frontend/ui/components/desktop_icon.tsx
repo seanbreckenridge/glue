@@ -48,16 +48,20 @@ const DesktopIcon = (props: IDesktopIcon) => {
         onMouseEnter={props.mouseEnter}
         onMouseLeave={props.mouseLeave}
       >
-        <img
-          className="icon-img desktop-icon-interactable"
-          src={props.iconurl}
-          alt={props.caption}
-        />
-        <figcaption className="pixel desktop-icon-interactable">
-          <pre>
-            <code>{props.caption}</code>
-          </pre>
-        </figcaption>
+        <LinkWrap url="#">
+          <img
+            className="icon-img desktop-icon-interactable"
+            src={props.iconurl}
+            alt={props.caption}
+          />
+        </LinkWrap>
+        <LinkWrap url="#">
+          <figcaption className="pixel desktop-icon-interactable">
+            <pre>
+              <code>{props.caption}</code>
+            </pre>
+          </figcaption>
+        </LinkWrap>
       </figure>
     );
   } else if (props.url !== undefined) {
