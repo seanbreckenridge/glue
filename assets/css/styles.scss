@@ -345,8 +345,8 @@ textarea {
 
       .home-icon {
         // center the figure/text in the container that scales
-        margin-top: 1.75em;
-        margin-bottom: 1.75em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
         @include swidth(medium) {
           margin-top: 1.25rem;
           margin-bottom: 1.25rem;
@@ -355,9 +355,41 @@ textarea {
           margin-top: 0.75em;
           margin-bottom: 0.75em;
         }
+        // edge case
+        // do some additional height-based checks to resize
+        // when the window is large horizontaly
+        @include swidth(large) {
+          // if were on medium/short height, force (!important) this to be scaled to 
+          // this medium/small here are the same, they're just to scale down to something
+          // that'll probably fit on the width
+          @include sheight(medium) {
+            margin-top: 1.25rem !important;
+            margin-bottom: 1.25rem !important;
+            padding-right: 2em !important;
+            img.icon-img {
+              height: 30px !important;
+            }
+            figcaption {
+              max-width: 70px !important;
+              font-size: 80% !important;
+            }
+          }
+          @include sheight(small) {
+            margin-top: 1.25rem !important;
+            padding-right: 2em !important;
+            margin-bottom: 1.25rem !important;
+            img.icon-img {
+              height: 30px !important;
+            }
+            figcaption {
+              max-width: 70px !important;
+              font-size: 80% !important;
+            }
+          }
+        }
         margin-left: auto;
         margin-right: auto;
-        padding-right: 3em;
+        padding-right: 2.5em;
         display: flex;
         justify-content: center;
         align-items: center;
