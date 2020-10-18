@@ -124,7 +124,7 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/guestbook.png",
   },
   {
-    name: "NotAVirus",
+    name: "Not_a_Virus",
   },
 ];
 
