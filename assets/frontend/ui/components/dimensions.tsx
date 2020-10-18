@@ -7,7 +7,7 @@ interface Dimensions {
   browserHeight: number;
 }
 
-interface Point {
+export interface Point {
   x: number;
   y: number;
 }

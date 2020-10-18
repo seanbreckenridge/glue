@@ -235,6 +235,20 @@ textarea {
       }
     }
 
+    #virus-launcher {
+      width: 1.5em;
+      height: 1.5em;
+      line-height: 1.5em;
+      cursor: pointer;
+      text-align: center;
+      color: $offwhite;
+
+      &:hover {
+        background: red;
+        color: black;
+      }
+    }
+
     .menu-toolbar-item {
       padding-left: 1%;
       padding-right: 1%;
@@ -719,6 +733,23 @@ textarea {
           text-decoration: underline;
           font-size: 120%;
           margin-bottom: 1em;
+        }
+      }
+
+      .virus-body {
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: center;
+
+        .input-go {
+          cursor: pointer;
+          font-family: "Courier New", Courier, monospace;
+          border-radius: 0.1em;
+          padding-left: 1em;
+          padding-right: 1em;
+          outline: 1px dotted grey;
         }
       }
 
