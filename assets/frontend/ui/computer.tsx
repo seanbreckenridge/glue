@@ -21,7 +21,7 @@ const Computer: React.FC<{}> = () => {
 const loadingText: string[] = [
   "Loading...",
   "---------------",
-  "sean.fish",
+  "sean.fishOS",
   "---------------",
   "Devices",
   "   Unit 0 - Backend API ... DONE",

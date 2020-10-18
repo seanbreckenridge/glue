@@ -180,35 +180,12 @@ textarea {
   }
 }
 
-/* button which switches between GUI/TUI */
-.swap-interface {
-  margin-left: auto; /* move button to switch interface to top right */
-}
-
 .unlinkify {
   color: black;
   text-decoration: none;
 
   &:hover {
     color: black;
-  }
-}
-
-.swap-button {
-  font-family: inherit;
-  font-weight: inherit;
-
-  a {
-    border: 3px solid $offwhite;
-    padding: 3px 10px;
-    border-radius: 4px;
-    color: $bg;
-    text-decoration: none;
-
-    &:hover {
-      background-color: $offwhite;
-      color: $bg;
-    }
   }
 }
 
@@ -225,6 +202,12 @@ textarea {
 #gui {
   color: $offwhite;
   border: $outer_border_width solid black;
+
+  #os-copyright {
+    position: absolute;
+    bottom: $outer_border_width;
+    right: $outer_border_width;
+  }
 
   a {
     color: #43e3af;

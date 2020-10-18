@@ -1,0 +1,12 @@
+#!/bin/bash -ex
+# helper script to format/create build hash
+
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+cd "$THIS_DIR"
+
+./generate_build_hash
+./autoformat
+git add -A && \
+  git commit && \
+  git push
+

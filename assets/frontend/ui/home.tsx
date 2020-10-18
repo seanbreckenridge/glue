@@ -9,6 +9,7 @@ import { getAction, launchWindowFunc } from "./windows/actions";
 import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
 import { ok } from "../utils";
+import { hash, version } from "../build";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -230,6 +231,10 @@ function Home() {
                 );
               })}
             </div>
+            <span id="os-copyright">
+              sean.fishOS Version {version.toFixed(1)} (Build {hash}) &copy;{" "}
+              {new Date().getFullYear()}
+            </span>
           </div>
         </div>
       </div>
