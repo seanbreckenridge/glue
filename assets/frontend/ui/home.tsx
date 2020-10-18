@@ -194,7 +194,12 @@ function Home() {
                 <div key={wid.toString()}>{guiWindows[wid]}</div>
               ))}
             </div>
-            {/* drawable rectangle */}
+            {/* drawable rectangle 
+              Note: this sometimes seems to leave remnants attached to the upper flexbox?
+              See:  https://i.imgur.com/CLILHc3.png https://i.imgur.com/T3Q2Yoz.png
+              It doesnt seem to be an issue, more like a browser issue. Not reproducable
+              on my machine consistently, reported by @mut...
+            */}
             {dragRect !== undefined ? <DragRect {...dragRect} /> : <></>}
             <div id="home-icons-container">
               {IconData.map((el, i) => {
