@@ -16,12 +16,13 @@ import {
   getWindowDimensions,
 } from "./../components/dimensions";
 import Dialog from "../components/dialog";
-import { launchWindowFunc, fullScreenDialogScale } from "./actions";
+import { launchWindowFunc } from "./actions";
 import { Context, AppContextConsumer } from "../../app_provider";
 import { ok } from "../../utils";
 
-const minHeight = 400;
+const minHeight = 300;
 const minWidth = 300;
+const dialogScale = 0.6;
 
 // assumes values are valid here
 async function handleRequest(
@@ -54,8 +55,8 @@ export function GuestBookWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { x, y } = jitterCenterLocation();
     const { browserWidth, browserHeight } = getWindowDimensions();
-    const dialogWidth = browserWidth * fullScreenDialogScale;
-    const dialogHeight = browserHeight * fullScreenDialogScale;
+    const dialogWidth = browserWidth * dialogScale;
+    const dialogHeight = browserHeight * dialogScale;
     const windowId = Date.now().toString();
     const dialogObj = (
       <>
