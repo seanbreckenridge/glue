@@ -28,7 +28,7 @@ interface IDialogProps {
   // div, then the children
   msg?: string;
   children?: any;
-  titleObj: any;
+  titleObj?: any;
 }
 
 export const defaultDialogWidth = 200;
