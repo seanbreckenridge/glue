@@ -2,7 +2,7 @@ $width-break-small: 450px;
 $width-break-large: 800px;
 
 $height-break-small: 300px;
-$height-break-large: 600px;
+$height-break-large: 650px;
 
 @mixin swidth($media) {
   @if $media == small {
@@ -345,8 +345,8 @@ textarea {
 
       .home-icon {
         // center the figure/text in the container that scales
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        margin-top: 2em;
+        margin-bottom: 2em;
         @include swidth(medium) {
           margin-top: 1.25rem;
           margin-bottom: 1.25rem;
@@ -389,7 +389,7 @@ textarea {
         }
         margin-left: auto;
         margin-right: auto;
-        padding-right: 2.5em;
+        padding-right: 3em;
         display: flex;
         justify-content: center;
         align-items: center;
