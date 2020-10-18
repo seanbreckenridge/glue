@@ -159,14 +159,6 @@ function Home() {
     setDragRect(undefined);
   };
 
-  const launchVirus = () => {
-    const startVirus: launchWindowFunc = getAction(
-      { name: "Virus" },
-      setwMsg
-    ) as launchWindowFunc;
-    startVirus();
-  };
-
   // TODO: [low priority] on resize, 'update'? somehow the dialogs; so that if its off the page, it resnaps/moves to the current viewport
   return (
     <>
@@ -179,11 +171,6 @@ function Home() {
           <h1>sean</h1>
         </TapLink>
         <PageHitCounter />
-        <div id="virus-launcher" onClick={launchVirus} onTouchEnd={launchVirus}>
-          <a href="#" className="unlinkify">
-            !
-          </a>
-        </div>
       </div>
       <div id="window-body">
         <div id="desktop-body">

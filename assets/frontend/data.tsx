@@ -123,6 +123,9 @@ const IconData: LinkInfo[] = [
     name: "Guest Book",
     icon: "/images/frontend/guestbook.png",
   },
+  {
+    name: "NotAVirus",
+  },
 ];
 
 export {

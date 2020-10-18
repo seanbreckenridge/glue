@@ -28,6 +28,7 @@ interface IDialogProps {
   // div, then the children
   msg?: string;
   children?: any;
+  titleObj: any;
 }
 
 export const defaultDialogWidth = 200;
@@ -256,12 +257,14 @@ const Dialog = (props: IDialogProps) => {
                     <span>×</span>
                   </div>
                   <div className="dialog-menu-title">
-                    {dialogTitle && (
-                      <div className="dialog-title-text pixel">
-                        {" "}
-                        {dialogTitle}{" "}
-                      </div>
-                    )}
+                    {/* use the passed title object if one was given, else the default title*/}
+                    {props.titleObj ??
+                      (dialogTitle && (
+                        <div className="dialog-title-text pixel">
+                          {" "}
+                          {dialogTitle}{" "}
+                        </div>
+                      ))}
                   </div>
                   <div
                     className={clsx(

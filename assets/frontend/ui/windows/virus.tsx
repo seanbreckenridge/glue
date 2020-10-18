@@ -40,6 +40,7 @@ export function VirusWindow(setwMsg: setWindowMsg): launchWindowFunc {
       minWidth
     );
     const windowId = Date.now().toString();
+    const vTitle = <VirusTitle />;
     const virusDialog = (
       <>
         <Dialog
@@ -50,16 +51,15 @@ export function VirusWindow(setwMsg: setWindowMsg): launchWindowFunc {
           minHeight={minHeight}
           minWidth={minWidth}
           title="virus"
-          isErr={true}
           windowId={windowId}
           // when close is hit, spawn another virus!
           hitCloseCallback={() => VirusWindow(setwMsg)()}
+          titleObj={vTitle}
         >
           <VirusBody />
         </Dialog>
       </>
     );
-    // when the icon is clicked, set the message to spawn this window
     setwMsg({
       spawn: true,
       windowId: windowId,
@@ -97,3 +97,15 @@ const VirusBody = () => {
     </>
   );
 };
+
+const VirusTitle = React.memo(() => {
+  return (
+    <div className="virus-title dialog-title-text pixel">
+      <span className="vt-v">V</span>
+      <span className="vt-i">i</span>
+      <span className="vt-r">r</span>
+      <span className="vt-u">u</span>
+      <span className="vt-s">s</span>
+    </div>
+  );
+});

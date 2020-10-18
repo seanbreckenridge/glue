@@ -55,7 +55,7 @@ export const actions: IHashActionFunc = {
   Paint: PaintWindow,
   Customize: CustomizeWindow,
   "Guest Book": GuestBookWindow,
-  Virus: VirusWindow,
+  NotAVirus: VirusWindow,
 };
 
 // returns what this icon does when its clicked

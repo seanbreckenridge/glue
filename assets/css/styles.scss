@@ -36,6 +36,45 @@ $height-break-large: 650px;
   }
 }
 
+@keyframes colorRotate {
+  from {
+    color: #ff0000;
+  }
+  9% {
+    color: #ff0000;
+  }
+  10% {
+    color: #000fff;
+  }
+  19% {
+    color: #000fff;
+  }
+  20% {
+    color: #13cb0f;
+  }
+  29% {
+    color: #13cb0f;
+  }
+  30% {
+    color: #c7f94c;
+  }
+  39% {
+    color: #c7f94c;
+  }
+  40% {
+    color: #00f9ff;
+  }
+  49% {
+    color: #00f9ff;
+  }
+  50% {
+    color: #ff0000;
+  }
+  100% {
+    color: #ff0000;
+  }
+}
+
 $outer_border_width: 5px;
 $inner_border_width: 2px;
 
@@ -232,23 +271,6 @@ textarea {
         text-align: center;
         border: 1px solid $bg;
         box-sizing: border-box;
-      }
-    }
-
-    #virus-launcher {
-      width: 1.5em;
-      height: 1.5em;
-      line-height: 1.5em;
-      cursor: pointer;
-      text-align: center;
-
-      a {
-        color: $offwhite;
-      }
-
-      &:hover {
-        background: red;
-        color: black;
       }
     }
 
@@ -532,6 +554,29 @@ textarea {
     border: 2px solid $offwhite;
     height: 100%;
     width: 100%;
+
+    .virus-title {
+      color: #ff0000;
+      .vt-v {
+        animation: colorRotate 2.5s linear 0s infinite;
+      }
+
+      .vt-i {
+        animation: colorRotate 2.5s linear 0.2s infinite;
+      }
+
+      .vt-r {
+        animation: colorRotate 2.5s linear 0.4s infinite;
+      }
+
+      .vt-u {
+        animation: colorRotate 2.5s linear 0.6s infinite;
+      }
+
+      .vt-s {
+        animation: colorRotate 2.5s linear 0.8s infinite;
+      }
+    }
 
     .dialog-part-hidden {
       opacity: 0;
