@@ -66,6 +66,7 @@ const Browser = () => {
     <div className="browser-body">
       <div className="browser-controls">
         <form
+          autoComplete="off"
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit();

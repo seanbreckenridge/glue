@@ -88,6 +88,7 @@ const TextEditor = () => {
     <div className="textedit-body">
       <div className="textedit-controls">
         <form
+          autoComplete="off"
           onSubmit={(e) => {
             e.preventDefault();
             handleSave();
