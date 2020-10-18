@@ -359,7 +359,7 @@ textarea {
         // do some additional height-based checks to resize
         // when the window is large horizontaly
         @include swidth(large) {
-          // if were on medium/short height, force (!important) this to be scaled to 
+          // if were on medium/short height, force (!important) this to be scaled to
           // this medium/small here are the same, they're just to scale down to something
           // that'll probably fit on the width
           @include sheight(medium) {
