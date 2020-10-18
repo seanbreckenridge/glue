@@ -180,7 +180,9 @@ function Home() {
         </TapLink>
         <PageHitCounter />
         <div id="virus-launcher" onClick={launchVirus} onTouchEnd={launchVirus}>
-          !
+          <a href="#" className="unlinkify">
+            !
+          </a>
         </div>
       </div>
       <div id="window-body">

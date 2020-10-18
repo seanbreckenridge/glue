@@ -241,7 +241,10 @@ textarea {
       line-height: 1.5em;
       cursor: pointer;
       text-align: center;
-      color: $offwhite;
+
+      a {
+        color: $offwhite;
+      }
 
       &:hover {
         background: red;
