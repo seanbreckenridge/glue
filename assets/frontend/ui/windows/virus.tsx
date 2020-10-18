@@ -84,7 +84,7 @@ const VirusBody = () => {
   return (
     <>
       <div className="virus-body">
-        <div className="virus-text">You've clicked 'OK' {clicked} times</div>
+        <div className="virus-text">You've clicked OK {clicked} times</div>
         <a
           href="#"
           className="input-go pixel unlinkify"
