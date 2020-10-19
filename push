@@ -20,4 +20,4 @@ git add -A &&
 	git push
 
 # restart remote server
-ssh vultr "cd ./code/glue && git pull && setsid ~/vps/super --ctl restart glue-server" >/dev/null 2>&1
+ssh vultr "cd ./code/glue && git pull && ~/vps/super --ctl restart glue-server"
