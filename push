@@ -14,10 +14,7 @@ commit() {
 	fi
 }
 
-
-./generate_build_hash
-./autoformat
-git add -A && \
-  commit "$@" && \
-  git push
-
+./lint || exit $?
+git add -A &&
+	commit "$@" &&
+	git push

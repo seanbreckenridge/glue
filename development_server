@@ -22,4 +22,5 @@ done
 
 mix phx.server
 
+# shellcheck disable=SC2046
 kill $(jobs -p)
