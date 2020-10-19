@@ -236,7 +236,7 @@ function Home() {
   );
 }
 
-const DragRect = (props: _draggedRect) => {
+const DragRect = React.memo((props: _draggedRect) => {
   // by default, assume the user dragged down and to the right
   let topLeftX: number = props.x1;
   let topLeftY: number = props.y1;
@@ -265,7 +265,7 @@ const DragRect = (props: _draggedRect) => {
       <div className="draggable-rect-body"></div>
     </div>
   );
-};
+});
 
 const PageHitCounter = () => {
   return (
