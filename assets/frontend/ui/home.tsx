@@ -225,10 +225,7 @@ function Home() {
                 );
               })}
             </div>
-            <span id="os-copyright">
-              sean.fishOS Version {version.toFixed(1)} (Build {hash}) &copy;{" "}
-              {new Date().getFullYear()}
-            </span>
+            <OSVersion />
           </div>
         </div>
       </div>
@@ -304,6 +301,15 @@ const PageHitRender = React.memo(({ count }: IPageHitRender) => {
           );
         })}
     </>
+  );
+});
+
+const OSVersion = React.memo(() => {
+  return (
+    <span id="os-copyright">
+      sean.fishOS Version {version.toFixed(1)} (Build {hash}) &copy;{" "}
+      {new Date().getFullYear()}
+    </span>
   );
 });
 
