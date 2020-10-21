@@ -3,8 +3,8 @@
 # to generate dark-themed error pages as fallbacks
 
 recreate() {
-  rm -rf "$1"
-  mkdir -p "$1"
+	rm -rf "$1"
+	mkdir -p "$1"
 }
 
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
