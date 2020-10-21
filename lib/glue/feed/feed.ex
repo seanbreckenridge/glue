@@ -185,7 +185,7 @@ defmodule Glue.Feed.Server do
   # updates the cached feed value in this GenServer and
   # casts values off to image caching genserver for specific endpoints.
   defp update_cached_feed(state, true) do
-    Logger.info("Updating cached feed...")
+    Logger.debug("Updating cached feed...")
     # if the values changed, update the cached feed value
     state =
       Map.put(
