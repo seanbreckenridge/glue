@@ -1,4 +1,3 @@
-// this isnt used for any page, its the file I copy/paste when starting a new window
 import React, { useEffect, useState } from "react";
 
 import { setWindowMsg } from "./../home";
