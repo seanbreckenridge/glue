@@ -219,7 +219,7 @@ function Home() {
                       mouseEnter={() => setSelectedIcon(el.name)}
                       mouseLeave={() => setSelectedIcon("")} // set to empty string, which means nothing is highlighted
                       caption={el.name}
-                      iconurl={el.icon ?? "https://sean.fish/favicon.ico"}
+                      iconurl={el.icon ?? "/favicon.ico"}
                     />
                   </div>
                 );
