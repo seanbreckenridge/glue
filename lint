@@ -5,6 +5,6 @@ SHELL_SCRIPTS=(./*_server lint push ./generate_*)
 
 ./generate_build_hash
 shellcheck "${SHELL_SCRIPTS[@]}"
-shfmt-in-place "${SHELL_SCRIPTS[@]}"
+shfmt -w "${SHELL_SCRIPTS[@]}"
 mix format
 fd '\.tsx$|\.scss$|\.js$|\.json$' -X prettier -w
