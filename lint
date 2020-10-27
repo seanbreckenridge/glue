@@ -1,10 +1,4 @@
 #!/bin/bash -eux
 
-declare -a SHELL_SCRIPTS
-SHELL_SCRIPTS=(./*_server lint push ./generate_*)
-
-./generate_build_hash
-shellcheck "${SHELL_SCRIPTS[@]}"
-shfmt -w "${SHELL_SCRIPTS[@]}"
-mix format
-fd '\.tsx$|\.scss$|\.js$|\.json$' -X prettier -w
+git ls-files | xargs rifleman -a lint 2>/dev/null
+git ls-files | xargs rifleman 2>/dev/null
