@@ -24,6 +24,8 @@ defmodule Glue.Feed.External.Trakt do
 
   def request_trakt() do
     first_page = TraktAPI.history(1)
+    # safely comply with rate limit
+    :timer.sleep(5000)
     second_page = TraktAPI.history(2)
 
     if first_page |> Enum.empty?() or second_page |> Enum.empty?() do
