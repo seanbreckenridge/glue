@@ -3,7 +3,7 @@ defmodule GlueWeb.ReactController do
 
   @moduledoc """
   This defines the single entrypoint to the react part of this site.
-  That uses react router, so its just the one route here to embed the root div
+  react_layout.html has the compiled js bundle as part of the <head>
   """
 
   plug :put_layout, "react_layout.html"

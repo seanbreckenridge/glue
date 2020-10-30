@@ -52,7 +52,7 @@ defmodule GlueWeb.Router do
   scope "/", GlueWeb do
     pipe_through :browser
 
-    # catchall for frontend typescript react-router routes
+    # catchall for frontend typescript route
     get "/", ReactController, :catchall
   end
 
