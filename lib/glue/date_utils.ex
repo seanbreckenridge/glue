@@ -1,4 +1,16 @@
 defmodule Glue.DateUtils do
+  @moduledoc """
+  Describes datetimes in a readable format, describing the
+  difference between now and the datetime. Like
+
+  '2 hours ago'
+  '1 week ago'
+  '6 months ago'
+
+  Used for the API endpoints which render the
+  'Media Feed' and 'Guest Book' windows
+  """
+
   @minute :timer.minutes(1)
   @hour :timer.hours(1)
   @day :timer.hours(24)
