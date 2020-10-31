@@ -17,7 +17,8 @@ const MediaElsewhere: LinkInfo[] = [
   },
   {
     name: "Music [Spreadsheet]",
-    url: "https://sean.fish/s/albums",
+    url:
+      "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit?usp=sharing",
   },
   {
     name: "Video Games [Grouvee]",
