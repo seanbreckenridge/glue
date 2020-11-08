@@ -68,11 +68,15 @@ export const HomeScreen: React.FC<{}> = () => {
           // animation is over
           return <GUI backgroundColor={value.backgroundColor} />;
         } else {
+          // include gui/full-screen root-el wrapper div here (otherwise included
+          // in GUI) so that loading text has the same border as the loaded screen
           return (
-            <div className="loading-text pixel">
-              {loadingText.map((line: string, index: number) => {
-                return <div key={index}>{loading >= index ? line : ""}</div>;
-              })}
+            <div id="gui" className="full-screen root-el">
+              <div className="loading-text pixel">
+                {loadingText.map((line: string, index: number) => {
+                  return <div key={index}>{loading >= index ? line : ""}</div>;
+                })}
+              </div>
             </div>
           );
         }
