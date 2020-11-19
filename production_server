@@ -2,7 +2,7 @@
 # accepts the secret file from https://github.com/seanbreckenridge/vps
 # see the secret.dist file there
 
-# defualt location on my server
+# default location on my server
 declare FILEPATH DEFAULT_SECRET
 readonly DEFAULT_SECRET="${REPOS:-${HOME}}/vps/secret"
 

@@ -397,7 +397,7 @@ textarea {
         }
         // edge case
         // do some additional height-based checks to resize
-        // when the window is large horizontaly
+        // when the window is large horizontally
         @include swidth(large) {
           // if were on medium/short height, force (!important) this to be scaled to
           // this medium/small here are the same, they're just to scale down to something
