@@ -3,6 +3,7 @@
 User-agent: *
 Disallow: /logs
 Disallow: /netdata
+Disallow: /dashboard
 Disallow: /f/*
 Disallow: /p/*
 Disallow: /m/*
