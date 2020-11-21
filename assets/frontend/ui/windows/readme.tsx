@@ -63,14 +63,26 @@ const ReadmeBody = () => {
         scroll (try in 'Media Feed').
       </p>
       <hr />
+      <h4>Contact</h4>
       <p>
-        Other than{" "}
-        <TapLink href="https://github.com/seanbreckenridge/">Github</TapLink>, I
-        don't use social media that much. If you're interested in my thoughts,
-        my <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has
-        lots of those. Feel free to email me{" "}
-        <TapLink href="mailto:ssbreckenridge@me.com">here</TapLink>. You can
-        also sign the Guest Book here, I look at that every few hours.
+        I don't use social media all that much, but feel free to contact me
+        using:
+        <ul>
+          <li>
+            <TapLink href="https://github.com/seanbreckenridge/">
+              Github
+            </TapLink>
+          </li>
+          <li>Discord (PurplePinapples#3673)</li>
+          <li>
+            <TapLink href="mailto:ssbreckenridge@me.com">Email</TapLink>
+          </li>
+        </ul>
+      </p>
+      <p>
+        If you're interested in my random thoughts, my{" "}
+        <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has lots
+        of those. You can also just sign the Guest Book here :)
       </p>
       <h5>Thanks for visiting!</h5>
     </div>

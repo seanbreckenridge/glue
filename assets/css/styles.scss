@@ -771,14 +771,25 @@ textarea {
           color: $offwhite;
         }
 
+        ul {
+          list-style-type: unset;
+          margin-left: 1em;
+          margin-top: 0.25em;
+        }
+
         h3,
         h5,
+        h4,
         p {
           margin-bottom: 1em;
         }
 
         h3 {
           font-size: 170%;
+        }
+
+        h4 {
+          font-size: 140%;
         }
 
         h5 {
