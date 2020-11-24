@@ -61,7 +61,7 @@ const Programming: LinkInfo[] = [
   },
   {
     name: "Project List",
-    url: "https://exobrain.sean.fish/projects/",
+    url: "https://projects.sean.fish",
   },
   {
     name: "PyPi",

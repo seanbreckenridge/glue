@@ -1,2 +1,2 @@
-export const version = 3.56;
-export const hash = "fed58d43";
+export const version = 3.57;
+export const hash = "9f8f7e8f";
