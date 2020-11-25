@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Context, AppContextConsumer } from "../../app_provider";
 import { CubingData, CubingRecords } from "../../api_model";
@@ -69,7 +69,7 @@ interface ICubingBody {
   data: CubingData;
 }
 
-const CubingBody = ({ data }: ICubingBody) => {
+const CubingBody = memo(({ data }: ICubingBody) => {
   return (
     <div className="cubing-body">
       <p>
@@ -163,4 +163,4 @@ const CubingBody = ({ data }: ICubingBody) => {
       </p>
     </div>
   );
-};
+});

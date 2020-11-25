@@ -5,7 +5,6 @@ import { MiscWindow } from "./misc";
 import { BrowserWindow } from "./browser";
 import { TextEditorWindow } from "./texteditor";
 import { PaintWindow } from "./paint";
-import { ProgrammingWindow } from "./programming";
 import { CustomizeWindow } from "./customize";
 import { ReadmeWindow } from "./readme";
 import { GuestBookWindow } from "./guestbook";
@@ -49,7 +48,6 @@ export const actions: IHashActionFunc = {
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
   Misc: MiscWindow,
-  Programming: ProgrammingWindow,
   Browser: BrowserWindow,
   TextEdit: TextEditorWindow,
   Paint: PaintWindow,

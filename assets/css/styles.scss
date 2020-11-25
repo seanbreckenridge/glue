@@ -406,9 +406,6 @@ textarea {
             margin-top: 1.25rem !important;
             margin-bottom: 1.25rem !important;
             padding-right: 2em !important;
-            .exobrain {
-              right: 20px !important;
-            }
             img.icon-img {
               height: 30px !important;
             }
@@ -482,32 +479,6 @@ textarea {
             }
             @include swidth(large) {
               height: 50px;
-            }
-          }
-
-          img.external-arrow {
-            position: absolute;
-            height: 15px;
-            width: auto;
-            top: 0;
-            right: 0;
-
-            // dynamically created class names according to the caption
-            &.blog {
-              right: 10px;
-              top: -3px;
-            }
-
-            &.exobrain {
-              top: -2px;
-              right: 38px;
-
-              @include swidth(medium) {
-                right: 20px;
-              }
-              @include swidth(small) {
-                right: 12px;
-              }
             }
           }
 

@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { launchWindowFunc } from "../windows/actions";
 
 // wrap some child element as an 'a' element
 interface ILinkWrap {
   url: string;
+  newTab?: boolean;
   children?: any;
 }
 
-const LinkWrap = ({ url, children }: ILinkWrap) => {
+const LinkWrap = memo(({ url, newTab, children }: ILinkWrap) => {
+  const targetBlank = newTab ?? false;
   return (
-    <a className="unlinkify" href={url}>
+    <a
+      className="unlinkify"
+      href={url}
+      target={targetBlank ? "_blank" : undefined}
+    >
       {children}
     </a>
   );
-};
+});
 
 // dont attach the link here, handle the onClick at the higher level
 // this just handles drawing the icon
@@ -99,31 +105,20 @@ const DesktopIcon = (props: IDesktopIcon) => {
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
       >
-        <LinkWrap url={props.url!}>
+        <LinkWrap url={props.url!} newTab={true}>
           <img
             src={props.iconurl}
             alt={props.caption}
             className="icon-img desktop-icon-interactable"
           />
         </LinkWrap>
-        <LinkWrap url={props.url!}>
+        <LinkWrap url={props.url!} newTab={true}>
           <figcaption className="pixel desktop-icon-interactable">
             <pre>
               <code>{props.caption}</code>
             </pre>
           </figcaption>
         </LinkWrap>
-        {isExternal ? (
-          <img
-            className={`external-arrow ${props.caption
-              .replace(" ", "-")
-              .toLowerCase()}`}
-            src="/images/icons/external.png"
-            alt=""
-          />
-        ) : (
-          <></>
-        )}
       </figure>
     );
   } else {

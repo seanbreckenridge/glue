@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { setWindowMsg } from "./../home";
 import {
@@ -48,7 +48,7 @@ export function ReadmeWindow(setwMsg: setWindowMsg): launchWindowFunc {
   };
 }
 
-const ReadmeBody = () => {
+const ReadmeBody = memo(() => {
   return (
     <div className="readme-body">
       <h3 className="hi">Hi!</h3>
@@ -87,4 +87,4 @@ const ReadmeBody = () => {
       <h5>Thanks for visiting!</h5>
     </div>
   );
-};
+});

@@ -50,29 +50,15 @@ const MiscApps: LinkInfo[] = [
   },
 ];
 
-const Programming: LinkInfo[] = [
-  {
-    name: "Github",
-    url: "https://github.com/seanbreckenridge",
-  },
-  {
-    name: "Gitlab",
-    url: "https://gitlab.com/seanbreckenridge",
-  },
-  {
-    name: "Project List",
-    url: "https://projects.sean.fish",
-  },
-  {
-    name: "PyPi",
-    url: "https://pypi.org/user/seanbreckenridge/",
-  },
-];
-
 const IconData: LinkInfo[] = [
   {
     name: "README",
     icon: "/images/frontend/notepad.png",
+  },
+  {
+    name: "Portfolio",
+    url: "https://projects.sean.fish",
+    icon: "/images/frontend/laptop.png",
   },
   {
     name: "Media Feed",
@@ -101,10 +87,6 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/misc.png",
   },
   {
-    name: "Programming",
-    icon: "/images/frontend/laptop.png",
-  },
-  {
     name: "Browser",
     icon: "/images/frontend/globe.png",
   },
@@ -130,11 +112,4 @@ const IconData: LinkInfo[] = [
   },
 ];
 
-export {
-  LinkInfo,
-  IconData,
-  MediaElsewhere,
-  MiscApps,
-  Programming,
-  requestFeedCount,
-};
+export { LinkInfo, IconData, MediaElsewhere, MiscApps, requestFeedCount };

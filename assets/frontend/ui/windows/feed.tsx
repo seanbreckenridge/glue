@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Context, AppContextConsumer } from "../../app_provider";
 import WrapApiError from "../components/wrap_api_error";
@@ -69,7 +69,7 @@ interface IFeedPaginator {
   data: FeedData;
 }
 
-const FeedData = ({ data }: IFeedPaginator) => {
+const FeedData = memo(({ data }: IFeedPaginator) => {
   return (
     <div className="feed-body">
       {data.map((item: FeedItem, index: number) => {
@@ -89,4 +89,4 @@ const FeedData = ({ data }: IFeedPaginator) => {
       })}
     </div>
   );
-};
+});
