@@ -61,6 +61,10 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/laptop.png",
   },
   {
+    name: "Guest Book",
+    icon: "/images/frontend/guestbook.png",
+  },
+  {
     name: "Media Feed",
     icon: "/images/frontend/camerafeed.png",
   },
@@ -68,10 +72,6 @@ const IconData: LinkInfo[] = [
     name: "ExoBrain",
     url: "https://exobrain.sean.fish",
     icon: "/images/frontend/brain.png",
-  },
-  {
-    name: "Cubing",
-    icon: "/images/frontend/rubikscube.png",
   },
   {
     name: "Blog",
@@ -85,6 +85,10 @@ const IconData: LinkInfo[] = [
   {
     name: "Misc",
     icon: "/images/frontend/misc.png",
+  },
+  {
+    name: "Cubing",
+    icon: "/images/frontend/rubikscube.png",
   },
   {
     name: "Browser",
@@ -101,10 +105,6 @@ const IconData: LinkInfo[] = [
   {
     name: "Customize",
     icon: "/images/frontend/hammer_wrench.png",
-  },
-  {
-    name: "Guest Book",
-    icon: "/images/frontend/guestbook.png",
   },
   {
     name: "Not_a_Virus",
