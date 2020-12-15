@@ -2,7 +2,7 @@
 # helper script to lint, commit, push and restart server
 
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
-cd "$THIS_DIR"
+cd "${THIS_DIR}" || exit $?
 
 commit() {
 	if [[ -n "$1" ]]; then
@@ -21,4 +21,4 @@ git add -A &&
 	git push
 
 # restart remote server
-ssh vultr "cd ./code/glue && git pull && ~/vps/super --ctl restart glue-server"
+ssh vultr 'cd ./code/glue && git pull && ~/vps/super --ctl restart glue-server'

@@ -29,6 +29,6 @@ const fish = `                                                                  
    ;kkxxxxxxxxdddddocccccc:,..   .;;;;;;;;;.
  .'cxxxxxddddddoooolcc,....
  ,ddxxxxxdodddoooolc::.
- .,,,,,,,,'''''''''...`
+ .,,,,,,,,'''''''''...`;
 
 export default fish;

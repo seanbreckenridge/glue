@@ -11,13 +11,13 @@ THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 TARGET_DIR="${THIS_DIR}/lib/glue_web/templates/error"
 TMP_DIR='/tmp/darker_temp'
 
-recreate "$TMP_DIR"
-recreate "$TARGET_DIR"
+recreate "${TMP_DIR}"
+recreate "${TARGET_DIR}"
 
-darker_errors -output-dir "$TMP_DIR" '404:ERROR_AFTER_MSG:<p>Click <a href="/">here</a> to go back home.<p>' 'ERROR_TITLE:sean - STATUS_MSG'
+darker_errors -output-dir "${TMP_DIR}" '404:ERROR_AFTER_MSG:<p>Click <a href="/">here</a> to go back home.<p>' 'ERROR_TITLE:sean - STATUS_MSG'
 
 # minify HTML
 html-minifier --collapse-whitespace --minify-css --minify-js --remove-attribute-quotes --remove-comments --remove-empty-attributes --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --remove-tag-whitespace --input-dir "${TMP_DIR}" --output-dir "${TARGET_DIR}" --file-ext html
 
 # rename files
-find "$TARGET_DIR" -type f -exec mv {} {}.eex \;
+find "${TARGET_DIR}" -type f -exec mv {} {}.eex \;

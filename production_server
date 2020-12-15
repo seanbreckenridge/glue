@@ -6,8 +6,8 @@
 declare FILEPATH DEFAULT_SECRET
 readonly DEFAULT_SECRET="${REPOS:-${HOME}}/vps/secret"
 
-if [[ -n "${2}" ]]; then
-	FILEPATH="${2}"
+if [[ -n "$2" ]]; then
+	FILEPATH="$2"
 else
 	if [[ -e "${DEFAULT_SECRET}" ]]; then
 		FILEPATH="${DEFAULT_SECRET}"
@@ -23,10 +23,10 @@ if [[ ! -r "${FILEPATH}" ]]; then
 fi
 
 declare GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY MIX_ENV
-GLUE_DATABASE_URI="$(jq -r '.postgres_uri' "$FILEPATH")"
-GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "$FILEPATH")"
-TRAKT_API_KEY="$(jq -r '.trakt_api_key' "$FILEPATH")"
-TMDB_API_KEY="$(jq -r '.tmdb_api_key' "$FILEPATH")"
+GLUE_DATABASE_URI="$(jq -r '.postgres_uri' "${FILEPATH}")"
+GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "${FILEPATH}")"
+TRAKT_API_KEY="$(jq -r '.trakt_api_key' "${FILEPATH}")"
+TMDB_API_KEY="$(jq -r '.tmdb_api_key' "${FILEPATH}")"
 MIX_ENV=prod
 export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY MIX_ENV
 
