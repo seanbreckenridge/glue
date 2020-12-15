@@ -9,7 +9,7 @@ echo -e "TMDB API Key: ${TMDB_API_KEY}"
 sudo services start
 
 # https://github.com/seanbreckenridge/albums
-python3 "${REPOS}/albums/server/app.py" &
+"${REPOS}/albums/server/run_server" &
 # https://github.com/seanbreckenridge/wca_userinfo
 "${REPOS}/wca_userinfo/run_server" &
 # https://github.com/seanbreckenridge/docker-jikan
