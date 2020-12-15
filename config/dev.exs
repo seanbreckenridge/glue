@@ -4,7 +4,7 @@ use Mix.Config
 config :glue, Glue.Repo,
   username: "sean",
   password: "sean",
-  database: "seanbr_pheonix",
+  database: "sean_fish",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
