@@ -20,6 +20,11 @@ until curl -s 'localhost:8000' 2>/dev/null 1>&2; do
 	sleep 1
 done
 
+until curl -s 'localhost:8083' 2>/dev/null 1>&2; do
+	echo "Waiting for albums to be up..."
+	sleep 1
+done
+
 mix phx.server
 
 # shellcheck disable=SC2046
