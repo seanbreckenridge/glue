@@ -14,7 +14,7 @@ defmodule Glue.Feed.External.Albums do
     Logger.info("Updating albums cache...")
     id = meta_kwlist |> Keyword.get(:db_id)
     album_port = meta_kwlist |> Keyword.get(:port)
-    url = "http://localhost:#{album_port}?limit=9999&order_by=listened_on&sort=desc"
+    url = "http://localhost:#{album_port}/?limit=9999&order_by=listened_on&sort=desc"
 
     case Utils.generic_json_request(url, [], recv_timeout: :timer.minutes(1)) do
       {:ok, response} ->

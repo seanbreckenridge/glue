@@ -103,6 +103,7 @@ defmodule Glue.Feed.Utils do
           is_map(response) and Map.has_key?(response, "error") ->
             Logger.warn("#{url} request failed with status_code #{status_code}")
             IO.inspect(response)
+            {:error, response}
 
           status_code >= 200 and status_code < 400 ->
             Logger.debug("Request to #{url} succeeded")
