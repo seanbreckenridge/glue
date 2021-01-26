@@ -56,17 +56,17 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/notepad.png",
   },
   {
-    name: "Portfolio",
-    url: "https://sean.fish/projects",
-    icon: "/images/frontend/laptop.png",
-  },
-  {
     name: "Guest Book",
     icon: "/images/frontend/guestbook.png",
   },
   {
     name: "Media Feed",
     icon: "/images/frontend/camerafeed.png",
+  },
+  {
+    name: "Portfolio",
+    url: "https://sean.fish/projects",
+    icon: "/images/frontend/laptop.png",
   },
   {
     name: "ExoBrain",
