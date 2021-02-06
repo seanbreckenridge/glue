@@ -15,14 +15,20 @@ defmodule Glue.DateUtils do
   @hour :timer.hours(1)
   @day :timer.hours(24)
   @week @day * 7
+  # 30.44 accounts for leap years - is the average month length
+  @month @day * 30.44
 
   def descrive_naive_datetime(time, now) do
     describe_naive_datetime(NaiveDateTime.diff(now, time, :millisecond))
   end
 
-  # only show this if its more than 2 weeks ago
+  # only show this if its more than 3 months ago
+  def describe_naive_datetime(diff) when diff > @month * 3,
+    do: quotient(diff, @month) |> describe_diff("month")
+
+  # only show this if its more than 4 weeks ago
   def describe_naive_datetime(diff) when diff > @week * 4,
-    do: (quotient(diff, @week) - 1) |> describe_diff("week")
+    do: quotient(diff, @week) |> describe_diff("week")
 
   def describe_naive_datetime(diff) when diff > @day,
     do: quotient(diff, @day) |> describe_diff("day")
