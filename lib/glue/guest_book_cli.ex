@@ -24,6 +24,10 @@ defmodule Glue.GuestBookComments.CLI do
     )
   end
 
+  def print_new_comments() do
+    new_comments() |> IO.inspect()
+  end
+
   def print_comment(cmnt) do
     IO.puts("#{cmnt.name}\n#{cmnt.comment}")
   end

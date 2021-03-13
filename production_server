@@ -56,6 +56,10 @@ case "$1" in
 	mix run -e Glue.GuestBookComments.CLI.new_count || exit $?
 	exit 0
 	;;
+--print-new-comments)
+	mix run -e Glue.GuestBookComments.CLI.print_new_comments || exit $?
+	exit 0
+	;;
 --run)
 	:
 	;;
