@@ -14,6 +14,12 @@ const minWidth = 250;
 
 const readmeScale = 0.5;
 
+const discordUserName = "PurplePinapples#3673";
+
+function alertDiscordName() {
+  window.alert(discordUserName);
+}
+
 export function ReadmeWindow(setwMsg: setWindowMsg): launchWindowFunc {
   return () => {
     const { browserHeight, browserWidth } = getWindowDimensions();
@@ -73,7 +79,11 @@ const ReadmeBody = memo(() => {
               Github
             </TapLink>
           </li>
-          <li>Discord (PurplePinapples#3673)</li>
+          <li>
+            <a onClick={alertDiscordName} onTouchEnd={alertDiscordName}>
+              {`Discord (${discordUserName})`}
+            </a>
+          </li>
           <li>
             <TapLink href="mailto:ssbreckenridge@me.com">Email</TapLink>
           </li>
