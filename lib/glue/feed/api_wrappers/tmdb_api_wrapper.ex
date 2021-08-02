@@ -38,6 +38,8 @@ defmodule Glue.TMDB_API do
     end
   end
 
+  def get_movie_image(non_string) when not is_bitstring(non_string), do: nil
+
   def get_movie_image(tmdb_id) do
     case movie(tmdb_id) do
       {:ok, resp} ->
