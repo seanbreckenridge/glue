@@ -11,6 +11,7 @@
     "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
+    "postcss": ">=7.0.36",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.10.4",
