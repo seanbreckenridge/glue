@@ -74,6 +74,8 @@ esac
 mix deps.get --only prod
 mix compile
 
-npm install --prefix ./assets 2>/dev/null
-npm run deploy --prefix ./assets 2>/dev/null
+npm install --prefix ./assets
+npm run deploy --prefix ./assets
+# use if stuff is breaking in production and I cant figure out why
+#npm run deploy-dev --prefix ./assets
 exec mix prod.server
