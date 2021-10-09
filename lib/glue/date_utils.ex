@@ -17,10 +17,14 @@ defmodule Glue.DateUtils do
   @week @day * 7
   # 30.44 accounts for leap years - is the average month length
   @month @day * 30.44
+  @year @month * 12
 
   def descrive_naive_datetime(time, now) do
     describe_naive_datetime(NaiveDateTime.diff(now, time, :millisecond))
   end
+
+  def describe_naive_datetime(diff) when diff > @year,
+    do: quotient(diff, @year) |> describe_diff("year")
 
   # only show this if its more than 3 months ago
   def describe_naive_datetime(diff) when diff > @month * 3,
