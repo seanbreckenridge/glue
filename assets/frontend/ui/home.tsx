@@ -9,7 +9,7 @@ import { getAction, launchWindowFunc } from "./windows/actions";
 import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
 import { ok } from "../utils";
-import { hash, version } from "../build";
+import { hash, commits } from "../build";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -307,7 +307,7 @@ const PageHitRender = React.memo(({ count }: IPageHitRender) => {
 const OSVersion = React.memo(() => {
   return (
     <span id="os-copyright">
-      sean.fishOS Version {version.toFixed(1)} (Build {hash}) &copy;{" "}
+      sean.fishOS Build {commits / 10} ({hash}) &copy;{" "}
       {new Date().getFullYear()}
     </span>
   );

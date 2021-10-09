@@ -3,10 +3,6 @@
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}" || exit $?
 
-# generate a typescript file that has the current sha hash
-# and number of commits / 100 as the 'version'
-# used as the build hash ('os version') in the frontend
-
-VERSION="$(echo "scale=2; $(git rev-list --count HEAD)/100" | bc -l)"
+COMMITS="$(git rev-list --count HEAD)"
 HASH="$(git rev-parse HEAD | cut -c -8)"
-printf 'export const version = %f; export const hash = "%s"' "${VERSION}" "${HASH}" >./assets/frontend/build.tsx
+printf 'export const commits = %d; export const hash = "%s"' "${COMMITS}" "${HASH}" >./assets/frontend/build.tsx
