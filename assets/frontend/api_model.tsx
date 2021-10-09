@@ -77,14 +77,12 @@ const requestAndSetFeed = async (setData: setContextFunc) => {
   loadInterfaceMatches<FeedData>(
     `/api/data/feed?count=${requestFeedCount}&format_dates`
   ).then((response: RFeedData) => {
-    setData(
-      (oldData: Context): Context => {
-        return {
-          ...oldData,
-          feed: response,
-        };
-      }
-    );
+    setData((oldData: Context): Context => {
+      return {
+        ...oldData,
+        feed: response,
+      };
+    });
   });
 };
 
@@ -92,14 +90,12 @@ const requestAndSetFeed = async (setData: setContextFunc) => {
 const requestAndSetCubing = async (setData: setContextFunc) => {
   loadInterfaceMatches<CubingData>("/api/data/cubing").then(
     (response: RCubingData) => {
-      setData(
-        (oldData: Context): Context => {
-          return {
-            ...oldData,
-            cubing: response,
-          };
-        }
-      );
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          cubing: response,
+        };
+      });
     }
   );
 };
@@ -108,14 +104,12 @@ const requestAndSetCubing = async (setData: setContextFunc) => {
 const requestAndSetComments = async (setData: setContextFunc) => {
   loadInterfaceMatches<GuestBookComments>("/api/gb_comment").then(
     (response: RGuestBookComments) => {
-      setData(
-        (oldData: Context): Context => {
-          return {
-            ...oldData,
-            comments: response,
-          };
-        }
-      );
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          comments: response,
+        };
+      });
     }
   );
 };
@@ -124,14 +118,12 @@ const requestAndSetComments = async (setData: setContextFunc) => {
 const requestAndSetPageHits = async (setData: setContextFunc) => {
   loadInterfaceMatches<PageHits>("/api/page_hit").then(
     (response: RPageHits) => {
-      setData(
-        (oldData: Context): Context => {
-          return {
-            ...oldData,
-            pageHits: response,
-          };
-        }
-      );
+      setData((oldData: Context): Context => {
+        return {
+          ...oldData,
+          pageHits: response,
+        };
+      });
     }
   );
 };

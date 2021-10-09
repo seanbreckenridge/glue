@@ -87,9 +87,7 @@ defmodule Glue.Feed.Normalize do
         type: "mal",
         image_url: nil,
         title:
-          "#{old_map["meta"] |> Map.get("name")} #{old_map["meta"] |> mal_get_type()} #{
-            old_map["increment"]
-          }",
+          "#{old_map["meta"] |> Map.get("name")} #{old_map["meta"] |> mal_get_type()} #{old_map["increment"]}",
         site_url: old_map["meta"] |> Map.get("url"),
         timestamp: parse_iso8601_date(old_map["date"])
       }

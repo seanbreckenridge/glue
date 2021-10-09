@@ -17,13 +17,11 @@ const MediaElsewhere: LinkInfo[] = [
   },
   {
     name: "Music [Spreadsheet]",
-    url:
-      "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit?usp=sharing",
+    url: "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit?usp=sharing",
   },
   {
     name: "Video Games [Grouvee]",
-    url:
-      "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
+    url: "https://www.grouvee.com/user/purplepinapples/shelves/106920-played/?sort_by=their_rating&dir=desc&",
   },
   {
     name: "Anime [MAL]",

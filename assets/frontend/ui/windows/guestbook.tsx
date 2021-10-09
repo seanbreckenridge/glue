@@ -31,7 +31,7 @@ async function handleRequest(
 ): Promise<void> {
   const res: AxiosResponse | Error = await axios
     .post("/api/gb_comment/", { name: name, comment: comment })
-    .then((response: AxiosResponse) => {
+    .then((response: AxiosResponse<any>) => {
       return response.data;
     })
     .catch((e: Error) => {

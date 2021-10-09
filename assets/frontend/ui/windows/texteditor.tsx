@@ -50,8 +50,10 @@ export function TextEditorWindow(setwMsg: setWindowMsg): launchWindowFunc {
 // https://stackoverflow.com/a/30832210/9348376
 function downloadTextFile(data: string, filename: string) {
   let file: Blob = new Blob([data], { type: "text/plain" });
+  // @ts-ignore
   if (window.navigator.msSaveOrOpenBlob)
     // IE10+
+    // @ts-ignore
     window.navigator.msSaveOrOpenBlob(file, filename);
   else {
     // Others
