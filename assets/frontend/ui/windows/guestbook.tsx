@@ -5,7 +5,6 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-import axios, { AxiosResponse } from "axios";
 
 import { setWindowMsg } from "./../home";
 import { GuestBookComments, GuestBookComment } from "../../api_model";
@@ -29,11 +28,14 @@ async function handleRequest(
   comment: string,
   setResponse: Dispatch<SetStateAction<string>>
 ): Promise<void> {
-  const res: AxiosResponse | Error = await axios
-    .post("/api/gb_comment/", { name: name, comment: comment })
-    .then((response: AxiosResponse<any>) => {
-      return response.data;
-    })
+  const res: Object | Error = await fetch("/api/gb_comment/", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: name, comment: comment }),
+  })
+    .then((resp: Response) => resp.json())
     .catch((e: Error) => {
       return e;
     });

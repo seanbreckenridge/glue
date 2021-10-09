@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from "axios";
-
 import { Context, setContextFunc } from "./app_provider";
 import { requestFeedCount } from "./data";
 
@@ -56,22 +54,10 @@ type RCubingData = Result<CubingData>;
 type RGuestBookComments = Result<GuestBookComments>;
 type RPageHits = Result<PageHits>;
 
-// when the interface directly matches the response, we can use a generic function
 async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
-  return await axios
-    .request<string>({
-      url: url,
-      responseType: "text",
-    })
-    .then((response: AxiosResponse<string>) => {
-      // different versions of axios with responseJson are breaking
-      // this and causing sometimes to parse to objects, sometimes to
-      // string -- just do it manually
-      const respData: any = response.data;
-      let jsonBlob: any =
-        typeof respData === "string" ? JSON.parse(respData) : respData;
-      return jsonBlob as T;
-    })
+  return await fetch(url)
+    .then((resp: Response) => resp.json())
+    .then((resp_json: Object) => resp_json as T)
     .catch((e: Error) => {
       console.error(e);
       return e;
@@ -135,17 +121,12 @@ const requestAndSetPageHits = async (setData: setContextFunc) => {
 };
 
 const sendPageHit = async () => {
-  // assumes values are valid here
-  // const _res: AxiosResponse | Error =
-  await axios
-    .post("/api/page_hit")
-    .then((response: AxiosResponse) => {
-      return response.data;
-    })
+  await fetch("/api/page_hit", { method: "POST" })
+    .then((resp) => resp.json())
     .catch((e: Error) => {
+      console.error(e);
       return e;
     });
-  // console.log(res)
 };
 
 export {
