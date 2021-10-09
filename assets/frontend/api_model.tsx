@@ -59,15 +59,21 @@ type RPageHits = Result<PageHits>;
 // when the interface directly matches the response, we can use a generic function
 async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
   return await axios
-    .request<T>({
+    .request<string>({
       url: url,
-      responseType: "json",
-      transformResponse: (r: T) => r,
+      responseType: "text",
     })
-    .then((response: AxiosResponse<T>) => {
-      return response.data;
+    .then((response: AxiosResponse<string>) => {
+      // different versions of axios with responseJson are breaking
+      // this and causing sometimes to parse to objects, sometimes to
+      // string -- just do it manually
+      const respData: any = response.data;
+      let jsonBlob: any =
+        typeof respData === "string" ? JSON.parse(respData) : respData;
+      return jsonBlob as T;
     })
     .catch((e: Error) => {
+      console.error(e);
       return e;
     });
 }
