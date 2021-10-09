@@ -122,7 +122,6 @@ const requestAndSetPageHits = async (setData: setContextFunc) => {
 
 const sendPageHit = async () => {
   await fetch("/api/page_hit", { method: "POST" })
-    .then((resp) => resp.json())
     .catch((e: Error) => {
       console.error(e);
       return e;
