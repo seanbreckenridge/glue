@@ -27,6 +27,10 @@ const MediaElsewhere: LinkInfo[] = [
     name: "Anime [MAL]",
     url: "https://myanimelist.net/profile/purplepinapples",
   },
+  {
+    name: "Anime [AniList]",
+    url: "https://anilist.co/user/purplepinapples/",
+  },
 ];
 
 const MiscApps: LinkInfo[] = [

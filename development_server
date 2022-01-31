@@ -13,7 +13,7 @@ sudo services start
 # https://github.com/seanbreckenridge/wca_userinfo
 "${REPOS}/wca_userinfo/run_server" &
 # https://github.com/seanbreckenridge/docker-jikan
-cd "${REPOS}/docker-jikan" && ./run &
+(cd "${REPOS}/docker-jikan/v3" && docker-compose up -d)
 
 until curl -s 'localhost:8000' 2>/dev/null 1>&2; do
 	echo "Waiting for docker to be up..."
