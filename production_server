@@ -27,6 +27,7 @@ cd "${THIS_DIR}"
 
 declare CUBING_JSON
 CUBING_JSON="${THIS_DIR}/cubing.json"
+export CUBING_JSON
 
 if [[ ! -e "${CUBING_JSON}" ]]; then
 	printf '%s JSON file doesnt exist\n' "${CUBING_JSON}" 1>&2

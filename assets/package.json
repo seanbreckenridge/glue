@@ -3,9 +3,9 @@
   "description": " ",
   "license": "MIT",
   "scripts": {
-    "deploy": "webpack --mode production",
-    "deploy-dev": "webpack --mode development",
-    "watch": "webpack --mode development --watch"
+    "deploy": "export NODE_OPTIONS=--openssl-legacy-provider; webpack --mode production",
+    "deploy-dev": "export NODE_OPTIONS=--openssl-legacy-provider; webpack --mode development",
+    "watch": "export NODE_OPTIONS=--openssl-legacy-provider; webpack --mode development --watch"
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
@@ -28,7 +28,7 @@
     "css-loader": "^3.4.2",
     "hard-source-webpack-plugin": "^0.13.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
+    "sass": "^1.49.7",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "react": "^16.13.1",
     "react-canvas-draw": "^1.1.1",
