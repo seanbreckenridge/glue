@@ -13,5 +13,7 @@ echo 'Updating cubing record file...'
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}" || exit $?
 
+havecmd wca_userinfo || cargo install --git "https://github.com/seanbreckenridge/wca_userinfo"
+
 wca_userinfo 2017BREC02 | jq >cubing.json
 scp ./cubing.json vultr:~/code/glue
