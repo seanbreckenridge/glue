@@ -1,6 +1,5 @@
 const path = require("path");
 const glob = require("glob");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -59,7 +58,7 @@ module.exports = (_env, options) => {
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: "../bundle/bundle.css" }),
-      new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
-    ].concat(devMode ? [new HardSourceWebpackPlugin()] : []),
+      new CopyWebpackPlugin({ patterns: [{ from: "static/", to: "../" }] }),
+    ],
   };
 };
