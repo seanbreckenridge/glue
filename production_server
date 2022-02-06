@@ -84,8 +84,8 @@ esac
 mix deps.get --only prod
 mix compile
 
-yarn --cwd ./assets/
-yarn deploy --cwd ./assets/
-# use if stuff is breaking in production and I cant figure out why
-#npm run deploy-dev --prefix ./assets
+cd ./assets
+yarn
+yarn deploy
+cd "${THIS_DIR}"
 exec mix prod.server
