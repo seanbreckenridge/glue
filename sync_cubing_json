@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# use https://github.com/seanbreckenridge/wca_userinfo
+# to fetch my wca results
+# save it to a file and sync it to the dir remotely
+
+wait-for-internet
+
+echo 'Updating cubing record file...'
+
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+cd "${THIS_DIR}" || exit $?
+
+wca_userinfo 2017BREC02 | jq >cubing.json
+scp ./cubing.json vultr:~/code/glue
