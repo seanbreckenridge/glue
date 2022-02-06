@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # use https://github.com/seanbreckenridge/wca_userinfo
 # to fetch my wca results
-# save it to a file and sync it to the dir remotely
+# save it to a file and sync it to the remote dir
+#
+# this runs every few weeks by a block in my
+# https://sean.fish/d/.local/scripts/linux/housekeeping?dark
 
 wait-for-internet
 
