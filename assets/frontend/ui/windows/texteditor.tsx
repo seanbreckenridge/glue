@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { paragraph } from "txtgen";
+import { sentence } from "txtgen";
 
 import { setWindowMsg } from "./../home";
 import {
@@ -83,7 +83,7 @@ const TextEditor = () => {
   };
 
   const randomizeText = () => {
-    setTextAreaContents(paragraph());
+    setTextAreaContents(sentence());
   };
 
   return (
