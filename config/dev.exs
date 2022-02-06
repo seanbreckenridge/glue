@@ -25,6 +25,7 @@ config :glue, GlueWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
+      "--watch",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

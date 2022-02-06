@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "webpack --mode production",
-    "watch": "webpack --mode development"
+    "watch": "webpack --mode development --watch"
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
