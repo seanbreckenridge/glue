@@ -60,7 +60,6 @@ defmodule GlueWeb.Router do
   scope "/api", GlueWeb do
     pipe_through :api
 
-    get "/data/feed", DataController, :feed
     get "/data/cubing", DataController, :cubing
 
     resources "/gb_comment", GuestBookCommentController, only: [:index, :create]

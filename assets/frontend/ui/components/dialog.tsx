@@ -324,8 +324,7 @@ const Dialog = (props: IDialogProps) => {
                   )}
                   onWheel={(e) => {
                     e.preventDefault();
-                    let targetScrollHeight: number =
-                      scrollOffset + e.deltaY * 15;
+                    let targetScrollHeight: number = scrollOffset + e.deltaY;
 
                     // make sure this is within bounds, else default
                     if (targetScrollHeight < 0) {

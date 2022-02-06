@@ -1,31 +1,18 @@
-#!/bin/bash -eu
-# while on my machine, start the development servers
+#!/usr/bin/env bash
+# while on my machine, setup env
 
-# echo out API keys -u flag checks if they're unset
-echo -e "Trakt API Key: ${TRAKT_API_KEY}"
-echo -e "TMDB API Key: ${TMDB_API_KEY}"
+set -e
+set -x
 
-# https://sean.fish/d/.local/scripts/linux/services?dark
-sudo services start
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+cd "${THIS_DIR}"
 
-# https://github.com/seanbreckenridge/albums
-"${REPOS}/albums/server/run_server" &
-# https://github.com/seanbreckenridge/wca_userinfo
-"${REPOS}/wca_userinfo/run_server" &
-# https://github.com/seanbreckenridge/docker-jikan
-(cd "${REPOS}/docker-jikan/v3" && docker-compose up -d)
+declare CUBING_JSON
+CUBING_JSON="${THIS_DIR}/cubing.json"
 
-until curl -s 'localhost:8000' 2>/dev/null 1>&2; do
-	echo "Waiting for docker to be up..."
-	sleep 1
-done
-
-until curl -s 'localhost:8083' 2>/dev/null 1>&2; do
-	echo "Waiting for albums to be up..."
-	sleep 1
-done
+if [[ ! -e "${CUBING_JSON}" ]]; then
+	printf '%s JSON file doesnt exist\n' "${CUBING_JSON}" 1>&2
+	exit 1
+fi
 
 mix phx.server
-
-# shellcheck disable=SC2046
-kill $(jobs -p)

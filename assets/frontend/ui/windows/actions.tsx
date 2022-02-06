@@ -1,4 +1,3 @@
-import { FeedWindow } from "./feed";
 import { CubingWindow } from "./cubing";
 import { MediaAccountsWindow } from "./media_accounts";
 import { MiscWindow } from "./misc";
@@ -16,7 +15,7 @@ import { setWindowMsg } from "./../home";
 // the window, and returns nothing
 export type launchWindowFunc = () => void;
 
-// type of functions which create functions which virtual windows (Feed/Cubing)
+// type of functions which create functions which virtual windows (Paint/Cubing)
 export type createsLaunchWindowFunc = (
   setwMsg: setWindowMsg
 ) => launchWindowFunc;
@@ -44,7 +43,6 @@ export const fullScreenDialogScale = 0.75;
 // action (open the dialog, does something on the page)
 export const actions: IHashActionFunc = {
   README: ReadmeWindow,
-  "Media Feed": FeedWindow,
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
   Misc: MiscWindow,

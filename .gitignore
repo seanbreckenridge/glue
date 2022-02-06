@@ -1,5 +1,6 @@
 tags*
 *.pdf
+cubing.json
 
 # ignore built css files that are compiled into JSX using webpack/postcss
 styles.css

@@ -1,16 +1,4 @@
 import { Context, setContextFunc } from "./app_provider";
-import { requestFeedCount } from "./data";
-
-// individual feed items
-interface FeedItem {
-  image_url?: string;
-  site_url: string;
-  timestamp: string;
-  title: string;
-  type: string;
-}
-
-type FeedData = FeedItem[];
 
 interface CubingData {
   completed_solves: number;
@@ -49,7 +37,6 @@ interface PageHits {
 type GuestBookComments = GuestBookComment[];
 
 // result (Value|Err) types
-type RFeedData = Result<FeedData>;
 type RCubingData = Result<CubingData>;
 type RGuestBookComments = Result<GuestBookComments>;
 type RPageHits = Result<PageHits>;
@@ -63,20 +50,6 @@ async function loadInterfaceMatches<T>(url: string): Promise<Result<T>> {
       return e;
     });
 }
-
-// request and set feed data
-const requestAndSetFeed = async (setData: setContextFunc) => {
-  loadInterfaceMatches<FeedData>(
-    `/api/data/feed?count=${requestFeedCount}&format_dates`
-  ).then((response: RFeedData) => {
-    setData((oldData: Context): Context => {
-      return {
-        ...oldData,
-        feed: response,
-      };
-    });
-  });
-};
 
 // request and set cubing data
 const requestAndSetCubing = async (setData: setContextFunc) => {
@@ -128,16 +101,12 @@ const sendPageHit = async () => {
 };
 
 export {
-  FeedItem,
-  FeedData,
   CubingData,
   PageHits,
   RPageHits,
-  RFeedData,
   RCubingData,
   RGuestBookComments,
   requestAndSetCubing,
-  requestAndSetFeed,
   requestAndSetComments,
   requestAndSetPageHits,
   sendPageHit,

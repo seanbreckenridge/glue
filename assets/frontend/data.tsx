@@ -4,8 +4,6 @@ interface LinkInfo {
   icon?: string;
 }
 
-const requestFeedCount = 150;
-
 const MediaElsewhere: LinkInfo[] = [
   {
     name: "Movies [Letterboxd]",
@@ -64,6 +62,7 @@ const IconData: LinkInfo[] = [
   {
     name: "Media Feed",
     icon: "/images/frontend/camerafeed.png",
+    url: "https://sean.fish/feed/",
   },
   {
     name: "Portfolio",
@@ -114,4 +113,4 @@ const IconData: LinkInfo[] = [
   },
 ];
 
-export { LinkInfo, IconData, MediaElsewhere, MiscApps, requestFeedCount };
+export { LinkInfo, IconData, MediaElsewhere, MiscApps };

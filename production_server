@@ -22,13 +22,22 @@ if [[ ! -r "${FILEPATH}" ]]; then
 	exit 1
 fi
 
-declare GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY MIX_ENV
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+cd "${THIS_DIR}"
+
+declare CUBING_JSON
+CUBING_JSON="${THIS_DIR}/cubing.json"
+
+if [[ ! -e "${CUBING_JSON}" ]]; then
+	printf '%s JSON file doesnt exist\n' "${CUBING_JSON}" 1>&2
+	exit 1
+fi
+
+declare GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE MIX_ENV
 GLUE_DATABASE_URI="$(jq -r '.postgres_uri' "${FILEPATH}")"
 GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "${FILEPATH}")"
-TRAKT_API_KEY="$(jq -r '.trakt_api_key' "${FILEPATH}")"
-TMDB_API_KEY="$(jq -r '.tmdb_api_key' "${FILEPATH}")"
 MIX_ENV=prod
-export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE TRAKT_API_KEY TMDB_API_KEY MIX_ENV
+export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE MIX_ENV
 
 case "$1" in
 # drop into an interactive shell after loading environment secrets

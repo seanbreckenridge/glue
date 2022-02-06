@@ -66,7 +66,7 @@ const ReadmeBody = memo(() => {
       <p>
         The windows here can be resized and dragged around. The top left button
         can be used to close windows; the arrows in the top right can be used to
-        scroll (try in 'Media Feed').
+        scroll
       </p>
       <hr />
       <h4>Contact</h4>

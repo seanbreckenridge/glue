@@ -8,12 +8,10 @@ import React, {
 
 import {
   requestAndSetCubing,
-  requestAndSetFeed,
   requestAndSetComments,
   requestAndSetPageHits,
   sendPageHit,
   RCubingData,
-  RFeedData,
   RPageHits,
   RGuestBookComments,
 } from "./api_model";
@@ -28,7 +26,6 @@ interface IProps {
 }
 
 type Context = {
-  feed?: RFeedData;
   cubing?: RCubingData;
   comments?: RGuestBookComments;
   pageHits?: RPageHits;
@@ -81,7 +78,6 @@ const AppContextProvider = ({ children }: IProps): JSX.Element => {
   // whenever requests are done
   const loadData = async () => {
     requestAndSetCubing(setContext);
-    requestAndSetFeed(setContext);
     requestAndSetComments(setContext);
     requestAndSetPageHits(setContext);
     sendPageHit();
