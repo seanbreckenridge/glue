@@ -27,7 +27,7 @@ interface GuestBookComment {
   id: number;
   name: string;
   comment: string;
-  at: string;
+  at: number;
 }
 
 interface PageHits {

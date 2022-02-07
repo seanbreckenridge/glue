@@ -6,6 +6,9 @@
 # this runs every few weeks by a block in my
 # https://sean.fish/d/.local/scripts/linux/housekeeping?dark
 
+set -e
+set -o pipefail
+
 wait-for-internet
 
 echo 'Updating cubing record file...'

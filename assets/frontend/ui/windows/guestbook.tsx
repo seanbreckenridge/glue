@@ -17,6 +17,9 @@ import Dialog from "../components/dialog";
 import { launchWindowFunc } from "./actions";
 import { Context, AppContextConsumer } from "../../app_provider";
 import { ok } from "../../utils";
+import dayjs, { unix } from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const minHeight = 300;
 const minWidth = 300;
@@ -109,11 +112,12 @@ const GuestBook = ({ comments }: IGuestBook) => {
       <GuestBookForm />
       <div className="guestbook-comments">
         {comments.map((cmnt: GuestBookComment) => {
+          const dt = unix(cmnt.at);
           return (
             <div key={cmnt.id} className="comment-row">
               <div className="comment-name">{cmnt.name}</div>
               <div className="comment-text">{cmnt.comment}</div>
-              <div className="comment-date">{cmnt.at}</div>
+              <div className="comment-date">{dt.fromNow()}</div>
               <hr />
             </div>
           );
