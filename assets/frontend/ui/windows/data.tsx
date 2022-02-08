@@ -55,8 +55,8 @@ const DataBody = memo(() => {
         Call it Lifelogging, Quantified Self or whatever else, I{"'"}ve been
         involved with writing{" "}
         <TapLink href="https://sean.fish/projects">data exporters</TapLink>{" "}
-        (saving data from applications and websites I use) and parsers for the past
-        few years now.
+        (saving data from applications and websites I use) and parsers for the
+        past few years now.
       </p>
       <p>
         My <TapLink href="https://github.com/seanbreckenridge/HPI">HPI</TapLink>{" "}
@@ -72,7 +72,7 @@ const DataBody = memo(() => {
         <TapLink href="https://github.com/karlicoss/HPI#why">here</TapLink>
       </p>
       <p>
-        {`The 'Media Feed' here also heavily leans on HPI to get data from the many online databases I use`}
+        {`The 'Media Feed' here also heavily leans on HPI to get data from the many online media websites I use`}
       </p>
     </div>
   );
