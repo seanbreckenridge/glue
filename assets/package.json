@@ -7,7 +7,6 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "dayjs": "^1.10.7",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
   },
@@ -15,7 +14,7 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.10.4",
-    "@types/node": "^17.0.15",
+    "@types/node": "^17.0.16",
     "@types/phoenix": "^1.5.0",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -23,6 +22,8 @@
     "clsx": "^1.1.1",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
+    "dayjs": "^1.10.7",
+    "glob": "^7.2.0",
     "mini-css-extract-plugin": "^2.5.3",
     "nth-check": ">=2.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
@@ -37,7 +38,6 @@
     "sass-loader": "^12.4.0",
     "set-value": ">=4.0.1",
     "source-map-loader": "^3.0.1",
-    "terser-webpack-plugin": "^4.2.3",
     "ts-loader": "^9.2.6",
     "txtgen": "==2.2.8",
     "typescript": "^4.0.3",
