@@ -10,6 +10,7 @@ import { GuestBookWindow } from "./guestbook";
 import { VirusWindow } from "./virus";
 import { LinkInfo } from "../../data";
 import { setWindowMsg } from "./../home";
+import { DataWindow } from "./data";
 
 // pass it the setWindowMsg function, it returns a function which opens
 // the window, and returns nothing
@@ -45,6 +46,7 @@ export const actions: IHashActionFunc = {
   README: ReadmeWindow,
   Cubing: CubingWindow,
   "Media Accts": MediaAccountsWindow,
+  Data: DataWindow,
   Misc: MiscWindow,
   Browser: BrowserWindow,
   TextEdit: TextEditorWindow,

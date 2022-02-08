@@ -9,7 +9,7 @@ import Dialog from "../components/dialog";
 import { launchWindowFunc } from "./actions";
 import TapLink from "./../components/taplink";
 
-const minHeight = 450;
+const minHeight = 500;
 const minWidth = 250;
 
 const readmeScale = 0.5;
@@ -57,11 +57,10 @@ export function ReadmeWindow(setwMsg: setWindowMsg): launchWindowFunc {
 const ReadmeBody = memo(() => {
   return (
     <div className="readme-body">
-      <h3 className="hi">Hi!</h3>
-      <p>Name's Sean.</p>
+      <h3 className="hi">Yo!</h3>
       <p>
-        The Icons here are mostly little applications, links to other places I
-        live on the internet, or some of my writing/projects.
+        The Icons here are little applications, links to other places I live on
+        the internet, or some of my writing/projects.
       </p>
       <p>
         The windows here can be resized and dragged around. The top left button

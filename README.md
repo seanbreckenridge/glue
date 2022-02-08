@@ -6,7 +6,7 @@ Acts a landing page/connects all of my projects.
 
 The home page is a GUI interface, where each 'page' is a window, inspired by old atari/compaq machines.
 
-The `./development_server` and `./production_server` run this locally/in prod. This server and my production servers are run with `supervisor` by some code [here](https://github.com/seanbreckenridge/vps).
+The `./development_server` and `./production_server` run this locally/in prod/have a couple extra commands to help me manage approving comments for the guestbook. All run with [`supervisor`](https://github.com/Supervisor/supervisor) by some code [here](https://github.com/seanbreckenridge/vps).
 
 ![](./assets/screenshot.png)
 
