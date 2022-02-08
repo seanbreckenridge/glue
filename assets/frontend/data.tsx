@@ -70,7 +70,7 @@ const IconData: LinkInfo[] = [
   },
   {
     name: "Portfolio",
-    url: "https://sean.fish/projects",
+    url: "https://sean.fish/projects/",
     icon: "/images/frontend/laptop.png",
   },
   {

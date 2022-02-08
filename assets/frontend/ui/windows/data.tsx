@@ -54,7 +54,7 @@ const DataBody = memo(() => {
       <p>
         Call it Lifelogging, Quantified Self or whatever else, I{"'"}ve been
         involved with writing{" "}
-        <TapLink href="https://sean.fish/projects">data exporters</TapLink>{" "}
+        <TapLink href="https://sean.fish/projects/">data exporters</TapLink>{" "}
         (saving data from applications and websites I use) and parsers for the
         past few years now.
       </p>
