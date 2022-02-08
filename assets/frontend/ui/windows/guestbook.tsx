@@ -112,12 +112,11 @@ const GuestBook = ({ comments }: IGuestBook) => {
       <GuestBookForm />
       <div className="guestbook-comments">
         {comments.map((cmnt: GuestBookComment) => {
-          const dt = unix(cmnt.at);
           return (
             <div key={cmnt.id} className="comment-row">
               <div className="comment-name">{cmnt.name}</div>
               <div className="comment-text">{cmnt.comment}</div>
-              <div className="comment-date">{dt.fromNow()}</div>
+              <div className="comment-date">{unix(cmnt.at).fromNow()}</div>
               <hr />
             </div>
           );

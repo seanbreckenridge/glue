@@ -23,7 +23,12 @@ defmodule Glue.WCA do
     {:reply, state[:data], state}
   end
 
-  defp read_json_file(path \\ @json_file) do
+  defp read_json_file(f) when is_nil(f) do
+    Logger.warning("No Cubing JSON file!")
+    %{}
+  end
+
+  defp read_json_file(path) when is_bitstring(path) do
     File.read!(path) |> Jason.decode!()
   end
 
@@ -36,7 +41,7 @@ defmodule Glue.WCA do
   # makes sure that the cache for each feed type is up to date
   defp maintenance(state) do
     Logger.debug("Checking State...")
-    Map.put(state, :data, read_json_file())
+    Map.put(state, :data, read_json_file(@json_file))
   end
 
   defp schedule_check() do
