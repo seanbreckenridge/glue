@@ -771,13 +771,16 @@ textarea {
       }
 
       .data-body {
-        margin-top: 1em;
         width: 90%;
         height: 90%;
         height: 100%;
         text-align: left;
         p {
           margin-top: 1em;
+        }
+
+        p:nth-child(1) {
+          margin-top: 2em;
         }
       }
 
