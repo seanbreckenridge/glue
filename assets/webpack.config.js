@@ -3,13 +3,14 @@ const glob = require("glob");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (_env, options) => {
   const devMode = options.mode !== "production";
 
   return {
     optimization: {
-      minimizer: [new OptimizeCSSAssetsPlugin({})],
+      minimizer: [new OptimizeCSSAssetsPlugin({}), new TerserPlugin({})],
     },
     // not perfect, emits some extra modules (e.g. styles.js), but it works
     // everything hot-reloads in development mode properly, the correct
