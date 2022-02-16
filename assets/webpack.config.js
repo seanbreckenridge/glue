@@ -9,9 +9,7 @@ module.exports = (_env, options) => {
 
   return {
     optimization: {
-      minimizer: [
-        new OptimizeCSSAssetsPlugin({}),
-      ],
+      minimizer: [new OptimizeCSSAssetsPlugin({})],
     },
     // not perfect, emits some extra modules (e.g. styles.js), but it works
     // everything hot-reloads in development mode properly, the correct
@@ -55,8 +53,8 @@ module.exports = (_env, options) => {
       extensions: [".ts", ".js", ".tsx", ".jsx", ".css", ".scss"],
     },
     plugins: [
-      new MiniCssExtractPlugin({filename: "../bundle/bundle.css"}),
-      new CopyWebpackPlugin({patterns: [{from: "static/", to: "../"}]}),
+      new MiniCssExtractPlugin({ filename: "../bundle/bundle.css" }),
+      new CopyWebpackPlugin({ patterns: [{ from: "static/", to: "../" }] }),
     ],
   };
 };

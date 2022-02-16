@@ -5,6 +5,7 @@ import {
   AppContextConsumer,
 } from "../app_provider";
 import GUI from "./gui";
+import unix from "dayjs";
 
 // top level of interface
 // renders the the initial loading screen, makes requests off to APi
@@ -18,20 +19,26 @@ const Computer: React.FC<{}> = () => {
   );
 };
 
+const d = unix();
+
 const loadingText: string[] = [
   "Loading...",
   "---------------",
   "sean.fishOS",
   "---------------",
   "Devices",
-  "   Unit 0 - Backend API ... DONE",
-  "   Unit 1 - Frontend Assets ... DONE",
+  "---------------",
+  `Language .... ${navigator.language ?? "en"}`,
+  `Date Now .... ${d.format("YYYY-MM-DD")}`,
+  "Network ..... Pass",
+  "Backend ..... Pass",
+  "Frontend .... Pass",
   "---------------",
   "BOOTLOADED",
 ];
 
 const loadingTextLength = loadingText.length;
-const frameDuration = 200;
+const frameDuration = 150;
 const lastFrameDuration = 1000;
 
 function renderFrame(

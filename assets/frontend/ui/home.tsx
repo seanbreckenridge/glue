@@ -307,7 +307,7 @@ const PageHitRender = React.memo(({ count }: IPageHitRender) => {
 const OSVersion = React.memo(() => {
   return (
     <span id="os-copyright">
-      sean.fishOS Build {commits / 10} ({hash}) &copy;{" "}
+      sean.fishOS Build {commits / 100} ({hash}) &copy;{" "}
       {new Date().getFullYear()}
     </span>
   );
