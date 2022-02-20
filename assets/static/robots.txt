@@ -7,4 +7,4 @@ Disallow: /dashboard
 Disallow: /f/*
 Disallow: /p/*
 Disallow: /m/*
-
+Disallow: /d/*
