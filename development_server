@@ -16,4 +16,4 @@ if [[ ! -e "${CUBING_JSON}" ]]; then
 	exit 1
 fi
 
-mix phx.server
+exec mix phx.server

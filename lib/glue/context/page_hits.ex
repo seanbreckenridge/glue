@@ -8,6 +8,8 @@ defmodule Glue.PageHits do
 
   alias Glue.PageHits.PageHit
 
+  @epoch ~N[1970-01-01 00:00:00]
+
   @doc """
   Returns the number of page hits
   """
@@ -36,5 +38,14 @@ defmodule Glue.PageHits do
     %PageHit{}
     |> PageHit.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def page_hit_epochs() do
+    epochs =
+      Repo.all(from p in PageHit, select: p.inserted_at)
+      |> Enum.map(&NaiveDateTime.diff(&1, @epoch))
+      |> Jason.encode!()
+
+    IO.puts("EPOCHS:#{epochs}")
   end
 end

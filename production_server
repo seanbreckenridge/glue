@@ -52,6 +52,10 @@ case "$1" in
 	iex -S mix
 	exit 0
 	;;
+--epochs)
+	mix run -e Glue.PageHits.page_hit_epochs || exit $?
+	exit 0
+	;;
 --approve-comments)
 	# approve any new comments
 	mix run -e Glue.GuestBookComments.CLI.main || exit $?

@@ -20,5 +20,5 @@ git add -A &&
 	commit "$@" &&
 	git push
 
-# restart remote server
-ssh vultr 'cd ./code/glue && git pull && ~/vps/super --ctl restart glue-server'
+# ssh to restart remote server
+ssh vultr
