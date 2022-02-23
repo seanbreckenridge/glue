@@ -7,8 +7,7 @@ defmodule GlueWeb.PageHitController do
   action_fallback GlueWeb.FallbackController
 
   def index(conn, _params) do
-    page_hit_count = PageHits.page_hit_count()
-    render(conn, "count.json", page_hits: page_hit_count)
+    render(conn, "count.json", page_hits: PageHits.page_hit_count())
   end
 
   def create(conn, _params) do
