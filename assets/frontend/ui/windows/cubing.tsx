@@ -74,10 +74,21 @@ const CubingBody = memo(({ data }: ICubingBody) => {
     <div className="cubing-body">
       <p>
         These are{" "}
-        <TapLink href="https://www.worldcubeassociation.org/persons/2017BREC02">
+        <TapLink
+          href="https://www.worldcubeassociation.org/persons/2017BREC02"
+          target="_blank"
+          rel="noreferrer"
+        >
           my records
         </TapLink>{" "}
-        from <TapLink href="https://www.worldcubeassociation.org/">WCA</TapLink>{" "}
+        from{" "}
+        <TapLink
+          href="https://www.worldcubeassociation.org/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          WCA
+        </TapLink>{" "}
         (World Cube Association) approved competitions. I've been to{" "}
         {data.competitions} competitions and have {data.completed_solves}{" "}
         completed official solves.
@@ -127,36 +138,64 @@ const CubingBody = memo(({ data }: ICubingBody) => {
       </table>
       <p>
         Only hardware I really care about is my 3x3, which is a{" "}
-        <TapLink href="https://www.thecubicle.com/products/moyu-weilong-gts3-m">
-          Moyu GTS3M
+        <TapLink
+          href="https://www.gancube.com/gan356-x"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Gan356 X
         </TapLink>
         . For a lot of my other puzzles I just bought whatever the standard
         mid-range cubes are.
       </p>
       <p>
         For competition, I use full{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/CFOP_method">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/CFOP_method"
+          target="_blank"
+          rel="noreferrer"
+        >
           CFOP
         </TapLink>{" "}
         with some{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/COLL">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/COLL"
+          target="_blank"
+          rel="noreferrer"
+        >
           COLL
         </TapLink>{" "}
         for 3x3,{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/Yau_method">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/Yau_method"
+          target="_blank"
+          rel="noreferrer"
+        >
           Yau
         </TapLink>{" "}
         for 4x4, and{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/Ortega_Method">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/Ortega_Method"
+          target="_blank"
+          rel="noreferrer"
+        >
           Ortega
         </TapLink>{" "}
         for 2x2. For other events I'm only familiar with the basics. I've played
         around with{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/Roux_method">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/Roux_method"
+          target="_blank"
+          rel="noreferrer"
+        >
           Roux
         </TapLink>{" "}
         (~average around 40 seconds), currently use 2-look{" "}
-        <TapLink href="https://www.speedsolving.com/wiki/index.php/CMLL">
+        <TapLink
+          href="https://www.speedsolving.com/wiki/index.php/CMLL"
+          target="_blank"
+          rel="noreferrer"
+        >
           CMLL
         </TapLink>
         .

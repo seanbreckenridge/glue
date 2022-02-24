@@ -54,22 +54,45 @@ const DataBody = memo(() => {
       <p>
         Call it Lifelogging, Quantified Self or whatever else, I{"'"}ve been
         involved with writing{" "}
-        <TapLink href="https://sean.fish/projects/">data exporters</TapLink>{" "}
+        <TapLink
+          href="https://sean.fish/projects/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          data exporters
+        </TapLink>{" "}
         (saving data from applications and websites I use) and parsers for the
         past few years now.
       </p>
       <p>
-        My <TapLink href="https://github.com/seanbreckenridge/HPI">HPI</TapLink>{" "}
+        My{" "}
+        <TapLink
+          href="https://github.com/seanbreckenridge/HPI"
+          target="_blank"
+          rel="noreferrer"
+        >
+          HPI
+        </TapLink>{" "}
         (Human Programming Interface) repository acts as a sort of entrypoint to
         all of my data -- which then integrates with{" "}
-        <TapLink href="https://github.com/karlicoss/promnesia">
+        <TapLink
+          href="https://github.com/karlicoss/promnesia"
+          target="_blank"
+          rel="noreferrer"
+        >
           promnesia
         </TapLink>
         , which lets me interact with the data in context
       </p>
       <p>
         If you'd like to read more on the why, see{" "}
-        <TapLink href="https://github.com/karlicoss/HPI#why">here</TapLink>
+        <TapLink
+          href="https://github.com/karlicoss/HPI#why"
+          target="_blank"
+          rel="noreferrer"
+        >
+          here
+        </TapLink>
       </p>
       <p>
         {`The 'Media Feed' here also heavily leans on HPI to get data from the many online media websites I use`}

@@ -31,7 +31,7 @@ const MediaElsewhere: LinkInfo[] = [
   },
 ];
 
-const MiscApps: LinkInfo[] = [
+const MiscLinks: LinkInfo[] = [
   {
     name: "MAL Unapproved",
     url: "/mal_unapproved/",
@@ -47,6 +47,10 @@ const MiscApps: LinkInfo[] = [
   {
     name: "Favorite XKCDs",
     url: "/xkcd",
+  },
+  {
+    name: "Dotfiles Index",
+    url: "/d/?dark",
   },
 ];
 
@@ -117,4 +121,4 @@ const IconData: LinkInfo[] = [
   },
 ];
 
-export { LinkInfo, IconData, MediaElsewhere, MiscApps };
+export { LinkInfo, IconData, MediaElsewhere, MiscLinks };

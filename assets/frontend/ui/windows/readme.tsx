@@ -74,7 +74,11 @@ const ReadmeBody = memo(() => {
         using:
         <ul>
           <li>
-            <TapLink href="https://github.com/seanbreckenridge/">
+            <TapLink
+              href="https://github.com/seanbreckenridge/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Github
             </TapLink>
           </li>
@@ -90,8 +94,14 @@ const ReadmeBody = memo(() => {
       </p>
       <p>
         If you're interested in my random thoughts, my{" "}
-        <TapLink href="https://exobrain.sean.fish">exobrain</TapLink> has lots
-        of those. You can also just sign the Guest Book here :)
+        <TapLink
+          href="https://exobrain.sean.fish"
+          target="_blank"
+          rel="noreferrer"
+        >
+          exobrain
+        </TapLink>{" "}
+        has lots of those. You can also just sign the Guest Book here :)
       </p>
       <h5>Thanks for visiting!</h5>
     </div>
