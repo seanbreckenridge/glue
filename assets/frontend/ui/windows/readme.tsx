@@ -83,7 +83,11 @@ const ReadmeBody = memo(() => {
             </TapLink>
           </li>
           <li>
-            <a onClick={alertDiscordName} onTouchEnd={alertDiscordName}>
+            <a
+              style={{ cursor: "pointer" }}
+              onClick={alertDiscordName}
+              onTouchEnd={alertDiscordName}
+            >
               {`Discord (${discordUserName})`}
             </a>
           </li>
