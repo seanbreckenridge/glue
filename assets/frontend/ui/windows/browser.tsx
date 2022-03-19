@@ -59,7 +59,11 @@ const Browser = () => {
     if (!httpUrl.startsWith("http")) {
       httpUrl = "http://" + httpUrl;
     }
-    setIFrameURL(httpUrl);
+    setIFrameURL(""); // set to nothing
+    // then reset in .1 seconds
+    setTimeout(() => {
+      setIFrameURL(httpUrl);
+    }, 100);
   };
 
   return (
