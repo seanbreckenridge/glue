@@ -100,6 +100,11 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/rubikscube.png",
   },
   {
+    name: "Dotfiles",
+    icon: "/images/frontend/dotfiles.png",
+    url: "https://github.com/seanbreckenridge/dotfiles",
+  },
+  {
     name: "Browser",
     icon: "/images/frontend/globe.png",
   },
