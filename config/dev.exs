@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :glue, Glue.Repo,
-  username: "sean",
-  password: "sean",
+  username: "postgres",
+  password: "postgres",
   database: "sean_fish",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

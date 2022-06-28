@@ -51,7 +51,7 @@ export function LinkWindow(props: ILinkWindow): launchWindowFunc {
         >
           <div className="linklist">
             {props.links.map((el: LinkInfo) => (
-              <div key={el.name}>
+              <div key={el.name} title={el.tooltip}>
                 <span>
                   <TapLink
                     className="linklist-item"
