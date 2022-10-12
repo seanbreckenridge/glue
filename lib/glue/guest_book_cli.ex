@@ -32,6 +32,17 @@ defmodule Glue.GuestBookComments.CLI do
     IO.puts("#{cmnt.name}\n#{cmnt.comment}")
   end
 
+  def edit_comment() do
+    cid = IO.gets("What comment ID to edit? ") |> String.trim() |> String.to_integer()
+    cmmnt = GuestBookComments.get_guest_book_comment!(cid)
+    new_comment_text = IO.gets("What to edit comment text to? ")
+
+    {:ok, _} =
+      GuestBookComments.update_guest_book_comment(cmmnt, %{
+        comment: new_comment_text |> String.trim()
+      })
+  end
+
   defp approve_prompt_loop(new_comment, prompt \\ nil, error \\ false) do
     if error do
       IO.puts("Didn't receive 'a' or 'd'")
