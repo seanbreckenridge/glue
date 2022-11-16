@@ -117,6 +117,11 @@ const IconData: LinkInfo[] = [
     url: "https://github.com/seanbreckenridge/dotfiles",
   },
   {
+    name: "Tools",
+    icon: "/images/frontend/gear.png",
+    url: "https://exobrain.sean.fish/tools/",
+  },
+  {
     name: "Browser",
     icon: "/images/frontend/globe.png",
   },
