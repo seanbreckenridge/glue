@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
-const defaultSocketUrl = "wss://sean.fish/currently_listening";
+const defaultSocketUrl = "wss://sean.fish/currently_listening/ws";
 
 type Song = {
   title: string;
