@@ -10,6 +10,7 @@ import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
 import { ok } from "../utils";
 import { hash, commits } from "../build";
+import useCurrentlyListening, {CurrentlyListeningNotification} from "./../currently_listening";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
@@ -97,6 +98,9 @@ function Home() {
 
   // animate icons appearing on screen
   const [loading, setLoading] = useState<number>(0);
+
+  // current song Im listening to
+  const { listening, song } = useCurrentlyListening({});
 
   // start animating desktop icons when this loads
   useEffect(() => {
@@ -229,6 +233,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <CurrentlyListeningNotification listening={listening} song={song} />
     </>
   );
 }

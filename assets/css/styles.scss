@@ -1,5 +1,5 @@
-$width-break-small: 450px;
-$width-break-large: 800px;
+$width-break-small: 500px;
+$width-break-large: 970px;
 
 $height-break-small: 300px;
 $height-break-large: 650px;
@@ -377,7 +377,8 @@ textarea {
       justify-content: flex-start;
       align-items: flex-start;
       padding: 1em;
-      height: 100%;
+      // allow space for currently-playing music
+      height: calc(100% - 2rem);
 
       .home-icon-hide {
         display: none !important;
