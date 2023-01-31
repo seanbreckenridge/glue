@@ -51,12 +51,12 @@ const useCurrentyListening = (options: CurrentPlayingOptions) => {
       if (isMessage(lastJsonMessage)) {
         const resp: Message = lastJsonMessage;
         switch (resp.msg_type) {
-          case "currently-playing":
+          case "currently-listening":
             if (isCurrentSong(resp.data)) {
-              console.log("updating currently-playing", resp.data);
+              console.log("updating currently-listening", resp.data);
               setCurrentSong(resp.data);
             } else {
-              console.log("invalid currently-playing", resp.data);
+              console.log("invalid currently-listening", resp.data);
             }
             break;
           case "pong":
@@ -74,7 +74,7 @@ const useCurrentyListening = (options: CurrentPlayingOptions) => {
 
   useEffect(() => {
     if (readyState === ReadyState.OPEN) {
-      sendMessage("currently-playing");
+      sendMessage("currently-listening");
     }
   }, [readyState]);
 
