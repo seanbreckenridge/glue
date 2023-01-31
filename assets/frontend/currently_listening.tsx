@@ -109,6 +109,9 @@ export const CurrentlyListeningNotification = ({
         backgroundColor: bg,
         color: "white",
         zIndex: 1000,
+        maxWidth: "30rem",
+        textOverflow: "ellipsis",
+        overflow: "hidden",
         display,
         ...(style ?? {}),
       }}
