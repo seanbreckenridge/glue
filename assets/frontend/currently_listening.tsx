@@ -102,6 +102,7 @@ export const CurrentlyListeningNotification = ({
   const bg = listening && song ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)";
   return (
     <div
+      title="Yep, I'm listening to this right now!"
       style={{
         position: "fixed",
         bottom: 0,
