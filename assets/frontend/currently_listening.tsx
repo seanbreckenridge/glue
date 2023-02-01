@@ -8,6 +8,7 @@ type Song = {
   artist: string;
   album?: string;
   started_at: number;
+  base64_image: string;
 };
 
 type CurrentSong = {
@@ -117,17 +118,37 @@ export const CurrentlyListeningNotification = ({
       }}
     >
       {listening && song && (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              paddingBottom: "0.3rem",
-            }}
-          >
-            Currently Listening ♫
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+          {(song.base64_image ?? "").length > 0 && (
+            <img
+              src={`data:image/jpeg;base64,${song.base64_image}`}
+              style={{
+                width: "4rem",
+                height: "4rem",
+                objectFit: "cover",
+                marginRight: "0.5rem",
+              }}
+            />
+          )}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                paddingBottom: "0.3rem",
+              }}
+            >
+              Currently Listening ♫
+            </div>
+            <div>{song.title}</div>
+            <div>{song.artist}</div>
+            {song.album && <div>{song.album}</div>}
           </div>
-          <div>{song.title}</div>
-          <div>{song.artist}</div>
-          {song.album && <div>{song.album}</div>}
         </div>
       )}
     </div>
