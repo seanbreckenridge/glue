@@ -10,7 +10,9 @@ import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
 import { ok } from "../utils";
 import { hash, commits } from "../build";
-import useCurrentlyListening, {CurrentlyListeningNotification} from "./../currently_listening";
+import useCurrentlyListening, {
+  CurrentlyListeningNotification,
+} from "./../currently_listening";
 
 // represents the current windows on the screen
 // windowId is epoch time/some unique integer
