@@ -35,11 +35,14 @@ defmodule Glue.GuestBookComments.CLI do
   def edit_comment() do
     cid = IO.gets("What comment ID to edit? ") |> String.trim() |> String.to_integer()
     cmmnt = GuestBookComments.get_guest_book_comment!(cid)
+    IO.inspect(cmmnt)
     new_comment_text = IO.gets("What to edit comment text to? ")
+    new_name = IO.gets("What to edit name to? ")
 
     {:ok, _} =
       GuestBookComments.update_guest_book_comment(cmmnt, %{
-        comment: new_comment_text |> String.trim()
+        comment: new_comment_text |> String.trim(),
+        name: new_name |> String.trim()
       })
   end
 
