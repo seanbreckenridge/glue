@@ -18,7 +18,7 @@ const MediaElsewhere: LinkInfo[] = [
   },
   {
     name: "Music [Spreadsheet]",
-    url: "https://docs.google.com/spreadsheets/d/12htSAMg67czl8cpkj1mX0TuAFvqL_PJLI4hv1arG5-M/edit?usp=sharing",
+    url: "https://sean.fish/s/albums",
     tooltip: "Personal Music Spreadsheet/Album tracking",
   },
   {
