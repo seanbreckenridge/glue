@@ -100,6 +100,20 @@ export const CurrentlyListeningNotification = ({
   // floating box
   const display = listening && song ? "block" : "none";
   const bg = listening && song ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)";
+  const copyCurrentSong = () => {
+    if (song) {
+      const text = `${song.title} - ${song.artist} - ${song.album}`;
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          alert(`Copied '${text}' to clipboard`);
+        })
+        .catch((err) => {
+          alert(`Failed to copy current song (${text}) to clipboard ${err}`);
+        });
+    }
+  };
+
   return (
     <div
       title="Yep, I'm listening to this right now!"
@@ -144,7 +158,18 @@ export const CurrentlyListeningNotification = ({
                 paddingBottom: "0.3rem",
               }}
             >
-              Currently Listening ♫
+              Currently Listening
+              <a
+                onClick={copyCurrentSong}
+                style={{
+                  marginLeft: "0.5rem",
+                  cursor: "pointer",
+                }}
+                title="Copy to clipboard"
+                role="button"
+              >
+                ⎘
+              </a>
             </div>
             <div>{song.title}</div>
             <div>{song.artist}</div>
