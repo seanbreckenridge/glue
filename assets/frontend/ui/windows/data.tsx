@@ -55,7 +55,7 @@ const DataBody = memo(() => {
         Call it Lifelogging, Quantified Self or whatever else, I{"'"}ve been
         involved with writing{" "}
         <TapLink
-          href="https://project.sean.fish"
+          href="https://sean.fish/projects/"
           target="_blank"
           rel="noreferrer"
         >
