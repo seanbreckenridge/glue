@@ -14,7 +14,7 @@ const minWidth = 250;
 
 const readmeScale = 0.5;
 
-const discordUserName = "PurplePinapples#3673";
+const discordUserName = "purplepinapples";
 
 function alertDiscordName() {
   window.alert(discordUserName);
