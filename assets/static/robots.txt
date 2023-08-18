@@ -8,3 +8,8 @@ Disallow: /f/*
 Disallow: /p/*
 Disallow: /m/*
 Disallow: /d/*
+Disallow: /dbsentinel/anime/*
+Disallow: /dbsentinel/manga/*
+Disallow: /dbsentinel/search
+Disallow: /dbsentinel/search*
+Disallow: /dbsentinel/search/*
