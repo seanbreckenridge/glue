@@ -791,14 +791,13 @@ textarea {
         flex-flow: column nowrap;
         justify-content: space-around;
         align-items: center;
+        overflow: hidden;
+        // move the body a bit left to make sure we cover the whole div
+        margin-left: -5px;
 
-        .input-go {
-          cursor: pointer;
-          font-family: "Courier New", Courier, monospace;
-          border-radius: 0.1em;
-          padding-left: 1em;
-          padding-right: 1em;
-          outline: 1px dotted grey;
+        .virus-pixel {
+          height: 10px;
+          width: 10px;
         }
       }
 

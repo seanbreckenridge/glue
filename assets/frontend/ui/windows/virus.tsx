@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 
 import { setWindowMsg } from "./../home";
 import { getWindowDimensions, Point } from "./../components/dimensions";
 import Dialog from "../components/dialog";
 import { launchWindowFunc } from "./actions";
+import { randomColor } from "./paint";
 
 const minHeight = 150;
 const minWidth = 300;
@@ -56,7 +57,7 @@ export function VirusWindow(setwMsg: setWindowMsg): launchWindowFunc {
           hitCloseCallback={() => VirusWindow(setwMsg)()}
           titleObj={vTitle}
         >
-          <VirusBody />
+          <VirusBodyMemo height={minHeight} width={minWidth} />
         </Dialog>
       </>
     );
@@ -72,31 +73,101 @@ export function VirusWindow(setwMsg: setWindowMsg): launchWindowFunc {
   };
 }
 
-const VirusBody = () => {
-  const [clicked, setClicked] = useState<number>(0);
+interface VirusBodyProps {
+  height: number;
+  width: number;
+}
 
-  const incrementClicked = () => {
-    setClicked((old) => {
-      return old + 1;
-    });
-  };
+const createMatrix = (xc: number, yc: number) => {
+  // manually create a matrix of colors
+  const matrix = new Array<Array<string>>(yc);
+  for (let y = 0; y < yc; y++) {
+    matrix[y] = new Array<string>(xc);
+    for (let x = 0; x < xc; x++) {
+      matrix[y][x] = randomColor();
+    }
+  }
+  return matrix;
+};
 
+const createMatrixRefs = (xc: number, yc: number) => {
+  // create a matrix of refs
+  const matrix = new Array<Array<React.RefObject<HTMLDivElement>>>(yc);
+  for (let y = 0; y < yc; y++) {
+    matrix[y] = new Array<React.RefObject<HTMLDivElement>>(xc);
+    for (let x = 0; x < xc; x++) {
+      matrix[y][x] = React.createRef<HTMLDivElement>();
+    }
+  }
+  return matrix;
+};
+
+const VirusBody = ({ height, width }: VirusBodyProps) => {
+  const xc = useRef<number>(Math.ceil(width / 10) + 2);
+  const yc = useRef<number>(Math.ceil(height / 10) + 2);
+  const matrixColors = useRef<Array<Array<string>>>(
+    createMatrix(xc.current, yc.current)
+  );
+  const matrixRefs = useRef<Array<Array<React.RefObject<HTMLDivElement>>>>(
+    createMatrixRefs(xc.current, yc.current)
+  );
+
+  const randomizeMatrix = useCallback(() => {
+    for (let y = 0; y < yc.current; y++) {
+      for (let x = 0; x < xc.current; x++) {
+        matrixColors.current[y][x] = randomColor();
+        if (matrixRefs.current[y][x].current) {
+          matrixRefs.current[y][x].current!.style.backgroundColor =
+            randomColor();
+        }
+      }
+    }
+  }, [xc, yc]);
+
+  useEffect(() => {
+    // fire off the first randomize
+    randomizeMatrix();
+    // set an interval to randomize the matrix every 1-2 seconds
+    const interval = setInterval(() => {
+      randomizeMatrix();
+    }, randInt(1000, 2000));
+    return () => clearInterval(interval);
+  }, []);
+
+  // create a flexbox with rows 10 pixels wide and high
   return (
-    <>
-      <div className="virus-body">
-        <div className="virus-text">You've clicked OK {clicked} times</div>
-        <a
-          href="#"
-          className="input-go pixel unlinkify"
-          onClick={incrementClicked}
-          onTouchEnd={incrementClicked}
-        >
-          OK
-        </a>
-      </div>
-    </>
+    <div
+      className="virus-body"
+      style={{
+        height: height + 20,
+        width: width + 20,
+        overflow: "hidden",
+      }}
+    >
+      {Array.from({ length: yc.current }, (_, y) => {
+        return (
+          <div
+            key={y}
+            className="virus-row"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            {Array.from({ length: xc.current }, (_, x) => {
+              return (
+                <div
+                  key={x}
+                  ref={matrixRefs.current[y][x]}
+                  className="virus-pixel"
+                ></div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
   );
 };
+
+const VirusBodyMemo = React.memo(VirusBody);
 
 const VirusTitle = React.memo(() => {
   return (

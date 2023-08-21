@@ -130,7 +130,7 @@ const Paint = () => {
   );
 };
 
-function randomColor(): string {
+export function randomColor(): string {
   let randomHex: string = Math.floor(Math.random() * 16777215).toString(16);
   // sometimes a hex code will be 5 long, if the 6th place is '0'
   while (randomHex.length < 6) {
