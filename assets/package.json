@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
-    "react-use-websocket": "^4.2.0"
+    "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "react-use-websocket": "^4.2.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.10.4",
     "@types/node": "^17.0.16",
