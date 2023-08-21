@@ -100,6 +100,7 @@ esac
 
 mix deps.get --only prod
 mix compile
+mix phx.digest.clean
 
 cd ./assets
 yarn
