@@ -1,26 +1,4 @@
 #!/bin/bash -e
-# accepts the secret file from https://github.com/seanbreckenridge/vps
-# see the secret.dist file there
-
-# default location on my server
-declare FILEPATH DEFAULT_SECRET
-readonly DEFAULT_SECRET="${REPOS:-${HOME}}/vps/secret"
-
-if [[ -n "$2" ]]; then
-	FILEPATH="$2"
-else
-	if [[ -e "${DEFAULT_SECRET}" ]]; then
-		FILEPATH="${DEFAULT_SECRET}"
-	else
-		echo "Error: Pass JSON config file as second argument" 1>&2
-		exit 1
-	fi
-fi
-
-if [[ ! -r "${FILEPATH}" ]]; then
-	printf "No such file: %s\n" "$1" 1>&2
-	exit 1
-fi
 
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}"
@@ -45,7 +23,7 @@ fi
 
 declare GLUE_DATABASE_PATH GLUE_SECRET_KEY_BASE MIX_ENV
 GLUE_DATABASE_PATH="${THIS_DIR}/data/prod.sqlite"
-GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "${FILEPATH}")"
+GLUE_SECRET_KEY_BASE="${GLUE_SECRET_KEY_BASE?:No GLUE_SECRET_KEY_BASE set}"
 MIX_ENV=prod
 export GLUE_DATABASE_PATH GLUE_SECRET_KEY_BASE MIX_ENV
 
