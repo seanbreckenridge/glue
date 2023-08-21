@@ -8,12 +8,19 @@ THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}"
 
 declare CUBING_JSON
-CUBING_JSON="${THIS_DIR}/cubing.json"
+CUBING_JSON="${THIS_DIR}/data/cubing.json"
 declare -rx CUBING_JSON
 
 if [[ ! -e "${CUBING_JSON}" ]]; then
 	printf '%s JSON file doesnt exist\n' "${CUBING_JSON}" 1>&2
 	exit 1
 fi
+
+GUESTBOOK_JSON_PATH="${THIS_DIR}/data/guestbook.json"
+PAGE_HITS_OFFSET='150'
+export GUESTBOOK_JSON_PATH PAGE_HITS_OFFSET
+
+# clean deps
+mix deps.clean glue
 
 exec mix phx.server

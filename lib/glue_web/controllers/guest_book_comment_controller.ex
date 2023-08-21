@@ -11,6 +11,10 @@ defmodule GlueWeb.GuestBookCommentController do
   def index(conn, _params) do
     # List comments that are approved by me
     gb_comment = GuestBookComments.list_approved_gb_comment()
+    {:ok, old_rendered_comments} = GenServer.call(Glue.OldState, :get_guestbook_comments)
+
+    # add any new comments to the end of the comments from the database to preserve the correct order
+    gb_comment = gb_comment ++ old_rendered_comments
     render(conn, "index.json", gb_comment: gb_comment)
   end
 

@@ -6,7 +6,7 @@ defmodule Glue.WCA do
   GenServer to manage loading/caching the WCA JSON file from disk
   """
 
-  @json_file Application.get_env(:glue, :cubing_json)
+  @json_file Application.compile_env(:glue, :cubing_json)
 
   def start_link(data) do
     GenServer.start_link(__MODULE__, data, name: __MODULE__)

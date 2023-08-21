@@ -24,7 +24,7 @@ interface CubingTimes {
 }
 
 interface GuestBookComment {
-  id: number;
+  id: string;
   name: string;
   comment: string;
   at: number;

@@ -18,5 +18,6 @@ cd "${THIS_DIR}" || exit $?
 
 havecmd wca_userinfo || cargo install --git "https://github.com/seanbreckenridge/wca_userinfo"
 
-wca_userinfo 2017BREC02 | jq >cubing.json
-scp ./cubing.json vultr:~/code/glue
+mkdir -p ./data
+wca_userinfo 2017BREC02 | jq >./data/cubing.json
+scp ./data/cubing.json vultr:~/code/glue/data/

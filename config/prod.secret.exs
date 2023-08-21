@@ -5,16 +5,14 @@
 import Config
 
 database_url =
-  System.get_env("GLUE_DATABASE_URI") ||
+  System.get_env("GLUE_DATABASE_PATH") ||
     raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
+    environment variable GLUE_DATABASE_PATH is missing
     """
 
 config :glue, Glue.Repo,
-  # ssl: true,
-  url: database_url,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  database: database_url,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
 
 secret_key_base =
   System.get_env("GLUE_SECRET_KEY_BASE") ||

@@ -25,20 +25,29 @@ fi
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}"
 
-declare CUBING_JSON
-CUBING_JSON="${THIS_DIR}/cubing.json"
-declare -rx CUBING_JSON
+mkdir -p ./data
+
+declare CUBING_JSON GUESTBOOK_JSON_PATH
+CUBING_JSON="${THIS_DIR}/data/cubing.json"
+GUESTBOOK_JSON_PATH="${THIS_DIR}/data/guestbook.json"
+
+declare -rx CUBING_JSON GUESTBOOK_JSON_PATH
 
 if [[ ! -e "${CUBING_JSON}" ]]; then
 	printf '%s JSON file doesnt exist\n' "${CUBING_JSON}" 1>&2
 	exit 1
 fi
 
-declare GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE MIX_ENV
-GLUE_DATABASE_URI="$(jq -r '.postgres_uri' "${FILEPATH}")"
+if [[ ! -e "${GUESTBOOK_JSON_PATH}" ]]; then
+	printf '%s JSON file doesnt exist\n' "${GUESTBOOK_JSON_PATH}" 1>&2
+	exit 1
+fi
+
+declare GLUE_DATABASE_PATH GLUE_SECRET_KEY_BASE MIX_ENV
+GLUE_DATABASE_PATH="${THIS_DIR}/data/prod.sqlite"
 GLUE_SECRET_KEY_BASE="$(jq -r '.glue_secret' "${FILEPATH}")"
 MIX_ENV=prod
-export GLUE_DATABASE_URI GLUE_SECRET_KEY_BASE MIX_ENV
+export GLUE_DATABASE_PATH GLUE_SECRET_KEY_BASE MIX_ENV
 
 case "$1" in
 # drop into an interactive shell after loading environment secrets

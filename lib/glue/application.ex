@@ -16,7 +16,9 @@ defmodule Glue.Application do
       # Start the Endpoint (http/https)
       GlueWeb.Endpoint,
       # WCA data genserver
-      Glue.WCA
+      Glue.WCA,
+      # old database/offset info genserver
+      Glue.OldState
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

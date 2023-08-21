@@ -2,12 +2,9 @@ import Config
 
 # Configure your database
 config :glue, Glue.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "sean_fish",
-  hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  database: Path.expand("../data/dev.sqlite", Path.dirname(__ENV__.file)),
+  pool_size: 5,
+  show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
