@@ -84,4 +84,4 @@ cd ./assets
 yarn
 yarn deploy
 cd "${THIS_DIR}"
-exec mix prod.server
+exec mix glue.prod.server

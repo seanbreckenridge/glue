@@ -61,7 +61,7 @@ defmodule Glue.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "prod.server": ["phx.digest", "ecto.migrate", "phx.server"]
+      "glue.prod.server": ["phx.digest", "ecto.migrate", "phx.server"]
     ]
   end
 end
