@@ -16,7 +16,6 @@ import {
 import Dialog from "../components/dialog";
 import { launchWindowFunc } from "./actions";
 import { Context, AppContextConsumer } from "../../app_provider";
-import { ok } from "../../utils";
 import dayjs, { unix } from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -25,33 +24,58 @@ const minHeight = 300;
 const minWidth = 300;
 const dialogScale = 0.6;
 
+interface Status {
+  success: boolean;
+  message: string;
+}
+
 // assumes values are valid here
 async function handleRequest(
   name: string,
   comment: string,
-  setResponse: Dispatch<SetStateAction<string>>
+  setStatus: Dispatch<SetStateAction<Status | undefined>>
 ): Promise<void> {
-  const res: Object | Error = await fetch("/api/gb_comment/", {
+  const res: Status = await fetch("/api/gb_comment/", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name: name, comment: comment }),
   })
-    .then((resp: Response) => resp.json())
+    .then(async (resp: Response) => {
+      let data: any = {};
+      try {
+        const txt = await resp.text();
+        data = JSON.parse(txt);
+      } catch (e) {
+        data = {
+          message: "There was an error parsing the response from the server...",
+        };
+      }
+      const success = resp.status >= 200 && resp.status < 300;
+      if (success) {
+        return {
+          success: true,
+          message:
+            "Thanks for your comment! It should appear here in a few hours, I review these before they go live.",
+        };
+      } else {
+        console.log(data);
+        console.log(resp.status);
+        if (data.message === undefined) {
+          data.message = "There was an error submitting your comment...";
+        }
+        return { success: false, message: data.message };
+      }
+    })
     .catch((e: Error) => {
-      return e;
+      if (e.message === undefined) {
+        e.message = "There was an error submitting your comment...";
+      }
+      return { success: false, message: e.message };
     });
-  if (setResponse) {
-    if (ok(res)) {
-      setResponse(
-        "Thanks! Your comment should appear here in a few hours, I review these before they go live."
-      );
-    } else {
-      setResponse(
-        "There was an error adding your comment... If this doesn't fix itself, you can email me at 'ssbreckenridge@me.com'"
-      );
-    }
+  if (setStatus !== undefined) {
+    setStatus(res);
   }
 }
 
@@ -130,7 +154,7 @@ const GuestBookForm = () => {
   const [name, setName] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
+  const [status, setStatus] = useState<Status | undefined>(undefined);
 
   const nameField = useRef<HTMLInputElement>(null);
   const commentField = useRef<HTMLTextAreaElement>(null);
@@ -243,7 +267,11 @@ const GuestBookForm = () => {
         {/* so that ctrl enter works */}
         <input type="submit" style={{ display: "none" }} />
         <span className="guestbook-error">{error}</span>
-        <span className="guestbook-response">{status}</span>
+        {status === undefined ? null : status.success ? (
+          <span className="guestbook-success">{status.message}</span>
+        ) : (
+          <span className="guestbook-error">{status?.message}</span>
+        )}
       </form>
     </>
   );
