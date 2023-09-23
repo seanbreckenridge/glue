@@ -60,8 +60,8 @@ const CustomizeBody = ({ ctx }: ICustomizeBody) => {
   // when setBgColor is called from the PaintControls
   // set the global background color
   useEffect(() => {
-    // if this isnt a color and is an empty string, the global app
-    // context is set, but since theres a higher div with a fallback
+    // if this isn't a color and is an empty string, the global app
+    // context is set, but since there's a higher div with a fallback
     // color as the default, still looks like everything works
     setBackgroundColor(ctx.setContext, bgColor);
   }, [bgColor]);

@@ -101,7 +101,7 @@ defmodule Glue.GuestBookComments.CLI do
   end
 
   @doc """
-  Incase I made a mistake, let me prompt and mark against all current comments
+  In case I made a mistake, let me prompt and mark against all current comments
   """
   def all() do
     Repo.all(GuestBookComment)

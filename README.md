@@ -23,7 +23,7 @@ To protect the route:
 ```
 location /dashboard/ {
   # should include nginx pheonix params
-  # inclue /etc/nginx/pheonix_params;
+  # include /etc/nginx/pheonix_params;
   proxy_pass http://127.0.0.1:8082/dashboard/;
   auth_basic "for glue dashboard!";
   auth_basic_user_file /etc/nginx/.htpasswd;

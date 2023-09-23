@@ -339,7 +339,7 @@ textarea {
     }
 
     #home-icons-window-wrapper {
-      // full view height - navbar height (dependeing on height) 1em + 1m for padding (on .home-icons-container + .widow-body)
+      // full view height - navbar height (depending on height) 1em + 1m for padding (on .home-icons-container + .widow-body)
       // and then 1em as a buffer/padding for this element.
       height: calc(100vh - 30px - 3em);
       @include sheight(medium) {

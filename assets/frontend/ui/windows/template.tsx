@@ -1,4 +1,4 @@
-// this isnt used for any page, its the file I copy/paste when starting a new window
+// this isn't used for any page, its the file I copy/paste when starting a new window
 import React from "react";
 
 import { setWindowMsg } from "./../home";

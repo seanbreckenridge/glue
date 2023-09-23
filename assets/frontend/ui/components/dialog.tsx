@@ -84,7 +84,7 @@ const Dialog = (props: IDialogProps) => {
   const [winData, setWinData] = useState(defaultWindowData);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // disable dragging/resizing while mousing over butons
+  // disable dragging/resizing while mousing over buttons
   const [dragDisable, setDragDisable] = useState<boolean>(false);
   const [resizable, setResizable] = useState<boolean>(true);
 
@@ -114,7 +114,7 @@ const Dialog = (props: IDialogProps) => {
   };
 
   const handleEnableRND = () => {
-    // incase the x button was clicked, make sure element still exists
+    // in case the x button was clicked, make sure element still exists
     if (scrollRef) {
       setDragDisable(false);
       setResizable(true);
@@ -359,7 +359,7 @@ const Dialog = (props: IDialogProps) => {
                       <> {props.children} </>
                     )
                   }
-                  {/* a dummy element that recives the context, with a useEffect hook
+                  {/* a dummy element that receives the context, with a useEffect hook
                     that selects this when its launched */}
                   <AutoFocusDialog setSelfFunc={setSelfSelectedCtx} />
                 </div>

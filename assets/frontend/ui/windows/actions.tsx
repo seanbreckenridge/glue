@@ -23,7 +23,7 @@ export type createsLaunchWindowFunc = (
 
 // interface to define what happens when the user clicks on things
 
-// custom pages implemeneted in react
+// custom pages implemented in react
 interface IHashActionFunc {
   // weird that page is needed here
   // returns a function, which when passed the function to update
@@ -33,13 +33,13 @@ interface IHashActionFunc {
 }
 
 // dont do 100% because of the margin on the home page
-// 75% is of window height/width, not surrounding countainer
+// 75% is of window height/width, not surrounding container
 export const fullScreenDialogScale = 0.75;
 
 // create a closure around the state. could probably also
 // be done with useContext, but this works
 //
-// returns a function which receieves the message interface
+// returns a function which receives the message interface
 // as an argument,  which returns the function that launches this onClick
 // action (open the dialog, does something on the page)
 export const actions: IHashActionFunc = {

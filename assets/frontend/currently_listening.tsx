@@ -68,7 +68,7 @@ const useCurrentyListening = (options: CurrentPlayingOptions) => {
             break;
         }
       } else {
-        console.log("couldnt parse message:", lastMessage);
+        console.log("couldn't parse message:", lastMessage);
       }
     }
   }, [lastJsonMessage, lastMessage]);
@@ -96,7 +96,7 @@ export const CurrentlyListeningNotification = ({
   listening,
   style,
 }: CurrentlyListeningNotificationProps) => {
-  // if theres a song playing, show it in the bottom left floating box
+  // if there's a song playing, show it in the bottom left floating box
   // floating box
   const display = listening && song ? "block" : "none";
   const bg = listening && song ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)";

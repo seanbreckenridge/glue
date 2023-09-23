@@ -181,7 +181,7 @@ const GuestBookForm = () => {
     }
   };
 
-  // if the name isnt provided, looks it up in state
+  // if the name isn't provided, looks it up in state
   function validateName(fieldValue?: string): boolean {
     let errMsg: string = "";
     let nameVal = fieldValue ?? name;
@@ -212,7 +212,7 @@ const GuestBookForm = () => {
 
   const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let fieldVal: string = e.target.value;
-    setComment(fieldVal); // set this regardless of whether or not theres an error
+    setComment(fieldVal); // set this regardless of whether or not there's an error
     validateComment(fieldVal);
   };
 
