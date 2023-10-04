@@ -27,7 +27,7 @@
     "mini-css-extract-plugin": "^2.5.3",
     "nth-check": ">=2.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "postcss": ">=7.0.36",
+    "postcss": ">=8.4.31",
     "react": "^17.0.2",
     "react-canvas-draw": "^1.1.1",
     "react-device-detect": "^2.1.2",
