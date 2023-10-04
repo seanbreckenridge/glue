@@ -12,7 +12,7 @@ import TapLink from "./../components/taplink";
 const minHeight = 500;
 const minWidth = 250;
 
-const readmeScale = 0.5;
+const readmeScale = 0.55;
 
 const discordUserName = "purplepinapples";
 

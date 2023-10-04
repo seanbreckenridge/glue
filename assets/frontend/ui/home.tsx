@@ -9,7 +9,7 @@ import { getAction, launchWindowFunc } from "./windows/actions";
 import { IconData } from "../data";
 import { getWindowDimensions } from "./components/dimensions";
 import { ok } from "../utils";
-import { hash, commits } from "../build";
+import { hash } from "../build";
 import useCurrentlyListening, {
   CurrentlyListeningNotification,
 } from "./../currently_listening";
@@ -177,6 +177,18 @@ function Home() {
         >
           <h1>sean</h1>
         </TapLink>
+        {/* a hidden icon (easter egg) which when clicked takes you to my old site */}
+        <TapLink
+          href="https://sean.fish/geocities/"
+          className="menu-toolbar-item menu-bar-item unlinkify geocities"
+          aria-hidden="true"
+        >
+          <img
+            src="/images/frontend/geocities.gif"
+            alt="geocities"
+            width="3rem"
+          />
+        </TapLink>
         <PageHitCounter />
       </div>
       <div id="window-body">
@@ -313,9 +325,8 @@ const PageHitRender = React.memo(({ count }: IPageHitRender) => {
 
 const OSVersion = React.memo(() => {
   return (
-    <span id="os-copyright">
-      sean.fishOS Build {commits / 100} ({hash}) &copy;{" "}
-      {new Date().getFullYear()}
+    <span id="os-version">
+      sean.fishOS Build {hash} {new Date().getFullYear()}
     </span>
   );
 });

@@ -21,6 +21,9 @@ const Computer: React.FC<{}> = () => {
 
 const d = unix();
 
+const cpuCount = navigator.hardwareConcurrency ?? "Pass";
+
+
 const loadingText: string[] = [
   "Loading...",
   "---------------",
@@ -30,9 +33,9 @@ const loadingText: string[] = [
   "---------------",
   `Language .... ${navigator.language ?? "en"}`,
   `Date Now .... ${d.format("YYYY-MM-DD")}`,
-  "Network ..... Pass",
+  `Cores ....... ${cpuCount}`,
+  `Network ..... ${(navigator.onLine) ? "Online" : "Offline"}`,
   "Backend ..... Pass",
-  "Frontend .... Pass",
   "---------------",
   "BOOTLOADED",
 ];

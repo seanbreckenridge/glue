@@ -178,6 +178,42 @@ textarea {
   @include swidth(large) {
     padding-right: 10%;
   }
+
+  /* hidden, but when hover over it shows the image */
+  .geocities {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    @include sheight(medium) {
+      height: 40px;
+    }
+    @include sheight(large) {
+      height: 50px;
+    }
+
+    margin-right: auto;
+    margin-left: 0;
+
+    img {
+      width: auto;
+      height: 30px;
+      @include sheight(medium) {
+        height: 40px;
+      }
+      @include sheight(large) {
+        height: 50px;
+      }
+      display: none;
+    }
+
+    &:hover {
+      img {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 .unlinkify {
@@ -205,7 +241,7 @@ textarea {
   color: $offwhite;
   border: $outer_border_width solid black;
 
-  #os-copyright {
+  #os-version {
     margin-top: 1rem;
     position: absolute;
     bottom: $outer_border_width;
@@ -294,6 +330,10 @@ textarea {
         transition-timing-function: linear;
         background-color: black;
         cursor: pointer;
+
+        &.geocities {
+          background-color: inherit;
+        }
       }
 
       & * {
