@@ -10,6 +10,8 @@ The `./development_server` and `./production_server` run this locally/in prod/ha
 
 ![](./assets/screenshot.png)
 
+Before this iteration of the design, this [sort of looked like a geocities website](https://www.cameronsworld.net/), I extracted a version out of the git history [available here](https://github.com/seanbreckenridge/glue_geocities)
+
 #### Dashboard
 
 To password protect phoenix dashboard for production; using nginx (after installing `apache2-utils`)
