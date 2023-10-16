@@ -48,4 +48,18 @@ defmodule Glue.PageHits do
 
     IO.puts("EPOCHS:#{epochs}")
   end
+
+  @doc """
+  Returns the number of page hits in the last n days
+  """
+  def page_hits_in_last_n_days(days) do
+    larger_than = NaiveDateTime.utc_now() |> NaiveDateTime.add(-60 * 60 * 24 * days)
+
+    Repo.all(
+      from p in PageHit,
+        where: p.inserted_at > ^larger_than,
+        select: count(p.id)
+    )
+    |> hd
+  end
 end
