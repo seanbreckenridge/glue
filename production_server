@@ -12,12 +12,12 @@ GUESTBOOK_JSON_PATH="${THIS_DIR}/data/guestbook.json"
 declare -rx CUBING_JSON GUESTBOOK_JSON_PATH
 
 if [[ ! -e "${CUBING_JSON}" ]]; then
-	printf '%s JSON file doesn't exist\n' "${CUBING_JSON}" 1>&2
+	printf "%s JSON file doesn't exist\n" "${CUBING_JSON}" 1>&2
 	exit 1
 fi
 
 if [[ ! -e "${GUESTBOOK_JSON_PATH}" ]]; then
-	printf '%s JSON file doesn't exist\n' "${GUESTBOOK_JSON_PATH}" 1>&2
+	printf "%s JSON file doesn't exist\n" "${GUESTBOOK_JSON_PATH}" 1>&2
 	exit 1
 fi
 

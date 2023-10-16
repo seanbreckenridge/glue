@@ -18,7 +18,5 @@ commit() {
 ./lint || exit $?
 git add -A &&
 	commit "$@" &&
-	git push
-
-# ssh to restart remote server
-ssh vultr
+	git push &&
+	deploy glue
