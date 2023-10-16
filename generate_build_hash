@@ -3,6 +3,5 @@
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "${THIS_DIR}" || exit $?
 
-COMMITS="$(git rev-list --count HEAD)"
 HASH="$(git rev-parse HEAD | cut -c -8)"
-printf 'export const commits = %d; export const hash = "%s"' "${COMMITS}" "${HASH}" >./assets/frontend/build.tsx
+printf 'export const hash = "%s"' "${HASH}" >./assets/frontend/build.tsx

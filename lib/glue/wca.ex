@@ -38,9 +38,8 @@ defmodule Glue.WCA do
     {:noreply, state}
   end
 
-  # makes sure that the cache for each feed type is up to date
   defp maintenance(state) do
-    Logger.debug("Checking State...")
+    Logger.debug("Reading cubing JSON file...")
     Map.put(state, :data, read_json_file(@json_file))
   end
 

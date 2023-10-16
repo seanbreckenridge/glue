@@ -23,7 +23,6 @@ const d = unix();
 
 const cpuCount = navigator.hardwareConcurrency ?? "Pass";
 
-
 const loadingText: string[] = [
   "Loading...",
   "---------------",
@@ -34,7 +33,7 @@ const loadingText: string[] = [
   `Language .... ${navigator.language ?? "en"}`,
   `Date Now .... ${d.format("YYYY-MM-DD")}`,
   `Cores ....... ${cpuCount}`,
-  `Network ..... ${(navigator.onLine) ? "Online" : "Offline"}`,
+  `Network ..... ${navigator.onLine ? "Online" : "Offline"}`,
   "Backend ..... Pass",
   "---------------",
   "BOOTLOADED",
