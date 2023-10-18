@@ -53,19 +53,7 @@ defmodule Glue.PageHits do
   Returns the number of page hits in the last n days
   """
   def page_hits_in_last_n_days(days) do
-    larger_than_on_day = NaiveDateTime.utc_now() |> NaiveDateTime.add(-60 * 60 * 24 * days - 1)
-    # get the time at 00:00:01 on that day, so we get page-hits from the start of
-    # the day onwards. This makes the stats easier to read since its not always
-    # a rolling average, going up and down
-    {:ok, larger_than} =
-      NaiveDateTime.new(
-        larger_than_on_day.year,
-        larger_than_on_day.month,
-        larger_than_on_day.day,
-        0,
-        0,
-        1
-      )
+    larger_than = NaiveDateTime.utc_now() |> NaiveDateTime.add(-60 * 60 * 24 * days)
 
     Repo.all(
       from p in PageHit,
