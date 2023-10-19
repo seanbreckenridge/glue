@@ -58,8 +58,7 @@ defmodule Glue.PageHits do
     Repo.all(
       from p in PageHit,
         where: p.inserted_at > ^larger_than,
-        select: count(p.id)
+        select: p.inserted_at
     )
-    |> hd
   end
 end

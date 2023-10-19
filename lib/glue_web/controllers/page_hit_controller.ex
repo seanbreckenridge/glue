@@ -28,8 +28,11 @@ defmodule GlueWeb.PageHitController do
   def show(conn, %{"id" => day_str}) do
     days = day_str |> String.to_integer()
     Logger.info("Getting page hits for the last #{days} days")
-    page_hits = PageHits.page_hits_in_last_n_days(days)
 
-    render(conn, "count.json", page_hits: page_hits)
+    page_hits =
+      PageHits.page_hits_in_last_n_days(days)
+      |> Enum.map(&NaiveDateTime.diff(&1, ~N[1970-01-01 00:00:00]))
+
+    render(conn, "count.json", page_hits: page_hits |> length(), epochs: page_hits)
   end
 end
