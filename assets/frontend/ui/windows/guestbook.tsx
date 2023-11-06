@@ -140,7 +140,9 @@ const GuestBook = ({ comments }: IGuestBook) => {
             <div key={cmnt.id} className="comment-row">
               <div className="comment-name">{cmnt.name}</div>
               <div className="comment-text">{cmnt.comment}</div>
-              <div className="comment-date" title={unix(cmnt.at).format()}>{unix(cmnt.at).fromNow()}</div>
+              <div className="comment-date" title={unix(cmnt.at).format()}>
+                {unix(cmnt.at).fromNow()}
+              </div>
               <hr />
             </div>
           );
