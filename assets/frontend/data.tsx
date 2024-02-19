@@ -92,12 +92,12 @@ const IconData: LinkInfo[] = [
   },
   {
     name: "ExoBrain",
-    url: "https://exobrain.sean.fish",
+    url: "https://sean.fish/x/",
     icon: "/images/frontend/brain.png",
   },
   {
     name: "Blog",
-    url: "https://exobrain.sean.fish/feed/",
+    url: "https://sean.fish/x/blog/",
     icon: "/images/frontend/feather.png",
   },
   {
@@ -120,7 +120,7 @@ const IconData: LinkInfo[] = [
   {
     name: "Tools",
     icon: "/images/frontend/gear.png",
-    url: "https://exobrain.sean.fish/tools/",
+    url: "https://sean.fish/x/notes/tools/",
   },
   {
     name: "Browser",
