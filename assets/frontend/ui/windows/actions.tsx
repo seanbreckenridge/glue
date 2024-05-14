@@ -73,5 +73,6 @@ export function getAction(
   } else if (el.url !== undefined && el.url !== "") {
     return el.url;
   }
-  throw Error("Could not find an appropriate action for " + JSON.stringify(el));
+  return () =>
+    window.alert("No URL or action defined for " + JSON.stringify(el));
 }
