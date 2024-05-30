@@ -78,20 +78,9 @@ interface VirusBodyProps {
   width: number;
 }
 
-const createMatrix = (xc: number, yc: number) => {
-  // manually create a matrix of colors
-  const matrix = new Array<Array<string>>(yc);
-  for (let y = 0; y < yc; y++) {
-    matrix[y] = new Array<string>(xc);
-    for (let x = 0; x < xc; x++) {
-      matrix[y][x] = randomColor();
-    }
-  }
-  return matrix;
-};
-
+// create a matrix of refs. this is used to save the background
+// color for a x,y location in the space
 const createMatrixRefs = (xc: number, yc: number) => {
-  // create a matrix of refs
   const matrix = new Array<Array<React.RefObject<HTMLDivElement>>>(yc);
   for (let y = 0; y < yc; y++) {
     matrix[y] = new Array<React.RefObject<HTMLDivElement>>(xc);
@@ -105,9 +94,6 @@ const createMatrixRefs = (xc: number, yc: number) => {
 const VirusBody = ({ height, width }: VirusBodyProps) => {
   const xc = useRef<number>(Math.ceil(width / 10) + 2);
   const yc = useRef<number>(Math.ceil(height / 10) + 2);
-  const matrixColors = useRef<Array<Array<string>>>(
-    createMatrix(xc.current, yc.current)
-  );
   const matrixRefs = useRef<Array<Array<React.RefObject<HTMLDivElement>>>>(
     createMatrixRefs(xc.current, yc.current)
   );
@@ -115,7 +101,8 @@ const VirusBody = ({ height, width }: VirusBodyProps) => {
   const randomizeMatrix = useCallback(() => {
     for (let y = 0; y < yc.current; y++) {
       for (let x = 0; x < xc.current; x++) {
-        matrixColors.current[y][x] = randomColor();
+        // 'current' is set once the x,y location is rendered
+        // below
         if (matrixRefs.current[y][x].current) {
           matrixRefs.current[y][x].current!.style.backgroundColor =
             randomColor();
@@ -144,6 +131,9 @@ const VirusBody = ({ height, width }: VirusBodyProps) => {
         overflow: "hidden",
       }}
     >
+      {/* This is not really performant since we're creating new arrays every time, but */}
+      {/* that is also sort of on purpose. Its meant to spawn a bunch of these, start lagging the page */}
+      {/* and cause gc to fire, as to mimic an actual popup scam/virus */}
       {Array.from({ length: yc.current }, (_, y) => {
         return (
           <div
@@ -155,6 +145,7 @@ const VirusBody = ({ height, width }: VirusBodyProps) => {
               return (
                 <div
                   key={x}
+                  // setting the ref here starts generating colors on the next setInterval call
                   ref={matrixRefs.current[y][x]}
                   className="virus-pixel"
                 ></div>
