@@ -69,7 +69,7 @@ export function VirusWindow(setwMsg: setWindowMsg): launchWindowFunc {
     // setTimeout to spawn another one!
     setTimeout(() => {
       VirusWindow(setwMsg)();
-    }, randInt(10000, 20000));
+    }, randInt(2000, 5000));
   };
 }
 
