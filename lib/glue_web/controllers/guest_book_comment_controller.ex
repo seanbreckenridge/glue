@@ -20,6 +20,11 @@ defmodule GlueWeb.GuestBookCommentController do
     render(conn, "index.json", gb_comment: gb_comment)
   end
 
+  def show(conn, _params) do
+    comment_count = Glue.GuestBookComments.CLI.new_comments() |> length()
+    json(conn, %{count: comment_count})
+  end
+
   @max_unreviewed Application.compile_env(:glue, :guestbook_max_unreviewed)
 
   def create(conn, %{"name" => name, "comment" => comment}) do

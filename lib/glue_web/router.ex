@@ -26,7 +26,7 @@ defmodule GlueWeb.Router do
 
     get "/data/cubing", DataController, :cubing
 
-    resources "/gb_comment", GuestBookCommentController, only: [:index, :create]
+    resources "/gb_comment", GuestBookCommentController, only: [:index, :create, :show]
     resources "/page_hit", PageHitController, only: [:index, :create, :show]
   end
 
