@@ -101,6 +101,11 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/feather.png",
   },
   {
+    name: "Photography",
+    url: "https://sean.fish/x/photography/",
+    icon: "/images/frontend/camera.png",
+  },
+  {
     name: "Media Accts",
     icon: "/images/frontend/musicnote.png",
   },
