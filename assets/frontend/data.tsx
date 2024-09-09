@@ -91,7 +91,7 @@ const IconData: LinkInfo[] = [
     icon: "/images/frontend/laptop.png",
   },
   {
-    name: "ExoBrain",
+    name: "Notes",
     url: "https://sean.fish/x/",
     icon: "/images/frontend/brain.png",
   },

@@ -103,7 +103,7 @@ const ReadmeBody = memo(() => {
           target="_blank"
           rel="noreferrer"
         >
-          exobrain
+          notes website
         </TapLink>{" "}
         has lots of those. You can also just sign the Guest Book here :)
       </p>
