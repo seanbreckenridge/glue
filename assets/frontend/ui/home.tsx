@@ -39,7 +39,7 @@ export type setWindowMsg = Dispatch<SetStateAction<windowMsg>>;
 
 function removeWindow(
   windows: IWindowMap,
-  excludeWindowId: string
+  excludeWindowId: string,
 ): IWindowMap {
   const newWindows: IWindowMap = {};
   Object.keys(windows).forEach((wId) => {
@@ -69,7 +69,7 @@ const desktopRenderTick = 60;
 function renderDesktopIconFrame(
   currentFrame: number,
   frameCount: number,
-  setLoadingFunc: Dispatch<SetStateAction<number>>
+  setLoadingFunc: Dispatch<SetStateAction<number>>,
 ): void {
   // there are desktop icons to render
   if (currentFrame < frameCount) {
@@ -175,7 +175,7 @@ function Home() {
           id="site-title"
           className="menu-toolbar-item menu-bar-item unlinkify pixel-large"
         >
-          <h1>sean</h1>
+          <h1>....</h1>
         </TapLink>
         {/* a hidden icon (easter egg) which when clicked takes you to my old site */}
         <TapLink
@@ -218,7 +218,7 @@ function Home() {
               {IconData.map((el, i) => {
                 const action: string | launchWindowFunc = getAction(
                   el,
-                  setwMsg
+                  setwMsg,
                 );
                 const isURL: boolean =
                   typeof action === "string" || action instanceof String;
@@ -228,7 +228,7 @@ function Home() {
                     className={clsx(
                       "home-icon",
                       selectedIcon == el.name && "selected",
-                      i >= loading && "home-icon-hide"
+                      i >= loading && "home-icon-hide",
                     )}
                   >
                     <DesktopIcon
@@ -326,7 +326,7 @@ const PageHitRender = React.memo(({ count }: IPageHitRender) => {
 const OSVersion = React.memo(() => {
   return (
     <span id="os-version">
-      sean.fishOS Build {hash} {new Date().getFullYear()}
+      OS Build {hash} {new Date().getFullYear()}
     </span>
   );
 });

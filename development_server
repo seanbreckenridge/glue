@@ -17,4 +17,5 @@ export GUESTBOOK_JSON_PATH PAGE_HITS_OFFSET
 
 # clean deps
 mix deps.clean glue
+mix ecto.migrate
 exec mix phx.server

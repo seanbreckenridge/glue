@@ -26,8 +26,8 @@ const cpuCount = navigator.hardwareConcurrency ?? "Pass";
 const loadingText: string[] = [
   "Loading...",
   "---------------",
-  "sean.fishOS",
-  "---------------",
+  // "sean.fishOS",
+  // "---------------",
   "Devices",
   "---------------",
   `Language .... ${navigator.language ?? "en"}`,
